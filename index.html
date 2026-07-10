@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MUSHI — UX Wireframes</title>
+<style>
+  :root{
+    --ink:#141414;
+    --line:#c9c9c9;
+    --line-dark:#8a8a8a;
+    --fill:#f2f2f2;
+    --fill-dark:#e4e4e4;
+    --note:#9b9b9b;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    color:var(--ink);
+    background:#fff;
+    -webkit-font-smoothing:antialiased;
+  }
+  /* ---------- image placeholders ---------- */
+  .img{
+    background:
+      linear-gradient(to top right, transparent calc(50% - .5px), var(--line) calc(50% - .5px), var(--line) calc(50% + .5px), transparent calc(50% + .5px)),
+      linear-gradient(to bottom right, transparent calc(50% - .5px), var(--line) calc(50% - .5px), var(--line) calc(50% + .5px), transparent calc(50% + .5px)),
+      var(--fill);
+    border:1px solid var(--line);
+    position:relative;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .img span{
+    font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--note);
+    background:#fff;padding:4px 10px;border:1px solid var(--line);
+  }
+  /* ---------- section annotation labels ---------- */
+  section{position:relative;}
+  .wf-label{
+    position:absolute;top:14px;left:14px;
+    font-size:9px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--note);border:1px dashed var(--line-dark);
+    padding:3px 8px;background:#fff;z-index:5;border-radius:3px;
+  }
+  /* ---------- type ---------- */
+  .display{
+    font-size:clamp(44px,7vw,96px);
+    line-height:.98;letter-spacing:-.02em;font-weight:600;
+  }
+  .h2{
+    font-size:clamp(30px,4.2vw,56px);
+    line-height:1.05;letter-spacing:-.015em;font-weight:600;
+  }
+  .h3{font-size:clamp(20px,2.4vw,30px);line-height:1.15;font-weight:600;letter-spacing:-.01em;}
+  .eyebrow{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--note);font-weight:500;}
+  .body-copy{font-size:15px;line-height:1.65;color:#555;max-width:52ch;}
+  .center{text-align:center;margin-left:auto;margin-right:auto;}
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-block;padding:15px 34px;font-size:12px;letter-spacing:.14em;
+    text-transform:uppercase;text-decoration:none;cursor:pointer;border-radius:999px;
+    border:1px solid var(--ink);color:var(--ink);background:#fff;transition:.15s;
+    font-weight:500;
+  }
+  .btn.solid{background:var(--ink);color:#fff;}
+  .btn:hover{opacity:.75;}
+  .text-link{
+    font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);
+    text-decoration:none;border-bottom:1px solid var(--ink);padding-bottom:3px;cursor:pointer;font-weight:500;
+  }
+  /* ---------- layout ---------- */
+  .wrap{max-width:1280px;margin:0 auto;padding:0 48px;}
+  section{padding:110px 0;border-bottom:1px dashed var(--line);}
+  /* ---------- announcement bar ---------- */
+  .announce{
+    position:fixed;top:0;left:0;right:0;height:42px;z-index:120;
+    background:var(--ink);color:#fff;
+    display:none;align-items:center;padding:0 24px;
+    font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  }
+  body.promo .announce{display:flex;}
+  .announce .a-side{flex:1;display:flex;gap:22px;align-items:center;}
+  .announce .a-side.right{justify-content:flex-end;}
+  .announce .a-msg{
+    flex:0 0 auto;color:#fff;text-decoration:underline;text-underline-offset:3px;
+    cursor:pointer;font-weight:500;
+  }
+  .announce .a-select{cursor:pointer;color:#fff;opacity:.9;white-space:nowrap;}
+  .announce .a-select::after{content:" ▾";font-size:8px;}
+  .announce .a-select:hover{opacity:.65;}
+  .announce .a-close{cursor:pointer;font-size:14px;opacity:.7;margin-left:18px;text-transform:none;letter-spacing:0;}
+  .announce .a-close:hover{opacity:1;}
+  .announce .wf-tag{
+    font-size:8px;letter-spacing:.16em;border:1px dashed rgba(255,255,255,.5);
+    padding:2px 7px;border-radius:3px;color:rgba(255,255,255,.7);margin-right:14px;
+  }
+  body.promo nav.floating{top:62px;}
+  body.promo .filter-bar{top:130px;}
+  @media(max-width:900px){
+    .announce .a-side.left .wf-tag{display:none;}
+    .announce{font-size:9px;padding:0 14px;}
+    .announce .a-side{gap:12px;}
+  }
+  /* ---------- floating nav ---------- */
+  nav.floating{
+    position:fixed;top:22px;left:50%;transform:translateX(-50%);
+    width:min(1180px,calc(100% - 48px));
+    background:rgba(255,255,255,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border:1px solid var(--line);border-radius:999px;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 34px;z-index:100;
+    box-shadow:0 2px 14px rgba(0,0,0,.05);
+  }
+  nav.floating .nav-group{display:flex;gap:30px;flex:1;}
+  nav.floating .nav-group.right{justify-content:flex-end;}
+  nav.floating a{
+    font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--ink);text-decoration:none;cursor:pointer;font-weight:500;
+  }
+  nav.floating a:hover{opacity:.6;}
+  /* nav dropdowns */
+  .nav-item{position:relative;}
+  .nav-item>a::after{content:" ▾";font-size:8px;color:var(--note);}
+  .nav-drop{
+    position:absolute;top:100%;left:50%;transform:translateX(-50%);
+    padding-top:18px; /* hover bridge */
+    opacity:0;visibility:hidden;transition:.15s;z-index:110;
+  }
+  .nav-item:hover .nav-drop{opacity:1;visibility:visible;}
+  .nav-drop-inner{
+    background:#fff;border:1px solid var(--line);border-radius:18px;
+    box-shadow:0 8px 28px rgba(0,0,0,.08);
+    padding:14px 8px;min-width:190px;display:flex;flex-direction:column;
+  }
+  .nav-drop-inner a{
+    display:block;padding:10px 20px;font-size:11px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--ink);white-space:nowrap;border-radius:10px;
+  }
+  .nav-drop-inner a:hover{background:var(--fill);opacity:1;}
+  .nav-drop-inner .drop-note{
+    font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--note);
+    padding:4px 20px 10px;border-bottom:1px solid var(--line);margin-bottom:8px;
+  }
+  nav.floating .logo{flex:0 0 auto;display:flex;align-items:center;}
+  .logo-svg{width:104px;height:auto;fill:var(--ink);display:block;}
+  footer .logo-svg{width:124px;}
+  .nav-icons{display:flex;gap:20px;align-items:center;}
+  .nav-icons a{display:inline-flex;position:relative;}
+  .nav-icons svg{width:19px;height:19px;stroke:var(--ink);stroke-width:1.5;fill:none;}
+  .nav-icons .badge{
+    position:absolute;top:-7px;right:-9px;
+    width:15px;height:15px;border-radius:50%;
+    background:var(--ink);color:#fff;font-size:8px;font-weight:600;
+    display:flex;align-items:center;justify-content:center;
+  }
+  /* ---------- page switching ---------- */
+  .page{display:none;}
+  .page.active{display:block;}
+  main{padding-top:0;}
+  /* hero runs behind the nav on home; other pages clear it */
+  #page-shop,#page-product,#page-learn{padding-top:96px;}
+  body.promo #page-shop,body.promo #page-product,body.promo #page-learn{padding-top:138px;}
+  body.promo #page-home{padding-top:42px;}
+  /* ---------- wireframe toolbar ---------- */
+  .wf-toolbar{
+    position:fixed;bottom:22px;left:50%;transform:translateX(-50%);
+    display:flex;gap:6px;background:#fff;border:1px solid var(--line-dark);
+    border-radius:999px;padding:6px;z-index:100;box-shadow:0 2px 14px rgba(0,0,0,.08);
+  }
+  .wf-toolbar button{
+    border:none;background:transparent;font-size:10px;letter-spacing:.14em;
+    text-transform:uppercase;padding:8px 16px;border-radius:999px;cursor:pointer;color:var(--note);
+    font-family:inherit;font-weight:500;
+  }
+  .wf-toolbar button.on{background:var(--ink);color:#fff;}
+  /* ---------- hero ---------- */
+  .hero{padding:0;border-bottom:1px dashed var(--line);}
+  .hero .img{height:94vh;min-height:640px;border-left:none;border-right:none;border-top:none;}
+  .hero-inner{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:28px;padding:0 24px;}
+  .hero-inner .body-copy{max-width:44ch;text-align:center;}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;}
+  /* ---------- brand statement ---------- */
+  .statement .img{height:520px;margin-top:64px;}
+  /* ---------- moments carousel (full-width, 4:5 IG-style cards) ---------- */
+  .moment-carousel-wrap{position:relative;margin-top:56px;}
+  .moment-carousel{
+    display:flex;gap:20px;overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    padding:4px 48px;
+    scrollbar-width:none;-ms-overflow-style:none;
+  }
+  .moment-carousel::-webkit-scrollbar{display:none;}
+  .moment-card{
+    flex:0 0 clamp(250px,26vw,360px);
+    aspect-ratio:4/5;
+    scroll-snap-align:start;
+    position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;
+    padding:0;cursor:pointer;background:#fff;font-family:inherit;text-align:left;transition:.15s;
+  }
+  .moment-card:hover{border-color:var(--ink);}
+  .moment-card .img{position:absolute;inset:0;border:none;}
+  .moment-card .mc-overlay{
+    position:absolute;left:14px;right:14px;bottom:14px;
+    background:#fff;border:1px solid var(--line);border-radius:12px;
+    padding:16px 20px;display:flex;justify-content:space-between;align-items:center;gap:10px;
+  }
+  .moment-card h4{font-size:19px;letter-spacing:.02em;font-weight:600;}
+  .moment-card .mc-overlay span{font-size:14px;color:var(--note);}
+  .car-btn{
+    position:absolute;top:50%;transform:translateY(-50%);z-index:10;
+    width:46px;height:46px;border-radius:50%;border:1px solid var(--ink);
+    background:#fff;cursor:pointer;font-size:15px;font-family:inherit;color:var(--ink);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 2px 12px rgba(0,0,0,.08);transition:.15s;
+  }
+  .car-btn:hover{background:var(--ink);color:#fff;}
+  .car-btn.prev{left:20px;}
+  .car-btn.next{right:20px;}
+  /* ---------- product grids ---------- */
+  .prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px;}
+  .prod-grid.two-col{grid-template-columns:repeat(2,1fr);gap:32px;}
+  .prod-card{cursor:pointer;}
+  .prod-card .img{aspect-ratio:4/5;margin-bottom:16px;border-radius:10px;}
+  .prod-card h4{font-size:15px;font-weight:600;margin-bottom:4px;}
+  .prod-card .meta{font-size:12px;color:var(--note);margin-bottom:6px;letter-spacing:.02em;}
+  .prod-card .price{font-size:13px;font-weight:500;}
+  .prod-card:hover h4{text-decoration:underline;}
+  /* ---------- featured: segmented toggle + buy cards ---------- */
+  .seg-toggle{
+    display:flex;width:max-content;margin:44px auto 0;
+    border:1px solid var(--ink);border-radius:999px;overflow:hidden;
+  }
+  .seg-toggle button{
+    padding:13px 38px;border:none;background:#fff;cursor:pointer;font-family:inherit;
+    font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);font-weight:500;
+  }
+  .seg-toggle button.on{background:var(--ink);color:#fff;}
+  .buy-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;}
+  .buy-card{
+    border:1px solid var(--line);border-radius:16px;padding:20px;
+    display:flex;flex-direction:column;gap:14px;
+  }
+  .buy-card .img{aspect-ratio:4/5;border-radius:10px;cursor:pointer;}
+  .buy-card h4{font-size:17px;font-weight:600;text-align:center;text-transform:uppercase;letter-spacing:.04em;cursor:pointer;}
+  .buy-card h4:hover{text-decoration:underline;}
+  .buy-card .specs{
+    font-family:"SF Mono",Menlo,Consolas,monospace;font-size:10.5px;color:var(--note);
+    line-height:1.9;text-align:center;
+  }
+  .buy-card .price-qty{display:flex;justify-content:space-between;align-items:center;margin-top:auto;}
+  .buy-card .price-qty .price{font-size:17px;font-weight:600;}
+  .buy-card .qty{padding:9px 16px;gap:14px;font-size:12px;}
+  .buy-card .row2{display:flex;gap:10px;}
+  .buy-card .variant{
+    flex:1;border:1px solid var(--line);border-radius:999px;padding:12px 18px;
+    font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#555;
+    display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-weight:500;
+  }
+  .buy-card .variant::after{content:"▾";font-size:9px;color:var(--note);}
+  .buy-card .btn{flex:1;text-align:center;padding:12px 20px;}
+  /* ---------- parallax quote (scroll-pinned) ---------- */
+  .pq-outer{height:190vh;position:relative;}
+  .pq-sticky{
+    position:sticky;top:0;height:100vh;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--fill);border-bottom:1px dashed var(--line);
+  }
+  .pq-content{max-width:940px;text-align:center;padding:0 28px;display:flex;flex-direction:column;align-items:center;gap:40px;will-change:transform,opacity;}
+  .pq-quote{font-size:clamp(26px,3.8vw,52px);font-weight:600;line-height:1.14;letter-spacing:-.005em;text-transform:uppercase;}
+  .pq-logo{
+    width:112px;height:112px;border-radius:50%;border:1px solid var(--ink);background:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--note);
+  }
+  .pq-attr{font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;}
+  .pq-attr span{color:var(--note);font-weight:400;text-transform:none;letter-spacing:.04em;}
+  .pq-deco{
+    position:absolute;width:72px;height:72px;border-radius:50%;
+    border:1px dashed var(--line-dark);background:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--note);
+    will-change:transform;
+  }
+  /* ---------- client raves ---------- */
+  .rave-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px;}
+  .rave-card{border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;background:#fff;}
+  .rave-body{padding:30px;flex:1;}
+  .rave-body h4{font-size:19px;font-weight:600;text-transform:uppercase;letter-spacing:.02em;line-height:1.2;margin-bottom:16px;}
+  .rave-body p{font-size:13px;color:#555;line-height:1.65;font-family:"SF Mono",Menlo,Consolas,monospace;}
+  .rave-body .who{margin-top:20px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;}
+  .rave-body .who span{color:var(--note);font-weight:400;}
+  .rave-prod{border-top:1px solid var(--line);padding:18px 30px;display:flex;gap:16px;align-items:center;cursor:pointer;}
+  .rave-prod .img{width:58px;height:58px;border-radius:10px;flex:0 0 auto;}
+  .rave-prod .img span{display:none;}
+  .rave-prod h5{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;}
+  .rave-prod p{font-size:12px;color:var(--note);font-family:"SF Mono",Menlo,monospace;margin-top:3px;}
+  /* ---------- instagram row ---------- */
+  .ig-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:52px;}
+  .ig-tile{aspect-ratio:1;border-radius:10px;cursor:pointer;position:relative;}
+  .ig-tile .ig-glyph{
+    position:absolute;top:8px;right:8px;width:18px;height:18px;
+    border:1px solid var(--line-dark);border-radius:5px;background:#fff;
+  }
+  .ig-tile .ig-glyph::after{
+    content:"";position:absolute;inset:4px;border:1px solid var(--line-dark);border-radius:50%;
+  }
+  /* ---------- ingredients ---------- */
+  .ing-row{display:grid;grid-template-columns:repeat(6,1fr);gap:20px;margin-top:64px;}
+  .ing{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;}
+  .ing .circle{
+    width:92px;height:92px;border-radius:50%;border:1px solid var(--ink);
+    display:flex;align-items:center;justify-content:center;
+    font-size:9px;letter-spacing:.14em;color:var(--note);text-transform:uppercase;
+    background:var(--fill);
+  }
+  .ing p{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;}
+  /* ---------- lifestyle split ---------- */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;}
+  .split .img{height:560px;border-radius:12px;}
+  .split .content{display:flex;flex-direction:column;gap:24px;align-items:flex-start;}
+  .split.reverse .img{order:2;}
+  /* ---------- journal ---------- */
+  .journal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px;}
+  .article-card{cursor:pointer;}
+  .article-card .img{aspect-ratio:4/3;margin-bottom:18px;border-radius:10px;}
+  .article-card .eyebrow{margin-bottom:10px;display:block;}
+  .article-card h4{font-size:19px;font-weight:600;line-height:1.25;margin-bottom:10px;letter-spacing:-.01em;}
+  .article-card p{font-size:13px;color:#666;line-height:1.55;}
+  /* ---------- newsletter ---------- */
+  .newsletter-box{max-width:560px;margin:0 auto;text-align:center;display:flex;flex-direction:column;gap:22px;align-items:center;}
+  .signup{display:flex;width:100%;border:1px solid var(--ink);border-radius:999px;overflow:hidden;}
+  .signup input{flex:1;border:none;padding:16px 24px;font-size:13px;font-family:inherit;outline:none;color:var(--ink);background:#fff;}
+  .signup button{border:none;background:var(--ink);color:#fff;padding:16px 30px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;font-family:inherit;}
+  /* ---------- footer ---------- */
+  footer{padding:80px 0 40px;background:var(--fill);}
+  .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:70px;}
+  .foot-grid .logo{font-size:22px;letter-spacing:.42em;font-weight:700;}
+  .foot-col h5{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--note);margin-bottom:18px;font-weight:600;}
+  .foot-col a{display:block;font-size:13px;color:var(--ink);text-decoration:none;margin-bottom:12px;cursor:pointer;}
+  .foot-col a:hover{opacity:.6;}
+  .foot-legal{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:28px;font-size:11px;color:var(--note);letter-spacing:.04em;flex-wrap:wrap;gap:12px;}
+  .foot-legal .social{display:flex;gap:10px;}
+  .foot-legal .social i{width:28px;height:28px;border-radius:50%;border:1px solid var(--line-dark);display:inline-block;}
+  /* ---------- shop page ---------- */
+  .shop-head{padding:90px 0 50px;border-bottom:none;}
+  .filter-bar{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0;position:sticky;top:88px;background:rgba(255,255,255,.96);z-index:50;}
+  .filter-inner{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;}
+  .moment-pills{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+  .moment-pills .lbl{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--note);margin-right:8px;font-weight:600;}
+  .pill{
+    border:1px solid var(--line-dark);background:#fff;border-radius:999px;
+    padding:9px 20px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    cursor:pointer;font-family:inherit;color:var(--ink);transition:.15s;font-weight:500;
+  }
+  .pill.on{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .sec-filters{display:flex;gap:10px;}
+  .dropdown{
+    border:1px solid var(--line);border-radius:8px;padding:10px 16px;
+    font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#555;
+    display:flex;align-items:center;gap:10px;cursor:pointer;background:#fff;font-weight:500;
+  }
+  .dropdown::after{content:"▾";font-size:9px;color:var(--note);}
+  .result-count{font-size:12px;color:var(--note);margin-top:34px;letter-spacing:.06em;}
+  /* ---------- PDP ---------- */
+  .pdp-top{display:grid;grid-template-columns:1.15fr 1fr;gap:64px;align-items:start;padding-top:40px;}
+  .pdp-gallery .img.main{aspect-ratio:4/5;border-radius:12px;margin-bottom:14px;}
+  .thumb-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+  .thumb-row .img{aspect-ratio:1;border-radius:8px;}
+  .buy-panel{position:sticky;top:120px;display:flex;flex-direction:column;gap:22px;border:1px solid var(--line);border-radius:14px;padding:36px;}
+  .buy-panel .price-row{display:flex;justify-content:space-between;align-items:baseline;}
+  .buy-panel .price-row .price{font-size:20px;font-weight:600;}
+  .chip-row{display:flex;gap:8px;flex-wrap:wrap;}
+  .chip{
+    border:1px solid var(--line-dark);border-radius:999px;padding:8px 18px;
+    font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#444;background:#fff;font-weight:500;
+  }
+  .chip.tag{background:var(--fill);border-style:dashed;}
+  .qty-cart{display:flex;gap:12px;}
+  .qty{border:1px solid var(--ink);border-radius:999px;padding:14px 22px;font-size:13px;display:flex;gap:18px;align-items:center;font-weight:500;}
+  .qty-cart .btn{flex:1;text-align:center;}
+  .buy-note{font-size:11px;color:var(--note);letter-spacing:.06em;text-align:center;}
+  .pdp-section{padding:70px 0;border-bottom:1px dashed var(--line);}
+  .pdp-section .h3{margin-bottom:8px;}
+  .pdp-section .eyebrow{display:block;margin-bottom:14px;}
+  .pdp-section .body-copy{margin-top:14px;}
+  .accordion{border-top:1px solid var(--line);margin-top:28px;}
+  .acc-item{border-bottom:1px solid var(--line);padding:22px 4px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;}
+  .acc-item p{font-size:14px;font-weight:500;}
+  .acc-item span{font-size:16px;color:var(--note);}
+  .review-row{display:flex;gap:40px;align-items:center;margin-top:28px;}
+  .review-score{font-size:52px;font-weight:600;letter-spacing:-.02em;}
+  .stars{font-size:13px;letter-spacing:.3em;color:var(--ink);}
+  .review-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px;}
+  .review-card{border:1px solid var(--line);border-radius:10px;padding:24px;font-size:13px;color:#555;line-height:1.55;}
+  .review-card .stars{font-size:10px;margin-bottom:12px;display:block;}
+  .review-card .who{margin-top:14px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--note);}
+  /* ---------- learn page ---------- */
+  .learn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px;}
+  .learn-card{border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer;transition:.15s;background:#fff;}
+  .learn-card:hover{border-color:var(--ink);}
+  .learn-card .img{height:230px;border:none;border-bottom:1px solid var(--line);}
+  .learn-card .lc-body{padding:26px 28px 30px;}
+  .learn-card h4{font-size:21px;font-weight:600;margin-bottom:10px;letter-spacing:-.01em;}
+  .learn-card p{font-size:13px;color:#666;line-height:1.55;margin-bottom:18px;}
+  /* ---------- responsive ---------- */
+  @media(max-width:900px){
+    .wrap{padding:0 22px;}
+    .prod-grid,.journal-grid,.learn-grid,.review-cards{grid-template-columns:1fr 1fr;}
+    .moment-carousel{padding:4px 22px;}
+    .car-btn{display:none;}
+    .buy-grid,.rave-grid{grid-template-columns:1fr;}
+    .ig-grid{grid-template-columns:repeat(3,1fr);}
+    .pq-deco{display:none;}
+    .ing-row{grid-template-columns:repeat(3,1fr);row-gap:40px;}
+    .split,.pdp-top{grid-template-columns:1fr;gap:36px;}
+    .split.reverse .img{order:0;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+    nav.floating{padding:13px 20px;}
+    nav.floating .nav-group{gap:16px;}
+    .logo-svg{width:80px;}
+  }
+  @media(max-width:560px){
+    .prod-grid,.journal-grid,.learn-grid,.review-cards,.prod-grid.two-col{grid-template-columns:1fr;}
+    .ing-row{grid-template-columns:1fr 1fr;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ MUSHI LOGO (inline asset) ============ -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg"><symbol id="mushiLogo" viewBox="0 0 454.6 100.27"><path d="m32.85,6.95c-.07.32.06.44.19.67.58.99,1.48,2.04,2.12,3.06,5.62,8.91,9.11,19.04,14.4,28.07,1.15,1.96,2.96,4.89,4.6,6.42.19.18.32.3.6.26,4.51,5.56,9.74-1.27,12.14-5.05,6.54-10.33,10.12-22.94,17.5-32.8,7.71-10.3,15.43-9.56,23.88-.62-.07.32.06.44.19.67,1.7,2.94,3.07,5.04,4.29,8.32,5.81,15.62,5.74,39.94,3.2,56.33-1.48,9.57-6.02,29.01-19.5,25.76-.93-.23-1.73-.72-2.66-.86-2.06-1.98-3.27-3.1-4.49-5.79-2.04-4.45-2.47-10.03-4.93-14.11-1.23-2.04-2.4-2.94-4.96-2.64-2.91.35-5.41,4.8-6.66,7.15-3.11,5.84-7.09,18.31-15.74,16.39-.92-.2-1.63-.68-2.52-.86-3.04-2.91-4.48-4.88-6.44-8.62-1.08-2.06-4.6-10.24-6.17-11.15.05-.3-.1-.4-.26-.6-2.57-3.19-6.49-3.27-8.66.38-3.39,5.71-2.86,15.44-9.07,19.46-2.85,1.84-6.48,2.04-9.63.86-.61-.23-1.17-.76-1.86-.73-.62-.59-1.5-1.27-2.06-1.86C2.12,86.34.59,68.37.19,56.89l-.14-.32c.12-4.63-.16-9.3,0-13.93C.47,30.69,3.32,8.62,14.83,2.02c7.96-4.56,12.72-.73,18.02,4.93Z"/><path d="m142.01,94.51c-3.43-3.22-6.06-6.19-8.21-10.43-7.46-14.69-7.83-39.66-4.36-55.52,2.37-10.87,10.14-31.91,24.96-26.87,2.9.99,4.08,2.55,6.07,4.61.29.96.93,1.78,1.35,2.7,4.74,10.43,3.15,27.27,3.69,38.77.25,5.39.97,15.92,5.38,19.57.2.16.3.31.6.26.9,1.38,4.23,1.94,5.77,1.85,8.53-.49,9.97-14.05,10.56-20.5,1.01-11.1.33-22.49,1.74-33.55.97-7.61,3.22-17.52,13.33-13.62,2.87,1.11,4.79,3.28,6.84,5.44-.06.29.05.45.18.68,1.17,2.16,2.29,3.82,3.24,6.18,5.47,13.59,6.51,35.27,5.75,49.86-.53,10.06-3.19,29.7-13.02,35.02-7.7,4.17-12.14-2.77-18.99-4.25-8.41-1.82-13.67,1.79-21.38,3.45-7.72,1.66-14.98,1.25-21.56-2.61-.61-.36-1.22-1.03-1.95-1.03h.01Z"/><path d="m341.33,5.63c.13.88.86,1.71,1.26,2.52,3.02,6.02,4.16,13.2,5.94,19.66.91,3.27,2.09,7.49,4.1,10.23.46.63,1.15,1.63,1.97,1.68,1.07,1.44,3.58,1.41,5.14.82,4.12-1.56,6.38-8.79,7.64-12.66,3.18-9.67,6.75-29.03,20.84-26.59,3.84.66,5.58,2.79,8.08,5.4l2.55,4.82c4.3,10.43,5.21,21.98,5.55,33.19.42,13.62.32,36.24-7.24,47.94-3.21,4.96-8.92,8.55-14.89,5.87-.59-.27-1.1-.84-1.77-.82-5.5-5.28-7.48-10.11-11.13-16.54-1.16-2.05-3.45-6.4-5.34-7.6-.1-.84-1.39-1.77-2.08-2.23-6.03-4.09-10.28.78-12.68,5.99-3.29,7.15-6,23.85-16.88,21.95-1.27-.22-2.21-.91-3.42-1.16-7.05-6.72-9.01-14.95-10.47-24.36-2.26-14.61-2.25-32.39-.27-47.06,1.11-8.25,4.42-26.57,15.83-25.54,3.41.31,5.06,2.22,7.26,4.49h0Z"/><path d="m304.28,12.39l1.26,3.18c.63,2.53-.04,5.61-2.2,7.22-5.32,3.98-20.18-1.12-27.15-.59-5.84.44-5.86,5.83-1.99,9.03.2.16.3.31.6.26.73,1.18,2.84,2.4,4.05,3.19,9.43,6.12,16.56,9.4,24.5,17.9-.07.32.06.44.19.67,2.73,4.65,4.78,7.58,5.13,13.32,2.05,34.02-41.12,38.11-64.46,27.11-2.8-1.32-4.83-2.89-7.38-4.43-.23-.14-.36-.26-.67-.19-4.8-4.36-10.86-10.31-10.22-17.45.64-7.13,9.48-6.41,14.54-5.91,6.13.61,17.67,3.59,23.09.9,3.69-1.83,4.57-6.49,1.15-9.13.04-.44-.38-.73-.66-1-3.5-3.35-9.72-6.24-13.94-8.9-1.88-1.19-3.76-2.74-5.58-3.84-.23-.14-.36-.26-.67-.19-6.65-6.17-10.65-10.77-10.1-20.5,1.34-23.48,31.46-24.61,48.88-21.35,8.64,1.62,15.52,4.29,21.64,10.68Z"/><path d="m446.91,6.68c.15.9.91,1.73,1.35,2.56,4.76,8.91,5.63,20.84,6.09,30.8.4,8.67.39,17.46-.4,26.13-1.26,13.91-6.12,40.72-26.27,30.63-.23-.12-.39-.24-.68-.18-6.69-6.36-8.89-12.46-10.58-21.46-2.4-12.76-2.55-28.68-1.23-41.62,1.26-12.35,5.78-36.03,23.11-32.64,3.88.76,6.05,3.07,8.63,5.77h0Z"/></symbol></svg>
+
+<!-- ============ ANNOUNCEMENT BAR (toggleable) ============ -->
+<div class="announce">
+  <div class="a-side left"><span class="wf-tag">Optional promo bar</span></div>
+  <a class="a-msg">Free shipping on orders above $00</a>
+  <div class="a-side right">
+    <span class="a-select">English</span>
+    <span class="a-select">USD ($)</span>
+    <span class="a-close" onclick="togglePromo(false)">✕</span>
+  </div>
+</div>
+
+<!-- ============ FLOATING NAV ============ -->
+<nav class="floating">
+  <div class="nav-group">
+    <div class="nav-item">
+      <a onclick="go('shop')">Shop</a>
+      <div class="nav-drop"><div class="nav-drop-inner">
+        <span class="drop-note">Shop</span>
+        <a onclick="go('shop')">Gummies</a>
+        <a onclick="go('shop')">Chocolates</a>
+        <a onclick="go('shop')">Shop All</a>
+      </div></div>
+    </div>
+    <div class="nav-item">
+      <a onclick="go('learn')">Learn</a>
+      <div class="nav-drop"><div class="nav-drop-inner">
+        <span class="drop-note">Learn</span>
+        <a onclick="go('learn')">Why Mushi?</a>
+        <a onclick="go('learn')">The Science</a>
+        <a onclick="go('learn')">Feel-Good Rituals</a>
+        <a onclick="go('learn')">Journal</a>
+        <a onclick="go('learn')">FAQs</a>
+      </div></div>
+    </div>
+  </div>
+  <a class="logo" onclick="go('home')" title="MUSHI — Home"><svg class="logo-svg" viewBox="0 0 454.6 100.27"><use href="#mushiLogo"/></svg></a>
+  <div class="nav-group right nav-icons">
+    <a title="Account"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg></a>
+    <a title="Search"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg></a>
+    <a title="Cart"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1.2 12H6.2L5 8z"/><path d="M8.5 8V6.5a3.5 3.5 0 0 1 7 0V8"/></svg><span class="badge">0</span></a>
+  </div>
+</nav>
+
+<main>
+
+<!-- ==================================================== -->
+<!-- HOME                                                 -->
+<!-- ==================================================== -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="wf-label" style="top:auto;bottom:14px;">Hero — full-bleed image, runs behind blurred nav</span>
+    <div class="img" style="border-radius:0;">
+      <div class="hero-inner">
+        <h1 class="display center">FEEL GOOD,<br>DELICIOUSLY.</h1>
+        <p class="body-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus posuere, sapien in luctus varius, nunc elit fermentum ante.</p>
+        <div class="cta-row">
+          <a class="btn solid" onclick="go('shop')">Shop Gummies</a>
+          <a class="btn" onclick="go('shop')">Shop Chocolates</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOP YOUR MOMENT -->
+  <section>
+    <span class="wf-label">Shop your moment — full-width swipeable carousel, 4:5 cards</span>
+    <div class="wrap">
+      <p class="eyebrow center" style="display:block;margin-bottom:22px;">Shop Your Moment</p>
+      <h2 class="h2 center" style="max-width:22ch;">What kind of moment are you creating today?</h2>
+    </div>
+    <div class="moment-carousel-wrap">
+      <button class="car-btn prev" onclick="scrollMoments(-1)" aria-label="Previous">←</button>
+      <div class="moment-carousel" id="momentCar">
+        <button class="moment-card" onclick="goMoment('Create')"><div class="img"><span>Moment image 4:5</span></div><div class="mc-overlay"><h4>Create</h4><span>→</span></div></button>
+        <button class="moment-card" onclick="goMoment('Connect')"><div class="img"><span>Moment image 4:5</span></div><div class="mc-overlay"><h4>Connect</h4><span>→</span></div></button>
+        <button class="moment-card" onclick="goMoment('Celebrate')"><div class="img"><span>Moment image 4:5</span></div><div class="mc-overlay"><h4>Celebrate</h4><span>→</span></div></button>
+        <button class="moment-card" onclick="goMoment('Unwind')"><div class="img"><span>Moment image 4:5</span></div><div class="mc-overlay"><h4>Unwind</h4><span>→</span></div></button>
+        <button class="moment-card" onclick="goMoment('Explore')"><div class="img"><span>Moment image 4:5</span></div><div class="mc-overlay"><h4>Explore</h4><span>→</span></div></button>
+        <button class="moment-card" onclick="goMoment('Everyday')"><div class="img"><span>Moment image 4:5</span></div><div class="mc-overlay"><h4>Everyday</h4><span>→</span></div></button>
+      </div>
+      <button class="car-btn next" onclick="scrollMoments(1)" aria-label="Next">→</button>
+    </div>
+  </section>
+
+  <!-- FEATURED PRODUCTS — toggle + direct add-to-cart -->
+  <section>
+    <span class="wf-label">Featured — gummies/chocolates toggle, direct add-to-cart cards</span>
+    <div class="wrap">
+      <p class="eyebrow center" style="display:block;margin-bottom:22px;">Featured</p>
+      <h2 class="h2 center">Lorem ipsum dolor.</h2>
+      <div class="seg-toggle">
+        <button id="segGummies" class="on" onclick="toggleFeatured('gummies')">Gummies</button>
+        <button id="segChocolates" onclick="toggleFeatured('chocolates')">Chocolates</button>
+      </div>
+
+      <div class="buy-grid" id="featGummies">
+        <div class="buy-card">
+          <div class="img" onclick="go('product')"><span>Product image 4:5</span></div>
+          <h4 onclick="go('product')">Lorem Ipsum Gummies</h4>
+          <p class="specs">Flavour: Lorem ipsum<br>Moment: Create; Connect;<br>Serving: 00 pieces</p>
+          <div class="price-qty"><span class="price">$00.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
+          <div class="row2"><div class="variant">00 ct</div><a class="btn solid">Add to Cart</a></div>
+        </div>
+        <div class="buy-card">
+          <div class="img" onclick="go('product')"><span>Product image 4:5</span></div>
+          <h4 onclick="go('product')">Lorem Ipsum Gummies</h4>
+          <p class="specs">Flavour: Lorem ipsum<br>Moment: Unwind;<br>Serving: 00 pieces</p>
+          <div class="price-qty"><span class="price">$00.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
+          <div class="row2"><div class="variant">00 ct</div><a class="btn solid">Add to Cart</a></div>
+        </div>
+        <div class="buy-card">
+          <div class="img" onclick="go('product')"><span>Product image 4:5</span></div>
+          <h4 onclick="go('product')">Lorem Ipsum Gummies</h4>
+          <p class="specs">Flavour: Lorem ipsum<br>Moment: Celebrate;<br>Serving: 00 pieces</p>
+          <div class="price-qty"><span class="price">$00.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
+          <div class="row2"><div class="variant">00 ct</div><a class="btn solid">Add to Cart</a></div>
+        </div>
+      </div>
+
+      <div class="buy-grid" id="featChocolates" style="display:none;">
+        <div class="buy-card">
+          <div class="img" onclick="go('product')"><span>Product image 4:5</span></div>
+          <h4 onclick="go('product')">Lorem Ipsum Chocolate</h4>
+          <p class="specs">Flavour: Lorem ipsum<br>Moment: Unwind; Connect;<br>Serving: 00 squares</p>
+          <div class="price-qty"><span class="price">$00.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
+          <div class="row2"><div class="variant">00 g</div><a class="btn solid">Add to Cart</a></div>
+        </div>
+        <div class="buy-card">
+          <div class="img" onclick="go('product')"><span>Product image 4:5</span></div>
+          <h4 onclick="go('product')">Lorem Ipsum Chocolate</h4>
+          <p class="specs">Flavour: Lorem ipsum<br>Moment: Explore;<br>Serving: 00 squares</p>
+          <div class="price-qty"><span class="price">$00.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
+          <div class="row2"><div class="variant">00 g</div><a class="btn solid">Add to Cart</a></div>
+        </div>
+        <div class="buy-card">
+          <div class="img" onclick="go('product')"><span>Product image 4:5</span></div>
+          <h4 onclick="go('product')">Lorem Ipsum Chocolate</h4>
+          <p class="specs">Flavour: Lorem ipsum<br>Moment: Everyday;<br>Serving: 00 squares</p>
+          <div class="price-qty"><span class="price">$00.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
+          <div class="row2"><div class="variant">00 g</div><a class="btn solid">Add to Cart</a></div>
+        </div>
+      </div>
+
+      <p class="center" style="margin-top:56px;"><a class="btn" onclick="go('shop')">Shop All</a></p>
+    </div>
+  </section>
+
+  <!-- INGREDIENTS -->
+  <section>
+    <span class="wf-label">Ingredients — trust badges</span>
+    <div class="wrap">
+      <h2 class="h2 center" style="max-width:16ch;">Everything you need.<br>Nothing you don't.</h2>
+      <p class="body-copy center" style="margin-top:24px;text-align:center;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+      <div class="ing-row">
+        <div class="ing"><div class="circle">Icon</div><p>Lab Tested</p></div>
+        <div class="ing"><div class="circle">Icon</div><p>Organic</p></div>
+        <div class="ing"><div class="circle">Icon</div><p>Vegan</p></div>
+        <div class="ing"><div class="circle">Icon</div><p>No Artificial Ingredients</p></div>
+        <div class="ing"><div class="circle">Icon</div><p>Premium Chocolate</p></div>
+        <div class="ing"><div class="circle">Icon</div><p>Natural Fruit</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARALLAX QUOTE — scroll-pinned -->
+  <section class="pq-outer" style="padding:0;border-bottom:none;" id="pqOuter">
+    <div class="pq-sticky">
+      <span class="wf-label" style="top:auto;bottom:14px;">Parallax customer quote — pinned while scrolling, floating elements move at different speeds</span>
+      <div class="pq-deco" style="top:12%;left:6%;" data-speed="-120">Deco</div>
+      <div class="pq-deco" style="top:8%;right:10%;" data-speed="90">Deco</div>
+      <div class="pq-deco" style="top:44%;left:12%;" data-speed="60">Deco</div>
+      <div class="pq-deco" style="top:52%;right:5%;" data-speed="-80">Deco</div>
+      <div class="pq-deco" style="bottom:10%;left:8%;" data-speed="110">Deco</div>
+      <div class="pq-deco" style="bottom:14%;right:14%;" data-speed="-60">Deco</div>
+      <div class="pq-content" id="pqContent">
+        <p class="pq-quote">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore dolore."</p>
+        <div class="pq-logo">Badge / Logo</div>
+        <p class="pq-attr">Customer Name, <span>Lorem ipsum</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENT RAVES -->
+  <section>
+    <span class="wf-label">Client raves — review cards with linked product</span>
+    <div class="wrap">
+      <h2 class="h2">Client Raves</h2>
+      <p class="body-copy" style="margin-top:16px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <div class="rave-grid">
+        <div class="rave-card">
+          <div class="rave-body">
+            <h4>Lorem ipsum dolor &amp; sit</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+            <p class="who">Name Lorem, <span>Lorem</span></p>
+          </div>
+          <div class="rave-prod" onclick="go('product')">
+            <div class="img"></div>
+            <div><h5>Lorem Ipsum Gummies</h5><p>$00.00</p></div>
+          </div>
+        </div>
+        <div class="rave-card">
+          <div class="rave-body">
+            <h4>Lorem ipsum dolor sit!</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+            <p class="who">Name Lorem, <span>Lorem</span></p>
+          </div>
+          <div class="rave-prod" onclick="go('product')">
+            <div class="img"></div>
+            <div><h5>Lorem Ipsum Chocolate</h5><p>$00.00</p></div>
+          </div>
+        </div>
+        <div class="rave-card">
+          <div class="rave-body">
+            <h4>Lorem ipsum dolor amet</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore.</p>
+            <p class="who">Name Lorem, <span>Lorem</span></p>
+          </div>
+          <div class="rave-prod" onclick="go('product')">
+            <div class="img"></div>
+            <div><h5>Lorem Ipsum Gummies</h5><p>$00.00</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOURNAL -->
+  <section>
+    <span class="wf-label">Journal — 3 editorial cards</span>
+    <div class="wrap">
+      <p class="eyebrow center" style="display:block;margin-bottom:22px;">Journal</p>
+      <h2 class="h2 center">Lorem ipsum dolor.</h2>
+      <div class="journal-grid">
+        <div class="article-card"><div class="img"><span>Article image</span></div><span class="eyebrow">Rituals</span><h4>Lorem ipsum dolor sit amet consectetur.</h4><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do…</p></div>
+        <div class="article-card"><div class="img"><span>Article image</span></div><span class="eyebrow">Science</span><h4>Lorem ipsum dolor sit amet.</h4><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do…</p></div>
+        <div class="article-card"><div class="img"><span>Article image</span></div><span class="eyebrow">Moments</span><h4>Lorem ipsum dolor sit amet elit.</h4><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do…</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM ROW -->
+  <section>
+    <span class="wf-label">Instagram — embedded post row (UGC)</span>
+    <div class="wrap">
+      <p class="eyebrow center" style="display:block;margin-bottom:22px;">@mushi</p>
+      <h2 class="h2 center" style="max-width:20ch;">Tag Us &amp; Show Us How You Mushi</h2>
+      <div class="ig-grid">
+        <div class="ig-tile img"><span>IG post</span><i class="ig-glyph"></i></div>
+        <div class="ig-tile img"><span>IG post</span><i class="ig-glyph"></i></div>
+        <div class="ig-tile img"><span>IG post</span><i class="ig-glyph"></i></div>
+        <div class="ig-tile img"><span>IG post</span><i class="ig-glyph"></i></div>
+        <div class="ig-tile img"><span>IG post</span><i class="ig-glyph"></i></div>
+        <div class="ig-tile img"><span>IG post</span><i class="ig-glyph"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section>
+    <span class="wf-label">Newsletter</span>
+    <div class="wrap">
+      <div class="newsletter-box">
+        <h3 class="h3">Lorem ipsum dolor sit amet.</h3>
+        <p class="body-copy" style="text-align:center;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <div class="signup"><input placeholder="Email address"><button>Sign Up</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER (home) -->
+  <div class="footer-slot"></div>
+</div>
+
+<!-- ==================================================== -->
+<!-- SHOP COLLECTION                                      -->
+<!-- ==================================================== -->
+<div class="page" id="page-shop">
+
+  <section class="shop-head" style="border-bottom:none;">
+    <span class="wf-label">Collection header — editorial</span>
+    <div class="wrap">
+      <p class="eyebrow" style="display:block;margin-bottom:20px;">Shop</p>
+      <h1 class="display" style="max-width:14ch;">Lorem ipsum dolor sit.</h1>
+      <p class="body-copy" style="margin-top:24px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+    </div>
+  </section>
+
+  <div class="filter-bar">
+    <div class="wrap filter-inner">
+      <div class="moment-pills" id="momentPills">
+        <span class="lbl">Shop by Moment</span>
+        <button class="pill on" onclick="setMoment(this,'All')">All</button>
+        <button class="pill" onclick="setMoment(this,'Create')">Create</button>
+        <button class="pill" onclick="setMoment(this,'Connect')">Connect</button>
+        <button class="pill" onclick="setMoment(this,'Celebrate')">Celebrate</button>
+        <button class="pill" onclick="setMoment(this,'Unwind')">Unwind</button>
+        <button class="pill" onclick="setMoment(this,'Explore')">Explore</button>
+        <button class="pill" onclick="setMoment(this,'Everyday')">Everyday</button>
+      </div>
+      <div class="sec-filters">
+        <div class="dropdown">Product Type</div>
+        <div class="dropdown">Flavor</div>
+        <div class="dropdown">Sort</div>
+      </div>
+    </div>
+  </div>
+
+  <section style="padding-top:0;">
+    <span class="wf-label" style="top:74px;">Editorial two-column product grid</span>
+    <div class="wrap">
+      <p class="result-count" id="resultCount">Showing 8 products</p>
+      <div class="prod-grid two-col" id="shopGrid">
+        <div class="prod-card" data-m="Create Everyday" onclick="go('product')"><div class="img"><span>Product image — large</span></div><h4>Lorem Ipsum Gummies</h4><p class="meta">Gummies · Create · Everyday</p><p class="price">$00</p></div>
+        <div class="prod-card" data-m="Unwind" onclick="go('product')"><div class="img"><span>Product image — large</span></div><h4>Lorem Ipsum Chocolate</h4><p class="meta">Chocolate · Unwind</p><p class="price">$00</p></div>
+        <div class="prod-card" data-m="Connect Celebrate" onclick="go('product')"><div class="img"><span>Product image — large</span></div><h4>Lorem Ipsum Gummies</h4><p class="meta">Gummies · Connect · Celebrate</p><p class="price">$00</p></div>
+        <div class="prod-card" data-m="Explore Create" onclick="go('product')"><div class="img"><span>Product image — large</span></div><h4>Lorem Ipsum Chocolate</h4><p class="meta">Chocolate · Explore · Create</p><p class="price">$00</p></div>
+        <div class="prod-card" data-m="Everyday" onclick="go('product')"><div class="img"><span>Product image — large</span></div><h4>Lorem Ipsum Gummies</h4><p class="meta">Gummies · Everyday</p><p class="price">$00</p></div>
+        <div class="prod-card" data-m="Celebrate Connect" onclick="go('product')"><div class="img"><span>Product image — large</span></div><h4>Lorem Ipsum Chocolate</h4><p class="meta">Chocolate · Celebrate · Connect</p><p class="price">$00</p></div>
+        <div class="prod-card" data-m="Unwind Everyday" onclick="go('product')"><div class="img"><span>Product image — large</span></div><h4>Lorem Ipsum Gummies</h4><p class="meta">Gummies · Unwind · Everyday</p><p class="price">$00</p></div>
+        <div class="prod-card" data-m="Explore" onclick="go('product')"><div class="img"><span>Product image — large</span></div><h4>Lorem Ipsum Chocolate</h4><p class="meta">Chocolate · Explore</p><p class="price">$00</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer-slot"></div>
+</div>
+
+<!-- ==================================================== -->
+<!-- PRODUCT DETAIL                                       -->
+<!-- ==================================================== -->
+<div class="page" id="page-product">
+
+  <section style="border-bottom:none;padding-top:50px;padding-bottom:60px;">
+    <span class="wf-label">PDP — gallery + sticky purchase panel</span>
+    <div class="wrap pdp-top">
+      <div class="pdp-gallery">
+        <div class="img main"><span>Product image — hero</span></div>
+        <div class="thumb-row">
+          <div class="img"><span>Thumb</span></div>
+          <div class="img"><span>Thumb</span></div>
+          <div class="img"><span>Thumb</span></div>
+          <div class="img"><span>Thumb</span></div>
+        </div>
+      </div>
+      <div class="buy-panel">
+        <p class="eyebrow">Gummies</p>
+        <h1 class="h2" style="font-size:clamp(28px,3vw,40px);">Lorem Ipsum Gummies</h1>
+        <div class="chip-row">
+          <span class="chip tag">Create</span><span class="chip tag">Connect</span><span class="chip tag">Everyday</span>
+        </div>
+        <p class="body-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+        <div class="price-row"><span class="price">$00.00</span><span style="font-size:12px;color:var(--note);">00 servings</span></div>
+        <div class="qty-cart">
+          <div class="qty"><span>−</span><span>1</span><span>+</span></div>
+          <a class="btn solid">Add to Cart</a>
+        </div>
+        <p class="buy-note">Lorem ipsum · Free shipping over $00 · Subscribe &amp; save</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEELS LIKE -->
+  <section class="pdp-section">
+    <span class="wf-label">Feels like</span>
+    <div class="wrap">
+      <span class="eyebrow">Feels Like</span>
+      <h3 class="h3">Lorem ipsum dolor sit amet.</h3>
+      <div class="chip-row" style="margin-top:24px;">
+        <span class="chip">Calm</span><span class="chip">Connected</span><span class="chip">Creative</span><span class="chip">Curious</span><span class="chip">Joyful</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERFECT FOR -->
+  <section class="pdp-section">
+    <span class="wf-label">Perfect for</span>
+    <div class="wrap">
+      <span class="eyebrow">Perfect For</span>
+      <h3 class="h3">Lorem ipsum dolor sit.</h3>
+      <div class="chip-row" style="margin-top:24px;">
+        <span class="chip">Concerts</span><span class="chip">Dinner Parties</span><span class="chip">Nature Walks</span><span class="chip">Movie Night</span><span class="chip">Reading</span><span class="chip">Painting</span><span class="chip">Weekend Afternoon</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAIRS WELL WITH -->
+  <section class="pdp-section">
+    <span class="wf-label">Pairs well with</span>
+    <div class="wrap">
+      <span class="eyebrow">Pairs Well With</span>
+      <h3 class="h3">Lorem ipsum dolor.</h3>
+      <div class="chip-row" style="margin-top:24px;">
+        <span class="chip">Music</span><span class="chip">Friends</span><span class="chip">Fresh Fruit</span><span class="chip">Dark Chocolate</span><span class="chip">Sunsets</span><span class="chip">Journaling</span><span class="chip">Walks</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- INGREDIENTS -->
+  <section class="pdp-section">
+    <span class="wf-label">Ingredients</span>
+    <div class="wrap">
+      <span class="eyebrow">Ingredients</span>
+      <h3 class="h3">Everything you need. Nothing you don't.</h3>
+      <p class="body-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <div class="ing-row" style="margin-top:44px;max-width:760px;">
+        <div class="ing"><div class="circle">Icon</div><p>Lab Tested</p></div>
+        <div class="ing"><div class="circle">Icon</div><p>Organic</p></div>
+        <div class="ing"><div class="circle">Icon</div><p>Vegan</p></div>
+        <div class="ing"><div class="circle">Icon</div><p>Natural Fruit</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="pdp-section">
+    <span class="wf-label">Reviews</span>
+    <div class="wrap">
+      <span class="eyebrow">Reviews</span>
+      <div class="review-row">
+        <span class="review-score">4.9</span>
+        <div><div class="stars">★ ★ ★ ★ ★</div><p style="font-size:12px;color:var(--note);margin-top:8px;">000 reviews</p></div>
+      </div>
+      <div class="review-cards">
+        <div class="review-card"><span class="stars">★ ★ ★ ★ ★</span>"Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod."<p class="who">Name L.</p></div>
+        <div class="review-card"><span class="stars">★ ★ ★ ★ ★</span>"Lorem ipsum dolor sit amet, consectetur adipiscing."<p class="who">Name L.</p></div>
+        <div class="review-card"><span class="stars">★ ★ ★ ★ ★</span>"Lorem ipsum dolor sit amet, consectetur adipiscing elit."<p class="who">Name L.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQS -->
+  <section class="pdp-section">
+    <span class="wf-label">FAQs — accordion</span>
+    <div class="wrap" style="max-width:820px;">
+      <span class="eyebrow">FAQs</span>
+      <h3 class="h3">Lorem ipsum dolor?</h3>
+      <div class="accordion">
+        <div class="acc-item"><p>Lorem ipsum dolor sit amet, consectetur?</p><span>+</span></div>
+        <div class="acc-item"><p>Lorem ipsum dolor sit amet?</p><span>+</span></div>
+        <div class="acc-item"><p>Lorem ipsum dolor sit amet, consectetur adipiscing?</p><span>+</span></div>
+        <div class="acc-item"><p>Lorem ipsum dolor?</p><span>+</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED -->
+  <section class="pdp-section" style="border-bottom:1px dashed var(--line);">
+    <span class="wf-label">Related products</span>
+    <div class="wrap">
+      <h3 class="h3 center">Lorem ipsum dolor.</h3>
+      <div class="prod-grid" style="grid-template-columns:repeat(4,1fr);">
+        <div class="prod-card"><div class="img"><span>Product image</span></div><h4>Lorem Ipsum</h4><p class="meta">Unwind</p><p class="price">$00</p></div>
+        <div class="prod-card"><div class="img"><span>Product image</span></div><h4>Lorem Ipsum</h4><p class="meta">Celebrate</p><p class="price">$00</p></div>
+        <div class="prod-card"><div class="img"><span>Product image</span></div><h4>Lorem Ipsum</h4><p class="meta">Explore</p><p class="price">$00</p></div>
+        <div class="prod-card"><div class="img"><span>Product image</span></div><h4>Lorem Ipsum</h4><p class="meta">Create</p><p class="price">$00</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer-slot"></div>
+</div>
+
+<!-- ==================================================== -->
+<!-- LEARN                                                -->
+<!-- ==================================================== -->
+<div class="page" id="page-learn">
+
+  <section style="border-bottom:none;padding-bottom:0;">
+    <span class="wf-label">Learn landing — editorial hub</span>
+    <div class="wrap">
+      <p class="eyebrow" style="display:block;margin-bottom:20px;">Learn</p>
+      <h1 class="display" style="max-width:12ch;">Why Mushi?</h1>
+      <p class="body-copy" style="margin-top:24px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+    </div>
+  </section>
+
+  <section>
+    <span class="wf-label">Editorial content cards</span>
+    <div class="wrap">
+      <div class="learn-grid">
+        <div class="learn-card"><div class="img"><span>Editorial image</span></div><div class="lc-body"><span class="wf-label" style="position:static;display:inline-block;margin-bottom:12px;">Hosts "The Big Idea" brand statement</span><h4>Why Mushi?</h4><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do…</p><a class="text-link">Read More</a></div></div>
+        <div class="learn-card"><div class="img"><span>Editorial image</span></div><div class="lc-body"><h4>The Experience</h4><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do…</p><a class="text-link">Read More</a></div></div>
+        <div class="learn-card"><div class="img"><span>Editorial image</span></div><div class="lc-body"><h4>Ingredients</h4><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do…</p><a class="text-link">Read More</a></div></div>
+        <div class="learn-card"><div class="img"><span>Editorial image</span></div><div class="lc-body"><span class="wf-label" style="position:static;display:inline-block;margin-bottom:12px;">Hosts alternating lifestyle editorial</span><h4>The Science</h4><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do…</p><a class="text-link">Read More</a></div></div>
+        <div class="learn-card"><div class="img"><span>Editorial image</span></div><div class="lc-body"><h4>Journal</h4><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do…</p><a class="text-link">Read More</a></div></div>
+        <div class="learn-card"><div class="img"><span>Editorial image</span></div><div class="lc-body"><h4>FAQs</h4><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do…</p><a class="text-link">Read More</a></div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer-slot"></div>
+</div>
+
+</main>
+
+<!-- ============ FOOTER TEMPLATE ============ -->
+<template id="footerTpl">
+  <footer>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div><p class="logo"><svg class="logo-svg" viewBox="0 0 454.6 100.27"><use href="#mushiLogo"/></svg></p><p class="body-copy" style="font-size:13px;margin-top:18px;max-width:32ch;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p></div>
+        <div class="foot-col"><h5>Shop</h5><a>Gummies</a><a>Chocolates</a><a>Shop All</a><a>Shop by Moment</a></div>
+        <div class="foot-col"><h5>Learn</h5><a>Why Mushi?</a><a>The Science</a><a>Feel-Good Rituals</a><a>Journal</a><a>FAQs</a></div>
+        <div class="foot-col"><h5>Support</h5><a>Contact</a><a>Shipping</a><a>Returns</a></div>
+      </div>
+      <div class="foot-legal">
+        <span>© MUSHI — Lorem ipsum · Privacy · Terms</span>
+        <span class="social"><i></i><i></i><i></i></span>
+      </div>
+    </div>
+  </footer>
+</template>
+
+<!-- ============ WIREFRAME TOOLBAR ============ -->
+<div class="wf-toolbar">
+  <button id="tb-home" class="on" onclick="go('home')">Home</button>
+  <button id="tb-shop" onclick="go('shop')">Shop</button>
+  <button id="tb-product" onclick="go('product')">Product</button>
+  <button id="tb-learn" onclick="go('learn')">Learn</button>
+  <button id="tb-promo" style="border-left:1px solid var(--line);border-radius:0 999px 999px 0;" onclick="togglePromo()">Promo Bar: On</button>
+</div>
+
+<script>
+  // announcement bar toggle (default: on)
+  document.body.classList.add('promo');
+  function togglePromo(force){
+    var on = (force===undefined) ? !document.body.classList.contains('promo') : force;
+    document.body.classList.toggle('promo', on);
+    document.getElementById('tb-promo').textContent = 'Promo Bar: ' + (on ? 'On' : 'Off');
+  }
+
+  // inject footer into each page
+  document.querySelectorAll('.footer-slot').forEach(function(slot){
+    slot.appendChild(document.getElementById('footerTpl').content.cloneNode(true));
+  });
+
+  function go(page){
+    document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');});
+    document.getElementById('page-'+page).classList.add('active');
+    document.querySelectorAll('.wf-toolbar button').forEach(function(b){b.classList.remove('on');});
+    var tb=document.getElementById('tb-'+page); if(tb) tb.classList.add('on');
+    window.scrollTo({top:0,behavior:'instant'});
+  }
+
+  // featured toggle
+  function toggleFeatured(type){
+    document.getElementById('featGummies').style.display = type==='gummies' ? 'grid' : 'none';
+    document.getElementById('featChocolates').style.display = type==='chocolates' ? 'grid' : 'none';
+    document.getElementById('segGummies').classList.toggle('on', type==='gummies');
+    document.getElementById('segChocolates').classList.toggle('on', type==='chocolates');
+  }
+
+  // parallax quote — pinned section, elements move at different speeds
+  var pqOuter=document.getElementById('pqOuter');
+  window.addEventListener('scroll',function(){
+    if(!document.getElementById('page-home').classList.contains('active'))return;
+    var rect=pqOuter.getBoundingClientRect();
+    var vh=window.innerHeight;
+    var range=rect.height-vh;
+    var p=Math.min(1,Math.max(0,-rect.top/range)); // 0→1 while pinned
+    var content=document.getElementById('pqContent');
+    // quote scales/fades in during first half, holds, then releases
+    var t=Math.min(1,p/0.4);
+    content.style.opacity=t;
+    content.style.transform='scale('+(0.92+0.08*t)+') translateY('+(30*(1-t))+'px)';
+    pqOuter.querySelectorAll('.pq-deco').forEach(function(d){
+      d.style.transform='translateY('+((p-0.5)*parseFloat(d.dataset.speed))+'px)';
+    });
+  },{passive:true});
+
+  function scrollMoments(dir){
+    var car=document.getElementById('momentCar');
+    var card=car.querySelector('.moment-card');
+    car.scrollBy({left:dir*(card.offsetWidth+20),behavior:'smooth'});
+  }
+
+  function goMoment(m){
+    go('shop');
+    var pills=document.querySelectorAll('#momentPills .pill');
+    pills.forEach(function(p){p.classList.toggle('on',p.textContent===m);});
+    filterShop(m);
+  }
+
+  function setMoment(btn,m){
+    document.querySelectorAll('#momentPills .pill').forEach(function(p){p.classList.remove('on');});
+    btn.classList.add('on');
+    filterShop(m);
+  }
+
+  function filterShop(m){
+    var cards=document.querySelectorAll('#shopGrid .prod-card'), n=0;
+    cards.forEach(function(c){
+      var show=(m==='All')||c.dataset.m.split(' ').indexOf(m)>-1;
+      c.style.display=show?'':'none'; if(show)n++;
+    });
+    document.getElementById('resultCount').textContent='Showing '+n+' product'+(n===1?'':'s')+(m==='All'?'':' — '+m);
+  }
+</script>
+
+</body>
+</html>
