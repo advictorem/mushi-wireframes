@@ -169,18 +169,6 @@
   #page-shop,#page-product,#page-learn{padding-top:96px;}
   body.promo #page-shop,body.promo #page-product,body.promo #page-learn{padding-top:138px;}
   body.promo #page-home{padding-top:42px;}
-  /* ---------- wireframe toolbar ---------- */
-  .wf-toolbar{
-    position:fixed;bottom:22px;left:50%;transform:translateX(-50%);
-    display:flex;gap:6px;background:#fff;border:1px solid var(--line-dark);
-    border-radius:999px;padding:6px;z-index:100;box-shadow:0 2px 14px rgba(0,0,0,.08);
-  }
-  .wf-toolbar button{
-    border:none;background:transparent;font-size:10px;letter-spacing:.14em;
-    text-transform:uppercase;padding:8px 16px;border-radius:999px;cursor:pointer;color:var(--note);
-    font-family:inherit;font-weight:500;
-  }
-  .wf-toolbar button.on{background:var(--ink);color:#fff;}
   /* ---------- hero ---------- */
   .hero{padding:0;border-bottom:1px dashed var(--line);}
   .hero .img{height:94vh;min-height:640px;border-left:none;border-right:none;border-top:none;}
@@ -435,7 +423,7 @@
   nav.floating a,.nav-drop-inner a,.drop-note,.eyebrow,.btn,.text-link,.pill,.dropdown,.chip,.qty,.variant,
   .seg-toggle button,.meta,.price,.specs,.wf-label,.announce,.foot-col h5,.foot-col a,.foot-legal,
   .signup input,.signup button,.buy-note,.result-count,.moment-pills .lbl,.pq-attr,.who,
-  .rave-body p,.rave-prod p,.mc-overlay span,.badge,.stars,.acc-item p,.wf-toolbar button,.car-btn{
+  .rave-body p,.rave-prod p,.mc-overlay span,.badge,.stars,.acc-item p,.car-btn{
     font-family:var(--font-mono);
   }
   /* ---------- footer hero line ---------- */
@@ -962,22 +950,12 @@
   </footer>
 </template>
 
-<!-- ============ WIREFRAME TOOLBAR ============ -->
-<div class="wf-toolbar">
-  <button id="tb-home" class="on" onclick="go('home')">Home</button>
-  <button id="tb-shop" onclick="go('shop')">Shop</button>
-  <button id="tb-product" onclick="go('product')">Product</button>
-  <button id="tb-learn" onclick="go('learn')">Learn</button>
-  <button id="tb-promo" style="border-left:1px solid var(--line);border-radius:0 999px 999px 0;" onclick="togglePromo()">Promo Bar: On</button>
-</div>
-
 <script>
   // announcement bar toggle (default: on)
   document.body.classList.add('promo');
   function togglePromo(force){
     var on = (force===undefined) ? !document.body.classList.contains('promo') : force;
     document.body.classList.toggle('promo', on);
-    document.getElementById('tb-promo').textContent = 'Promo Bar: ' + (on ? 'On' : 'Off');
   }
 
   // inject footer into each page
@@ -988,8 +966,6 @@
   function go(page){
     document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');});
     document.getElementById('page-'+page).classList.add('active');
-    document.querySelectorAll('.wf-toolbar button').forEach(function(b){b.classList.remove('on');});
-    var tb=document.getElementById('tb-'+page); if(tb) tb.classList.add('on');
     window.scrollTo({top:0,behavior:'instant'});
   }
 
