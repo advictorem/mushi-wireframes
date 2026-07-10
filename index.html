@@ -4,8 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MUSHI — UX Wireframes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=PT+Mono&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   :root{
+    --font-display:"Magnilo Display","PT Serif",Georgia,serif; /* Magnilo = licensed webfont, embed via @font-face when file provided */
+    --font-body:"PT Serif",Georgia,serif;
+    --font-mono:"PT Mono",Menlo,monospace;
     --ink:#141414;
     --line:#c9c9c9;
     --line-dark:#8a8a8a;
@@ -192,7 +198,7 @@
   }
   .moment-carousel::-webkit-scrollbar{display:none;}
   .moment-card{
-    flex:0 0 clamp(250px,26vw,360px);
+    flex:0 0 clamp(280px,30vw,420px);
     aspect-ratio:4/5;
     scroll-snap-align:start;
     position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;
@@ -268,20 +274,12 @@
   }
   .pq-content{max-width:940px;text-align:center;padding:0 28px;display:flex;flex-direction:column;align-items:center;gap:40px;will-change:transform,opacity;}
   .pq-quote{font-size:clamp(26px,3.8vw,52px);font-weight:600;line-height:1.14;letter-spacing:-.005em;text-transform:uppercase;}
-  .pq-logo{
-    width:112px;height:112px;border-radius:50%;border:1px solid var(--ink);background:#fff;
-    display:flex;align-items:center;justify-content:center;
-    font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--note);
-  }
   .pq-attr{font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;}
   .pq-attr span{color:var(--note);font-weight:400;text-transform:none;letter-spacing:.04em;}
   .pq-deco{
-    position:absolute;width:72px;height:72px;border-radius:50%;
-    border:1px dashed var(--line-dark);background:#fff;
-    display:flex;align-items:center;justify-content:center;
-    font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--note);
-    will-change:transform;
+    position:absolute;color:var(--ink);will-change:transform;pointer-events:none;
   }
+  .pq-deco svg{display:block;width:100%;height:auto;fill:currentColor;}
   /* ---------- client raves ---------- */
   .rave-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px;}
   .rave-card{border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;background:#fff;}
@@ -424,12 +422,32 @@
     .prod-grid,.journal-grid,.learn-grid,.review-cards,.prod-grid.two-col{grid-template-columns:1fr;}
     .ing-row{grid-template-columns:1fr 1fr;}
   }
+  /* ---------- typography system ----------
+     Headlines: Magnilo Display Regular (fallback PT Serif until font file embedded)
+     Body copy: PT Serif · UI/nav/small text: PT Mono */
+  body{font-family:var(--font-body);}
+  .display,.h2,.h3,.pq-quote,.moment-card h4,.buy-card h4,.rave-body h4,.learn-card h4,.article-card h4,.prod-card h4,.rave-prod h5,.foot-hero{
+    font-family:var(--font-display);font-weight:400;
+  }
+  .display,.h2{letter-spacing:0;}
+  .body-copy{font-family:var(--font-body);}
+  nav.floating a,.nav-drop-inner a,.drop-note,.eyebrow,.btn,.text-link,.pill,.dropdown,.chip,.qty,.variant,
+  .seg-toggle button,.meta,.price,.specs,.wf-label,.announce,.foot-col h5,.foot-col a,.foot-legal,
+  .signup input,.signup button,.buy-note,.result-count,.moment-pills .lbl,.pq-attr,.who,
+  .rave-body p,.rave-prod p,.mc-overlay span,.badge,.stars,.acc-item p,.wf-toolbar button,.car-btn{
+    font-family:var(--font-mono);
+  }
+  /* ---------- footer hero line ---------- */
+  .foot-hero{
+    font-size:clamp(52px,8.5vw,120px);line-height:1.02;letter-spacing:-.01em;
+    margin-bottom:80px;color:var(--ink);
+  }
 </style>
 </head>
 <body>
 
 <!-- ============ MUSHI LOGO (inline asset) ============ -->
-<svg style="display:none" xmlns="http://www.w3.org/2000/svg"><symbol id="mushiLogo" viewBox="0 0 454.6 100.27"><path d="m32.85,6.95c-.07.32.06.44.19.67.58.99,1.48,2.04,2.12,3.06,5.62,8.91,9.11,19.04,14.4,28.07,1.15,1.96,2.96,4.89,4.6,6.42.19.18.32.3.6.26,4.51,5.56,9.74-1.27,12.14-5.05,6.54-10.33,10.12-22.94,17.5-32.8,7.71-10.3,15.43-9.56,23.88-.62-.07.32.06.44.19.67,1.7,2.94,3.07,5.04,4.29,8.32,5.81,15.62,5.74,39.94,3.2,56.33-1.48,9.57-6.02,29.01-19.5,25.76-.93-.23-1.73-.72-2.66-.86-2.06-1.98-3.27-3.1-4.49-5.79-2.04-4.45-2.47-10.03-4.93-14.11-1.23-2.04-2.4-2.94-4.96-2.64-2.91.35-5.41,4.8-6.66,7.15-3.11,5.84-7.09,18.31-15.74,16.39-.92-.2-1.63-.68-2.52-.86-3.04-2.91-4.48-4.88-6.44-8.62-1.08-2.06-4.6-10.24-6.17-11.15.05-.3-.1-.4-.26-.6-2.57-3.19-6.49-3.27-8.66.38-3.39,5.71-2.86,15.44-9.07,19.46-2.85,1.84-6.48,2.04-9.63.86-.61-.23-1.17-.76-1.86-.73-.62-.59-1.5-1.27-2.06-1.86C2.12,86.34.59,68.37.19,56.89l-.14-.32c.12-4.63-.16-9.3,0-13.93C.47,30.69,3.32,8.62,14.83,2.02c7.96-4.56,12.72-.73,18.02,4.93Z"/><path d="m142.01,94.51c-3.43-3.22-6.06-6.19-8.21-10.43-7.46-14.69-7.83-39.66-4.36-55.52,2.37-10.87,10.14-31.91,24.96-26.87,2.9.99,4.08,2.55,6.07,4.61.29.96.93,1.78,1.35,2.7,4.74,10.43,3.15,27.27,3.69,38.77.25,5.39.97,15.92,5.38,19.57.2.16.3.31.6.26.9,1.38,4.23,1.94,5.77,1.85,8.53-.49,9.97-14.05,10.56-20.5,1.01-11.1.33-22.49,1.74-33.55.97-7.61,3.22-17.52,13.33-13.62,2.87,1.11,4.79,3.28,6.84,5.44-.06.29.05.45.18.68,1.17,2.16,2.29,3.82,3.24,6.18,5.47,13.59,6.51,35.27,5.75,49.86-.53,10.06-3.19,29.7-13.02,35.02-7.7,4.17-12.14-2.77-18.99-4.25-8.41-1.82-13.67,1.79-21.38,3.45-7.72,1.66-14.98,1.25-21.56-2.61-.61-.36-1.22-1.03-1.95-1.03h.01Z"/><path d="m341.33,5.63c.13.88.86,1.71,1.26,2.52,3.02,6.02,4.16,13.2,5.94,19.66.91,3.27,2.09,7.49,4.1,10.23.46.63,1.15,1.63,1.97,1.68,1.07,1.44,3.58,1.41,5.14.82,4.12-1.56,6.38-8.79,7.64-12.66,3.18-9.67,6.75-29.03,20.84-26.59,3.84.66,5.58,2.79,8.08,5.4l2.55,4.82c4.3,10.43,5.21,21.98,5.55,33.19.42,13.62.32,36.24-7.24,47.94-3.21,4.96-8.92,8.55-14.89,5.87-.59-.27-1.1-.84-1.77-.82-5.5-5.28-7.48-10.11-11.13-16.54-1.16-2.05-3.45-6.4-5.34-7.6-.1-.84-1.39-1.77-2.08-2.23-6.03-4.09-10.28.78-12.68,5.99-3.29,7.15-6,23.85-16.88,21.95-1.27-.22-2.21-.91-3.42-1.16-7.05-6.72-9.01-14.95-10.47-24.36-2.26-14.61-2.25-32.39-.27-47.06,1.11-8.25,4.42-26.57,15.83-25.54,3.41.31,5.06,2.22,7.26,4.49h0Z"/><path d="m304.28,12.39l1.26,3.18c.63,2.53-.04,5.61-2.2,7.22-5.32,3.98-20.18-1.12-27.15-.59-5.84.44-5.86,5.83-1.99,9.03.2.16.3.31.6.26.73,1.18,2.84,2.4,4.05,3.19,9.43,6.12,16.56,9.4,24.5,17.9-.07.32.06.44.19.67,2.73,4.65,4.78,7.58,5.13,13.32,2.05,34.02-41.12,38.11-64.46,27.11-2.8-1.32-4.83-2.89-7.38-4.43-.23-.14-.36-.26-.67-.19-4.8-4.36-10.86-10.31-10.22-17.45.64-7.13,9.48-6.41,14.54-5.91,6.13.61,17.67,3.59,23.09.9,3.69-1.83,4.57-6.49,1.15-9.13.04-.44-.38-.73-.66-1-3.5-3.35-9.72-6.24-13.94-8.9-1.88-1.19-3.76-2.74-5.58-3.84-.23-.14-.36-.26-.67-.19-6.65-6.17-10.65-10.77-10.1-20.5,1.34-23.48,31.46-24.61,48.88-21.35,8.64,1.62,15.52,4.29,21.64,10.68Z"/><path d="m446.91,6.68c.15.9.91,1.73,1.35,2.56,4.76,8.91,5.63,20.84,6.09,30.8.4,8.67.39,17.46-.4,26.13-1.26,13.91-6.12,40.72-26.27,30.63-.23-.12-.39-.24-.68-.18-6.69-6.36-8.89-12.46-10.58-21.46-2.4-12.76-2.55-28.68-1.23-41.62,1.26-12.35,5.78-36.03,23.11-32.64,3.88.76,6.05,3.07,8.63,5.77h0Z"/></symbol></svg>
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg"><symbol id="mushiLogo" viewBox="0 0 454.6 100.27"><path d="m32.85,6.95c-.07.32.06.44.19.67.58.99,1.48,2.04,2.12,3.06,5.62,8.91,9.11,19.04,14.4,28.07,1.15,1.96,2.96,4.89,4.6,6.42.19.18.32.3.6.26,4.51,5.56,9.74-1.27,12.14-5.05,6.54-10.33,10.12-22.94,17.5-32.8,7.71-10.3,15.43-9.56,23.88-.62-.07.32.06.44.19.67,1.7,2.94,3.07,5.04,4.29,8.32,5.81,15.62,5.74,39.94,3.2,56.33-1.48,9.57-6.02,29.01-19.5,25.76-.93-.23-1.73-.72-2.66-.86-2.06-1.98-3.27-3.1-4.49-5.79-2.04-4.45-2.47-10.03-4.93-14.11-1.23-2.04-2.4-2.94-4.96-2.64-2.91.35-5.41,4.8-6.66,7.15-3.11,5.84-7.09,18.31-15.74,16.39-.92-.2-1.63-.68-2.52-.86-3.04-2.91-4.48-4.88-6.44-8.62-1.08-2.06-4.6-10.24-6.17-11.15.05-.3-.1-.4-.26-.6-2.57-3.19-6.49-3.27-8.66.38-3.39,5.71-2.86,15.44-9.07,19.46-2.85,1.84-6.48,2.04-9.63.86-.61-.23-1.17-.76-1.86-.73-.62-.59-1.5-1.27-2.06-1.86C2.12,86.34.59,68.37.19,56.89l-.14-.32c.12-4.63-.16-9.3,0-13.93C.47,30.69,3.32,8.62,14.83,2.02c7.96-4.56,12.72-.73,18.02,4.93Z"/><path d="m142.01,94.51c-3.43-3.22-6.06-6.19-8.21-10.43-7.46-14.69-7.83-39.66-4.36-55.52,2.37-10.87,10.14-31.91,24.96-26.87,2.9.99,4.08,2.55,6.07,4.61.29.96.93,1.78,1.35,2.7,4.74,10.43,3.15,27.27,3.69,38.77.25,5.39.97,15.92,5.38,19.57.2.16.3.31.6.26.9,1.38,4.23,1.94,5.77,1.85,8.53-.49,9.97-14.05,10.56-20.5,1.01-11.1.33-22.49,1.74-33.55.97-7.61,3.22-17.52,13.33-13.62,2.87,1.11,4.79,3.28,6.84,5.44-.06.29.05.45.18.68,1.17,2.16,2.29,3.82,3.24,6.18,5.47,13.59,6.51,35.27,5.75,49.86-.53,10.06-3.19,29.7-13.02,35.02-7.7,4.17-12.14-2.77-18.99-4.25-8.41-1.82-13.67,1.79-21.38,3.45-7.72,1.66-14.98,1.25-21.56-2.61-.61-.36-1.22-1.03-1.95-1.03h.01Z"/><path d="m341.33,5.63c.13.88.86,1.71,1.26,2.52,3.02,6.02,4.16,13.2,5.94,19.66.91,3.27,2.09,7.49,4.1,10.23.46.63,1.15,1.63,1.97,1.68,1.07,1.44,3.58,1.41,5.14.82,4.12-1.56,6.38-8.79,7.64-12.66,3.18-9.67,6.75-29.03,20.84-26.59,3.84.66,5.58,2.79,8.08,5.4l2.55,4.82c4.3,10.43,5.21,21.98,5.55,33.19.42,13.62.32,36.24-7.24,47.94-3.21,4.96-8.92,8.55-14.89,5.87-.59-.27-1.1-.84-1.77-.82-5.5-5.28-7.48-10.11-11.13-16.54-1.16-2.05-3.45-6.4-5.34-7.6-.1-.84-1.39-1.77-2.08-2.23-6.03-4.09-10.28.78-12.68,5.99-3.29,7.15-6,23.85-16.88,21.95-1.27-.22-2.21-.91-3.42-1.16-7.05-6.72-9.01-14.95-10.47-24.36-2.26-14.61-2.25-32.39-.27-47.06,1.11-8.25,4.42-26.57,15.83-25.54,3.41.31,5.06,2.22,7.26,4.49h0Z"/><path d="m304.28,12.39l1.26,3.18c.63,2.53-.04,5.61-2.2,7.22-5.32,3.98-20.18-1.12-27.15-.59-5.84.44-5.86,5.83-1.99,9.03.2.16.3.31.6.26.73,1.18,2.84,2.4,4.05,3.19,9.43,6.12,16.56,9.4,24.5,17.9-.07.32.06.44.19.67,2.73,4.65,4.78,7.58,5.13,13.32,2.05,34.02-41.12,38.11-64.46,27.11-2.8-1.32-4.83-2.89-7.38-4.43-.23-.14-.36-.26-.67-.19-4.8-4.36-10.86-10.31-10.22-17.45.64-7.13,9.48-6.41,14.54-5.91,6.13.61,17.67,3.59,23.09.9,3.69-1.83,4.57-6.49,1.15-9.13.04-.44-.38-.73-.66-1-3.5-3.35-9.72-6.24-13.94-8.9-1.88-1.19-3.76-2.74-5.58-3.84-.23-.14-.36-.26-.67-.19-6.65-6.17-10.65-10.77-10.1-20.5,1.34-23.48,31.46-24.61,48.88-21.35,8.64,1.62,15.52,4.29,21.64,10.68Z"/><path d="m446.91,6.68c.15.9.91,1.73,1.35,2.56,4.76,8.91,5.63,20.84,6.09,30.8.4,8.67.39,17.46-.4,26.13-1.26,13.91-6.12,40.72-26.27,30.63-.23-.12-.39-.24-.68-.18-6.69-6.36-8.89-12.46-10.58-21.46-2.4-12.76-2.55-28.68-1.23-41.62,1.26-12.35,5.78-36.03,23.11-32.64,3.88.76,6.05,3.07,8.63,5.77h0Z"/></symbol><symbol id="deco-flower" viewBox="0 0 100 100"><g><ellipse cx="50" cy="23" rx="8.5" ry="24" transform="rotate(6 50 50)"/><ellipse cx="50" cy="23" rx="8" ry="23" transform="rotate(74 50 50)"/><ellipse cx="50" cy="24" rx="8.5" ry="22" transform="rotate(148 50 50)"/><ellipse cx="50" cy="23" rx="8" ry="24" transform="rotate(216 50 50)"/><ellipse cx="50" cy="24" rx="8.5" ry="23" transform="rotate(288 50 50)"/></g></symbol><symbol id="deco-leaf2" viewBox="0 0 170 150"><path d="M6 34 C22 40 44 52 60 66" stroke="currentColor" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M30 8 C58 -2 92 2 104 14 C112 24 96 40 68 46 C44 51 26 42 22 30 C20 22 24 12 30 8 Z"/><path d="M36 30 C56 22 78 18 96 20" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M52 70 C84 48 128 40 152 50 C168 58 158 84 126 106 C96 126 62 130 50 116 C40 104 40 82 52 70 Z"/><path d="M62 108 C88 88 118 70 144 60" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round"/></symbol><symbol id="deco-leaf3" viewBox="0 0 180 190"><path d="M156 18 C146 34 136 52 128 70" stroke="currentColor" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M6 44 C34 16 84 6 122 16 C142 22 140 34 118 44 C82 60 30 62 12 54 C4 50 2 48 6 44 Z"/><path d="M24 44 C58 34 96 28 118 28" stroke="#eee" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M10 128 C22 88 58 58 100 50 C122 46 128 56 114 74 C88 108 42 130 20 132 C12 132 8 132 10 128 Z"/><path d="M26 118 C52 92 84 68 108 60" stroke="#eee" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M96 184 C86 148 96 106 122 82 C136 70 146 74 146 92 C146 126 122 168 106 182 C100 187 97 188 96 184 Z"/><path d="M104 172 C108 138 118 104 136 84" stroke="#eee" stroke-width="5" fill="none" stroke-linecap="round"/></symbol></svg>
 
 <!-- ============ ANNOUNCEMENT BAR (toggleable) ============ -->
 <div class="announce">
@@ -486,8 +504,8 @@
     <span class="wf-label" style="top:auto;bottom:14px;">Hero — full-bleed image, runs behind blurred nav</span>
     <div class="img" style="border-radius:0;">
       <div class="hero-inner">
-        <h1 class="display center">FEEL GOOD,<br>DELICIOUSLY.</h1>
-        <p class="body-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus posuere, sapien in luctus varius, nunc elit fermentum ante.</p>
+        <h1 class="display center">Feel-Good<br>Indulgences</h1>
+        <p class="body-copy">Delicious experiences crafted to support joy, presence, and connection.</p>
         <div class="cta-row">
           <a class="btn solid" onclick="go('shop')">Shop Gummies</a>
           <a class="btn" onclick="go('shop')">Shop Chocolates</a>
@@ -496,22 +514,21 @@
     </div>
   </section>
 
-  <!-- SHOP YOUR MOMENT -->
+  <!-- FEEL-GOOD RITUALS -->
   <section>
-    <span class="wf-label">Shop your moment — full-width swipeable carousel, 4:5 cards</span>
+    <span class="wf-label">Feel-good rituals — full-width swipeable carousel, 4:5 cards</span>
     <div class="wrap">
-      <p class="eyebrow center" style="display:block;margin-bottom:22px;">Shop Your Moment</p>
-      <h2 class="h2 center" style="max-width:22ch;">What kind of moment are you creating today?</h2>
+      <p class="eyebrow center" style="display:block;margin-bottom:22px;">Feel-Good Rituals</p>
+      <h2 class="h2 center" style="max-width:22ch;">What ritual are you creating today?</h2>
+      <p class="body-copy center" style="margin-top:22px;text-align:center;">Mushi transforms ordinary routines into meaningful rituals.</p>
     </div>
     <div class="moment-carousel-wrap">
       <button class="car-btn prev" onclick="scrollMoments(-1)" aria-label="Previous">←</button>
       <div class="moment-carousel" id="momentCar">
-        <button class="moment-card" onclick="goMoment('Create')"><div class="img"><span>Moment image 4:5</span></div><div class="mc-overlay"><h4>Create</h4><span>→</span></div></button>
-        <button class="moment-card" onclick="goMoment('Connect')"><div class="img"><span>Moment image 4:5</span></div><div class="mc-overlay"><h4>Connect</h4><span>→</span></div></button>
-        <button class="moment-card" onclick="goMoment('Celebrate')"><div class="img"><span>Moment image 4:5</span></div><div class="mc-overlay"><h4>Celebrate</h4><span>→</span></div></button>
-        <button class="moment-card" onclick="goMoment('Unwind')"><div class="img"><span>Moment image 4:5</span></div><div class="mc-overlay"><h4>Unwind</h4><span>→</span></div></button>
-        <button class="moment-card" onclick="goMoment('Explore')"><div class="img"><span>Moment image 4:5</span></div><div class="mc-overlay"><h4>Explore</h4><span>→</span></div></button>
-        <button class="moment-card" onclick="goMoment('Everyday')"><div class="img"><span>Moment image 4:5</span></div><div class="mc-overlay"><h4>Everyday</h4><span>→</span></div></button>
+        <button class="moment-card" onclick="goMoment('Present')"><div class="img"><span>Ritual image 4:5</span></div><div class="mc-overlay"><h4>Present</h4><span>→</span></div></button>
+        <button class="moment-card" onclick="goMoment('Connected')"><div class="img"><span>Ritual image 4:5</span></div><div class="mc-overlay"><h4>Connected</h4><span>→</span></div></button>
+        <button class="moment-card" onclick="goMoment('Creative')"><div class="img"><span>Ritual image 4:5</span></div><div class="mc-overlay"><h4>Creative</h4><span>→</span></div></button>
+        <button class="moment-card" onclick="goMoment('Alive')"><div class="img"><span>Ritual image 4:5</span></div><div class="mc-overlay"><h4>Alive</h4><span>→</span></div></button>
       </div>
       <button class="car-btn next" onclick="scrollMoments(1)" aria-label="Next">→</button>
     </div>
@@ -522,7 +539,7 @@
     <span class="wf-label">Featured — gummies/chocolates toggle, direct add-to-cart cards</span>
     <div class="wrap">
       <p class="eyebrow center" style="display:block;margin-bottom:22px;">Featured</p>
-      <h2 class="h2 center">Lorem ipsum dolor.</h2>
+      <h2 class="h2 center">Designed to Enhance Moments</h2>
       <div class="seg-toggle">
         <button id="segGummies" class="on" onclick="toggleFeatured('gummies')">Gummies</button>
         <button id="segChocolates" onclick="toggleFeatured('chocolates')">Chocolates</button>
@@ -532,21 +549,21 @@
         <div class="buy-card">
           <div class="img" onclick="go('product')"><span>Product image 4:5</span></div>
           <h4 onclick="go('product')">Lorem Ipsum Gummies</h4>
-          <p class="specs">Flavour: Lorem ipsum<br>Moment: Create; Connect;<br>Serving: 00 pieces</p>
+          <p class="specs">Flavour: Lorem ipsum<br>Feeling: Present; Connected;<br>Serving: 00 pieces</p>
           <div class="price-qty"><span class="price">$00.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
           <div class="row2"><div class="variant">00 ct</div><a class="btn solid">Add to Cart</a></div>
         </div>
         <div class="buy-card">
           <div class="img" onclick="go('product')"><span>Product image 4:5</span></div>
           <h4 onclick="go('product')">Lorem Ipsum Gummies</h4>
-          <p class="specs">Flavour: Lorem ipsum<br>Moment: Unwind;<br>Serving: 00 pieces</p>
+          <p class="specs">Flavour: Lorem ipsum<br>Feeling: Present;<br>Serving: 00 pieces</p>
           <div class="price-qty"><span class="price">$00.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
           <div class="row2"><div class="variant">00 ct</div><a class="btn solid">Add to Cart</a></div>
         </div>
         <div class="buy-card">
           <div class="img" onclick="go('product')"><span>Product image 4:5</span></div>
           <h4 onclick="go('product')">Lorem Ipsum Gummies</h4>
-          <p class="specs">Flavour: Lorem ipsum<br>Moment: Celebrate;<br>Serving: 00 pieces</p>
+          <p class="specs">Flavour: Lorem ipsum<br>Feeling: Alive;<br>Serving: 00 pieces</p>
           <div class="price-qty"><span class="price">$00.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
           <div class="row2"><div class="variant">00 ct</div><a class="btn solid">Add to Cart</a></div>
         </div>
@@ -556,21 +573,21 @@
         <div class="buy-card">
           <div class="img" onclick="go('product')"><span>Product image 4:5</span></div>
           <h4 onclick="go('product')">Lorem Ipsum Chocolate</h4>
-          <p class="specs">Flavour: Lorem ipsum<br>Moment: Unwind; Connect;<br>Serving: 00 squares</p>
+          <p class="specs">Flavour: Lorem ipsum<br>Feeling: Present; Connect;<br>Serving: 00 squares</p>
           <div class="price-qty"><span class="price">$00.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
           <div class="row2"><div class="variant">00 g</div><a class="btn solid">Add to Cart</a></div>
         </div>
         <div class="buy-card">
           <div class="img" onclick="go('product')"><span>Product image 4:5</span></div>
           <h4 onclick="go('product')">Lorem Ipsum Chocolate</h4>
-          <p class="specs">Flavour: Lorem ipsum<br>Moment: Explore;<br>Serving: 00 squares</p>
+          <p class="specs">Flavour: Lorem ipsum<br>Feeling: Creative;<br>Serving: 00 squares</p>
           <div class="price-qty"><span class="price">$00.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
           <div class="row2"><div class="variant">00 g</div><a class="btn solid">Add to Cart</a></div>
         </div>
         <div class="buy-card">
           <div class="img" onclick="go('product')"><span>Product image 4:5</span></div>
           <h4 onclick="go('product')">Lorem Ipsum Chocolate</h4>
-          <p class="specs">Flavour: Lorem ipsum<br>Moment: Everyday;<br>Serving: 00 squares</p>
+          <p class="specs">Flavour: Lorem ipsum<br>Feeling: Alive;<br>Serving: 00 squares</p>
           <div class="price-qty"><span class="price">$00.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
           <div class="row2"><div class="variant">00 g</div><a class="btn solid">Add to Cart</a></div>
         </div>
@@ -601,15 +618,14 @@
   <section class="pq-outer" style="padding:0;border-bottom:none;" id="pqOuter">
     <div class="pq-sticky">
       <span class="wf-label" style="top:auto;bottom:14px;">Parallax customer quote — pinned while scrolling, floating elements move at different speeds</span>
-      <div class="pq-deco" style="top:12%;left:6%;" data-speed="-120">Deco</div>
-      <div class="pq-deco" style="top:8%;right:10%;" data-speed="90">Deco</div>
-      <div class="pq-deco" style="top:44%;left:12%;" data-speed="60">Deco</div>
-      <div class="pq-deco" style="top:52%;right:5%;" data-speed="-80">Deco</div>
-      <div class="pq-deco" style="bottom:10%;left:8%;" data-speed="110">Deco</div>
-      <div class="pq-deco" style="bottom:14%;right:14%;" data-speed="-60">Deco</div>
+      <div class="pq-deco" style="top:12%;left:6%;" data-speed="-120"></div>
+      <div class="pq-deco" style="top:8%;right:10%;" data-speed="90"></div>
+      <div class="pq-deco" style="top:44%;left:12%;" data-speed="60"></div>
+      <div class="pq-deco" style="top:52%;right:5%;" data-speed="-80"></div>
+      <div class="pq-deco" style="bottom:10%;left:8%;" data-speed="110"></div>
+      <div class="pq-deco" style="bottom:14%;right:14%;" data-speed="-60"></div>
       <div class="pq-content" id="pqContent">
         <p class="pq-quote">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore dolore."</p>
-        <div class="pq-logo">Badge / Logo</div>
         <p class="pq-attr">Customer Name, <span>Lorem ipsum</span></p>
       </div>
     </div>
@@ -723,14 +739,12 @@
   <div class="filter-bar">
     <div class="wrap filter-inner">
       <div class="moment-pills" id="momentPills">
-        <span class="lbl">Shop by Moment</span>
+        <span class="lbl">Shop by Feeling</span>
         <button class="pill on" onclick="setMoment(this,'All')">All</button>
-        <button class="pill" onclick="setMoment(this,'Create')">Create</button>
-        <button class="pill" onclick="setMoment(this,'Connect')">Connect</button>
-        <button class="pill" onclick="setMoment(this,'Celebrate')">Celebrate</button>
-        <button class="pill" onclick="setMoment(this,'Unwind')">Unwind</button>
-        <button class="pill" onclick="setMoment(this,'Explore')">Explore</button>
-        <button class="pill" onclick="setMoment(this,'Everyday')">Everyday</button>
+        <button class="pill" onclick="setMoment(this,'Present')">Present</button>
+        <button class="pill" onclick="setMoment(this,'Connected')">Connected</button>
+        <button class="pill" onclick="setMoment(this,'Creative')">Creative</button>
+        <button class="pill" onclick="setMoment(this,'Alive')">Alive</button>
       </div>
       <div class="sec-filters">
         <div class="dropdown">Product Type</div>
@@ -745,14 +759,14 @@
     <div class="wrap">
       <p class="result-count" id="resultCount">Showing 8 products</p>
       <div class="prod-grid two-col" id="shopGrid">
-        <div class="prod-card" data-m="Create Everyday" onclick="go('product')"><div class="img"><span>Product image — large</span></div><h4>Lorem Ipsum Gummies</h4><p class="meta">Gummies · Create · Everyday</p><p class="price">$00</p></div>
-        <div class="prod-card" data-m="Unwind" onclick="go('product')"><div class="img"><span>Product image — large</span></div><h4>Lorem Ipsum Chocolate</h4><p class="meta">Chocolate · Unwind</p><p class="price">$00</p></div>
-        <div class="prod-card" data-m="Connect Celebrate" onclick="go('product')"><div class="img"><span>Product image — large</span></div><h4>Lorem Ipsum Gummies</h4><p class="meta">Gummies · Connect · Celebrate</p><p class="price">$00</p></div>
-        <div class="prod-card" data-m="Explore Create" onclick="go('product')"><div class="img"><span>Product image — large</span></div><h4>Lorem Ipsum Chocolate</h4><p class="meta">Chocolate · Explore · Create</p><p class="price">$00</p></div>
-        <div class="prod-card" data-m="Everyday" onclick="go('product')"><div class="img"><span>Product image — large</span></div><h4>Lorem Ipsum Gummies</h4><p class="meta">Gummies · Everyday</p><p class="price">$00</p></div>
-        <div class="prod-card" data-m="Celebrate Connect" onclick="go('product')"><div class="img"><span>Product image — large</span></div><h4>Lorem Ipsum Chocolate</h4><p class="meta">Chocolate · Celebrate · Connect</p><p class="price">$00</p></div>
-        <div class="prod-card" data-m="Unwind Everyday" onclick="go('product')"><div class="img"><span>Product image — large</span></div><h4>Lorem Ipsum Gummies</h4><p class="meta">Gummies · Unwind · Everyday</p><p class="price">$00</p></div>
-        <div class="prod-card" data-m="Explore" onclick="go('product')"><div class="img"><span>Product image — large</span></div><h4>Lorem Ipsum Chocolate</h4><p class="meta">Chocolate · Explore</p><p class="price">$00</p></div>
+        <div class="prod-card" data-m="Present Creative" onclick="go('product')"><div class="img"><span>Product image — large</span></div><h4>Lorem Ipsum Gummies</h4><p class="meta">Gummies · Present · Creative</p><p class="price">$00</p></div>
+        <div class="prod-card" data-m="Connected" onclick="go('product')"><div class="img"><span>Product image — large</span></div><h4>Lorem Ipsum Chocolate</h4><p class="meta">Chocolate · Connected</p><p class="price">$00</p></div>
+        <div class="prod-card" data-m="Creative Alive" onclick="go('product')"><div class="img"><span>Product image — large</span></div><h4>Lorem Ipsum Gummies</h4><p class="meta">Gummies · Creative · Alive</p><p class="price">$00</p></div>
+        <div class="prod-card" data-m="Present" onclick="go('product')"><div class="img"><span>Product image — large</span></div><h4>Lorem Ipsum Chocolate</h4><p class="meta">Chocolate · Present</p><p class="price">$00</p></div>
+        <div class="prod-card" data-m="Alive Connected" onclick="go('product')"><div class="img"><span>Product image — large</span></div><h4>Lorem Ipsum Gummies</h4><p class="meta">Gummies · Alive · Connected</p><p class="price">$00</p></div>
+        <div class="prod-card" data-m="Creative" onclick="go('product')"><div class="img"><span>Product image — large</span></div><h4>Lorem Ipsum Chocolate</h4><p class="meta">Chocolate · Creative</p><p class="price">$00</p></div>
+        <div class="prod-card" data-m="Present Connected" onclick="go('product')"><div class="img"><span>Product image — large</span></div><h4>Lorem Ipsum Gummies</h4><p class="meta">Gummies · Present · Connected</p><p class="price">$00</p></div>
+        <div class="prod-card" data-m="Alive" onclick="go('product')"><div class="img"><span>Product image — large</span></div><h4>Lorem Ipsum Chocolate</h4><p class="meta">Chocolate · Alive</p><p class="price">$00</p></div>
       </div>
     </div>
   </section>
@@ -781,7 +795,7 @@
         <p class="eyebrow">Gummies</p>
         <h1 class="h2" style="font-size:clamp(28px,3vw,40px);">Lorem Ipsum Gummies</h1>
         <div class="chip-row">
-          <span class="chip tag">Create</span><span class="chip tag">Connect</span><span class="chip tag">Everyday</span>
+          <span class="chip tag">Present</span><span class="chip tag">Connected</span>
         </div>
         <p class="body-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
         <div class="price-row"><span class="price">$00.00</span><span style="font-size:12px;color:var(--note);">00 servings</span></div>
@@ -801,7 +815,7 @@
       <span class="eyebrow">Feels Like</span>
       <h3 class="h3">Lorem ipsum dolor sit amet.</h3>
       <div class="chip-row" style="margin-top:24px;">
-        <span class="chip">Calm</span><span class="chip">Connected</span><span class="chip">Creative</span><span class="chip">Curious</span><span class="chip">Joyful</span>
+        <span class="chip">Present</span><span class="chip">Connected</span><span class="chip">Creative</span><span class="chip">Alive</span>
       </div>
     </div>
   </section>
@@ -884,10 +898,10 @@
     <div class="wrap">
       <h3 class="h3 center">Lorem ipsum dolor.</h3>
       <div class="prod-grid" style="grid-template-columns:repeat(4,1fr);">
-        <div class="prod-card"><div class="img"><span>Product image</span></div><h4>Lorem Ipsum</h4><p class="meta">Unwind</p><p class="price">$00</p></div>
-        <div class="prod-card"><div class="img"><span>Product image</span></div><h4>Lorem Ipsum</h4><p class="meta">Celebrate</p><p class="price">$00</p></div>
-        <div class="prod-card"><div class="img"><span>Product image</span></div><h4>Lorem Ipsum</h4><p class="meta">Explore</p><p class="price">$00</p></div>
-        <div class="prod-card"><div class="img"><span>Product image</span></div><h4>Lorem Ipsum</h4><p class="meta">Create</p><p class="price">$00</p></div>
+        <div class="prod-card"><div class="img"><span>Product image</span></div><h4>Lorem Ipsum</h4><p class="meta">Present</p><p class="price">$00</p></div>
+        <div class="prod-card"><div class="img"><span>Product image</span></div><h4>Lorem Ipsum</h4><p class="meta">Alive</p><p class="price">$00</p></div>
+        <div class="prod-card"><div class="img"><span>Product image</span></div><h4>Lorem Ipsum</h4><p class="meta">Creative</p><p class="price">$00</p></div>
+        <div class="prod-card"><div class="img"><span>Product image</span></div><h4>Lorem Ipsum</h4><p class="meta">Creative</p><p class="price">$00</p></div>
       </div>
     </div>
   </section>
@@ -932,6 +946,7 @@
 <template id="footerTpl">
   <footer>
     <div class="wrap">
+      <p class="foot-hero">Savor Every Moment</p>
       <div class="foot-grid">
         <div><p class="logo"><svg class="logo-svg" viewBox="0 0 454.6 100.27"><use href="#mushiLogo"/></svg></p><p class="body-copy" style="font-size:13px;margin-top:18px;max-width:32ch;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p></div>
         <div class="foot-col"><h5>Shop</h5><a>Gummies</a><a>Chocolates</a><a>Shop All</a><a>Shop by Moment</a></div>
@@ -987,6 +1002,19 @@
 
   // parallax quote — pinned section, elements move at different speeds
   var pqOuter=document.getElementById('pqOuter');
+  // randomize botanical deco marks: shape, size, rotation, slight offset
+  (function(){
+    var shapes=['deco-flower','deco-leaf2','deco-leaf3'];
+    pqOuter.querySelectorAll('.pq-deco').forEach(function(d,i){
+      var s=shapes[Math.floor(Math.random()*shapes.length)];
+      var size=70+Math.round(Math.random()*80);           // 70-150px
+      var rot=Math.round(Math.random()*360);
+      d.innerHTML='<svg viewBox="0 0 180 190"><use href="#'+s+'"/></svg>';
+      d.style.width=size+'px';
+      d.style.rotate=rot+'deg';
+      d.style.marginLeft=(Math.round(Math.random()*60)-30)+'px';
+    });
+  })();
   window.addEventListener('scroll',function(){
     if(!document.getElementById('page-home').classList.contains('active'))return;
     var rect=pqOuter.getBoundingClientRect();
