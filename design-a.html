@@ -49,7 +49,9 @@ section{padding:110px 0;}
 .announce .a-msg{color:#fff;text-decoration:underline;text-underline-offset:3px;cursor:pointer;}
 .announce .a-select{cursor:pointer;opacity:.92;white-space:nowrap;}
 .announce .a-select::after{content:" ▾";font-size:8px;}
-.announce .a-close{cursor:pointer;font-size:13px;opacity:.8;margin-left:16px;}
+.announce .a-close{cursor:pointer;font-size:11px;letter-spacing:.14em;opacity:.9;display:flex;align-items:center;gap:8px;}
+.announce .a-close b{font-size:23px;font-weight:400;line-height:1;}
+.announce .a-close:hover{opacity:1;}
 body.no-promo .announce{display:none;}
 /* ---------- frosted nav ---------- */
 nav.floating{
@@ -66,13 +68,13 @@ body.no-promo nav.floating{top:22px;}
 nav.floating .nav-group{display:flex;gap:6px;flex:1;align-items:center;}
 nav.floating .nav-group.right{justify-content:flex-end;gap:18px;}
 nav.floating a.nav-link{
-  font-family:var(--font-mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  font-family:var(--font-mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;
   color:var(--ink);text-decoration:none;cursor:pointer;padding:10px 16px;border-radius:999px;transition:.25s;
 }
 nav.floating a.nav-link:hover{background:rgba(255,255,255,.85);box-shadow:0 2px 10px rgba(99,11,11,.08);}
 nav.floating .logo{flex:0 0 auto;display:flex;align-items:center;}
-.logo-svg{width:110px;height:auto;fill:var(--cherry);display:block;transition:.2s;}
-nav.floating .logo:hover .logo-svg{fill:var(--peach-dark);}
+.logo-svg{width:110px;height:auto;fill:var(--sage);display:block;transition:.2s;}
+nav.floating .logo:hover .logo-svg{fill:#8FAE9C;}
 .nav-icons{display:flex;gap:18px;align-items:center;}
 .nav-icons a{display:inline-flex;position:relative;cursor:pointer;}
 .nav-icons svg{width:19px;height:19px;stroke:var(--ink);stroke-width:1.5;fill:none;}
@@ -101,6 +103,23 @@ nav.floating .logo:hover .logo-svg{fill:var(--peach-dark);}
   position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease;
 }
 .hero .slide.on{opacity:1;}
+.hero .slide{pointer-events:none;}
+.hero .slide.on{pointer-events:auto;}
+.slide-cta{position:absolute;z-index:6;display:flex;gap:16px;}
+.cta-1{bottom:22%;left:50%;transform:translateX(-50%);}
+.cta-2{bottom:32%;left:max(40px,2.8vw);}
+.hbtn{
+  display:inline-block;padding:17px 38px;border-radius:999px;cursor:pointer;text-decoration:none;
+  font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  transition:.25s;white-space:nowrap;
+}
+.hbtn-orange{background:var(--peach);color:#fff;}
+.hbtn-orange:hover{background:#6E4526;}
+.hbtn-ghost{background:#fff;color:var(--ink);}
+.hbtn-ghost:hover{background:#6E4526;color:#fff;}
+.hbtn-red{background:var(--cherry);color:#fff;}
+.hbtn-red:hover{background:var(--cherry-dark);}
+@media(max-width:700px){.slide-cta{flex-direction:column;align-items:center;}.cta-2{align-items:flex-start;}}
 .hero .slide img{width:100%;height:100%;object-fit:cover;object-position:center;}
 .hero-dots{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:10;}
 .hero-dots button{
@@ -287,12 +306,10 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
 
 <!-- ============ ANNOUNCEMENT ============ -->
 <div class="announce">
-  <div class="a-side left"><span>Mushi — Feel-Good Indulgences</span></div>
+  <div class="a-side left"></div>
   <a class="a-msg">Buy 2 get 10% off · Free shipping over $75</a>
   <div class="a-side right">
-    <span class="a-select">English</span>
-    <span class="a-select">USD ($)</span>
-    <span class="a-close" onclick="document.body.classList.add('no-promo')">✕</span>
+    <span class="a-close" onclick="document.body.classList.add('no-promo')">dismiss <b>✕</b></span>
   </div>
 </div>
 
@@ -329,8 +346,17 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
 
 <!-- ============ HERO SLIDER (6s auto) ============ -->
 <section class="hero" id="hero">
-  <div class="slide on"><img src="hero1.jpg" alt="Feel-Good Indulgence — Mushi Peach Bliss gummies against a blue sky"></div>
-  <div class="slide"><img src="hero2.jpg" alt="Savor Every Moment — the Mushi gummies collection"></div>
+  <div class="slide on"><img src="hero1.jpg" alt="Feel-Good Indulgence — Mushi Peach Bliss gummies against a blue sky">
+    <div class="slide-cta cta-1">
+      <a class="hbtn hbtn-orange" href="#shop">Shop Gummies</a>
+      <a class="hbtn hbtn-ghost" href="#shop">Shop Chocolates</a>
+    </div>
+  </div>
+  <div class="slide"><img src="hero2.jpg" alt="Savor Every Moment — the Mushi gummies collection">
+    <div class="slide-cta cta-2">
+      <a class="hbtn hbtn-red" href="#shop">Shop All</a>
+    </div>
+  </div>
   <div class="hero-dots">
     <button class="on" onclick="goSlide(0)" aria-label="Slide 1"></button>
     <button onclick="goSlide(1)" aria-label="Slide 2"></button>
@@ -341,7 +367,7 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
 <section class="rituals" id="rituals">
   <div class="wrap">
     <p class="eyebrow center" style="display:block;margin-bottom:22px;color:var(--peach-dark);">Feel-Good Rituals</p>
-    <h2 class="h2 center" style="max-width:22ch;color:var(--cherry-dark);">What ritual are you creating today?</h2>
+    <h2 class="h2 center" style="max-width:22ch;color:#A7C1B2;">What ritual are you creating today?</h2>
     <p class="body-copy center" style="margin-top:22px;text-align:center;color:#6b584a;">Mushi transforms ordinary routines into meaningful rituals.</p>
   </div>
   <div class="moment-carousel-wrap">
