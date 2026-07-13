@@ -607,7 +607,7 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
     restart();
   }
   function next(){goSlide((cur+1)%slides.length);}
-  function restart(){clearInterval(timer);timer=setInterval(next,6000);}
+  function restart(){clearInterval(timer);timer=setInterval(next,10000);}
   restart();
 
   // rituals carousel
