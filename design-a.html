@@ -125,6 +125,16 @@ nav.floating .logo:hover .logo-svg{fill:#8FAE9C;}
 .hbtn-red:hover{background:var(--cherry-dark);}
 @media(max-width:700px){.slide-cta{flex-direction:column;align-items:center;}.cta-2{align-items:flex-start;}}
 .hero .slide img{width:100%;height:100%;object-fit:cover;object-position:center;}
+.hero .slide img.lyr{position:absolute;inset:0;}
+.l-text{position:absolute;inset:0 0 30% 0;display:flex;align-items:center;justify-content:center;text-align:center;}
+.l-text h1{font-family:var(--font-display);font-weight:400;color:var(--peach);font-size:clamp(64px,12.5vw,200px);line-height:.92;letter-spacing:-.005em;}
+.l-front{position:absolute;left:0;right:0;top:56%;display:flex;flex-direction:column;align-items:center;gap:30px;text-align:center;padding:0 22px;z-index:5;}
+.l-sub{font-family:var(--font-display);color:var(--peach);font-size:clamp(17px,2.1vw,32px);line-height:1.3;}
+.l-ctas{display:flex;gap:16px;}
+.l-cloud{animation:cloudDrift 14s ease-in-out infinite alternate;}
+@keyframes cloudDrift{from{transform:translateX(-1%) translateY(.2%);}to{transform:translateX(1.2%) translateY(-.3%);}}
+@media(prefers-reduced-motion:reduce){.l-cloud{animation:none;}}
+@media(max-width:700px){.l-ctas{flex-direction:column;}.l-front{top:52%;}}
 .hero-dots{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:10;}
 .hero-dots button{
   width:10px;height:10px;border-radius:50%;border:1.5px solid #fff;background:transparent;cursor:pointer;padding:0;transition:.25s;
@@ -344,10 +354,17 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
 
 <!-- ============ HERO SLIDER (6s auto) ============ -->
 <section class="hero" id="hero">
-  <div class="slide on"><img src="hero1.jpg" alt="Feel-Good Indulgence — Mushi Peach Bliss gummies against a blue sky">
-    <div class="slide-cta cta-1">
-      <a class="hbtn hbtn-orange" href="#shop">Shop Gummies</a>
-      <a class="hbtn hbtn-ghost" href="#shop">Shop Chocolates</a>
+  <div class="slide on">
+    <img class="lyr" src="hero1-bg.jpg" alt="Blue sky with clouds">
+    <div class="l-text"><h1>Feel-Good<br>Indulgence</h1></div>
+    <img class="lyr" src="hero1-pack.png" alt="Hand holding a Mushi Peach Bliss pack" aria-hidden="true">
+    <img class="lyr l-cloud" src="hero1-cloud.png" alt="" aria-hidden="true">
+    <div class="l-front">
+      <p class="l-sub">Delicious experiences crafted to support joy,<br>presence, and connection.</p>
+      <div class="l-ctas">
+        <a class="hbtn hbtn-orange" href="#shop">Shop Gummies</a>
+        <a class="hbtn hbtn-ghost" href="#shop">Shop Chocolates</a>
+      </div>
     </div>
   </div>
   <div class="slide"><img src="hero2.jpg" alt="Savor Every Moment — the Mushi gummies collection">
