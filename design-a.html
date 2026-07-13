@@ -132,6 +132,8 @@ nav.floating .logo:hover .logo-svg{fill:#8FAE9C;}
 .l-sub{font-family:var(--font-display);color:var(--peach);font-size:clamp(17px,2.1vw,32px);line-height:1.3;}
 .l-ctas{display:flex;gap:16px;}
 .l-cloud{animation:cloudDrift 14s ease-in-out infinite alternate;}
+.l2-text{position:absolute;left:max(40px,2.8vw);top:23%;display:flex;flex-direction:column;align-items:flex-start;gap:36px;z-index:5;}
+.l2-text h1{font-family:var(--font-display);font-weight:400;color:#B01E24;font-size:clamp(54px,9.6vw,152px);line-height:.95;letter-spacing:-.005em;}
 @keyframes cloudDrift{from{transform:translateX(-1%) translateY(.2%);}to{transform:translateX(1.2%) translateY(-.3%);}}
 @media(prefers-reduced-motion:reduce){.l-cloud{animation:none;}}
 @media(max-width:700px){.l-ctas{flex-direction:column;}.l-front{top:57%;}}
@@ -367,8 +369,10 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
       </div>
     </div>
   </div>
-  <div class="slide"><img src="hero2.jpg" alt="Savor Every Moment — the Mushi gummies collection">
-    <div class="slide-cta cta-2">
+  <div class="slide">
+    <img class="lyr" src="hero2-bg.jpg" alt="The Mushi gummies collection on a pastel gradient">
+    <div class="l2-text">
+      <h1>Savor Every<br>Moment</h1>
       <a class="hbtn hbtn-red" href="#shop">Shop All</a>
     </div>
   </div>
