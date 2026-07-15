@@ -32,7 +32,7 @@ section{padding:110px 0;}
 .center{text-align:center;margin-left:auto;margin-right:auto;}
 .btn{
   display:inline-block;padding:15px 34px;border-radius:999px;cursor:pointer;text-decoration:none;
-  font-family:var(--font-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+  font-weight:700;font-family:var(--font-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
   border:1.5px solid var(--ink);color:var(--ink);background:transparent;transition:.2s;
 }
 .btn.solid{background:var(--peach);border-color:var(--peach);color:#fff;}
@@ -42,9 +42,9 @@ section{padding:110px 0;}
 .announce{
   position:fixed;top:0;left:0;right:0;height:42px;z-index:120;
   background:var(--sage);color:var(--apple-dark);display:flex;align-items:center;padding:0;
-  font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;overflow:hidden;
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
 }
-.ticker{flex:1;height:100%;overflow:hidden;display:flex;align-items:center;}
+.ticker{flex:1;height:100%;overflow:hidden;display:flex;align-items:center;min-width:0;}
 .ticker-track{display:flex;align-items:center;white-space:nowrap;will-change:transform;animation:tick 30s linear infinite;}
 .ticker-track span{display:flex;align-items:center;gap:34px;padding-right:34px;}
 .ticker-track svg{width:13px;height:13px;fill:currentColor;flex:0 0 auto;}
@@ -55,6 +55,10 @@ section{padding:110px 0;}
   box-shadow:-14px 0 14px var(--sage);
 }
 .announce .a-close b{font-size:23px;font-weight:400;line-height:1;}
+.a-wave{position:absolute;top:100%;left:0;width:100%;height:15px;overflow:hidden;pointer-events:none;}
+.a-wave-track{display:flex;width:200%;height:100%;animation:waveSlide 9s linear infinite;}
+.a-wave-track svg{width:50%;height:100%;flex:0 0 50%;display:block;}
+@keyframes waveSlide{to{transform:translateX(-50%);}}
 .announce .a-close:hover{opacity:.7;}
 body.no-promo .announce{display:none;}
 /* ---------- frosted nav ---------- */
@@ -72,7 +76,7 @@ body.no-promo nav.floating{top:22px;}
 nav.floating .nav-group{display:flex;gap:6px;flex:1;align-items:center;}
 nav.floating .nav-group.right{justify-content:flex-end;gap:18px;}
 nav.floating a.nav-link{
-  font-family:var(--font-mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+  font-weight:700;font-family:var(--font-mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;
   color:var(--ink);text-decoration:none;cursor:pointer;padding:10px 16px;border-radius:999px;transition:.25s;
 }
 nav.floating a.nav-link:hover{background:rgba(255,255,255,.85);box-shadow:0 2px 10px rgba(99,11,11,.08);}
@@ -88,7 +92,10 @@ nav.floating .logo:hover .logo-svg{fill:#8FAE9C;}
   display:flex;align-items:center;justify-content:center;
 }
 .nav-item{position:relative;}
-.nav-item>a::after{content:" ▾";font-size:8px;opacity:.5;}
+.nav-item>a::after{
+  content:"";display:inline-block;width:9px;height:8px;margin-left:7px;vertical-align:1px;
+  background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 22"><path fill="%232E1A10" d="M3.2 2h17.6a2.6 2.6 0 0 1 1.9 4.4l-8.8 9.4a2.9 2.9 0 0 1-4.2 0L.9 6.4A2.6 2.6 0 0 1 3.2 2z"/></svg>') center/contain no-repeat;
+}
 .nav-drop{position:absolute;top:100%;left:50%;transform:translateX(-50%);padding-top:16px;opacity:0;visibility:hidden;transition:.2s;z-index:110;}
 .nav-item:hover .nav-drop{opacity:1;visibility:visible;}
 .nav-drop-inner{
@@ -98,7 +105,7 @@ nav.floating .logo:hover .logo-svg{fill:#8FAE9C;}
 }
 .nav-drop-inner a{
   display:block;padding:11px 20px;border-radius:12px;text-decoration:none;
-  font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);
+  font-weight:700;font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);
 }
 .nav-drop-inner a:hover{background:var(--peach-t2);}
 /* ---------- hero slider ---------- */
@@ -114,7 +121,7 @@ nav.floating .logo:hover .logo-svg{fill:#8FAE9C;}
 .cta-2{bottom:32%;left:max(40px,2.8vw);}
 .hbtn{
   display:inline-block;padding:17px 38px;border-radius:999px;cursor:pointer;text-decoration:none;
-  font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  font-weight:700;font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
   transition:.25s;white-space:nowrap;
 }
 .hbtn-orange{background:var(--peach);color:#fff;}
@@ -186,11 +193,6 @@ nav.floating .logo:hover .logo-svg{fill:#8FAE9C;}
 .flip img.back{opacity:0;}
 .flip:hover img.back{opacity:1;}
 .flip:hover img.front{opacity:0;}
-.flip .flip-hint{
-  position:absolute;top:10px;right:10px;background:rgba(255,255,255,.85);border-radius:999px;
-  font-family:var(--font-mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;
-  padding:5px 10px;color:var(--ink);z-index:2;
-}
 .buy-card .flavor{font-family:var(--font-mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;text-align:center;}
 .buy-card h4{font-family:var(--font-display);font-weight:400;font-size:26px;text-align:center;line-height:1.1;}
 .buy-card .story{font-size:14px;line-height:1.6;text-align:center;color:#5c4a3d;font-style:italic;}
@@ -208,13 +210,13 @@ nav.floating .logo:hover .logo-svg{fill:#8FAE9C;}
 .bc-cherry h4{color:var(--cherry);} .bc-cherry .flavor{color:var(--cherry);} .bc-cherry .btn{background:var(--cherry);} .bc-cherry .btn:hover{background:var(--cherry-dark);} .bc-cherry .flip{background:#fbe4e4;}
 /* ---------- benefits ---------- */
 .benefits{background:var(--peach-t2);border-radius:0 0 48px 48px;padding-top:0;}
-.ing-row{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:60px;max-width:820px;margin-left:auto;margin-right:auto;}
+.ing-row{display:grid;grid-template-columns:repeat(5,1fr);gap:24px;margin-top:60px;max-width:1020px;margin-left:auto;margin-right:auto;}
 .ing{display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;}
 .ing .circle{
   width:96px;height:96px;border-radius:50%;background:var(--apple-t1);
   display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(56,65,51,.15);
 }
-.ing .circle svg{width:42px;height:42px;stroke:#fff;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+.ing .circle svg{width:42px;height:42px;stroke:#fff;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round;display:block;margin:auto;}
 .ing p{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--apple-dark);}
 /* ---------- parallax quote ---------- */
 .pq-outer{height:190vh;position:relative;padding:0;}
@@ -225,7 +227,7 @@ nav.floating .logo:hover .logo-svg{fill:#8FAE9C;}
 }
 .pq-content{max-width:940px;text-align:center;padding:0 28px;display:flex;flex-direction:column;align-items:center;gap:38px;will-change:transform,opacity;}
 .pq-quote{font-family:var(--font-display);font-weight:400;font-size:clamp(28px,4vw,54px);line-height:1.1;color:var(--cherry);}
-.pq-attr{font-family:var(--font-mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--cherry-dark);}
+.pq-attr{font-family:var(--font-display);font-weight:400;font-size:22px;letter-spacing:0;text-transform:none;color:#8F0909;}
 .pq-attr span{opacity:.65;text-transform:none;letter-spacing:.04em;}
 .pq-deco{position:absolute;will-change:transform;pointer-events:none;}
 .pq-deco svg{display:block;width:100%;height:auto;fill:currentColor;}
@@ -239,7 +241,7 @@ nav.floating .logo:hover .logo-svg{fill:#8FAE9C;}
 .rave-body .stars{font-size:12px;letter-spacing:.25em;margin-bottom:14px;display:block;}
 .rv-cherry .stars{color:var(--cherry);} .rv-peach .stars{color:var(--peach-dark);} .rv-apple .stars{color:var(--apple);}
 .rave-body p{font-family:var(--font-mono);font-size:13px;color:#4a3a30;line-height:1.65;}
-.rave-body .who{margin-top:20px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-family:var(--font-mono);font-weight:700;color:var(--ink);}
+.rave-body .who{margin-top:20px;font-size:22px;letter-spacing:0;text-transform:none;font-family:var(--font-display);font-weight:400;color:#8F0909;}
 .rave-prod{
   border-top:1px solid rgba(46,26,16,.12);padding:16px 32px;display:flex;gap:16px;align-items:center;
   text-decoration:none;color:inherit;transition:background .2s;
@@ -272,11 +274,17 @@ nav.floating .logo:hover .logo-svg{fill:#8FAE9C;}
 .ig-handle{display:block;text-align:center;margin-top:34px;font-family:var(--font-mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--peach-dark);text-decoration:none;}
 .ig-handle:hover{text-decoration:underline;}
 /* ---------- newsletter ---------- */
-.newsletter{background:var(--cream);}
+.newsletter{
+  background:#2E1A10 url('newsletter-bg.jpg') center/cover fixed;position:relative;
+}
+.newsletter::before{content:"";position:absolute;inset:0;background:rgba(30,16,8,.55);}
+.newsletter .wrap{position:relative;z-index:2;}
+.newsletter h3{color:#fff !important;}
+.newsletter .body-copy{color:#F1DDCC !important;}
 .newsletter-box{max-width:600px;margin:0 auto;text-align:center;display:flex;flex-direction:column;gap:24px;align-items:center;}
 .signup{display:flex;width:100%;border-radius:999px;overflow:hidden;background:#fff;box-shadow:0 6px 24px rgba(99,11,11,.08);}
 .signup input{flex:1;border:none;padding:18px 26px;font-size:14px;font-family:var(--font-body);outline:none;color:var(--ink);background:transparent;}
-.signup button{border:none;background:var(--peach);color:#fff;padding:18px 32px;font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:.2s;}
+.signup button{border:none;background:var(--peach);color:#fff;padding:18px 32px;font-weight:700;font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:.2s;}
 .signup button:hover{background:var(--peach-dark);}
 /* ---------- footer ---------- */
 footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
@@ -319,6 +327,10 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
 
 <!-- ============ ANNOUNCEMENT ============ -->
 <div class="announce">
+  <div class="a-wave"><div class="a-wave-track">
+    <svg preserveAspectRatio="none" viewBox="0 0 1200 26"><path fill="#A7C1B2" d="M0 0 H1200 V13 C1175 26 1150 26 1125 13 C1100 0 1075 0 1050 13 C1025 26 1000 26 975 13 C950 0 925 0 900 13 C875 26 850 26 825 13 C800 0 775 0 750 13 C725 26 700 26 675 13 C650 0 625 0 600 13 C575 26 550 26 525 13 C500 0 475 0 450 13 C425 26 400 26 375 13 C350 0 325 0 300 13 C275 26 250 26 225 13 C200 0 175 0 150 13 C125 26 100 26 75 13 C50 0 25 0 0 13 L0 0 Z"/></svg>
+    <svg preserveAspectRatio="none" viewBox="0 0 1200 26"><path fill="#A7C1B2" d="M0 0 H1200 V13 C1175 26 1150 26 1125 13 C1100 0 1075 0 1050 13 C1025 26 1000 26 975 13 C950 0 925 0 900 13 C875 26 850 26 825 13 C800 0 775 0 750 13 C725 26 700 26 675 13 C650 0 625 0 600 13 C575 26 550 26 525 13 C500 0 475 0 450 13 C425 26 400 26 375 13 C350 0 325 0 300 13 C275 26 250 26 225 13 C200 0 175 0 150 13 C125 26 100 26 75 13 C50 0 25 0 0 13 L0 0 Z"/></svg>
+  </div></div>
   <div class="ticker"><div class="ticker-track" id="tickerTrack"></div></div>
   <span class="a-close" onclick="document.body.classList.add('no-promo')">dismiss <b>✕</b></span>
 </div>
@@ -382,6 +394,55 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
   </div>
 </section>
 
+<!-- ============ FEATURED — DIRECT ADD TO CART ============ -->
+<section class="featured" id="shop">
+  <div class="wrap">
+    <p class="eyebrow center" style="display:block;margin-bottom:22px;color:var(--peach-dark);">Our Gummies</p>
+    <h2 class="h2 center" style="color:var(--cherry-dark);">Designed to Enhance Moments</h2>
+
+    <div class="buy-grid">
+      <div class="buy-card bc-peach">
+        <div class="flip">
+          <img class="back" loading="lazy" src="https://mushiworld.com/cdn/shop/files/1-4_0002.png?width=800" alt="Peach Bliss — back of pack">
+          <img class="front" src="https://mushiworld.com/cdn/shop/files/1-4_0001.png?width=800" alt="Peach Bliss — front of pack">
+        </div>
+        <p class="flavor">Peach Bliss</p>
+        <h4>It's Always Peachy</h4>
+        <p class="story">Sunshine you can chew. Sun-ripened peach melts into a velvety calm — and the whole afternoon turns golden.</p>
+        <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
+        <a class="btn solid">Add to Cart</a>
+        <p class="deal">Buy 2 get 10% off · Buy 3 get 15% off</p>
+      </div>
+
+      <div class="buy-card bc-apple">
+        <div class="flip">
+          <img class="back" loading="lazy" src="https://mushiworld.com/cdn/shop/files/1-4_0006.png?width=800" alt="Green Apple — back of pack">
+          <img class="front" src="https://mushiworld.com/cdn/shop/files/1-4_0005.png?width=800" alt="Green Apple — front of pack">
+        </div>
+        <p class="flavor">Green Apple</p>
+        <h4>Sweet Dreams</h4>
+        <p class="story">A crisp bite before the lights go low. Tart green apple helps the evening exhale — drift off easy, wake up sweeter.</p>
+        <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
+        <a class="btn solid">Add to Cart</a>
+        <p class="deal">Buy 2 get 10% off · Buy 3 get 15% off</p>
+      </div>
+
+      <div class="buy-card bc-cherry">
+        <div class="flip">
+          <img class="back" loading="lazy" src="https://mushiworld.com/cdn/shop/files/1-4_0010.png?width=800" alt="Cherry — back of pack">
+          <img class="front" src="https://mushiworld.com/cdn/shop/files/1-4_0009.png?width=800" alt="Cherry — front of pack">
+        </div>
+        <p class="flavor">Cherry</p>
+        <h4>Cherry Blossom</h4>
+        <p class="story">Bold cherry with a tart spark. One gummy in, and the ideas start blooming — clarity with a deliciously dark edge.</p>
+        <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
+        <a class="btn solid">Add to Cart</a>
+        <p class="deal">Buy 2 get 10% off · Buy 3 get 15% off</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ FEEL-GOOD RITUALS ============ -->
 <section class="rituals" id="rituals">
   <div class="wrap">
@@ -401,58 +462,6 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
   </div>
 </section>
 
-<!-- ============ FEATURED — DIRECT ADD TO CART ============ -->
-<section class="featured" id="shop">
-  <div class="wrap">
-    <p class="eyebrow center" style="display:block;margin-bottom:22px;color:var(--peach-dark);">Infused Gummies · 5000mg</p>
-    <h2 class="h2 center" style="color:var(--cherry-dark);">Designed to Enhance Moments</h2>
-
-    <div class="buy-grid">
-      <div class="buy-card bc-peach">
-        <div class="flip">
-          <span class="flip-hint">Hover to flip</span>
-          <img class="back" loading="lazy" src="https://mushiworld.com/cdn/shop/files/1-4_0002.png?width=800" alt="Peach Bliss — back of pack">
-          <img class="front" src="https://mushiworld.com/cdn/shop/files/1-4_0001.png?width=800" alt="Peach Bliss — front of pack">
-        </div>
-        <p class="flavor">Peach Bliss</p>
-        <h4>It's Always Peachy</h4>
-        <p class="story">Sunshine you can chew. Sun-ripened peach melts into a velvety calm — and the whole afternoon turns golden.</p>
-        <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
-        <a class="btn solid">Add to Cart</a>
-        <p class="deal">Buy 2 get 10% off · Buy 3 get 15% off</p>
-      </div>
-
-      <div class="buy-card bc-apple">
-        <div class="flip">
-          <span class="flip-hint">Hover to flip</span>
-          <img class="back" loading="lazy" src="https://mushiworld.com/cdn/shop/files/1-4_0006.png?width=800" alt="Green Apple — back of pack">
-          <img class="front" src="https://mushiworld.com/cdn/shop/files/1-4_0005.png?width=800" alt="Green Apple — front of pack">
-        </div>
-        <p class="flavor">Green Apple</p>
-        <h4>Sweet Dreams</h4>
-        <p class="story">A crisp bite before the lights go low. Tart green apple helps the evening exhale — drift off easy, wake up sweeter.</p>
-        <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
-        <a class="btn solid">Add to Cart</a>
-        <p class="deal">Buy 2 get 10% off · Buy 3 get 15% off</p>
-      </div>
-
-      <div class="buy-card bc-cherry">
-        <div class="flip">
-          <span class="flip-hint">Hover to flip</span>
-          <img class="back" loading="lazy" src="https://mushiworld.com/cdn/shop/files/1-4_0010.png?width=800" alt="Cherry — back of pack">
-          <img class="front" src="https://mushiworld.com/cdn/shop/files/1-4_0009.png?width=800" alt="Cherry — front of pack">
-        </div>
-        <p class="flavor">Cherry</p>
-        <h4>Cherry Blossom</h4>
-        <p class="story">Bold cherry with a tart spark. One gummy in, and the ideas start blooming — clarity with a deliciously dark edge.</p>
-        <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
-        <a class="btn solid">Add to Cart</a>
-        <p class="deal">Buy 2 get 10% off · Buy 3 get 15% off</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ============ BENEFITS ============ -->
 <section class="benefits" id="benefits">
   <div class="wrap">
@@ -463,6 +472,7 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
       <div class="ing"><div class="circle"><svg viewBox="0 0 24 24"><path d="M12 21C7 17 4 13.5 4 9.5A5.5 5.5 0 0 1 12 5a5.5 5.5 0 0 1 8 4.5c0 4-3 7.5-8 11.5z" transform="rotate(0 12 12)"/><path d="M12 21V9"/></svg></div><p>Vegan</p></div>
       <div class="ing"><div class="circle"><svg viewBox="0 0 24 24"><path d="M6 4c6 0 12 6 12 16"/><path d="M18 4C12 4 6 10 6 20"/><path d="M7.5 8.5h9M7 15.5h10"/></svg></div><p>Non GMO</p></div>
       <div class="ing"><div class="circle"><svg viewBox="0 0 24 24"><path d="M12 3s6 6.3 6 11a6 6 0 0 1-12 0c0-4.7 6-11 6-11z"/><path d="M9.5 14.5a2.5 2.5 0 0 0 2.5 2.5"/></svg></div><p>MCT Oil</p></div>
+      <div class="ing"><div class="circle"><svg viewBox="0 0 24 24"><path d="M9.5 3.5h5"/><path d="M10.5 3.5v1.2a2 2 0 0 1-.3 1L10 6.5h4l-.2-.8a2 2 0 0 1-.3-1V3.5"/><path d="M10 6.5v6.8l2 3.2 2-3.2V6.5"/><path d="M12 9.5h2M12 11.5h2"/><path d="M12 18.7s-1.3 1.5-1.3 2.3a1.3 1.3 0 0 0 2.6 0c0-.8-1.3-2.3-1.3-2.3z"/></svg></div><p>5000mg</p></div>
     </div>
   </div>
 </section>
