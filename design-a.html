@@ -45,7 +45,7 @@ section{padding:110px 0;}
   font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
 }
 .ticker{flex:1;height:100%;overflow:hidden;display:flex;align-items:center;min-width:0;}
-.ticker-track{display:flex;align-items:center;white-space:nowrap;will-change:transform;animation:tick 30s linear infinite;}
+.ticker-track{display:flex;align-items:center;white-space:nowrap;will-change:transform;animation:tick 60s linear infinite;}
 .ticker-track span{display:flex;align-items:center;gap:34px;padding-right:34px;}
 .ticker-track svg{width:13px;height:13px;fill:currentColor;flex:0 0 auto;}
 @keyframes tick{to{transform:translateX(-50%);}}
@@ -55,10 +55,6 @@ section{padding:110px 0;}
   box-shadow:-14px 0 14px var(--sage);
 }
 .announce .a-close b{font-size:23px;font-weight:400;line-height:1;}
-.a-wave{position:absolute;top:100%;left:0;width:100%;height:15px;overflow:hidden;pointer-events:none;}
-.a-wave-track{display:flex;width:200%;height:100%;animation:waveSlide 9s linear infinite;}
-.a-wave-track svg{width:50%;height:100%;flex:0 0 50%;display:block;}
-@keyframes waveSlide{to{transform:translateX(-50%);}}
 .announce .a-close:hover{opacity:.7;}
 body.no-promo .announce{display:none;}
 /* ---------- frosted nav ---------- */
@@ -209,7 +205,7 @@ nav.floating .logo:hover .logo-svg{fill:#8FAE9C;}
 .bc-apple h4{color:var(--apple);} .bc-apple .flavor{color:var(--apple);} .bc-apple .btn{background:var(--apple);} .bc-apple .btn:hover{background:var(--apple-dark);} .bc-apple .flip{background:#e8efdd;}
 .bc-cherry h4{color:var(--cherry);} .bc-cherry .flavor{color:var(--cherry);} .bc-cherry .btn{background:var(--cherry);} .bc-cherry .btn:hover{background:var(--cherry-dark);} .bc-cherry .flip{background:#fbe4e4;}
 /* ---------- benefits ---------- */
-.benefits{background:var(--peach-t2);border-radius:0 0 48px 48px;padding-top:100px;}
+.benefits{background:var(--peach-t2);padding-top:100px;}
 .ing-row{display:grid;grid-template-columns:repeat(5,1fr);gap:24px;margin-top:60px;max-width:1020px;margin-left:auto;margin-right:auto;}
 .ing{display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;}
 .ing .circle{
@@ -327,10 +323,6 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
 
 <!-- ============ ANNOUNCEMENT ============ -->
 <div class="announce">
-  <div class="a-wave"><div class="a-wave-track">
-    <svg preserveAspectRatio="none" viewBox="0 0 1200 26"><path fill="#A7C1B2" d="M0 0 H1200 V13 C1175 26 1150 26 1125 13 C1100 0 1075 0 1050 13 C1025 26 1000 26 975 13 C950 0 925 0 900 13 C875 26 850 26 825 13 C800 0 775 0 750 13 C725 26 700 26 675 13 C650 0 625 0 600 13 C575 26 550 26 525 13 C500 0 475 0 450 13 C425 26 400 26 375 13 C350 0 325 0 300 13 C275 26 250 26 225 13 C200 0 175 0 150 13 C125 26 100 26 75 13 C50 0 25 0 0 13 L0 0 Z"/></svg>
-    <svg preserveAspectRatio="none" viewBox="0 0 1200 26"><path fill="#A7C1B2" d="M0 0 H1200 V13 C1175 26 1150 26 1125 13 C1100 0 1075 0 1050 13 C1025 26 1000 26 975 13 C950 0 925 0 900 13 C875 26 850 26 825 13 C800 0 775 0 750 13 C725 26 700 26 675 13 C650 0 625 0 600 13 C575 26 550 26 525 13 C500 0 475 0 450 13 C425 26 400 26 375 13 C350 0 325 0 300 13 C275 26 250 26 225 13 C200 0 175 0 150 13 C125 26 100 26 75 13 C50 0 25 0 0 13 L0 0 Z"/></svg>
-  </div></div>
   <div class="ticker"><div class="ticker-track" id="tickerTrack"></div></div>
   <span class="a-close" onclick="document.body.classList.add('no-promo')">dismiss <b>✕</b></span>
 </div>
