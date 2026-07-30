@@ -77,8 +77,9 @@ nav.floating a.nav-link{
 }
 nav.floating a.nav-link:hover{background:rgba(255,255,255,.85);box-shadow:0 2px 10px rgba(99,11,11,.08);}
 nav.floating .logo{flex:0 0 auto;display:flex;align-items:center;}
-.logo-svg{width:110px;height:auto;fill:var(--sage);display:block;transition:.2s;}
-nav.floating .logo:hover .logo-svg{fill:#8FAE9C;}
+.logo-svg{width:126px;height:auto;fill:var(--cherry);display:block;transition:fill .2s;}
+nav.floating .logo:hover .logo-svg{animation:logoCycle 1.2s linear infinite;}
+@keyframes logoCycle{0%,100%{fill:var(--cherry);}33%{fill:var(--peach);}66%{fill:var(--apple);}}
 .nav-icons{display:flex;gap:18px;align-items:center;}
 .nav-icons a{display:inline-flex;position:relative;cursor:pointer;}
 .nav-icons svg{width:19px;height:19px;stroke:var(--ink);stroke-width:1.5;fill:none;}
@@ -178,6 +179,15 @@ nav.floating .logo:hover .logo-svg{fill:#8FAE9C;}
 .car-btn.next{right:22px;}
 /* ---------- featured buy cards ---------- */
 .featured{background:var(--peach-t2);}
+.seg-toggle{
+  display:flex;width:max-content;margin:36px auto 0;background:#D9C0AC;border-radius:999px;padding:0;
+}
+.seg-toggle button{
+  padding:14px 34px;border:none;border-radius:999px;background:transparent;cursor:pointer;
+  font-family:var(--font-mono);font-weight:700;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#6b584a;
+  transition:.2s;
+}
+.seg-toggle button.on{background:#fff;color:var(--ink);box-shadow:0 2px 10px rgba(99,11,11,.15);}
 .buy-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:56px;}
 .buy-card{
   background:#fff;border-radius:24px;padding:22px;display:flex;flex-direction:column;gap:14px;
@@ -201,9 +211,12 @@ nav.floating .logo:hover .logo-svg{fill:#8FAE9C;}
 .qty span{cursor:pointer;}
 .buy-card .btn{text-align:center;color:#fff;border:none;}
 .buy-card .deal{font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;text-align:center;color:#8a7466;}
-.bc-peach h4{color:var(--peach-dark);} .bc-peach .flavor{color:var(--peach);} .bc-peach .btn{background:var(--peach);} .bc-peach .btn:hover{background:var(--peach-dark);} .bc-peach .flip{background:#f7e3d3;}
-.bc-apple h4{color:var(--apple);} .bc-apple .flavor{color:var(--apple);} .bc-apple .btn{background:var(--apple);} .bc-apple .btn:hover{background:var(--apple-dark);} .bc-apple .flip{background:#e8efdd;}
-.bc-cherry h4{color:var(--cherry);} .bc-cherry .flavor{color:var(--cherry);} .bc-cherry .btn{background:var(--cherry);} .bc-cherry .btn:hover{background:var(--cherry-dark);} .bc-cherry .flip{background:#fbe4e4;}
+.bc-peach h4{color:var(--peach-dark);} .bc-peach .flavor{color:#6b584a;} .bc-peach .btn{background:var(--peach);} .bc-peach .btn:hover{background:var(--peach-dark);} .bc-peach .flip{background:#f7e3d3;}
+.bc-apple h4{color:var(--apple);} .bc-apple .flavor{color:#6b584a;} .bc-apple .btn{background:var(--apple);} .bc-apple .btn:hover{background:var(--apple-dark);} .bc-apple .flip{background:#e8efdd;}
+.bc-milk h4{color:#8A5A2B;} .bc-milk .flavor{color:#6b584a;} .bc-milk .btn{background:#8A5A2B;} .bc-milk .btn:hover{background:#6E4526;} .bc-milk .flip{background:#F6E3DC;}
+.bc-dark h4{color:#4A2C1A;} .bc-dark .flavor{color:#6b584a;} .bc-dark .btn{background:#4A2C1A;} .bc-dark .btn:hover{background:#33200E;} .bc-dark .flip{background:#E7DED6;}
+.bc-berry h4{color:#B3244C;} .bc-berry .flavor{color:#6b584a;} .bc-berry .btn{background:#B3244C;} .bc-berry .btn:hover{background:#8C1A3B;} .bc-berry .flip{background:#DCEDE7;}
+.bc-cherry h4{color:var(--cherry);} .bc-cherry .flavor{color:#6b584a;} .bc-cherry .btn{background:var(--cherry);} .bc-cherry .btn:hover{background:var(--cherry-dark);} .bc-cherry .flip{background:#fbe4e4;}
 /* ---------- benefits ---------- */
 .benefits{background:var(--peach-t2);padding-top:100px;}
 .ing-row{display:grid;grid-template-columns:repeat(5,1fr);gap:24px;margin-top:60px;max-width:1020px;margin-left:auto;margin-right:auto;}
@@ -312,7 +325,7 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
   .pq-deco{display:none;}
   nav.floating{padding:11px 20px;}
   nav.floating a.nav-link{padding:8px 10px;letter-spacing:.12em;}
-  .logo-svg{width:84px;}
+  .logo-svg{width:97px;}
   .hero{height:72vh;}
 }
 </style>
@@ -390,17 +403,22 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
 <!-- ============ FEATURED — DIRECT ADD TO CART ============ -->
 <section class="featured" id="shop">
   <div class="wrap">
-    <p class="eyebrow center" style="display:block;margin-bottom:22px;color:var(--peach-dark);">Our Gummies</p>
+    <p class="eyebrow center" style="display:block;margin-bottom:22px;color:var(--peach-dark);">Our Products</p>
     <h2 class="h2 center" style="color:var(--cherry-dark);">Designed to Enhance Moments</h2>
 
-    <div class="buy-grid">
+    <div class="seg-toggle">
+      <button id="segGummies" class="on" onclick="toggleProducts('gummies')">Gummies</button>
+      <button id="segChocolates" onclick="toggleProducts('chocolates')">Chocolates</button>
+    </div>
+
+    <div class="buy-grid" id="gridGummies">
       <div class="buy-card bc-peach">
         <div class="flip">
           <img class="back" loading="lazy" src="peach-2.jpg" alt="Peach Bliss — back of pack">
           <img class="front" src="peach-1.jpg" alt="Peach Bliss — front of pack">
         </div>
-        <p class="flavor">Peach Bliss</p>
-        <h4>It's Always Peachy</h4>
+        <p class="flavor">Infused Gummies</p>
+        <h4>Peach Bliss</h4>
         <p class="story">Sunshine you can chew. Sun-ripened peach melts into a velvety calm — and the whole afternoon turns golden.</p>
         <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
         <a class="btn solid">Add to Cart</a>
@@ -412,8 +430,8 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
           <img class="back" loading="lazy" src="green-apple-2.jpg" alt="Green Apple — back of pack">
           <img class="front" src="green-apple-1.jpg" alt="Green Apple — front of pack">
         </div>
-        <p class="flavor">Green Apple</p>
-        <h4>Sweet Dreams</h4>
+        <p class="flavor">Infused Gummies</p>
+        <h4>Green Apple</h4>
         <p class="story">A crisp bite before the lights go low. Tart green apple helps the evening exhale — drift off easy, wake up sweeter.</p>
         <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
         <a class="btn solid">Add to Cart</a>
@@ -425,14 +443,54 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
           <img class="back" loading="lazy" src="cherry-2.jpg" alt="Cherry — back of pack">
           <img class="front" src="cherry-1.jpg" alt="Cherry — front of pack">
         </div>
-        <p class="flavor">Cherry</p>
-        <h4>Cherry Blossom</h4>
+        <p class="flavor">Infused Gummies</p>
+        <h4>Cherry</h4>
         <p class="story">Bold cherry with a tart spark. One gummy in, and the ideas start blooming — clarity with a deliciously dark edge.</p>
         <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
         <a class="btn solid">Add to Cart</a>
         <p class="deal">Buy 2 get 10% off · Buy 3 get 15% off</p>
       </div>
     </div>
+
+    <div class="buy-grid" id="gridChocolates" style="display:none;">
+      <div class="buy-card bc-milk">
+        <div class="flip">
+          <img class="back" loading="lazy" src="choco-milk-2.jpg" alt="Milk Chocolate — unboxed">
+          <img class="front" src="choco-milk-1.jpg" alt="Milk Chocolate — box">
+        </div>
+        <p class="flavor">Infused Chocolates</p>
+        <h4>Milk Chocolate</h4>
+        <p class="story">Velvety, slow-melting milk chocolate — comfort you can share, square by square.</p>
+        <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
+        <a class="btn solid">Add to Cart</a>
+        <p class="deal">Buy 2 get 10% off · Buy 3 get 15% off</p>
+      </div>
+      <div class="buy-card bc-dark">
+        <div class="flip">
+          <img class="back" loading="lazy" src="choco-dark-2.jpg" alt="Dark Chocolate — unboxed">
+          <img class="front" src="choco-dark-1.jpg" alt="Dark Chocolate — box">
+        </div>
+        <p class="flavor">Infused Chocolates</p>
+        <h4>Dark Chocolate</h4>
+        <p class="story">Deep, rich cacao with a functional lift — moody, elegant, and quietly energizing.</p>
+        <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
+        <a class="btn solid">Add to Cart</a>
+        <p class="deal">Buy 2 get 10% off · Buy 3 get 15% off</p>
+      </div>
+      <div class="buy-card bc-berry">
+        <div class="flip">
+          <img class="back" loading="lazy" src="choco-berry-2.jpg" alt="Berry Dark Chocolate — unboxed">
+          <img class="front" src="choco-berry-1.jpg" alt="Berry Dark Chocolate — box">
+        </div>
+        <p class="flavor">Infused Chocolates</p>
+        <h4>Berry Dark Chocolate</h4>
+        <p class="story">Midnight berries folded into dark cacao — tart, bold, and a little dramatic.</p>
+        <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
+        <a class="btn solid">Add to Cart</a>
+        <p class="deal">Buy 2 get 10% off · Buy 3 get 15% off</p>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -501,7 +559,7 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
         </div>
         <a class="rave-prod" href="https://mushiworld.com/products/peach-bliss" target="_blank" rel="noopener">
           <img loading="lazy" src="https://mushiworld.com/cdn/shop/files/1-4_0004.png?width=300" alt="Peach Bliss">
-          <div><h5>It's Always Peachy</h5><p>Peach Bliss · $45.00</p></div>
+          <div><h5>Peach Bliss</h5><p>Infused Gummies · $45.00</p></div>
         </a>
       </div>
       <div class="rave-card rv-apple">
@@ -513,19 +571,19 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
         </div>
         <a class="rave-prod" href="https://mushiworld.com/products/green-apple" target="_blank" rel="noopener">
           <img loading="lazy" src="https://mushiworld.com/cdn/shop/files/1-4_0008.png?width=300" alt="Green Apple">
-          <div><h5>Sweet Dreams</h5><p>Green Apple · $45.00</p></div>
+          <div><h5>Green Apple</h5><p>Infused Gummies · $45.00</p></div>
         </a>
       </div>
       <div class="rave-card rv-cherry">
         <div class="rave-body">
           <span class="stars">★ ★ ★ ★ ★</span>
           <h4>My sketchbook is full again</h4>
-          <p>Cherry Blossom before studio time is my new rule. Rich flavor, and the ideas just keep arriving.</p>
+          <p>A cherry gummy before studio time is my new rule. Rich flavor, and the ideas just keep arriving.</p>
           <p class="who">Alex T.</p>
         </div>
         <a class="rave-prod" href="https://mushiworld.com/products/cherry" target="_blank" rel="noopener">
           <img loading="lazy" src="https://mushiworld.com/cdn/shop/files/1-4_0012.png?width=300" alt="Cherry">
-          <div><h5>Cherry Blossom</h5><p>Cherry · $45.00</p></div>
+          <div><h5>Cherry</h5><p>Infused Gummies · $45.00</p></div>
         </a>
       </div>
     </div>
@@ -638,6 +696,14 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
   function next(){goSlide((cur+1)%slides.length);}
   function restart(){clearInterval(timer);timer=setInterval(next,10000);}
   restart();
+
+  // products toggle
+  function toggleProducts(type){
+    document.getElementById('gridGummies').style.display = type==='gummies' ? 'grid' : 'none';
+    document.getElementById('gridChocolates').style.display = type==='chocolates' ? 'grid' : 'none';
+    document.getElementById('segGummies').classList.toggle('on', type==='gummies');
+    document.getElementById('segChocolates').classList.toggle('on', type==='chocolates');
+  }
 
   // rituals carousel
   function scrollMoments(dir){
