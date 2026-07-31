@@ -213,7 +213,7 @@ nav.floating .logo:hover .lv-green{animation:segC 1.2s steps(1,end) infinite;}
   font-family:var(--font-mono);font-weight:700;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
   padding:8px 13px;border-radius:3px;
 }
-.checks{list-style:none;margin:2px auto 4px;padding:0;display:flex;flex-direction:column;gap:9px;width:max-content;max-width:100%;text-align:left;}
+.checks{list-style:none;margin:2px auto 4px;padding:0;display:grid;grid-template-columns:1fr 1fr;column-gap:16px;row-gap:9px;width:max-content;max-width:100%;text-align:left;}
 .checks li{display:flex;align-items:center;gap:10px;font-size:14.5px;color:#4a3a30;line-height:1.3;}
 .checks li::before{content:"";width:19px;height:19px;flex:0 0 auto;background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23F17847" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.6 2.6L16 9.5"/></svg>') center/contain no-repeat;}
 .checks li:first-child{font-weight:700;}
@@ -444,7 +444,6 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
           <li>Gluten Free</li>
           <li>MCT Oil</li>
           <li>Lab Tested</li>
-          <li>5 Pieces</li>
         </ul>
         <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
         <a class="btn solid">Add to Cart</a>
@@ -463,7 +462,6 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
           <li>Gluten Free</li>
           <li>MCT Oil</li>
           <li>Lab Tested</li>
-          <li>5 Pieces</li>
         </ul>
         <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
         <a class="btn solid">Add to Cart</a>
@@ -483,7 +481,6 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
           <li>Gluten Free</li>
           <li>MCT Oil</li>
           <li>Lab Tested</li>
-          <li>5 Pieces</li>
         </ul>
         <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
         <a class="btn solid">Add to Cart</a>
@@ -504,7 +501,6 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
           <li>Gluten Free</li>
           <li>No Palm Oil</li>
           <li>Lab Tested</li>
-          <li>5 Pieces</li>
         </ul>
         <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
         <a class="btn solid">Add to Cart</a>
@@ -522,7 +518,6 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
           <li>Gluten Free</li>
           <li>No Palm Oil</li>
           <li>Lab Tested</li>
-          <li>5 Pieces</li>
         </ul>
         <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
         <a class="btn solid">Add to Cart</a>
@@ -540,9 +535,7 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
           <li>100% Belgium Chocolate</li>
           <li>Berry Filling</li>
           <li>Gluten Free</li>
-          <li>No Palm Oil</li>
           <li>Lab Tested</li>
-          <li>5 Pieces</li>
         </ul>
         <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
         <a class="btn solid">Add to Cart</a>
@@ -555,7 +548,7 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
 <!-- ============ FEEL-GOOD RITUALS ============ -->
 <section class="rituals" id="rituals">
   <div class="wrap">
-    <h2 class="h2 center" style="max-width:22ch;color:#A7C1B2;">Mushi transforms ordinary routines into meaningful rituals.</h2>
+    <h2 class="h2 center" style="max-width:22ch;color:#A7C1B2;font-size:clamp(16px,2.1vw,28px);">Mushi transforms ordinary routines into meaningful rituals.</h2>
   </div>
   <div class="moment-carousel-wrap">
     <button class="car-btn prev" onclick="scrollMoments(-1)" aria-label="Previous">←</button>
