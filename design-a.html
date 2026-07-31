@@ -218,7 +218,8 @@ nav.floating .logo:hover .lv-green{animation:segC 1.2s steps(1,end) infinite;}
 .checks li::before{content:"";width:19px;height:19px;flex:0 0 auto;background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23F17847" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.6 2.6L16 9.5"/></svg>') center/contain no-repeat;}
 .checks li:first-child{font-weight:700;}
 .buy-card .price-qty{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:6px;}
-.buy-card .price{font-family:var(--font-display);font-weight:700;font-size:22px;}
+.buy-card .price{font-family:var(--font-display);font-weight:700;font-size:22px;color:#384133;}
+.bc-cherry .promo-tag{background:#A7C1B2;}
 .qty{
   border:1.5px solid var(--ink);border-radius:999px;padding:9px 16px;display:flex;gap:14px;align-items:center;
   font-family:var(--font-mono);font-size:13px;
@@ -240,7 +241,7 @@ nav.floating .logo:hover .lv-green{animation:segC 1.2s steps(1,end) infinite;}
   display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(56,65,51,.15);
 }
 .ing .circle img{width:59px;height:59px;display:block;margin:auto;object-fit:contain;}
-.ing p{font-family:var(--font-display);font-weight:700;font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:var(--apple-dark);}
+.ing p{font-family:var(--font-display);font-weight:700;font-size:15px;letter-spacing:.04em;color:var(--apple-dark);}
 /* ---------- parallax quote ---------- */
 .pq-outer{height:190vh;position:relative;padding:0;}
 .pq-sticky{
@@ -438,6 +439,13 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
         <p class="flavor">5000mg Infused Gummies</p>
         <h4>Peach Bliss</h4>
         <p class="story">Juicy peach. Golden calm. Let the moment unfold.</p>
+        <ul class="checks">
+          <li>Vegan</li>
+          <li>Gluten Free</li>
+          <li>MCT Oil</li>
+          <li>Lab Tested</li>
+          <li>5 Pieces</li>
+        </ul>
         <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
         <a class="btn solid">Add to Cart</a>
       </div>
@@ -450,6 +458,13 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
         <p class="flavor">5000mg Infused Gummies</p>
         <h4>Green Apple</h4>
         <p class="story">Crisp, tart, and quietly dreamy. Ease into something sweeter.</p>
+        <ul class="checks">
+          <li>Vegan</li>
+          <li>Gluten Free</li>
+          <li>MCT Oil</li>
+          <li>Lab Tested</li>
+          <li>5 Pieces</li>
+        </ul>
         <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
         <a class="btn solid">Add to Cart</a>
       </div>
@@ -463,6 +478,13 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
         <p class="flavor">5000mg Infused Gummies</p>
         <h4>Cherry</h4>
         <p class="story">Bold cherry with a tart spark. A little bite, and ideas bloom.</p>
+        <ul class="checks">
+          <li>Vegan</li>
+          <li>Gluten Free</li>
+          <li>MCT Oil</li>
+          <li>Lab Tested</li>
+          <li>5 Pieces</li>
+        </ul>
         <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
         <a class="btn solid">Add to Cart</a>
       </div>
@@ -581,7 +603,7 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
 <!-- ============ CLIENT RAVES ============ -->
 <section>
   <div class="wrap">
-    <h2 class="h2" style="color:var(--cherry-dark);">Client Raves</h2>
+    <h2 class="h2 center" style="color:var(--cherry-dark);">Client Raves</h2>
     <p class="body-copy" style="margin-top:16px;color:#6b584a;">Pun intended. Real feelings from real moments.</p>
     <div class="rave-grid">
       <div class="rave-card rv-peach">
