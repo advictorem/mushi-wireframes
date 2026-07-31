@@ -208,15 +208,18 @@ nav.floating .logo:hover .lv-green{animation:segC 1.2s steps(1,end) infinite;}
 .buy-card .flavor{font-family:var(--font-mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;text-align:center;}
 .buy-card h4{font-family:var(--font-display);font-weight:400;font-size:26px;text-align:center;line-height:1.1;}
 .buy-card .story{font-size:14px;line-height:1.6;text-align:center;color:#5c4a3d;font-style:italic;}
+.checks{list-style:none;margin:2px auto 4px;padding:0;display:flex;flex-direction:column;gap:9px;width:max-content;max-width:100%;text-align:left;}
+.checks li{display:flex;align-items:center;gap:10px;font-size:14.5px;color:#4a3a30;line-height:1.3;}
+.checks li::before{content:"";width:19px;height:19px;flex:0 0 auto;background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23F17847" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.6 2.6L16 9.5"/></svg>') center/contain no-repeat;}
+.checks li:first-child{font-weight:700;}
 .buy-card .price-qty{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:6px;}
-.buy-card .price{font-family:var(--font-mono);font-size:18px;}
+.buy-card .price{font-family:var(--font-display);font-weight:700;font-size:22px;}
 .qty{
   border:1.5px solid var(--ink);border-radius:999px;padding:9px 16px;display:flex;gap:14px;align-items:center;
   font-family:var(--font-mono);font-size:13px;
 }
 .qty span{cursor:pointer;}
 .buy-card .btn{text-align:center;color:#fff;border:none;}
-.buy-card .deal{font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;text-align:center;color:#8a7466;}
 .bc-peach h4{color:var(--peach-dark);} .bc-peach .flavor{color:#6b584a;} .bc-peach .btn{background:var(--peach);} .bc-peach .btn:hover{background:var(--peach-dark);} .bc-peach .flip{background:#f7e3d3;}
 .bc-apple h4{color:var(--apple);} .bc-apple .flavor{color:#6b584a;} .bc-apple .btn{background:var(--apple);} .bc-apple .btn:hover{background:var(--apple-dark);} .bc-apple .flip{background:#e8efdd;}
 .bc-milk h4{color:#8A5A2B;} .bc-milk .flavor{color:#6b584a;} .bc-milk .btn{background:#8A5A2B;} .bc-milk .btn:hover{background:#6E4526;} .bc-milk .flip{background:#F6E3DC;}
@@ -432,7 +435,6 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
         <p class="story">Sunshine you can chew. Sun-ripened peach melts into a velvety calm — and the whole afternoon turns golden.</p>
         <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
         <a class="btn solid">Add to Cart</a>
-        <p class="deal">Buy 2 get 10% off · Buy 3 get 15% off</p>
       </div>
 
       <div class="buy-card bc-apple">
@@ -445,7 +447,6 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
         <p class="story">A crisp bite before the lights go low. Tart green apple helps the evening exhale — drift off easy, wake up sweeter.</p>
         <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
         <a class="btn solid">Add to Cart</a>
-        <p class="deal">Buy 2 get 10% off · Buy 3 get 15% off</p>
       </div>
 
       <div class="buy-card bc-cherry">
@@ -458,7 +459,6 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
         <p class="story">Bold cherry with a tart spark. One gummy in, and the ideas start blooming — clarity with a deliciously dark edge.</p>
         <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
         <a class="btn solid">Add to Cart</a>
-        <p class="deal">Buy 2 get 10% off · Buy 3 get 15% off</p>
       </div>
     </div>
 
@@ -470,10 +470,16 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
         </div>
         <p class="flavor">Infused Chocolates</p>
         <h4>Milk Chocolate</h4>
-        <p class="story">Velvety, slow-melting milk chocolate — comfort you can share, square by square.</p>
+        <p class="story">Smooth, creamy, and quietly transformative. Savor it piece by piece for a subtle shift, or take a fuller bite and let the moment unfold.</p>
+        <ul class="checks">
+          <li>100% Belgium Chocolate</li>
+          <li>Gluten Free</li>
+          <li>No Palm Oil</li>
+          <li>Lab Tested</li>
+          <li>5 Pieces</li>
+        </ul>
         <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
         <a class="btn solid">Add to Cart</a>
-        <p class="deal">Buy 2 get 10% off · Buy 3 get 15% off</p>
       </div>
       <div class="buy-card bc-dark">
         <div class="flip">
@@ -482,10 +488,16 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
         </div>
         <p class="flavor">Infused Chocolates</p>
         <h4>Dark Chocolate</h4>
-        <p class="story">Deep, rich cacao with a functional lift — moody, elegant, and quietly energizing.</p>
+        <p class="story">Deep, rich Belgian chocolate with something unexpected beneath the surface. Each piece meets the mood you choose.</p>
+        <ul class="checks">
+          <li>100% Belgium Chocolate</li>
+          <li>Gluten Free</li>
+          <li>No Palm Oil</li>
+          <li>Lab Tested</li>
+          <li>5 Pieces</li>
+        </ul>
         <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
         <a class="btn solid">Add to Cart</a>
-        <p class="deal">Buy 2 get 10% off · Buy 3 get 15% off</p>
       </div>
       <div class="buy-card bc-berry">
         <div class="flip">
@@ -494,10 +506,17 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
         </div>
         <p class="flavor">Infused Chocolates</p>
         <h4>Berry Dark Chocolate</h4>
-        <p class="story">Midnight berries folded into dark cacao — tart, bold, and a little dramatic.</p>
+        <p class="story">Dark, vibrant, and a little mysterious. Bright berry filling gives way to an inviting experience that can stay gentle or become beautifully immersive.</p>
+        <ul class="checks">
+          <li>100% Belgium Chocolate</li>
+          <li>Berry Filling</li>
+          <li>Gluten Free</li>
+          <li>No Palm Oil</li>
+          <li>Lab Tested</li>
+          <li>5 Pieces</li>
+        </ul>
         <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
         <a class="btn solid">Add to Cart</a>
-        <p class="deal">Buy 2 get 10% off · Buy 3 get 15% off</p>
       </div>
     </div>
 
