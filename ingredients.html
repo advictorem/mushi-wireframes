@@ -394,12 +394,13 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
 /* ============ INGREDIENTS PAGE ============ */
 /* hero */
 .ing-hero{
-  position:relative;min-height:55vh;display:flex;align-items:flex-end;justify-content:center;
+  position:relative;min-height:max(55vh,430px);display:flex;align-items:center;justify-content:center;
+  padding:130px 0 50px;
   background:url('mushi-ingredients-hero-background-image.jpg') center/cover no-repeat fixed;
 }
 .ing-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(46,26,16,.18) 0%,rgba(46,26,16,.02) 40%,rgba(46,26,16,.55) 100%);}
-.ing-hero .ih-inner{position:relative;z-index:2;text-align:center;padding:0 24px 36px;}
-.ing-hero h1{font-family:var(--font-display);font-weight:400;color:#fff;font-size:clamp(32px,4.2vw,56px);line-height:1.02;letter-spacing:.01em;max-width:14ch;margin:0 auto;}
+.ing-hero .ih-inner{position:relative;z-index:2;text-align:center;padding:0 24px;}
+.ing-hero h1{font-family:var(--font-display);font-weight:400;color:#fff;font-size:clamp(30px,4.4vw,56px);line-height:1.05;letter-spacing:.01em;max-width:none;white-space:nowrap;margin:0 auto;}
 .ing-hero .ih-sub{font-family:var(--font-body);font-weight:400;color:#fff;font-size:clamp(15px,1.5vw,18px);line-height:1.6;letter-spacing:0;text-transform:none;margin:15px auto 0;max-width:56ch;opacity:.95;text-shadow:0 1px 12px rgba(46,26,16,.45);}
 /* intro */
 /* editorial features */
@@ -547,7 +548,7 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
 .safety h6{font-family:var(--font-mono);font-weight:700;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#a1907f;margin-bottom:14px;}
 .safety p{font-size:11px;line-height:1.8;color:#a1907f;margin-bottom:10px;}
 @media (max-width:900px){
-  .ing-hero{background-attachment:scroll;min-height:43vh;}
+  .ing-hero{background-attachment:scroll;min-height:max(43vh,360px);padding:118px 0 44px;}
   .feature{grid-template-columns:1fr;gap:30px;margin-bottom:70px;}
   .feature.rev .f-img{order:0;}
   .feature .f-img{aspect-ratio:4/3;}
@@ -560,6 +561,9 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
   .dose-blob{padding:48px 7%;border-radius:38px;}
   .science .sci-grid{grid-template-columns:1fr;gap:34px;}
   .sci-callouts{grid-template-columns:1fr;}
+}
+@media (max-width:640px){
+  .ing-hero h1{white-space:normal;max-width:14ch;font-size:clamp(30px,7.4vw,44px);}
 }
 @media (max-width:560px){
   .lib-grid{grid-template-columns:1fr;}
