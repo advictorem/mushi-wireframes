@@ -646,10 +646,8 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
 .faq-icon::before{width:20px;height:1.8px;transform:translate(-50%,-50%);}
 .faq-icon::after{width:1.8px;height:20px;transform:translate(-50%,-50%);}
 .faq-item.open .faq-icon::after{transform:translate(-50%,-50%) rotate(90deg);opacity:0;}
-/* answer panel — animates to natural height */
-.faq-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease;}
-.faq-item.open .faq-panel{grid-template-rows:1fr;}
-.faq-panel > .faq-answer-wrap{overflow:hidden;min-height:0;}
+/* answer panel — height animated in JS to the exact content height */
+.faq-panel{overflow:hidden;height:0;transition:height .3s ease;}
 .faq-answer{
   margin:0 32px;padding:26px 0 32px;
   border-top:1px solid rgba(46,26,16,.14);
@@ -1237,16 +1235,39 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
   (function(){
     var items = [].slice.call(document.querySelectorAll('.faq-item'));
     if(!items.length) return;
-    var btns = items.map(function(it){ return it.querySelector('.faq-btn'); });
+    var btns   = items.map(function(it){ return it.querySelector('.faq-btn'); });
+    var panels = items.map(function(it){ return it.querySelector('.faq-panel'); });
 
-    function toggle(item, btn){
-      var open = item.classList.toggle('open');
-      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    }
+    // any row marked open in the markup starts at its natural height
     items.forEach(function(item, i){
-      var btn = btns[i];
-      btn.addEventListener('click', function(){ toggle(item, btn); });
-      btn.addEventListener('keydown', function(e){
+      if(item.classList.contains('open')) panels[i].style.height = 'auto';
+    });
+
+    function setOpen(i, open){
+      var item = items[i], btn = btns[i], panel = panels[i];
+      item.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      var inner = panel.firstElementChild;
+      if(open){
+        panel.style.height = inner.offsetHeight + 'px';
+        var done = function(e){
+          if(e.target !== panel || e.propertyName !== 'height') return;
+          panel.style.height = 'auto';
+          panel.removeEventListener('transitionend', done);
+        };
+        panel.addEventListener('transitionend', done);
+      } else {
+        panel.style.height = inner.offsetHeight + 'px';
+        panel.getBoundingClientRect();               // force reflow
+        requestAnimationFrame(function(){ panel.style.height = '0px'; });
+      }
+    }
+
+    items.forEach(function(item, i){
+      btns[i].addEventListener('click', function(){
+        setOpen(i, !item.classList.contains('open'));
+      });
+      btns[i].addEventListener('keydown', function(e){
         var next = null;
         if(e.key === 'ArrowDown') next = btns[(i + 1) % btns.length];
         else if(e.key === 'ArrowUp') next = btns[(i - 1 + btns.length) % btns.length];
