@@ -1258,8 +1258,8 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
         panel.addEventListener('transitionend', done);
       } else {
         panel.style.height = inner.offsetHeight + 'px';
-        panel.getBoundingClientRect();               // force reflow
-        requestAnimationFrame(function(){ panel.style.height = '0px'; });
+        panel.getBoundingClientRect();               // force reflow, commit start value
+        panel.style.height = '0px';
       }
     }
 
