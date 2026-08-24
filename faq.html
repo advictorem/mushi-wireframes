@@ -654,7 +654,7 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
 }
 .faq-answer p{
   font-family:var(--font-body);font-weight:400;font-size:15.5px;line-height:1.85;
-  color:#5c4a3d;margin-bottom:15px;max-width:68ch;
+  color:#5c4a3d;margin-bottom:15px;max-width:none;
 }
 .faq-answer p:last-child{margin-bottom:0;}
 .faq-answer p.lead{font-weight:700;color:var(--ink);}
@@ -667,9 +667,22 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
   content:"";position:absolute;left:4px;top:.78em;width:6px;height:6px;
   border-radius:50%;background:var(--peach);
 }
+/* inline link inside an answer */
+.faq-answer .faq-link-wrap{margin-top:20px;}
+.faq-answer a.faq-link{
+  font-family:var(--font-mono);font-weight:700;font-size:12px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--cherry-dark);text-decoration:none;
+  display:inline-block;border-bottom:2px solid currentColor;padding-bottom:3px;
+  transition:color .2s ease;
+}
+.faq-answer a.faq-link:hover{color:var(--peach-dark);}
 /* still curious CTA */
 .faq-cta{background:var(--cream);padding:92px 0 100px;text-align:center;}
-.faq-cta .eyebrow{display:block;margin-bottom:16px;color:var(--peach-dark);}
+.faq-cta .eyebrow{
+  display:block;margin-bottom:16px;color:var(--peach-dark);
+  font-family:var(--font-mono);font-weight:700;font-size:12px;letter-spacing:.18em;
+  text-transform:uppercase;
+}
 .faq-cta h2{
   font-family:var(--font-display);font-weight:400;color:var(--cherry);
   font-size:clamp(28px,3.2vw,44px);line-height:1.1;margin-bottom:14px;
@@ -724,6 +737,7 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
             <div class="faq-answer">
           <p>Mushi creates Feel-Good Indulgences—gummies and chocolates that bring together thoughtful ingredients, craveable flavor and an experience designed to make everyday moments feel a little more special.</p>
           <p>We believe feeling good should feel less like a wellness routine and more like something you actually look forward to.</p>
+          <p class="faq-link-wrap"><a class="faq-link" href="design-a.html#shop">See Our Products &rarr;</a></p>
             </div>
           </div>
         </div>
