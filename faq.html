@@ -728,13 +728,10 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
 .dc-head,.dc-row{display:grid;grid-template-columns:1fr 1fr 2.1fr;gap:34px;align-items:center;}
 .dc-head{padding:0 26px 16px;border-bottom:1px solid rgba(46,26,16,.18);}
 .dc-head span{
-  display:flex;align-items:center;gap:10px;
+  display:block;
   font-family:var(--font-mono);font-weight:700;font-size:11px;letter-spacing:.18em;
   text-transform:uppercase;color:#8a7a6b;
 }
-.dc-head svg{width:19px;height:19px;flex:0 0 auto;fill:none;stroke:currentColor;
-  stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
-.dc-head .ico-amount{fill:currentColor;stroke:none;}
 .dc-row{padding:34px 26px;border-bottom:1px solid rgba(46,26,16,.12);}
 .dc-row:last-child{border-bottom:none;}
 .dc-level{display:flex;align-items:center;gap:16px;}
@@ -924,9 +921,9 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
 
     <div class="dc-table">
       <div class="dc-head">
-        <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18h4v-4H3zM10 18h4v-8h-4zM17 18h4V6h-4z"/></svg> Experience</span>
-        <span><svg class="ico-amount" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.6 16.1c0-5 4.2-8.9 9.4-8.9s9.4 3.9 9.4 8.9c0 2.1-4.2 3.4-9.4 3.4s-9.4-1.3-9.4-3.4Z"/></svg> Amount</span>
-        <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 15c2.2 0 2.2-6 4.4-6S8.6 15 10.8 15s2.2-6 4.4-6 2.2 6 4.4 6"/><path d="M2 9.5C2 5.9 6.5 3 12 3s10 2.9 10 6.5" opacity=".45"/></svg> What it may feel like</span>
+        <span>Experience</span>
+        <span>Amount</span>
+        <span>What it may feel like</span>
       </div>
       <div class="dc-row" style="--lvl:#F4B8A6;--lvl-ink:#B23508;">
         <div class="dc-level"><span class="dc-blob" aria-hidden="true"></span><b>Moderate</b></div>
