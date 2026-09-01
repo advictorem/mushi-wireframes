@@ -394,6 +394,15 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
 }
 .c-form button:hover{background:var(--peach-dark);}
 .c-form .c-note{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#a1907f;margin-top:16px;text-align:center;}
+/* full-width parallax band — same treatment as the ingredients hero */
+.c-parallax{
+  position:relative;min-height:max(58vh,440px);
+  display:flex;align-items:center;justify-content:center;
+  background:url('contact-parallax.jpg') center/cover no-repeat fixed;
+}
+.c-parallax::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(46,26,16,.30) 0%,rgba(46,26,16,.06) 45%,rgba(46,26,16,.52) 100%);}
+.c-parallax .cp-inner{position:relative;z-index:2;text-align:center;padding:0 24px;max-width:22ch;}
+.c-parallax h2{font-family:var(--font-display);font-weight:400;color:#fff;font-size:clamp(30px,4.4vw,56px);line-height:1.05;letter-spacing:.01em;text-shadow:0 2px 18px rgba(46,26,16,.4);}
 /* thank-you */
 .thanks{background:var(--cream);padding:200px 0 120px;text-align:center;}
 .thanks img{width:min(260px,60vw);height:auto;display:block;margin:0 auto 34px;filter:drop-shadow(0 18px 30px rgba(46,26,16,.14));}
@@ -407,6 +416,7 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
   .contact h1{max-width:none;}
   .c-form{padding:30px 24px;}
   .thanks{padding:150px 0 80px;}
+  .c-parallax{background-attachment:scroll;min-height:max(44vh,340px);}
 }
 </style>
 </head>
@@ -475,6 +485,13 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
       <button type="submit">Send Message</button>
       <p class="c-note">* Required</p>
     </form>
+  </div>
+</section>
+
+<!-- ============ PARALLAX BAND ============ -->
+<section class="c-parallax" aria-label="Mushi in the wild">
+  <div class="cp-inner">
+    <h2>We read every one.</h2>
   </div>
 </section>
 <script>
