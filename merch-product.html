@@ -752,7 +752,7 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
     var acc = accItems.map(function(it, i){
       var id = 'mpa' + i;
       var fig = it[3]
-        ? '<figure class="mp-figure"><img src="' + it[3] +
+        ? '<figure class="mp-figure"><img loading="lazy" src="' + it[3] +
           '" alt="' + esc(it[0]) + ' chart (FPO placeholder)">' +
           '<figcaption>FPO — replace with the final chart</figcaption></figure>'
         : '';
@@ -877,16 +877,6 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
     var btns  = items.map(function(it){ return it.querySelector('.mp-btn'); });
     var pans  = items.map(function(it){ return it.querySelector('.mp-panel'); });
     items.forEach(function(it, i){ if(it.classList.contains('open')) pans[i].style.height = 'auto'; });
-    // A figure image that finishes loading after its panel opened would be
-    // clipped by the animated height — re-measure once it has real dimensions.
-    [].slice.call(root.querySelectorAll('.mp-figure img')).forEach(function(im){
-      im.addEventListener('load', function(){
-        var pn = im.parentNode.parentNode.parentNode;
-        if(pn && pn.classList.contains('mp-panel') && pn.style.height && pn.style.height !== 'auto' && pn.style.height !== '0px'){
-          pn.style.height = pn.firstElementChild.offsetHeight + 'px';
-        }
-      });
-    });
     items.forEach(function(it, i){
       btns[i].addEventListener('click', function(){
         var open = !it.classList.contains('open');
@@ -921,7 +911,8 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
     var pool = MERCH.filter(function(x){ return x.slug !== p.slug; });
     var same = pool.filter(function(x){ return x.category === p.category; });
     var rest = pool.filter(function(x){ return x.category !== p.category; });
-    var picks = same.concat(rest).slice(0, 4);
+    // one row only — the grid is 3-up on desktop, so a 4th would wrap
+    var picks = same.concat(rest).slice(0, 3);
     rel.innerHTML = picks.map(function(x){
       var badge = x.status === 'sold-out' ? '<span class="mc-badge">Sold Out</span>' : '';
       return '<a class="mc-card" href="merch-product.html?p=' + encodeURIComponent(x.slug) + '">' +
