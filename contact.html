@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mushi Merch | Wear the Feeling</title>
-<meta name="description" content="Shop Mushi merchandise, apparel and accessories designed for good moods, good moments and everyday wear.">
+<title>Contact Mushi | Get in Touch</title>
+<meta name="description" content="Questions about Mushi gummies, chocolates, orders or anything else? Send us a message — we’re here to help.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=PT+Mono&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -345,6 +345,70 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
   .hero{height:72vh;}
 }
 </style>
+
+<style>
+/* ============ COLLECTION / CONTACT PAGES ============ */
+.pg-intro{background:var(--cream);padding:210px 0 40px;text-align:center;}
+.pg-intro h1{
+  font-family:var(--font-display);font-weight:400;color:var(--cherry-dark);
+  font-size:clamp(38px,5.4vw,74px);line-height:1.04;letter-spacing:.005em;max-width:17ch;margin:0 auto;
+}
+.pg-intro .pg-sub{font-family:var(--font-body);font-size:clamp(15px,1.5vw,18px);line-height:1.6;color:#6b584a;margin:22px auto 0;max-width:52ch;}
+.pg-intro .eyebrow{display:block;margin-bottom:18px;color:var(--peach-dark);}
+.collection{background:var(--cream);padding:20px 0 110px;}
+.collection .buy-grid{margin-top:0;}
+.coll-switch{display:flex;justify-content:center;gap:12px;margin-top:34px;}
+.coll-switch a{
+  font-family:var(--font-mono);font-weight:700;font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:#6b584a;text-decoration:none;padding:14px 30px;border-radius:999px;border:1.5px solid rgba(46,26,16,.18);transition:.2s;
+}
+.coll-switch a:hover{border-color:var(--ink);color:var(--ink);}
+.coll-switch a.on{background:var(--ink);border-color:var(--ink);color:#fff;}
+/* contact */
+.contact{background:var(--cream);padding:200px 0 120px;}
+.contact .wrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.contact h1{
+  font-family:var(--font-display);font-weight:400;color:var(--cherry-dark);
+  font-size:clamp(38px,4.8vw,66px);line-height:1.05;max-width:12ch;
+}
+.contact .c-email{font-family:var(--font-body);font-size:clamp(16px,1.5vw,19px);color:#6b584a;margin-top:28px;line-height:1.6;}
+.contact .c-email a{color:var(--peach-dark);text-decoration:none;border-bottom:2px solid currentColor;padding-bottom:2px;}
+.contact .c-email a:hover{color:var(--peach);}
+.c-form{background:#fff;border-radius:28px;padding:44px;box-shadow:0 6px 30px rgba(178,53,8,.07);}
+.c-form label{
+  display:block;font-family:var(--font-mono);font-weight:700;font-size:11px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--ink);margin:0 0 9px;
+}
+.c-form label small{font-weight:400;letter-spacing:.12em;color:#a1907f;margin-left:8px;}
+.c-form .req{color:var(--peach);}
+.c-form input,.c-form textarea{
+  width:100%;font-family:var(--font-body);font-size:15.5px;color:var(--ink);background:var(--cream);
+  border:1.5px solid transparent;border-radius:14px;padding:15px 18px;margin-bottom:22px;transition:border-color .2s,background .2s;
+}
+.c-form input:focus,.c-form textarea:focus{outline:none;border-color:var(--peach);background:#fff;}
+.c-form input:user-invalid{border-color:var(--cherry);}
+.c-form textarea{min-height:150px;resize:vertical;}
+.c-form button{
+  width:100%;border:none;cursor:pointer;border-radius:999px;padding:18px 34px;background:var(--peach);color:#fff;
+  font-family:var(--font-mono);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;transition:background .2s;
+}
+.c-form button:hover{background:var(--peach-dark);}
+.c-form .c-note{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#a1907f;margin-top:16px;text-align:center;}
+/* thank-you */
+.thanks{background:var(--cream);padding:200px 0 120px;text-align:center;}
+.thanks img{width:min(260px,60vw);height:auto;display:block;margin:0 auto 34px;filter:drop-shadow(0 18px 30px rgba(46,26,16,.14));}
+.thanks h1{font-family:var(--font-display);font-weight:400;color:var(--cherry-dark);font-size:clamp(36px,5vw,68px);line-height:1.05;max-width:16ch;margin:0 auto;}
+.thanks p{font-family:var(--font-body);font-size:clamp(16px,1.5vw,19px);line-height:1.7;color:#6b584a;max-width:46ch;margin:22px auto 0;}
+.thanks .t-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:38px;}
+@media (max-width:900px){
+  .pg-intro{padding:150px 0 30px;}
+  .contact{padding:150px 0 80px;}
+  .contact .wrap{grid-template-columns:1fr;gap:44px;}
+  .contact h1{max-width:none;}
+  .c-form{padding:30px 24px;}
+  .thanks{padding:150px 0 80px;}
+}
+</style>
 </head>
 <body>
 
@@ -390,269 +454,42 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
 </nav>
 
 <main id="top">
-
-<style>
-/* ============ MERCH — SHARED ============ */
-.mc-intro{background:var(--cream);padding:200px 0 30px;text-align:center;}
-.mc-intro h1{
-  font-family:var(--font-display);font-weight:400;color:var(--ink);
-  font-size:clamp(40px,6vw,84px);line-height:1.02;letter-spacing:.005em;margin:0 auto;
-}
-/* category filters */
-.mc-filters{background:var(--cream);padding:26px 0 8px;}
-.mc-filters .wrap{max-width:1280px;}
-.mc-eyebrow{
-  display:block;text-align:center;font-family:var(--font-mono);font-weight:700;
-  font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#a1907f;margin-bottom:20px;
-}
-.mc-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
-.mc-pill{
-  font-family:var(--font-mono);font-weight:700;font-size:11.5px;letter-spacing:.14em;
-  text-transform:uppercase;padding:13px 24px;border-radius:999px;cursor:pointer;
-  border:1.5px solid rgba(46,26,16,.24);background:transparent;color:var(--ink);
-  transition:background .2s ease,border-color .2s ease,color .2s ease;white-space:nowrap;
-}
-.mc-pill:hover{border-color:var(--ink);}
-.mc-pill[aria-pressed="true"]{background:var(--apple-dark);border-color:var(--apple-dark);color:#fff;}
-.mc-pill:focus-visible{outline:2px solid var(--peach);outline-offset:3px;}
-/* grid */
-.mc-grid-wrap{background:var(--cream);padding:46px 0 110px;}
-.mc-grid-wrap .wrap{max-width:1280px;}
-.mc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px 30px;}
-.mc-card{display:flex;flex-direction:column;text-decoration:none;color:inherit;}
-.mc-shot{
-  position:relative;aspect-ratio:4/5;border-radius:20px;overflow:hidden;
-  background:#fff;box-shadow:0 2px 10px rgba(46,26,16,.05);
-  transition:transform .3s ease,box-shadow .3s ease;
-}
-.mc-card:hover .mc-shot{transform:translateY(-5px);box-shadow:0 18px 44px rgba(46,26,16,.18);}
-.mc-shot img{
-  width:100%;height:100%;object-fit:cover;display:block;
-  transition:opacity .4s ease;
-}
-.mc-shot img.alt{position:absolute;inset:0;opacity:0;}
-.mc-card:hover .mc-shot img.alt{opacity:1;}
-.mc-card:hover .mc-shot img.main{opacity:0;}
-.mc-card:focus-visible .mc-shot{outline:2px solid var(--peach);outline-offset:3px;}
-/* status badge — black by design, not an accent colour */
-.mc-badge{
-  position:absolute;top:14px;left:14px;z-index:2;
-  background:#000;color:#fff;border-radius:6px;padding:7px 13px;
-  font-family:var(--font-mono);font-weight:700;font-size:10px;letter-spacing:.16em;
-  text-transform:uppercase;line-height:1;
-}
-.mc-name{
-  font-family:var(--font-mono);font-weight:700;font-size:12.5px;letter-spacing:.09em;
-  text-transform:uppercase;color:var(--ink);line-height:1.5;margin:18px 0 8px;
-}
-.mc-price{font-family:var(--font-display);font-weight:700;font-size:22px;line-height:1;color:#384133;}
-/* empty state */
-.mc-empty{text-align:center;padding:70px 0 30px;}
-.mc-empty h2{font-family:var(--font-display);font-weight:400;font-size:clamp(28px,3.4vw,44px);color:var(--ink);}
-.mc-empty p{font-family:var(--font-body);font-size:16px;color:#6b584a;margin:12px 0 28px;}
-
-/* ============ MERCH — PRODUCT PAGE ============ */
-.mp{background:var(--cream);padding:170px 0 30px;}
-.mp .wrap{max-width:1280px;}
-.mp-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:start;}
-/* gallery — thumbnail rail left, stage right (Nike-style), sticky on desktop */
-.mp-left{position:sticky;top:118px;}
-.mp-gallery{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
-.mp-rail{display:flex;flex-direction:column;gap:10px;}
-.mp-stage{position:relative;aspect-ratio:4/5;border-radius:24px;overflow:hidden;
-  background:#fff;box-shadow:0 2px 14px rgba(46,26,16,.07);}
-.mp-stage img{width:100%;height:100%;object-fit:cover;display:block;}
-.mp-nav{
-  position:absolute;top:50%;transform:translateY(-50%);z-index:3;
-  width:44px;height:44px;border-radius:50%;border:1px solid rgba(46,26,16,.14);
-  background:rgba(255,255,255,.92);cursor:pointer;display:flex;align-items:center;
-  justify-content:center;transition:background .2s ease,opacity .2s ease;
-  box-shadow:0 3px 12px rgba(46,26,16,.14);
-}
-.mp-nav svg{width:17px;height:17px;fill:none;stroke:var(--ink);stroke-width:2.2;
-  stroke-linecap:round;stroke-linejoin:round;}
-.mp-nav:hover{background:#fff;}
-.mp-nav:disabled{opacity:.32;cursor:default;}
-.mp-nav:focus-visible{outline:2px solid var(--peach);outline-offset:2px;}
-.mp-prev{left:14px;} .mp-next{right:14px;}
-.mp-count{
-  position:absolute;bottom:14px;right:16px;z-index:3;
-  font-family:var(--font-mono);font-weight:700;font-size:10px;letter-spacing:.14em;
-  color:var(--ink);background:rgba(255,255,255,.9);border-radius:999px;padding:6px 11px;
-}
-.mp-thumb{
-  width:74px;height:92px;border-radius:10px;overflow:hidden;background:#fff;cursor:pointer;
-  border:1.5px solid rgba(46,26,16,.14);padding:0;transition:border-color .2s ease;flex:0 0 auto;
-}
-.mp-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
-.mp-thumb[aria-current="true"]{border-color:var(--ink);border-width:2px;}
-.mp-thumb:hover{border-color:rgba(46,26,16,.45);}
-.mp-thumb:focus-visible{outline:2px solid var(--peach);outline-offset:2px;}
-/* info column */
-.mp-info h1{
-  font-family:var(--font-display);font-weight:400;color:var(--ink);
-  font-size:clamp(30px,3.6vw,50px);line-height:1.06;margin-bottom:14px;
-}
-.mp-short{font-family:var(--font-body);font-size:16px;line-height:1.7;color:#6b584a;margin-bottom:30px;max-width:52ch;}
-.mp-label{
-  display:block;font-family:var(--font-mono);font-weight:700;font-size:11px;
-  letter-spacing:.2em;text-transform:uppercase;color:#a1907f;margin-bottom:12px;
-}
-.mp-label span{color:var(--ink);}
-.mp-field{margin-bottom:26px;}
-/* colour swatches */
-.mp-colors{display:flex;gap:12px;flex-wrap:wrap;}
-.mp-swatch{
-  width:46px;height:46px;border-radius:12px;cursor:pointer;padding:0;
-  border:2px solid rgba(46,26,16,.18);transition:border-color .2s ease,transform .2s ease;
-}
-.mp-swatch[aria-pressed="true"]{border-color:var(--ink);transform:scale(1.06);}
-.mp-swatch:focus-visible{outline:2px solid var(--peach);outline-offset:3px;}
-/* sizes */
-.mp-sizes{display:flex;gap:10px;flex-wrap:wrap;}
-.mp-size{
-  min-width:58px;padding:14px 16px;border-radius:12px;cursor:pointer;
-  border:1.5px solid rgba(46,26,16,.24);background:transparent;color:var(--ink);
-  font-family:var(--font-mono);font-weight:700;font-size:12px;letter-spacing:.1em;
-  transition:background .2s ease,border-color .2s ease,color .2s ease;
-}
-.mp-size:hover:not(:disabled){border-color:var(--ink);}
-.mp-size[aria-pressed="true"]{background:var(--apple-dark);border-color:var(--apple-dark);color:#fff;}
-.mp-size:disabled{
-  opacity:.4;cursor:not-allowed;text-decoration:line-through;
-  border-style:dashed;border-color:rgba(46,26,16,.2);
-}
-.mp-size:focus-visible{outline:2px solid var(--peach);outline-offset:3px;}
-/* price + buy */
-.mp-price{font-family:var(--font-display);font-weight:700;font-size:clamp(30px,3vw,40px);line-height:1;color:#384133;margin-bottom:24px;}
-.mp-buy{display:flex;gap:16px;align-items:stretch;flex-wrap:wrap;}
-.mp-qty{
-  display:flex;align-items:center;gap:6px;border:1.5px solid var(--ink);
-  border-radius:999px;padding:0 8px;flex:0 0 auto;
-}
-.mp-qty button{
-  width:38px;height:48px;background:none;border:none;cursor:pointer;color:var(--ink);
-  font-family:var(--font-mono);font-size:17px;line-height:1;
-}
-.mp-qty button:disabled{opacity:.3;cursor:not-allowed;}
-.mp-qty button:focus-visible{outline:2px solid var(--peach);outline-offset:-2px;border-radius:999px;}
-.mp-qty output{min-width:26px;text-align:center;font-family:var(--font-mono);font-size:14px;font-weight:700;}
-.mp-atc{
-  flex:1 1 240px;border:none;border-radius:999px;cursor:pointer;padding:18px 34px;
-  background:var(--peach);color:#fff;font-family:var(--font-mono);font-weight:700;
-  font-size:12px;letter-spacing:.16em;text-transform:uppercase;transition:background .2s ease;
-}
-.mp-atc:hover:not(:disabled){background:var(--peach-dark);}
-.mp-atc:disabled{background:#C9B7A8;cursor:not-allowed;}
-.mp-atc:focus-visible{outline:2px solid var(--ink);outline-offset:3px;}
-.mp-fpo{
-  font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
-  color:#a1907f;margin-top:14px;
-}
-/* accordions — same interaction as the FAQ page, lighter chrome */
-.mp-acc{margin-top:38px;border-top:1px solid rgba(46,26,16,.16);}
-.mp-item{border-bottom:1px solid rgba(46,26,16,.16);}
-.mp-head{margin:0;}
-.mp-btn{
-  width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;
-  padding:22px 2px;background:none;border:none;cursor:pointer;text-align:left;
-  color:var(--ink);font:inherit;
-}
-.mp-btn:focus-visible{outline:2px solid var(--peach);outline-offset:2px;}
-.mp-btn span{
-  font-family:var(--font-mono);font-weight:700;font-size:11.5px;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--ink);
-}
-.mp-pm{position:relative;flex:0 0 auto;width:18px;height:18px;}
-.mp-pm::before,.mp-pm::after{
-  content:"";position:absolute;left:50%;top:50%;background:var(--peach-dark);border-radius:2px;
-  transition:transform .3s ease,opacity .3s ease;
-}
-.mp-pm::before{width:16px;height:1.8px;transform:translate(-50%,-50%);}
-.mp-pm::after{width:1.8px;height:16px;transform:translate(-50%,-50%);}
-.mp-item.open .mp-pm::after{transform:translate(-50%,-50%) rotate(90deg);opacity:0;}
-.mp-panel{overflow:hidden;height:0;transition:height .3s ease;}
-.mp-panel p{font-family:var(--font-body);font-size:15px;line-height:1.85;color:#5c4a3d;padding:0 2px 20px;margin:0;}
-.mp-panel .mp-figure{margin:0 2px 24px;}
-.mp-panel .mp-figure img{
-  width:100%;height:auto;display:block;border-radius:12px;
-  border:1px solid rgba(46,26,16,.12);background:#fff;
-}
-.mp-panel .mp-figure figcaption{
-  font-family:var(--font-mono);font-weight:700;font-size:9.5px;letter-spacing:.16em;
-  text-transform:uppercase;color:#a1907f;margin-top:9px;
-}
-/* related */
-.mp-related{background:var(--cream);padding:20px 0 110px;}
-.mp-related .wrap{max-width:1280px;}
-.mp-related h2{
-  font-family:var(--font-display);font-weight:400;color:var(--ink);
-  font-size:clamp(28px,3.2vw,44px);margin-bottom:34px;
-}
-@media (max-width:1100px){
-  .mc-grid{grid-template-columns:repeat(2,1fr);gap:32px 24px;}
-  .mp-grid{gap:44px;}
-}
-@media (max-width:900px){
-  .mc-intro{padding:150px 0 34px;}
-  .mc-grid{grid-template-columns:repeat(2,1fr);gap:28px 18px;}
-  .mp{padding:140px 0 20px;}
-  .mp-grid{grid-template-columns:1fr;gap:32px;}
-  .mp-left{position:static;}
-  .mp-gallery{grid-template-columns:1fr;gap:12px;}
-  .mp-rail{flex-direction:row;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;}
-  .mp-rail::-webkit-scrollbar{display:none;}
-  .mp-related{padding:10px 0 80px;}
-  /* filters scroll horizontally rather than wrapping awkwardly */
-  .mc-pills{
-    flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;
-    padding:2px 24px 10px;margin:0 -24px;scrollbar-width:none;
-  }
-  .mc-pills::-webkit-scrollbar{display:none;}
-}
-@media (max-width:560px){
-  .mc-grid{grid-template-columns:repeat(2,1fr);gap:22px 14px;}
-  .mc-name{font-size:11.5px;}
-  .mc-price{font-size:19px;}
-  .mp-thumb{width:62px;height:78px;}
-  .mp-buy{gap:12px;}
-  .mp-atc{flex:1 1 100%;}
-}
-@media (max-width:400px){
-  .mc-grid{grid-template-columns:1fr;}
-}
-@media (prefers-reduced-motion:reduce){
-  .mc-shot,.mc-shot img,.mp-panel,.mp-pm::before,.mp-pm::after{transition:none;}
-}
-</style>
-
-<!-- ============ 01 INTRO ============ -->
-<section class="mc-intro">
+<!-- ============ CONTACT ============ -->
+<section class="contact">
   <div class="wrap">
-    <h1>Wear the feeling.</h1>
-  </div>
-</section>
-
-<!-- ============ 02 CATEGORY FILTERS ============ -->
-<section class="mc-filters">
-  <div class="wrap">
-    <span class="mc-eyebrow" id="mcShopBy">Shop by Category</span>
-    <div class="mc-pills" role="group" aria-labelledby="mcShopBy">
-        <button class="mc-pill" type="button" role="switch" data-cat="all" aria-pressed="true">ALL</button>
-        <button class="mc-pill" type="button" role="switch" data-cat="t-shirts" aria-pressed="false">T-SHIRTS</button>
-        <button class="mc-pill" type="button" role="switch" data-cat="sweatshirts" aria-pressed="false">SWEATSHIRTS</button>
-        <button class="mc-pill" type="button" role="switch" data-cat="hoodies" aria-pressed="false">HOODIES</button>
+    <div>
+      <h1>Get in Touch, We’re here to help!</h1>
+      <p class="c-email">Email <a href="mailto:support@mushiworld.com">support@mushiworld.com</a></p>
     </div>
+    <!-- FPO: front-end only. Submits nowhere yet — Shopify's contact form
+         (or a form service) will replace the handler below. -->
+    <form class="c-form" id="contactForm" action="contact-thanks.html" method="get" novalidate>
+      <label for="cName">Name</label>
+      <input id="cName" name="name" type="text" autocomplete="name">
+      <label for="cEmail">Email <span class="req">*</span></label>
+      <input id="cEmail" name="email" type="email" autocomplete="email" required aria-required="true">
+      <label for="cPhone">Phone Number <small>Optional</small></label>
+      <input id="cPhone" name="phone" type="tel" autocomplete="tel">
+      <label for="cMsg">Comment</label>
+      <textarea id="cMsg" name="comment"></textarea>
+      <button type="submit">Send Message</button>
+      <p class="c-note">* Required</p>
+    </form>
   </div>
 </section>
-
-<!-- ============ 03 PRODUCT GRID ============ -->
-<section class="mc-grid-wrap">
-  <div class="wrap">
-    <div class="mc-grid" id="mcGrid" aria-live="polite"></div>
-  </div>
-</section>
-
+<script>
+  // Client-side only: check the one required field, then hand off to the
+  // confirmation page without putting form data in the URL.
+  (function(){
+    var f = document.getElementById('contactForm');
+    f.addEventListener('submit', function(e){
+      e.preventDefault();
+      var em = document.getElementById('cEmail');
+      if(!em.value || !em.checkValidity()){ em.reportValidity(); em.focus(); return; }
+      window.location.href = 'contact-thanks.html';
+    });
+  })();
+</script>
 </main>
 
 <!-- ============ FOOTER ============ -->
@@ -684,65 +521,47 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
 </footer>
 
 <script>
-  var MERCH = [{"slug":"mushi-hoodie-ink","name":"Mushi Hoodie — Ink","category":"hoodies","price":85,"status":"available","short":"Heavyweight, roomy and built for the slow part of the day.","sizes":["S","M","L","XL","2XL"],"soldOutSizes":["2XL"],"colors":[{"label":"Ink","bg":"#2E1A10"}],"images":[{"src":"merch-ink-1.jpg","alt":"Mushi Hoodie — Ink (FPO placeholder photography)","color":"Ink"},{"src":"merch-ink-2.jpg","alt":"Mushi Hoodie — Ink — alternate view (FPO placeholder photography)","color":"Ink"}],"gallery":[{"src":"merch-detail-1.jpg","alt":"Mushi Hoodie — Ink — view 1 (FPO placeholder photography)"},{"src":"merch-detail-2.jpg","alt":"Mushi Hoodie — Ink — view 2 (FPO placeholder photography)"},{"src":"merch-detail-3.jpg","alt":"Mushi Hoodie — Ink — view 3 (FPO placeholder photography)"},{"src":"merch-detail-4.jpg","alt":"Mushi Hoodie — Ink — view 4 (FPO placeholder photography)"},{"src":"merch-detail-5.jpg","alt":"Mushi Hoodie — Ink — view 5 (FPO placeholder photography)"},{"src":"merch-detail-6.jpg","alt":"Mushi Hoodie — Ink — view 6 (FPO placeholder photography)"}],"sizeChart":"merch-size-chart.jpg","description":"A thoughtfully designed Mushi essential made to feel as good as it looks. Easy to wear, easy to live in, and unmistakably Mushi.","details":"100% cotton. Screen-printed Mushi artwork. Designed for everyday wear. FPO — final fabric composition and construction details to be supplied.","fit":"Relaxed unisex fit. Choose your normal size for an easy fit or size up for a more oversized look. FPO — no garment measurements available yet.","care":"Machine wash cold, inside out. Wash with similar colors. Tumble dry low or hang dry when possible. Do not iron directly over printed graphics.","shipping":"FPO — MUSHI SHIPPING & RETURNS POLICY"},{"slug":"mushi-cropped-hoodie-bone","name":"Mushi Cropped Hoodie — Bone","category":"hoodies","price":80,"status":"sold-out","short":"Cropped, boxy and a little louder than the rest of the drop.","sizes":["S","M","L","XL","2XL"],"soldOutSizes":["S","M","L","XL","2XL"],"colors":[{"label":"Bone","bg":"#EFE7DA"}],"images":[{"src":"merch-bone-1.jpg","alt":"Mushi Cropped Hoodie — Bone (FPO placeholder photography)","color":"Bone"},{"src":"merch-bone-2.jpg","alt":"Mushi Cropped Hoodie — Bone — alternate view (FPO placeholder photography)","color":"Bone"}],"gallery":[{"src":"merch-detail-1.jpg","alt":"Mushi Cropped Hoodie — Bone — view 1 (FPO placeholder photography)"},{"src":"merch-detail-2.jpg","alt":"Mushi Cropped Hoodie — Bone — view 2 (FPO placeholder photography)"},{"src":"merch-detail-3.jpg","alt":"Mushi Cropped Hoodie — Bone — view 3 (FPO placeholder photography)"},{"src":"merch-detail-4.jpg","alt":"Mushi Cropped Hoodie — Bone — view 4 (FPO placeholder photography)"},{"src":"merch-detail-5.jpg","alt":"Mushi Cropped Hoodie — Bone — view 5 (FPO placeholder photography)"},{"src":"merch-detail-6.jpg","alt":"Mushi Cropped Hoodie — Bone — view 6 (FPO placeholder photography)"}],"sizeChart":"merch-size-chart.jpg","description":"A thoughtfully designed Mushi essential made to feel as good as it looks. Easy to wear, easy to live in, and unmistakably Mushi.","details":"100% cotton. Screen-printed Mushi artwork. Designed for everyday wear. FPO — final fabric composition and construction details to be supplied.","fit":"Relaxed unisex fit. Choose your normal size for an easy fit or size up for a more oversized look. FPO — no garment measurements available yet.","care":"Machine wash cold, inside out. Wash with similar colors. Tumble dry low or hang dry when possible. Do not iron directly over printed graphics.","shipping":"FPO — MUSHI SHIPPING & RETURNS POLICY"},{"slug":"mushi-hoodie-cherry","name":"Mushi Hoodie — Cherry","category":"hoodies","price":85,"status":"available","short":"The house red, washed soft and finished with hardware.","sizes":["S","M","L","XL","2XL"],"soldOutSizes":["S"],"colors":[{"label":"Cherry","bg":"#8F0909"}],"images":[{"src":"merch-cherry-1.jpg","alt":"Mushi Hoodie — Cherry (FPO placeholder photography)","color":"Cherry"},{"src":"merch-cherry-2.jpg","alt":"Mushi Hoodie — Cherry — alternate view (FPO placeholder photography)","color":"Cherry"}],"gallery":[{"src":"merch-detail-1.jpg","alt":"Mushi Hoodie — Cherry — view 1 (FPO placeholder photography)"},{"src":"merch-detail-2.jpg","alt":"Mushi Hoodie — Cherry — view 2 (FPO placeholder photography)"},{"src":"merch-detail-3.jpg","alt":"Mushi Hoodie — Cherry — view 3 (FPO placeholder photography)"},{"src":"merch-detail-4.jpg","alt":"Mushi Hoodie — Cherry — view 4 (FPO placeholder photography)"},{"src":"merch-detail-5.jpg","alt":"Mushi Hoodie — Cherry — view 5 (FPO placeholder photography)"},{"src":"merch-detail-6.jpg","alt":"Mushi Hoodie — Cherry — view 6 (FPO placeholder photography)"}],"sizeChart":"merch-size-chart.jpg","description":"A thoughtfully designed Mushi essential made to feel as good as it looks. Easy to wear, easy to live in, and unmistakably Mushi.","details":"100% cotton. Screen-printed Mushi artwork. Designed for everyday wear. FPO — final fabric composition and construction details to be supplied.","fit":"Relaxed unisex fit. Choose your normal size for an easy fit or size up for a more oversized look. FPO — no garment measurements available yet.","care":"Machine wash cold, inside out. Wash with similar colors. Tumble dry low or hang dry when possible. Do not iron directly over printed graphics.","shipping":"FPO — MUSHI SHIPPING & RETURNS POLICY"},{"slug":"mushi-logo-tee-cream","name":"Mushi Logo Tee — Cream","category":"t-shirts","price":40,"status":"available","short":"An everyday tee for people who take feeling good seriously—but not too seriously.","sizes":["S","M","L","XL","2XL"],"soldOutSizes":[],"colors":[{"label":"Cream","bg":"#F1E4D2"}],"images":[{"src":"merch-ink-2.jpg","alt":"Mushi Logo Tee — Cream (FPO placeholder photography)","color":"Cream"},{"src":"merch-ink-1.jpg","alt":"Mushi Logo Tee — Cream — alternate view (FPO placeholder photography)","color":"Cream"}],"gallery":[{"src":"merch-detail-1.jpg","alt":"Mushi Logo Tee — Cream — view 1 (FPO placeholder photography)"},{"src":"merch-detail-2.jpg","alt":"Mushi Logo Tee — Cream — view 2 (FPO placeholder photography)"},{"src":"merch-detail-3.jpg","alt":"Mushi Logo Tee — Cream — view 3 (FPO placeholder photography)"},{"src":"merch-detail-4.jpg","alt":"Mushi Logo Tee — Cream — view 4 (FPO placeholder photography)"},{"src":"merch-detail-5.jpg","alt":"Mushi Logo Tee — Cream — view 5 (FPO placeholder photography)"},{"src":"merch-detail-6.jpg","alt":"Mushi Logo Tee — Cream — view 6 (FPO placeholder photography)"}],"sizeChart":"merch-size-chart.jpg","description":"A thoughtfully designed Mushi essential made to feel as good as it looks. Easy to wear, easy to live in, and unmistakably Mushi.","details":"100% cotton. Screen-printed Mushi artwork. Designed for everyday wear. FPO — final fabric composition and construction details to be supplied.","fit":"Relaxed unisex fit. Choose your normal size for an easy fit or size up for a more oversized look. FPO — no garment measurements available yet.","care":"Machine wash cold, inside out. Wash with similar colors. Tumble dry low or hang dry when possible. Do not iron directly over printed graphics.","shipping":"FPO — MUSHI SHIPPING & RETURNS POLICY"},{"slug":"savor-every-moment-crewneck","name":"Savor Every Moment Crewneck","category":"sweatshirts","price":70,"status":"available","short":"Our house line, printed big enough to read across a room.","sizes":["S","M","L","XL","2XL"],"soldOutSizes":[],"colors":[{"label":"Bone","bg":"#EFE7DA"}],"images":[{"src":"merch-bone-2.jpg","alt":"Savor Every Moment Crewneck (FPO placeholder photography)","color":"Bone"},{"src":"merch-bone-1.jpg","alt":"Savor Every Moment Crewneck — alternate view (FPO placeholder photography)","color":"Bone"}],"gallery":[{"src":"merch-detail-1.jpg","alt":"Savor Every Moment Crewneck — view 1 (FPO placeholder photography)"},{"src":"merch-detail-2.jpg","alt":"Savor Every Moment Crewneck — view 2 (FPO placeholder photography)"},{"src":"merch-detail-3.jpg","alt":"Savor Every Moment Crewneck — view 3 (FPO placeholder photography)"},{"src":"merch-detail-4.jpg","alt":"Savor Every Moment Crewneck — view 4 (FPO placeholder photography)"},{"src":"merch-detail-5.jpg","alt":"Savor Every Moment Crewneck — view 5 (FPO placeholder photography)"},{"src":"merch-detail-6.jpg","alt":"Savor Every Moment Crewneck — view 6 (FPO placeholder photography)"}],"sizeChart":"merch-size-chart.jpg","description":"A thoughtfully designed Mushi essential made to feel as good as it looks. Easy to wear, easy to live in, and unmistakably Mushi.","details":"100% cotton. Screen-printed Mushi artwork. Designed for everyday wear. FPO — final fabric composition and construction details to be supplied.","fit":"Relaxed unisex fit. Choose your normal size for an easy fit or size up for a more oversized look. FPO — no garment measurements available yet.","care":"Machine wash cold, inside out. Wash with similar colors. Tumble dry low or hang dry when possible. Do not iron directly over printed graphics.","shipping":"FPO — MUSHI SHIPPING & RETURNS POLICY"},{"slug":"feel-good-rituals-tee","name":"Feel-Good Rituals Tee","category":"t-shirts","price":42,"status":"sold-out","short":"For the mornings, the evenings and everything worth slowing down for.","sizes":["S","M","L","XL","2XL"],"soldOutSizes":["S","M","L","XL","2XL"],"colors":[{"label":"Cherry","bg":"#8F0909"}],"images":[{"src":"merch-cherry-2.jpg","alt":"Feel-Good Rituals Tee (FPO placeholder photography)","color":"Cherry"},{"src":"merch-cherry-1.jpg","alt":"Feel-Good Rituals Tee — alternate view (FPO placeholder photography)","color":"Cherry"}],"gallery":[{"src":"merch-detail-1.jpg","alt":"Feel-Good Rituals Tee — view 1 (FPO placeholder photography)"},{"src":"merch-detail-2.jpg","alt":"Feel-Good Rituals Tee — view 2 (FPO placeholder photography)"},{"src":"merch-detail-3.jpg","alt":"Feel-Good Rituals Tee — view 3 (FPO placeholder photography)"},{"src":"merch-detail-4.jpg","alt":"Feel-Good Rituals Tee — view 4 (FPO placeholder photography)"},{"src":"merch-detail-5.jpg","alt":"Feel-Good Rituals Tee — view 5 (FPO placeholder photography)"},{"src":"merch-detail-6.jpg","alt":"Feel-Good Rituals Tee — view 6 (FPO placeholder photography)"}],"sizeChart":"merch-size-chart.jpg","description":"A thoughtfully designed Mushi essential made to feel as good as it looks. Easy to wear, easy to live in, and unmistakably Mushi.","details":"100% cotton. Screen-printed Mushi artwork. Designed for everyday wear. FPO — final fabric composition and construction details to be supplied.","fit":"Relaxed unisex fit. Choose your normal size for an easy fit or size up for a more oversized look. FPO — no garment measurements available yet.","care":"Machine wash cold, inside out. Wash with similar colors. Tumble dry low or hang dry when possible. Do not iron directly over printed graphics.","shipping":"FPO — MUSHI SHIPPING & RETURNS POLICY"}];
+  // ---------- product carousel ----------
+  var carPage = 0;
+  function carPerView(){ return window.innerWidth <= 900 ? 1 : 3; }
+  function carPages(){
+    var cards = document.querySelectorAll('#carTrack .buy-card').length;
+    return Math.max(1, Math.ceil(cards / carPerView()));
+  }
+  function carRender(){
+    var track = document.getElementById('carTrack');
+    var dots  = document.getElementById('carDots');
+    if(!track || !dots) return;
+    var pages = carPages();
+    if(carPage > pages - 1) carPage = pages - 1;
+    if(carPage < 0) carPage = 0;
 
-  // ---------- merch collection: filter + render ----------
-  (function(){
-    var grid = document.getElementById('mcGrid');
-    var pills = [].slice.call(document.querySelectorAll('.mc-pill'));
-    if(!grid) return;
+    // translate by the actual pixel offset of the first card on this page
+    var cards = track.querySelectorAll('.buy-card');
+    var firstIdx = carPage * carPerView();
+    var target = cards[Math.min(firstIdx, cards.length - 1)];
+    var shift = target ? (target.offsetLeft - cards[0].offsetLeft) : 0;
+    track.style.transform = 'translateX(' + (-shift) + 'px)';
 
-    function money(v){ return '$' + v.toFixed(2); }
-
-    function card(p){
-      var img = p.images[0], alt = p.images[1] || p.images[0];
-      var badge = p.status === 'sold-out'
-        ? '<span class="mc-badge">Sold Out</span>' : '';
-      return '<a class="mc-card" href="merch-product.html?p=' + encodeURIComponent(p.slug) + '">' +
-        '<span class="mc-shot">' + badge +
-          '<img class="main" loading="lazy" src="' + img.src + '" alt="' + img.alt + '">' +
-          '<img class="alt" loading="lazy" src="' + alt.src + '" alt="" aria-hidden="true">' +
-        '</span>' +
-        '<span class="mc-name">' + p.name + '</span>' +
-        '<span class="mc-price">' + money(p.price) + '</span>' +
-      '</a>';
+    dots.innerHTML = '';
+    for(var i = 0; i < pages; i++){
+      (function(i){
+        var b = document.createElement('button');
+        b.className = (i === carPage ? 'on' : '');
+        b.setAttribute('aria-label', 'Go to product page ' + (i + 1));
+        b.onclick = function(){ carPage = i; carRender(); };
+        dots.appendChild(b);
+      })(i);
     }
-
-    function render(cat){
-      var list = (cat === 'all') ? MERCH : MERCH.filter(function(p){ return p.category === cat; });
-      if(!list.length){
-        grid.className = '';
-        grid.innerHTML = '<div class="mc-empty"><h2>Nothing here yet.</h2>' +
-          '<p>Good things are coming.</p>' +
-          '<button class="btn solid" type="button" data-cat="all">View All Merch</button></div>';
-        var b = grid.querySelector('button');
-        if(b) b.addEventListener('click', function(){ select('all', true); });
-        return;
-      }
-      grid.className = 'mc-grid';
-      grid.innerHTML = list.map(card).join('');
-    }
-
-    function select(cat, push){
-      pills.forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.cat === cat ? 'true' : 'false'); });
-      render(cat);
-      if(push){
-        var url = cat === 'all' ? location.pathname : location.pathname + '?category=' + cat;
-        history.pushState({cat: cat}, '', url);
-      }
-    }
-
-    pills.forEach(function(b){
-      b.addEventListener('click', function(){ select(b.dataset.cat, true); });
-    });
-    window.addEventListener('popstate', function(){
-      select(new URLSearchParams(location.search).get('category') || 'all', false);
-    });
-
-    var initial = new URLSearchParams(location.search).get('category') || 'all';
-    if(!pills.some(function(b){ return b.dataset.cat === initial; })) initial = 'all';
-    select(initial, false);
-  })();
+    var prev = document.querySelector('.ca-prev');
+    var next = document.querySelector('.ca-next');
+    if(prev) prev.disabled = (carPage === 0);
+    if(next) next.disabled = (carPage === pages - 1);
+  }
+  function carGo(dir){ carPage += dir; carRender(); }
+  window.addEventListener('resize', carRender);
+  window.addEventListener('load', carRender);
+  carRender();
 
   // announcement ticker
   (function(){
