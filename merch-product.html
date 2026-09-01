@@ -463,19 +463,38 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
 .mp{background:var(--cream);padding:170px 0 30px;}
 .mp .wrap{max-width:1280px;}
 .mp-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:start;}
-/* gallery */
-.mp-main{
-  aspect-ratio:4/5;border-radius:24px;overflow:hidden;background:#fff;
-  box-shadow:0 2px 14px rgba(46,26,16,.07);
+/* gallery — thumbnail rail left, stage right (Nike-style), sticky on desktop */
+.mp-left{position:sticky;top:118px;}
+.mp-gallery{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.mp-rail{display:flex;flex-direction:column;gap:10px;}
+.mp-stage{position:relative;aspect-ratio:4/5;border-radius:24px;overflow:hidden;
+  background:#fff;box-shadow:0 2px 14px rgba(46,26,16,.07);}
+.mp-stage img{width:100%;height:100%;object-fit:cover;display:block;}
+.mp-nav{
+  position:absolute;top:50%;transform:translateY(-50%);z-index:3;
+  width:44px;height:44px;border-radius:50%;border:1px solid rgba(46,26,16,.14);
+  background:rgba(255,255,255,.92);cursor:pointer;display:flex;align-items:center;
+  justify-content:center;transition:background .2s ease,opacity .2s ease;
+  box-shadow:0 3px 12px rgba(46,26,16,.14);
 }
-.mp-main img{width:100%;height:100%;object-fit:cover;display:block;}
-.mp-thumbs{display:flex;gap:12px;margin-top:16px;flex-wrap:wrap;}
+.mp-nav svg{width:17px;height:17px;fill:none;stroke:var(--ink);stroke-width:2.2;
+  stroke-linecap:round;stroke-linejoin:round;}
+.mp-nav:hover{background:#fff;}
+.mp-nav:disabled{opacity:.32;cursor:default;}
+.mp-nav:focus-visible{outline:2px solid var(--peach);outline-offset:2px;}
+.mp-prev{left:14px;} .mp-next{right:14px;}
+.mp-count{
+  position:absolute;bottom:14px;right:16px;z-index:3;
+  font-family:var(--font-mono);font-weight:700;font-size:10px;letter-spacing:.14em;
+  color:var(--ink);background:rgba(255,255,255,.9);border-radius:999px;padding:6px 11px;
+}
 .mp-thumb{
-  width:84px;height:84px;border-radius:14px;overflow:hidden;background:#fff;cursor:pointer;
-  border:2px solid transparent;padding:0;transition:border-color .2s ease;
+  width:74px;height:92px;border-radius:10px;overflow:hidden;background:#fff;cursor:pointer;
+  border:1.5px solid rgba(46,26,16,.14);padding:0;transition:border-color .2s ease;flex:0 0 auto;
 }
 .mp-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
-.mp-thumb[aria-current="true"]{border-color:var(--peach);}
+.mp-thumb[aria-current="true"]{border-color:var(--ink);border-width:2px;}
+.mp-thumb:hover{border-color:rgba(46,26,16,.45);}
 .mp-thumb:focus-visible{outline:2px solid var(--peach);outline-offset:2px;}
 /* info column */
 .mp-info h1{
@@ -561,7 +580,16 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
 .mp-pm::after{width:1.8px;height:16px;transform:translate(-50%,-50%);}
 .mp-item.open .mp-pm::after{transform:translate(-50%,-50%) rotate(90deg);opacity:0;}
 .mp-panel{overflow:hidden;height:0;transition:height .3s ease;}
-.mp-panel p{font-family:var(--font-body);font-size:15px;line-height:1.85;color:#5c4a3d;padding:0 2px 24px;margin:0;}
+.mp-panel p{font-family:var(--font-body);font-size:15px;line-height:1.85;color:#5c4a3d;padding:0 2px 20px;margin:0;}
+.mp-panel .mp-figure{margin:0 2px 24px;}
+.mp-panel .mp-figure img{
+  width:100%;height:auto;display:block;border-radius:12px;
+  border:1px solid rgba(46,26,16,.12);background:#fff;
+}
+.mp-panel .mp-figure figcaption{
+  font-family:var(--font-mono);font-weight:700;font-size:9.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:#a1907f;margin-top:9px;
+}
 /* related */
 .mp-related{background:var(--cream);padding:20px 0 110px;}
 .mp-related .wrap{max-width:1280px;}
@@ -578,6 +606,10 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
   .mc-grid{grid-template-columns:repeat(2,1fr);gap:28px 18px;}
   .mp{padding:140px 0 20px;}
   .mp-grid{grid-template-columns:1fr;gap:32px;}
+  .mp-left{position:static;}
+  .mp-gallery{grid-template-columns:1fr;gap:12px;}
+  .mp-rail{flex-direction:row;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;}
+  .mp-rail::-webkit-scrollbar{display:none;}
   .mp-related{padding:10px 0 80px;}
   /* filters scroll horizontally rather than wrapping awkwardly */
   .mc-pills{
@@ -590,7 +622,7 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
   .mc-grid{grid-template-columns:repeat(2,1fr);gap:22px 14px;}
   .mc-name{font-size:11.5px;}
   .mc-price{font-size:19px;}
-  .mp-thumb{width:68px;height:68px;}
+  .mp-thumb{width:62px;height:78px;}
   .mp-buy{gap:12px;}
   .mp-atc{flex:1 1 100%;}
 }
@@ -645,7 +677,7 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
 </footer>
 
 <script>
-  var MERCH = [{"slug":"mushi-hoodie-ink","name":"Mushi Hoodie — Ink","category":"hoodies","price":85,"status":"available","short":"Heavyweight, roomy and built for the slow part of the day.","sizes":["S","M","L","XL","2XL"],"soldOutSizes":["2XL"],"colors":[{"label":"Ink","bg":"#2E1A10"}],"images":[{"src":"merch-ink-1.jpg","alt":"Mushi Hoodie — Ink (FPO placeholder photography)","color":"Ink"},{"src":"merch-ink-2.jpg","alt":"Mushi Hoodie — Ink — alternate view (FPO placeholder photography)","color":"Ink"}],"description":"A thoughtfully designed Mushi essential made to feel as good as it looks. Easy to wear, easy to live in, and unmistakably Mushi.","details":"100% cotton. Screen-printed Mushi artwork. Designed for everyday wear. FPO — final fabric composition and construction details to be supplied.","fit":"Relaxed unisex fit. Choose your normal size for an easy fit or size up for a more oversized look. FPO — no garment measurements available yet.","care":"Machine wash cold, inside out. Wash with similar colors. Tumble dry low or hang dry when possible. Do not iron directly over printed graphics.","shipping":"FPO — MUSHI SHIPPING & RETURNS POLICY"},{"slug":"mushi-cropped-hoodie-bone","name":"Mushi Cropped Hoodie — Bone","category":"hoodies","price":80,"status":"sold-out","short":"Cropped, boxy and a little louder than the rest of the drop.","sizes":["S","M","L","XL","2XL"],"soldOutSizes":["S","M","L","XL","2XL"],"colors":[{"label":"Bone","bg":"#EFE7DA"}],"images":[{"src":"merch-bone-1.jpg","alt":"Mushi Cropped Hoodie — Bone (FPO placeholder photography)","color":"Bone"},{"src":"merch-bone-2.jpg","alt":"Mushi Cropped Hoodie — Bone — alternate view (FPO placeholder photography)","color":"Bone"}],"description":"A thoughtfully designed Mushi essential made to feel as good as it looks. Easy to wear, easy to live in, and unmistakably Mushi.","details":"100% cotton. Screen-printed Mushi artwork. Designed for everyday wear. FPO — final fabric composition and construction details to be supplied.","fit":"Relaxed unisex fit. Choose your normal size for an easy fit or size up for a more oversized look. FPO — no garment measurements available yet.","care":"Machine wash cold, inside out. Wash with similar colors. Tumble dry low or hang dry when possible. Do not iron directly over printed graphics.","shipping":"FPO — MUSHI SHIPPING & RETURNS POLICY"},{"slug":"mushi-hoodie-cherry","name":"Mushi Hoodie — Cherry","category":"hoodies","price":85,"status":"available","short":"The house red, washed soft and finished with hardware.","sizes":["S","M","L","XL","2XL"],"soldOutSizes":["S"],"colors":[{"label":"Cherry","bg":"#8F0909"}],"images":[{"src":"merch-cherry-1.jpg","alt":"Mushi Hoodie — Cherry (FPO placeholder photography)","color":"Cherry"},{"src":"merch-cherry-2.jpg","alt":"Mushi Hoodie — Cherry — alternate view (FPO placeholder photography)","color":"Cherry"}],"description":"A thoughtfully designed Mushi essential made to feel as good as it looks. Easy to wear, easy to live in, and unmistakably Mushi.","details":"100% cotton. Screen-printed Mushi artwork. Designed for everyday wear. FPO — final fabric composition and construction details to be supplied.","fit":"Relaxed unisex fit. Choose your normal size for an easy fit or size up for a more oversized look. FPO — no garment measurements available yet.","care":"Machine wash cold, inside out. Wash with similar colors. Tumble dry low or hang dry when possible. Do not iron directly over printed graphics.","shipping":"FPO — MUSHI SHIPPING & RETURNS POLICY"},{"slug":"mushi-logo-tee-cream","name":"Mushi Logo Tee — Cream","category":"t-shirts","price":40,"status":"available","short":"An everyday tee for people who take feeling good seriously—but not too seriously.","sizes":["S","M","L","XL","2XL"],"soldOutSizes":[],"colors":[{"label":"Cream","bg":"#F1E4D2"}],"images":[{"src":"merch-ink-2.jpg","alt":"Mushi Logo Tee — Cream (FPO placeholder photography)","color":"Cream"},{"src":"merch-ink-1.jpg","alt":"Mushi Logo Tee — Cream — alternate view (FPO placeholder photography)","color":"Cream"}],"description":"A thoughtfully designed Mushi essential made to feel as good as it looks. Easy to wear, easy to live in, and unmistakably Mushi.","details":"100% cotton. Screen-printed Mushi artwork. Designed for everyday wear. FPO — final fabric composition and construction details to be supplied.","fit":"Relaxed unisex fit. Choose your normal size for an easy fit or size up for a more oversized look. FPO — no garment measurements available yet.","care":"Machine wash cold, inside out. Wash with similar colors. Tumble dry low or hang dry when possible. Do not iron directly over printed graphics.","shipping":"FPO — MUSHI SHIPPING & RETURNS POLICY"},{"slug":"savor-every-moment-crewneck","name":"Savor Every Moment Crewneck","category":"sweatshirts","price":70,"status":"available","short":"Our house line, printed big enough to read across a room.","sizes":["S","M","L","XL","2XL"],"soldOutSizes":[],"colors":[{"label":"Bone","bg":"#EFE7DA"}],"images":[{"src":"merch-bone-2.jpg","alt":"Savor Every Moment Crewneck (FPO placeholder photography)","color":"Bone"},{"src":"merch-bone-1.jpg","alt":"Savor Every Moment Crewneck — alternate view (FPO placeholder photography)","color":"Bone"}],"description":"A thoughtfully designed Mushi essential made to feel as good as it looks. Easy to wear, easy to live in, and unmistakably Mushi.","details":"100% cotton. Screen-printed Mushi artwork. Designed for everyday wear. FPO — final fabric composition and construction details to be supplied.","fit":"Relaxed unisex fit. Choose your normal size for an easy fit or size up for a more oversized look. FPO — no garment measurements available yet.","care":"Machine wash cold, inside out. Wash with similar colors. Tumble dry low or hang dry when possible. Do not iron directly over printed graphics.","shipping":"FPO — MUSHI SHIPPING & RETURNS POLICY"},{"slug":"feel-good-rituals-tee","name":"Feel-Good Rituals Tee","category":"t-shirts","price":42,"status":"sold-out","short":"For the mornings, the evenings and everything worth slowing down for.","sizes":["S","M","L","XL","2XL"],"soldOutSizes":["S","M","L","XL","2XL"],"colors":[{"label":"Cherry","bg":"#8F0909"}],"images":[{"src":"merch-cherry-2.jpg","alt":"Feel-Good Rituals Tee (FPO placeholder photography)","color":"Cherry"},{"src":"merch-cherry-1.jpg","alt":"Feel-Good Rituals Tee — alternate view (FPO placeholder photography)","color":"Cherry"}],"description":"A thoughtfully designed Mushi essential made to feel as good as it looks. Easy to wear, easy to live in, and unmistakably Mushi.","details":"100% cotton. Screen-printed Mushi artwork. Designed for everyday wear. FPO — final fabric composition and construction details to be supplied.","fit":"Relaxed unisex fit. Choose your normal size for an easy fit or size up for a more oversized look. FPO — no garment measurements available yet.","care":"Machine wash cold, inside out. Wash with similar colors. Tumble dry low or hang dry when possible. Do not iron directly over printed graphics.","shipping":"FPO — MUSHI SHIPPING & RETURNS POLICY"}];
+  var MERCH = [{"slug":"mushi-hoodie-ink","name":"Mushi Hoodie — Ink","category":"hoodies","price":85,"status":"available","short":"Heavyweight, roomy and built for the slow part of the day.","sizes":["S","M","L","XL","2XL"],"soldOutSizes":["2XL"],"colors":[{"label":"Ink","bg":"#2E1A10"}],"images":[{"src":"merch-ink-1.jpg","alt":"Mushi Hoodie — Ink (FPO placeholder photography)","color":"Ink"},{"src":"merch-ink-2.jpg","alt":"Mushi Hoodie — Ink — alternate view (FPO placeholder photography)","color":"Ink"}],"gallery":[{"src":"merch-detail-1.jpg","alt":"Mushi Hoodie — Ink — view 1 (FPO placeholder photography)"},{"src":"merch-detail-2.jpg","alt":"Mushi Hoodie — Ink — view 2 (FPO placeholder photography)"},{"src":"merch-detail-3.jpg","alt":"Mushi Hoodie — Ink — view 3 (FPO placeholder photography)"},{"src":"merch-detail-4.jpg","alt":"Mushi Hoodie — Ink — view 4 (FPO placeholder photography)"},{"src":"merch-detail-5.jpg","alt":"Mushi Hoodie — Ink — view 5 (FPO placeholder photography)"},{"src":"merch-detail-6.jpg","alt":"Mushi Hoodie — Ink — view 6 (FPO placeholder photography)"}],"sizeChart":"merch-size-chart.jpg","description":"A thoughtfully designed Mushi essential made to feel as good as it looks. Easy to wear, easy to live in, and unmistakably Mushi.","details":"100% cotton. Screen-printed Mushi artwork. Designed for everyday wear. FPO — final fabric composition and construction details to be supplied.","fit":"Relaxed unisex fit. Choose your normal size for an easy fit or size up for a more oversized look. FPO — no garment measurements available yet.","care":"Machine wash cold, inside out. Wash with similar colors. Tumble dry low or hang dry when possible. Do not iron directly over printed graphics.","shipping":"FPO — MUSHI SHIPPING & RETURNS POLICY"},{"slug":"mushi-cropped-hoodie-bone","name":"Mushi Cropped Hoodie — Bone","category":"hoodies","price":80,"status":"sold-out","short":"Cropped, boxy and a little louder than the rest of the drop.","sizes":["S","M","L","XL","2XL"],"soldOutSizes":["S","M","L","XL","2XL"],"colors":[{"label":"Bone","bg":"#EFE7DA"}],"images":[{"src":"merch-bone-1.jpg","alt":"Mushi Cropped Hoodie — Bone (FPO placeholder photography)","color":"Bone"},{"src":"merch-bone-2.jpg","alt":"Mushi Cropped Hoodie — Bone — alternate view (FPO placeholder photography)","color":"Bone"}],"gallery":[{"src":"merch-detail-1.jpg","alt":"Mushi Cropped Hoodie — Bone — view 1 (FPO placeholder photography)"},{"src":"merch-detail-2.jpg","alt":"Mushi Cropped Hoodie — Bone — view 2 (FPO placeholder photography)"},{"src":"merch-detail-3.jpg","alt":"Mushi Cropped Hoodie — Bone — view 3 (FPO placeholder photography)"},{"src":"merch-detail-4.jpg","alt":"Mushi Cropped Hoodie — Bone — view 4 (FPO placeholder photography)"},{"src":"merch-detail-5.jpg","alt":"Mushi Cropped Hoodie — Bone — view 5 (FPO placeholder photography)"},{"src":"merch-detail-6.jpg","alt":"Mushi Cropped Hoodie — Bone — view 6 (FPO placeholder photography)"}],"sizeChart":"merch-size-chart.jpg","description":"A thoughtfully designed Mushi essential made to feel as good as it looks. Easy to wear, easy to live in, and unmistakably Mushi.","details":"100% cotton. Screen-printed Mushi artwork. Designed for everyday wear. FPO — final fabric composition and construction details to be supplied.","fit":"Relaxed unisex fit. Choose your normal size for an easy fit or size up for a more oversized look. FPO — no garment measurements available yet.","care":"Machine wash cold, inside out. Wash with similar colors. Tumble dry low or hang dry when possible. Do not iron directly over printed graphics.","shipping":"FPO — MUSHI SHIPPING & RETURNS POLICY"},{"slug":"mushi-hoodie-cherry","name":"Mushi Hoodie — Cherry","category":"hoodies","price":85,"status":"available","short":"The house red, washed soft and finished with hardware.","sizes":["S","M","L","XL","2XL"],"soldOutSizes":["S"],"colors":[{"label":"Cherry","bg":"#8F0909"}],"images":[{"src":"merch-cherry-1.jpg","alt":"Mushi Hoodie — Cherry (FPO placeholder photography)","color":"Cherry"},{"src":"merch-cherry-2.jpg","alt":"Mushi Hoodie — Cherry — alternate view (FPO placeholder photography)","color":"Cherry"}],"gallery":[{"src":"merch-detail-1.jpg","alt":"Mushi Hoodie — Cherry — view 1 (FPO placeholder photography)"},{"src":"merch-detail-2.jpg","alt":"Mushi Hoodie — Cherry — view 2 (FPO placeholder photography)"},{"src":"merch-detail-3.jpg","alt":"Mushi Hoodie — Cherry — view 3 (FPO placeholder photography)"},{"src":"merch-detail-4.jpg","alt":"Mushi Hoodie — Cherry — view 4 (FPO placeholder photography)"},{"src":"merch-detail-5.jpg","alt":"Mushi Hoodie — Cherry — view 5 (FPO placeholder photography)"},{"src":"merch-detail-6.jpg","alt":"Mushi Hoodie — Cherry — view 6 (FPO placeholder photography)"}],"sizeChart":"merch-size-chart.jpg","description":"A thoughtfully designed Mushi essential made to feel as good as it looks. Easy to wear, easy to live in, and unmistakably Mushi.","details":"100% cotton. Screen-printed Mushi artwork. Designed for everyday wear. FPO — final fabric composition and construction details to be supplied.","fit":"Relaxed unisex fit. Choose your normal size for an easy fit or size up for a more oversized look. FPO — no garment measurements available yet.","care":"Machine wash cold, inside out. Wash with similar colors. Tumble dry low or hang dry when possible. Do not iron directly over printed graphics.","shipping":"FPO — MUSHI SHIPPING & RETURNS POLICY"},{"slug":"mushi-logo-tee-cream","name":"Mushi Logo Tee — Cream","category":"t-shirts","price":40,"status":"available","short":"An everyday tee for people who take feeling good seriously—but not too seriously.","sizes":["S","M","L","XL","2XL"],"soldOutSizes":[],"colors":[{"label":"Cream","bg":"#F1E4D2"}],"images":[{"src":"merch-ink-2.jpg","alt":"Mushi Logo Tee — Cream (FPO placeholder photography)","color":"Cream"},{"src":"merch-ink-1.jpg","alt":"Mushi Logo Tee — Cream — alternate view (FPO placeholder photography)","color":"Cream"}],"gallery":[{"src":"merch-detail-1.jpg","alt":"Mushi Logo Tee — Cream — view 1 (FPO placeholder photography)"},{"src":"merch-detail-2.jpg","alt":"Mushi Logo Tee — Cream — view 2 (FPO placeholder photography)"},{"src":"merch-detail-3.jpg","alt":"Mushi Logo Tee — Cream — view 3 (FPO placeholder photography)"},{"src":"merch-detail-4.jpg","alt":"Mushi Logo Tee — Cream — view 4 (FPO placeholder photography)"},{"src":"merch-detail-5.jpg","alt":"Mushi Logo Tee — Cream — view 5 (FPO placeholder photography)"},{"src":"merch-detail-6.jpg","alt":"Mushi Logo Tee — Cream — view 6 (FPO placeholder photography)"}],"sizeChart":"merch-size-chart.jpg","description":"A thoughtfully designed Mushi essential made to feel as good as it looks. Easy to wear, easy to live in, and unmistakably Mushi.","details":"100% cotton. Screen-printed Mushi artwork. Designed for everyday wear. FPO — final fabric composition and construction details to be supplied.","fit":"Relaxed unisex fit. Choose your normal size for an easy fit or size up for a more oversized look. FPO — no garment measurements available yet.","care":"Machine wash cold, inside out. Wash with similar colors. Tumble dry low or hang dry when possible. Do not iron directly over printed graphics.","shipping":"FPO — MUSHI SHIPPING & RETURNS POLICY"},{"slug":"savor-every-moment-crewneck","name":"Savor Every Moment Crewneck","category":"sweatshirts","price":70,"status":"available","short":"Our house line, printed big enough to read across a room.","sizes":["S","M","L","XL","2XL"],"soldOutSizes":[],"colors":[{"label":"Bone","bg":"#EFE7DA"}],"images":[{"src":"merch-bone-2.jpg","alt":"Savor Every Moment Crewneck (FPO placeholder photography)","color":"Bone"},{"src":"merch-bone-1.jpg","alt":"Savor Every Moment Crewneck — alternate view (FPO placeholder photography)","color":"Bone"}],"gallery":[{"src":"merch-detail-1.jpg","alt":"Savor Every Moment Crewneck — view 1 (FPO placeholder photography)"},{"src":"merch-detail-2.jpg","alt":"Savor Every Moment Crewneck — view 2 (FPO placeholder photography)"},{"src":"merch-detail-3.jpg","alt":"Savor Every Moment Crewneck — view 3 (FPO placeholder photography)"},{"src":"merch-detail-4.jpg","alt":"Savor Every Moment Crewneck — view 4 (FPO placeholder photography)"},{"src":"merch-detail-5.jpg","alt":"Savor Every Moment Crewneck — view 5 (FPO placeholder photography)"},{"src":"merch-detail-6.jpg","alt":"Savor Every Moment Crewneck — view 6 (FPO placeholder photography)"}],"sizeChart":"merch-size-chart.jpg","description":"A thoughtfully designed Mushi essential made to feel as good as it looks. Easy to wear, easy to live in, and unmistakably Mushi.","details":"100% cotton. Screen-printed Mushi artwork. Designed for everyday wear. FPO — final fabric composition and construction details to be supplied.","fit":"Relaxed unisex fit. Choose your normal size for an easy fit or size up for a more oversized look. FPO — no garment measurements available yet.","care":"Machine wash cold, inside out. Wash with similar colors. Tumble dry low or hang dry when possible. Do not iron directly over printed graphics.","shipping":"FPO — MUSHI SHIPPING & RETURNS POLICY"},{"slug":"feel-good-rituals-tee","name":"Feel-Good Rituals Tee","category":"t-shirts","price":42,"status":"sold-out","short":"For the mornings, the evenings and everything worth slowing down for.","sizes":["S","M","L","XL","2XL"],"soldOutSizes":["S","M","L","XL","2XL"],"colors":[{"label":"Cherry","bg":"#8F0909"}],"images":[{"src":"merch-cherry-2.jpg","alt":"Feel-Good Rituals Tee (FPO placeholder photography)","color":"Cherry"},{"src":"merch-cherry-1.jpg","alt":"Feel-Good Rituals Tee — alternate view (FPO placeholder photography)","color":"Cherry"}],"gallery":[{"src":"merch-detail-1.jpg","alt":"Feel-Good Rituals Tee — view 1 (FPO placeholder photography)"},{"src":"merch-detail-2.jpg","alt":"Feel-Good Rituals Tee — view 2 (FPO placeholder photography)"},{"src":"merch-detail-3.jpg","alt":"Feel-Good Rituals Tee — view 3 (FPO placeholder photography)"},{"src":"merch-detail-4.jpg","alt":"Feel-Good Rituals Tee — view 4 (FPO placeholder photography)"},{"src":"merch-detail-5.jpg","alt":"Feel-Good Rituals Tee — view 5 (FPO placeholder photography)"},{"src":"merch-detail-6.jpg","alt":"Feel-Good Rituals Tee — view 6 (FPO placeholder photography)"}],"sizeChart":"merch-size-chart.jpg","description":"A thoughtfully designed Mushi essential made to feel as good as it looks. Easy to wear, easy to live in, and unmistakably Mushi.","details":"100% cotton. Screen-printed Mushi artwork. Designed for everyday wear. FPO — final fabric composition and construction details to be supplied.","fit":"Relaxed unisex fit. Choose your normal size for an easy fit or size up for a more oversized look. FPO — no garment measurements available yet.","care":"Machine wash cold, inside out. Wash with similar colors. Tumble dry low or hang dry when possible. Do not iron directly over printed graphics.","shipping":"FPO — MUSHI SHIPPING & RETURNS POLICY"}];
 
   // ---------- merch product: one template, data-driven ----------
   (function(){
@@ -675,11 +707,14 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
     var chosenSize = null, chosenColor = 0, qty = 1, imgIdx = 0;
 
     // ----- gallery -----
-    var thumbs = p.images.map(function(im, i){
+    var G = p.gallery && p.gallery.length ? p.gallery : p.images;
+    var thumbs = G.map(function(im, i){
       return '<button class="mp-thumb" type="button" data-i="' + i + '" aria-current="' +
-        (i === 0 ? 'true' : 'false') + '" aria-label="View image ' + (i + 1) + '">' +
-        '<img src="' + im.src + '" alt=""></button>';
+        (i === 0 ? 'true' : 'false') + '" aria-label="View image ' + (i + 1) + ' of ' + G.length + '">' +
+        '<img loading="lazy" src="' + im.src + '" alt=""></button>';
     }).join('');
+    var ARROW_L = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4L7 12l8 8"/></svg>';
+    var ARROW_R = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4l8 8-8 8"/></svg>';
 
     // ----- colours (suppressed when only one) -----
     var colorField = '';
@@ -705,28 +740,42 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
         }).join('') + '</div></div>';
     }
 
+    // [title, copy, openByDefault, image|null] — drop an image path in to show
+    // a figure inside that section; swapping it is a one-line data change.
     var accItems = [
-      ['Description', p.description, true],
-      ['Details & Materials', p.details, false],
-      ['Fit & Size Guide', p.fit, false],
-      ['Care Instructions', p.care, false],
-      ['Shipping & Returns', p.shipping, false]
+      ['Description', p.description, true, null],
+      ['Details & Materials', p.details, false, null],
+      ['Fit & Size Guide', p.fit, false, p.sizeChart || null],
+      ['Care Instructions', p.care, false, null],
+      ['Shipping & Returns', p.shipping, false, null]
     ];
     var acc = accItems.map(function(it, i){
       var id = 'mpa' + i;
+      var fig = it[3]
+        ? '<figure class="mp-figure"><img loading="lazy" src="' + it[3] +
+          '" alt="' + esc(it[0]) + ' chart (FPO placeholder)">' +
+          '<figcaption>FPO — replace with the final chart</figcaption></figure>'
+        : '';
       return '<div class="mp-item' + (it[2] ? ' open' : '') + '">' +
         '<h2 class="mp-head"><button class="mp-btn" type="button" id="' + id + 'b" aria-expanded="' +
         (it[2] ? 'true' : 'false') + '" aria-controls="' + id + 'p">' +
         '<span>' + esc(it[0]) + '</span><span class="mp-pm" aria-hidden="true"></span></button></h2>' +
         '<div class="mp-panel" id="' + id + 'p" role="region" aria-labelledby="' + id + 'b">' +
-        '<div><p>' + esc(it[1]) + '</p></div></div></div>';
+        '<div><p>' + esc(it[1]) + '</p>' + fig + '</div></div></div>';
     }).join('');
 
     root.innerHTML =
       '<div class="mp-grid">' +
-        '<div>' +
-          '<div class="mp-main"><img id="mpMain" src="' + p.images[0].src + '" alt="' + p.images[0].alt + '"></div>' +
-          '<div class="mp-thumbs" role="group" aria-label="Product images">' + thumbs + '</div>' +
+        '<div class="mp-left">' +
+          '<div class="mp-gallery">' +
+            '<div class="mp-rail" role="group" aria-label="Product images">' + thumbs + '</div>' +
+            '<div class="mp-stage">' +
+              '<img id="mpMain" src="' + G[0].src + '" alt="' + G[0].alt + '">' +
+              '<button class="mp-nav mp-prev" type="button" id="mpPrev" aria-label="Previous image">' + ARROW_L + '</button>' +
+              '<button class="mp-nav mp-next" type="button" id="mpNext" aria-label="Next image">' + ARROW_R + '</button>' +
+              '<span class="mp-count" id="mpCount" aria-live="polite">1 / ' + G.length + '</span>' +
+            '</div>' +
+          '</div>' +
         '</div>' +
         '<div class="mp-info">' +
           '<h1>' + esc(p.name) + '</h1>' +
@@ -749,15 +798,30 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
     // ----- gallery behaviour -----
     var mainImg = document.getElementById('mpMain');
     var thumbEls = [].slice.call(root.querySelectorAll('.mp-thumb'));
+    var prevBtn = document.getElementById('mpPrev');
+    var nextBtn = document.getElementById('mpNext');
+    var counter = document.getElementById('mpCount');
     function showImage(i){
+      if(i < 0 || i > G.length - 1) return;
       imgIdx = i;
-      mainImg.src = p.images[i].src;
-      mainImg.alt = p.images[i].alt;
+      mainImg.src = G[i].src;
+      mainImg.alt = G[i].alt;
       thumbEls.forEach(function(t, k){ t.setAttribute('aria-current', k === i ? 'true' : 'false'); });
+      counter.textContent = (i + 1) + ' / ' + G.length;
+      prevBtn.disabled = i === 0;
+      nextBtn.disabled = i === G.length - 1;
+      thumbEls[i].scrollIntoView({block:'nearest', inline:'nearest'});
     }
     thumbEls.forEach(function(t){
       t.addEventListener('click', function(){ showImage(+t.dataset.i); });
+      t.addEventListener('keydown', function(e){
+        if(e.key === 'ArrowDown' || e.key === 'ArrowRight'){ e.preventDefault(); showImage(imgIdx + 1); thumbEls[imgIdx].focus(); }
+        if(e.key === 'ArrowUp' || e.key === 'ArrowLeft'){ e.preventDefault(); showImage(imgIdx - 1); thumbEls[imgIdx].focus(); }
+      });
     });
+    prevBtn.addEventListener('click', function(){ showImage(imgIdx - 1); });
+    nextBtn.addEventListener('click', function(){ showImage(imgIdx + 1); });
+    showImage(0);
 
     // ----- colour -----
     var swatches = [].slice.call(root.querySelectorAll('.mp-swatch'));
@@ -767,7 +831,6 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
         swatches.forEach(function(x, k){ x.setAttribute('aria-pressed', k === chosenColor ? 'true' : 'false'); });
         var nm = document.getElementById('mpColorName');
         if(nm) nm.textContent = p.colors[chosenColor].label;
-        if(p.images[chosenColor]) showImage(chosenColor);
       });
     });
 
