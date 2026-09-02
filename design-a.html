@@ -253,7 +253,7 @@ nav.floating .logo:hover .lv-green{animation:segC 1.2s steps(1,end) infinite;}
 .pq-attr{font-family:var(--font-display);font-weight:400;font-size:22px;letter-spacing:0;text-transform:none;color:#8F0909;}
 .pq-attr span{opacity:.65;text-transform:none;letter-spacing:.04em;}
 .pq-deco{position:absolute;will-change:transform;pointer-events:none;}
-.pq-deco svg{display:block;width:100%;height:auto;fill:currentColor;}
+.pq-deco img{display:block;width:100%;height:auto;}
 /* ---------- client raves ---------- */
 .rave-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:56px;}
 .rave-card{border-radius:24px;overflow:hidden;display:flex;flex-direction:column;}
@@ -591,12 +591,12 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
 <!-- ============ PARALLAX QUOTE ============ -->
 <section class="pq-outer" id="pqOuter">
   <div class="pq-sticky">
-    <div class="pq-deco" style="top:12%;left:6%;color:var(--cherry-t1);" data-speed="-120"></div>
-    <div class="pq-deco" style="top:8%;right:10%;color:var(--apple-t1);" data-speed="90"></div>
-    <div class="pq-deco" style="top:44%;left:12%;color:var(--peach);" data-speed="60"></div>
-    <div class="pq-deco" style="top:52%;right:5%;color:var(--sage);" data-speed="-80"></div>
-    <div class="pq-deco" style="bottom:10%;left:8%;color:var(--peach-t1);" data-speed="110"></div>
-    <div class="pq-deco" style="bottom:14%;right:14%;color:var(--cherry);" data-speed="-60"></div>
+    <div class="pq-deco" style="top:12%;left:6%;" data-speed="-120"></div>
+    <div class="pq-deco" style="top:8%;right:10%;" data-speed="90"></div>
+    <div class="pq-deco" style="top:44%;left:12%;" data-speed="60"></div>
+    <div class="pq-deco" style="top:52%;right:5%;" data-speed="-80"></div>
+    <div class="pq-deco" style="bottom:10%;left:8%;" data-speed="110"></div>
+    <div class="pq-deco" style="bottom:14%;right:14%;" data-speed="-60"></div>
     <div class="pq-content" id="pqContent">
       <p class="pq-quote">"These little gummies turned my Sunday reset into the best part of my week."</p>
       <p class="pq-attr">Maya R. <span>· Verified Mushi lover</span></p>
@@ -804,11 +804,13 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
   // parallax quote
   var pqOuter=document.getElementById('pqOuter');
   (function(){
-    var shapes=['deco-flower','deco-leaf2','deco-leaf3'];
-    pqOuter.querySelectorAll('.pq-deco').forEach(function(d){
-      var s=shapes[Math.floor(Math.random()*shapes.length)];
-      var size=80+Math.round(Math.random()*90);
-      d.innerHTML='<svg viewBox="0 0 180 190"><use href="#'+s+'"/></svg>';
+    // client botanicals: 5 full-colour PNGs, shuffled so no two neighbours repeat
+    var shapes=['deco-1.png','deco-2.png','deco-3.png','deco-4.png','deco-5.png'];
+    for(var i=shapes.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=shapes[i];shapes[i]=shapes[j];shapes[j]=t;}
+    pqOuter.querySelectorAll('.pq-deco').forEach(function(d,i){
+      var s=shapes[i%shapes.length];
+      var size=90+Math.round(Math.random()*80);
+      d.innerHTML='<img loading="lazy" src="'+s+'" alt="">';
       d.style.width=size+'px';
       d.style.rotate=Math.round(Math.random()*360)+'deg';
       d.style.marginLeft=(Math.round(Math.random()*60)-30)+'px';
