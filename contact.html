@@ -365,11 +365,11 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
 .coll-switch a:hover{border-color:var(--ink);color:var(--ink);}
 .coll-switch a.on{background:var(--ink);border-color:var(--ink);color:#fff;}
 /* contact */
-.contact{background:var(--cream);padding:200px 0 120px;}
+.contact{background:var(--cream);padding:96px 0 120px;}
 .contact .wrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
-.contact h1{
+.contact .c-lead{
   font-family:var(--font-display);font-weight:400;color:var(--cherry-dark);
-  font-size:clamp(38px,4.8vw,66px);line-height:1.05;max-width:12ch;
+  font-size:clamp(28px,3vw,42px);line-height:1.1;max-width:14ch;
 }
 .contact .c-email{font-family:var(--font-body);font-size:clamp(16px,1.5vw,19px);color:#6b584a;margin-top:28px;line-height:1.6;}
 .contact .c-email a{color:var(--peach-dark);text-decoration:none;border-bottom:2px solid currentColor;padding-bottom:2px;}
@@ -396,13 +396,13 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
 .c-form .c-note{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#a1907f;margin-top:16px;text-align:center;}
 /* full-width parallax band — same treatment as the ingredients hero */
 .c-parallax{
-  position:relative;min-height:max(58vh,440px);
+  position:relative;min-height:max(58vh,460px);padding:130px 0 50px;
   display:flex;align-items:center;justify-content:center;
   background:url('contact-parallax.jpg') center/cover no-repeat fixed;
 }
 .c-parallax::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(46,26,16,.30) 0%,rgba(46,26,16,.06) 45%,rgba(46,26,16,.52) 100%);}
 .c-parallax .cp-inner{position:relative;z-index:2;text-align:center;padding:0 24px;}
-.c-parallax h2{font-family:var(--font-display);font-weight:400;color:#fff;font-size:clamp(30px,4.4vw,56px);line-height:1.05;letter-spacing:.01em;text-shadow:0 2px 18px rgba(46,26,16,.4);max-width:18ch;margin:0 auto;}
+.c-parallax h1{font-family:var(--font-display);font-weight:400;color:#fff;font-size:clamp(38px,5.4vw,74px);line-height:1.05;letter-spacing:.01em;text-shadow:0 2px 18px rgba(46,26,16,.4);margin:0 auto;}
 /* thank-you */
 .thanks{background:var(--cream);padding:200px 0 120px;text-align:center;}
 .thanks img{width:min(260px,60vw);height:auto;display:block;margin:0 auto 34px;filter:drop-shadow(0 18px 30px rgba(46,26,16,.14));}
@@ -411,12 +411,12 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
 .thanks .t-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:38px;}
 @media (max-width:900px){
   .pg-intro{padding:150px 0 30px;}
-  .contact{padding:150px 0 80px;}
+  .contact{padding:60px 0 70px;}
   .contact .wrap{grid-template-columns:1fr;gap:44px;}
-  .contact h1{max-width:none;}
+  .contact .c-lead{max-width:none;}
   .c-form{padding:30px 24px;}
   .thanks{padding:150px 0 80px;}
-  .c-parallax{background-attachment:scroll;min-height:max(44vh,340px);}
+  .c-parallax{background-attachment:scroll;min-height:max(44vh,360px);padding:118px 0 44px;}
 }
 </style>
 </head>
@@ -464,11 +464,18 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
 </nav>
 
 <main id="top">
+<!-- ============ CONTACT HERO (parallax) ============ -->
+<section class="c-parallax">
+  <div class="cp-inner">
+    <h1>Get in Touch</h1>
+  </div>
+</section>
+
 <!-- ============ CONTACT ============ -->
 <section class="contact">
   <div class="wrap">
     <div>
-      <h1>Get in Touch, We’re here to help!</h1>
+      <p class="c-lead">We read every one.</p>
       <p class="c-email">Email <a href="mailto:support@mushiworld.com">support@mushiworld.com</a></p>
     </div>
     <!-- FPO: front-end only. Submits nowhere yet — Shopify's contact form
@@ -485,13 +492,6 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
       <button type="submit">Send Message</button>
       <p class="c-note">* Required</p>
     </form>
-  </div>
-</section>
-
-<!-- ============ PARALLAX BAND ============ -->
-<section class="c-parallax" aria-label="Mushi in the wild">
-  <div class="cp-inner">
-    <h2>We read every one.</h2>
   </div>
 </section>
 <script>
