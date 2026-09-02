@@ -275,7 +275,7 @@ nav.floating .logo:hover .lv-green{animation:segC 1.2s steps(1,end) infinite;}
 .rave-prod p{font-family:var(--font-mono);font-size:12px;color:#6b584a;margin-top:3px;}
 /* ---------- journal ---------- */
 .journal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:56px;}
-.article-card{cursor:pointer;}
+.article-card{cursor:pointer;display:block;text-decoration:none;color:inherit;}
 .article-card .jimg{aspect-ratio:4/3;border-radius:18px;overflow:hidden;margin-bottom:20px;}
 .article-card .jimg img{width:100%;height:100%;object-fit:cover;transition:transform .6s;}
 .article-card:hover .jimg img{transform:scale(1.05);}
@@ -382,7 +382,7 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
       <a class="nav-link" href="#learn">Learn</a>
       <div class="nav-drop"><div class="nav-drop-inner">
         <a href="#rituals">Feel-Good Rituals</a>
-        <a href="#learn">Journal</a>
+        <a href="journal.html">Journal</a>
         <a href="ingredients.html">Ingredients</a>
       </div></div>
     </div>
@@ -655,25 +655,26 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
     <p class="eyebrow center" style="display:block;margin-bottom:22px;color:var(--peach-dark);">Journal</p>
     <h2 class="h2 center" style="color:var(--cherry-dark);">Feel-good reading</h2>
     <div class="journal-grid">
-      <div class="article-card">
+      <a class="article-card" href="journal-post.html?p=five-tiny-rituals-for-a-softer-morning">
         <div class="jimg"><img loading="lazy" src="https://images.pexels.com/photos/37594900/pexels-photo-37594900/free-photo-of-cozy-reading-with-coffee-and-journal.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cozy reading with coffee and journal"></div>
         <span class="eyebrow" style="color:var(--peach-dark);">Rituals</span>
         <h4>Five tiny rituals for a softer morning</h4>
         <p>Small, delicious ways to arrive in your day before the day arrives at you.</p>
-      </div>
-      <div class="article-card">
+      </a>
+      <a class="article-card" href="journal-post.html?p=functional-mushrooms-minus-the-mystery">
         <div class="jimg"><img loading="lazy" src="https://images.pexels.com/photos/34640260/pexels-photo-34640260/free-photo-of-cozy-vintage-setup-with-journal-and-candle.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Journal and candle"></div>
         <span class="eyebrow" style="color:var(--apple);">The Science</span>
         <h4>Functional mushrooms, minus the mystery</h4>
         <p>What's actually in the blend, and why your mind and body will thank you.</p>
-      </div>
-      <div class="article-card">
+      </a>
+      <a class="article-card" href="journal-post.html?p=the-art-of-savoring">
         <div class="jimg"><img loading="lazy" src="https://images.pexels.com/photos/38450054/pexels-photo-38450054/free-photo-of-cozy-window-view-with-open-book-at-sunset.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Open book at sunset window"></div>
         <span class="eyebrow" style="color:var(--cherry);">Moments</span>
         <h4>The art of savoring (it's easier than you think)</h4>
         <p>Presence isn't a practice you master — it's a moment you taste.</p>
-      </div>
+      </a>
     </div>
+    <p style="text-align:center;margin-top:44px;"><a class="btn" href="journal.html">Read the Journal</a></p>
   </div>
 </section>
 
@@ -735,7 +736,7 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
         <p class="fdesc">Infused treats designed to help you feel more present, connected, creative, and alive.</p>
       </div>
       <div class="foot-col"><h5>Shop</h5><a href="gummies.html">Gummies</a><a href="chocolates.html">Chocolates</a><a href="merch.html">Merch</a></div>
-      <div class="foot-col"><h5>Learn</h5><a href="#rituals">Feel-Good Rituals</a><a href="ingredients.html">Ingredients</a><a href="#learn">Journal</a><a href="ingredients.html#science">Our Process</a></div>
+      <div class="foot-col"><h5>Learn</h5><a href="#rituals">Feel-Good Rituals</a><a href="ingredients.html">Ingredients</a><a href="journal.html">Journal</a><a href="ingredients.html#science">Our Process</a></div>
       <div class="foot-col"><h5>Support</h5><a href="contact.html">Contact Us</a><a href="faq.html">FAQs</a><a href="https://www.instagram.com/taste.mushi" target="_blank" rel="noopener">Instagram</a><a href="https://www.tiktok.com/@mushigummies" target="_blank" rel="noopener">TikTok</a></div>
     </div>
     <div class="foot-legal">
