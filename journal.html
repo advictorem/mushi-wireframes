@@ -438,6 +438,20 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
 .jn-pages button.on{background:var(--ink);border-color:var(--ink);color:#fff;}
 .jn-pages button:disabled{opacity:.35;cursor:default;border-color:rgba(46,26,16,.18);}
 .jn-pages span{font-family:var(--font-mono);color:#a1907f;padding:0 4px;}
+/* ============ RITUALS (journal layout + ingredients-style hero) ============ */
+.rt-hero{
+  position:relative;min-height:max(55vh,430px);display:flex;align-items:center;justify-content:center;
+  padding:130px 0 50px;
+  background:url('rituals-hero.jpg') center/cover no-repeat fixed;
+}
+.rt-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(46,26,16,.18) 0%,rgba(46,26,16,.02) 40%,rgba(46,26,16,.55) 100%);}
+.rt-hero .rh-inner{position:relative;z-index:2;text-align:center;padding:0 24px;}
+.rt-hero .eyebrow{display:block;margin-bottom:16px;color:#fff;opacity:.9;}
+.rt-hero h1{font-family:var(--font-display);font-weight:400;color:#fff;font-size:clamp(34px,5.4vw,74px);line-height:1.05;letter-spacing:.01em;margin:0 auto;text-shadow:0 2px 18px rgba(46,26,16,.35);}
+.rt-hero .rh-sub{font-family:var(--font-body);font-weight:400;color:#fff;font-size:clamp(15px,1.5vw,18px);line-height:1.6;margin:15px auto 0;max-width:56ch;opacity:.95;text-shadow:0 1px 12px rgba(46,26,16,.45);}
+/* topic filters sit on cream under the hero */
+.rt-filters{background:var(--cream);padding:44px 0 0;text-align:center;}
+.rt-filters .jn-filters{margin-top:0;}
 /* ============ ARTICLE ============ */
 .ja-hero{
   position:relative;min-height:max(62vh,520px);display:flex;align-items:flex-end;
@@ -542,7 +556,7 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
     <div class="nav-item">
       <a class="nav-link" href="design-a.html#learn">Learn</a>
       <div class="nav-drop"><div class="nav-drop-inner">
-        <a href="design-a.html#rituals">Feel-Good Rituals</a>
+        <a href="rituals.html">Feel-Good Rituals</a>
         <a href="journal.html">Journal</a>
         <a href="ingredients.html">Ingredients</a>
       </div></div>
@@ -611,7 +625,7 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
         <p class="fdesc">Infused treats designed to help you feel more present, connected, creative, and alive.</p>
       </div>
       <div class="foot-col"><h5>Shop</h5><a href="gummies.html">Gummies</a><a href="chocolates.html">Chocolates</a><a href="merch.html">Merch</a></div>
-      <div class="foot-col"><h5>Learn</h5><a href="design-a.html#rituals">Feel-Good Rituals</a><a href="ingredients.html">Ingredients</a><a href="journal.html">Journal</a><a href="ingredients.html#science">Our Process</a></div>
+      <div class="foot-col"><h5>Learn</h5><a href="rituals.html">Feel-Good Rituals</a><a href="ingredients.html">Ingredients</a><a href="journal.html">Journal</a><a href="ingredients.html#science">Our Process</a></div>
       <div class="foot-col"><h5>Support</h5><a href="contact.html">Contact Us</a><a href="faq.html">FAQs</a><a href="https://www.instagram.com/taste.mushi" target="_blank" rel="noopener">Instagram</a><a href="https://www.tiktok.com/@mushigummies" target="_blank" rel="noopener">TikTok</a></div>
     </div>
     <div class="foot-legal">

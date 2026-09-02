@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MUSHI — Feel-Good Indulgences | Design Version A</title>
+<title>Feel-Good Rituals | Mushi Journal</title>
+<meta name="description" content="Small practices worth keeping — Mushi rituals for feeling present, connected, creative and alive.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=PT+Mono&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -128,7 +129,7 @@ nav.floating .logo:hover .lv-green{animation:segC 1.2s steps(1,end) infinite;}
   transition:.25s;white-space:nowrap;
 }
 .hbtn-orange{background:var(--peach);color:#fff;}
-.hbtn-orange:hover{background:var(--peach-dark);}
+.hbtn-orange:hover{background:#6E4526;}
 .hbtn-ghost{background:#fff;color:var(--ink);}
 .hbtn-ghost:hover{background:#6E4526;color:#fff;}
 .hbtn-red{background:var(--cherry);color:#fff;}
@@ -275,7 +276,7 @@ nav.floating .logo:hover .lv-green{animation:segC 1.2s steps(1,end) infinite;}
 .rave-prod p{font-family:var(--font-mono);font-size:12px;color:#6b584a;margin-top:3px;}
 /* ---------- journal ---------- */
 .journal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:56px;}
-.article-card{cursor:pointer;display:block;text-decoration:none;color:inherit;}
+.article-card{cursor:pointer;}
 .article-card .jimg{aspect-ratio:4/3;border-radius:18px;overflow:hidden;margin-bottom:20px;}
 .article-card .jimg img{width:100%;height:100%;object-fit:cover;transition:transform .6s;}
 .article-card:hover .jimg img{transform:scale(1.05);}
@@ -284,19 +285,8 @@ nav.floating .logo:hover .lv-green{animation:segC 1.2s steps(1,end) infinite;}
 .article-card p{font-size:14px;color:#6b584a;line-height:1.6;}
 /* ---------- instagram ---------- */
 .ig{background:#fff;border-radius:48px;}
-/* IG carousel — tiles are 25% larger than the old 6-up grid, so ~4.9 show at a time */
-.ig-car{position:relative;margin-top:52px;}
-.ig-grid{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;
-  scrollbar-width:none;-ms-overflow-style:none;padding:4px 0 8px;}
-.ig-grid::-webkit-scrollbar{display:none;}
-.ig-tile{flex:0 0 calc((100% - 70px) * 1.25 / 6);scroll-snap-align:start;aspect-ratio:1;border-radius:14px;overflow:hidden;position:relative;cursor:pointer;}
-.ig-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:4;width:48px;height:48px;border-radius:50%;
-  border:none;cursor:pointer;background:#fff;color:var(--ink);box-shadow:0 4px 18px rgba(46,26,16,.18);
-  display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s,opacity .2s;}
-.ig-arrow svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
-.ig-arrow:hover{background:var(--peach);color:#fff;}
-.ig-arrow:disabled{opacity:.35;cursor:default;background:#fff;color:var(--ink);}
-.ig-prev{left:-24px;} .ig-next{right:-24px;}
+.ig-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:52px;}
+.ig-tile{aspect-ratio:1;border-radius:14px;overflow:hidden;position:relative;cursor:pointer;}
 .ig-tile img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
 .ig-tile:hover img{transform:scale(1.08);}
 .ig-tile::after{
@@ -344,8 +334,7 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
   section{padding:70px 0;}
   .buy-grid,.rave-grid,.journal-grid{grid-template-columns:1fr;}
   .ing-row{grid-template-columns:1fr 1fr;row-gap:40px;}
-  .ig-tile{flex-basis:calc((100% - 14px) / 2.4);}
-  .ig-prev{left:-8px;} .ig-next{right:-8px;}
+  .ig-grid{grid-template-columns:repeat(3,1fr);}
   .foot-grid{grid-template-columns:1fr 1fr;}
   .moment-carousel{padding:6px 22px;}
   .car-btn{display:none;}
@@ -354,6 +343,192 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
   nav.floating a.nav-link{padding:8px 10px;letter-spacing:.12em;}
   .logo-stack{width:97px;}
   .hero{height:72vh;}
+}
+</style>
+<style>
+/* ============ JOURNAL ============ */
+/* category tones */
+.jt-peach{color:var(--peach-dark);} .jt-cherry{color:var(--cherry);} .jt-apple{color:var(--apple);}
+.jt-peach-dark{color:var(--peach-dark);} .jt-cherry-dark{color:var(--cherry-dark);}
+/* intro */
+.jn-intro{background:var(--cream);padding:200px 0 34px;text-align:center;}
+.jn-intro .eyebrow{display:block;margin-bottom:18px;color:var(--peach-dark);}
+.jn-intro h1{
+  font-family:var(--font-display);font-weight:400;color:var(--cherry-dark);
+  font-size:clamp(38px,5.4vw,74px);line-height:1.04;letter-spacing:.005em;max-width:17ch;margin:0 auto;
+}
+.jn-intro .jn-sub{font-family:var(--font-body);font-size:clamp(15px,1.5vw,18px);line-height:1.6;color:#6b584a;margin:22px auto 0;max-width:52ch;}
+/* filters */
+.jn-filters{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:34px;}
+.jn-filters button{
+  font-family:var(--font-mono);font-weight:700;font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:#6b584a;background:transparent;cursor:pointer;padding:13px 26px;border-radius:999px;
+  border:1.5px solid rgba(46,26,16,.18);transition:.2s;
+}
+.jn-filters button:hover{border-color:var(--ink);color:var(--ink);}
+.jn-filters button.on{background:var(--ink);border-color:var(--ink);color:#fff;}
+.jn-topics{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:14px;min-height:0;}
+.jn-topics[hidden]{display:none;}
+.jn-topics button{
+  font-family:var(--font-mono);font-weight:700;font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--peach-dark);background:var(--peach-t2);border:1.5px solid transparent;cursor:pointer;
+  padding:9px 18px;border-radius:999px;transition:.2s;
+}
+.jn-topics button:hover{border-color:var(--peach);}
+.jn-topics button.on{background:var(--peach);color:#fff;}
+/* list */
+.jn-list{background:var(--cream);padding:30px 0 110px;}
+.jn-count{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#a1907f;text-align:center;margin-bottom:34px;}
+.jn-empty{text-align:center;font-family:var(--font-body);color:#6b584a;padding:60px 0;}
+/* card meta bits shared across every card style */
+.jn-meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#a1907f;}
+.jn-meta > *{white-space:nowrap;}
+.jn-meta .jn-cat{font-weight:700;}
+.jn-meta .jn-cat i{font-style:normal;opacity:.7;}
+.jn-meta .sep{width:1px;height:12px;background:currentColor;opacity:.4;}
+.jn-more{
+  display:inline-block;font-family:var(--font-mono);font-weight:700;font-size:11px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--ink);text-decoration:none;border-bottom:2px solid var(--peach);padding-bottom:3px;transition:color .2s;
+}
+.jn-more:hover{color:var(--peach-dark);}
+/* row 1: featured + side list */
+.jn-top{display:grid;grid-template-columns:1.32fr 1fr;gap:40px;align-items:stretch;margin-bottom:56px;}
+.jn-feat{
+  position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-height:560px;
+  border-radius:28px;overflow:hidden;color:#fff;text-decoration:none;isolation:isolate;
+}
+.jn-feat img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s ease;z-index:-2;}
+.jn-feat::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(46,26,16,0) 30%,rgba(46,26,16,.72) 100%);}
+.jn-feat:hover img{transform:scale(1.04);}
+.jn-feat .jn-body{padding:44px;}
+.jn-feat .jn-meta{color:rgba(255,255,255,.85);}
+.jn-feat h2{font-family:var(--font-display);font-weight:400;font-size:clamp(28px,3vw,42px);line-height:1.1;margin:16px 0 14px;max-width:16ch;}
+.jn-feat p{font-family:var(--font-body);font-size:16px;line-height:1.65;max-width:52ch;opacity:.95;margin-bottom:20px;}
+.jn-feat .jn-more{color:#fff;border-color:#fff;}
+.jn-side{display:flex;flex-direction:column;}
+.jn-row{
+  display:grid;grid-template-columns:200px 1fr;gap:26px;align-items:start;text-decoration:none;color:inherit;
+  padding:26px 0;border-bottom:1px solid rgba(46,26,16,.14);flex:1;
+}
+.jn-row:first-child{padding-top:0;}
+.jn-row:last-child{border-bottom:none;padding-bottom:0;}
+.jn-row .jn-img{aspect-ratio:1;border-radius:18px;overflow:hidden;background:#EFE7DA;}
+.jn-row .jn-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s;}
+.jn-row:hover .jn-img img{transform:scale(1.05);}
+.jn-row h3{font-family:var(--font-display);font-weight:400;font-size:24px;line-height:1.18;color:var(--ink);margin:12px 0 10px;}
+.jn-row p{font-family:var(--font-body);font-size:14.5px;line-height:1.6;color:#6b584a;margin-bottom:14px;
+  display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;}
+/* row 2+: 3-up grid */
+.jn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px 26px;}
+.jn-card{text-decoration:none;color:inherit;display:block;}
+.jn-card .jn-img{aspect-ratio:4/3;border-radius:18px;overflow:hidden;margin-bottom:20px;background:#EFE7DA;}
+.jn-card .jn-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s;}
+.jn-card:hover .jn-img img{transform:scale(1.05);}
+.jn-card h3{font-family:var(--font-display);font-weight:400;font-size:24px;line-height:1.2;color:var(--ink);margin:12px 0 10px;}
+.jn-card p{font-family:var(--font-body);font-size:14.5px;line-height:1.6;color:#6b584a;margin-bottom:14px;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+/* pagination */
+.jn-pages{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:64px;}
+.jn-pages button{
+  min-width:44px;height:44px;padding:0 14px;border-radius:999px;border:1.5px solid rgba(46,26,16,.18);
+  background:transparent;cursor:pointer;font-family:var(--font-mono);font-weight:700;font-size:12px;letter-spacing:.12em;
+  color:var(--ink);transition:.2s;
+}
+.jn-pages button:hover{border-color:var(--ink);}
+.jn-pages button.on{background:var(--ink);border-color:var(--ink);color:#fff;}
+.jn-pages button:disabled{opacity:.35;cursor:default;border-color:rgba(46,26,16,.18);}
+.jn-pages span{font-family:var(--font-mono);color:#a1907f;padding:0 4px;}
+/* ============ RITUALS (journal layout + ingredients-style hero) ============ */
+.rt-hero{
+  position:relative;min-height:max(55vh,430px);display:flex;align-items:center;justify-content:center;
+  padding:130px 0 50px;
+  background:url('rituals-hero.jpg') center/cover no-repeat fixed;
+}
+.rt-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(46,26,16,.18) 0%,rgba(46,26,16,.02) 40%,rgba(46,26,16,.55) 100%);}
+.rt-hero .rh-inner{position:relative;z-index:2;text-align:center;padding:0 24px;}
+.rt-hero .eyebrow{display:block;margin-bottom:16px;color:#fff;opacity:.9;}
+.rt-hero h1{font-family:var(--font-display);font-weight:400;color:#fff;font-size:clamp(34px,5.4vw,74px);line-height:1.05;letter-spacing:.01em;margin:0 auto;text-shadow:0 2px 18px rgba(46,26,16,.35);}
+.rt-hero .rh-sub{font-family:var(--font-body);font-weight:400;color:#fff;font-size:clamp(15px,1.5vw,18px);line-height:1.6;margin:15px auto 0;max-width:56ch;opacity:.95;text-shadow:0 1px 12px rgba(46,26,16,.45);}
+/* topic filters sit on cream under the hero */
+.rt-filters{background:var(--cream);padding:44px 0 0;text-align:center;}
+.rt-filters .jn-filters{margin-top:0;}
+/* ============ ARTICLE ============ */
+.ja-hero{
+  position:relative;min-height:max(62vh,520px);display:flex;align-items:flex-end;
+  padding:150px 0 64px;color:#fff;isolation:isolate;
+}
+.ja-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;}
+.ja-hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(46,26,16,.35) 0%,rgba(46,26,16,.1) 40%,rgba(46,26,16,.7) 100%);}
+.ja-hero .wrap{max-width:1040px;}
+.ja-hero .jn-meta{color:rgba(255,255,255,.88);}
+.ja-hero .jn-meta .jn-cat{color:#fff;}
+.ja-hero h1{font-family:var(--font-display);font-weight:400;font-size:clamp(34px,5vw,66px);line-height:1.05;letter-spacing:.005em;margin-top:18px;max-width:18ch;text-shadow:0 2px 18px rgba(46,26,16,.35);}
+.ja-body{background:var(--cream);padding:72px 0 40px;}
+.ja-body .wrap{max-width:860px;}
+.ja-body p{font-family:var(--font-body);font-size:17.5px;line-height:1.8;color:#4a3a30;margin:0 0 26px;}
+.ja-body p.lead{font-size:20px;line-height:1.7;color:var(--ink);}
+.ja-body h2{font-family:var(--font-display);font-weight:400;font-size:clamp(26px,2.8vw,36px);line-height:1.15;color:var(--cherry-dark);margin:48px 0 18px;}
+.ja-body figure{margin:40px 0;}
+.ja-body figure img{width:100%;height:auto;display:block;border-radius:22px;aspect-ratio:3/2;object-fit:cover;}
+.ja-body figcaption{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#a1907f;margin-top:12px;}
+.ja-body blockquote{
+  margin:40px 0;padding:0 0 0 28px;border-left:3px solid var(--peach);
+  font-family:var(--font-display);font-weight:400;font-size:clamp(22px,2.4vw,30px);line-height:1.3;color:var(--cherry);
+}
+.ja-body .ja-note{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#a1907f;border-top:1px solid rgba(46,26,16,.14);padding-top:22px;margin-top:20px;}
+/* share */
+.ja-share{background:var(--cream);padding:10px 0 60px;}
+.ja-share .wrap{max-width:860px;}
+.ja-share .box{
+  display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  background:#fff;border-radius:20px;padding:22px 28px;box-shadow:0 6px 30px rgba(178,53,8,.06);
+}
+.ja-share .lbl{font-family:var(--font-mono);font-weight:700;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);}
+.ja-share .links{display:flex;gap:10px;}
+.ja-share .links a,.ja-share .links button{
+  width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:var(--cream);color:var(--ink);border:none;cursor:pointer;text-decoration:none;transition:background .2s,color .2s;
+}
+.ja-share .links a:hover,.ja-share .links button:hover{background:var(--peach);color:#fff;}
+.ja-share .links svg{width:18px;height:18px;fill:currentColor;}
+.ja-share .copied{font-family:var(--font-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--apple);min-width:80px;}
+/* prev / next */
+.ja-nav{background:var(--cream);padding:0 0 110px;}
+.ja-nav .wrap{max-width:1040px;display:grid;grid-template-columns:1fr 1fr;gap:26px;}
+.ja-nav a{
+  display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center;text-decoration:none;color:inherit;
+  background:#fff;border-radius:22px;padding:28px 30px;box-shadow:0 6px 30px rgba(178,53,8,.06);transition:transform .25s;
+}
+.ja-nav a:hover{transform:translateY(-4px);}
+.ja-nav a.next{grid-template-columns:1fr auto;text-align:right;}
+.ja-nav a.next .arr{order:2;}
+.ja-nav .arr{width:44px;height:44px;border-radius:50%;background:var(--cream);display:flex;align-items:center;justify-content:center;color:var(--ink);}
+.ja-nav .arr svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.ja-nav .lbl{font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#a1907f;display:block;margin-bottom:8px;}
+.ja-nav h4{font-family:var(--font-display);font-weight:400;font-size:20px;line-height:1.2;color:var(--ink);}
+.ja-nav a.empty{visibility:hidden;}
+/* responsive */
+@media (max-width:1000px){
+  .jn-top{grid-template-columns:1fr;gap:34px;}
+  .jn-feat{min-height:440px;}
+  .jn-row{grid-template-columns:150px 1fr;}
+  .jn-grid{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:900px){
+  .jn-intro{padding:150px 0 26px;}
+  .ja-hero{min-height:max(52vh,420px);padding:130px 0 40px;}
+  .ja-body{padding:48px 0 30px;}
+  .ja-body p{font-size:16.5px;}
+  .ja-nav .wrap{grid-template-columns:1fr;}
+  .ja-nav a.empty{display:none;}
+}
+@media (max-width:600px){
+  .jn-feat .jn-body{padding:26px;}
+  .jn-row{grid-template-columns:110px 1fr;gap:16px;}
+  .jn-row h3{font-size:19px;}
+  .jn-row p{-webkit-line-clamp:2;}
+  .jn-grid{grid-template-columns:1fr;gap:34px;}
+  .jn-filters button{padding:11px 18px;font-size:10px;}
 }
 </style>
 </head>
@@ -371,7 +546,7 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
 <nav class="floating">
   <div class="nav-group">
     <div class="nav-item">
-      <a class="nav-link" href="#shop">Shop</a>
+      <a class="nav-link" href="design-a.html#shop">Shop</a>
       <div class="nav-drop"><div class="nav-drop-inner">
         <a href="gummies.html">Gummies</a>
         <a href="chocolates.html">Chocolates</a>
@@ -379,7 +554,7 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
       </div></div>
     </div>
     <div class="nav-item">
-      <a class="nav-link" href="#learn">Learn</a>
+      <a class="nav-link" href="design-a.html#learn">Learn</a>
       <div class="nav-drop"><div class="nav-drop-inner">
         <a href="rituals.html">Feel-Good Rituals</a>
         <a href="journal.html">Journal</a>
@@ -387,7 +562,7 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
       </div></div>
     </div>
   </div>
-  <a class="logo" href="#top" title="MUSHI"><span class="logo-stack">
+  <a class="logo" href="design-a.html" title="MUSHI"><span class="logo-stack">
     <svg class="lv lv-red" viewBox="0 0 825.76 185.5"><use href="#logoRed"/></svg>
     <svg class="lv lv-peach" viewBox="0 0 825.76 185.5"><use href="#logoPeach"/></svg>
     <svg class="lv lv-green" viewBox="0 0 825.76 185.5"><use href="#logoGreen"/></svg>
@@ -401,322 +576,32 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
 </nav>
 
 <main id="top">
-
-<!-- ============ HERO SLIDER (6s auto) ============ -->
-<section class="hero" id="hero">
-  <div class="slide on">
-    <img class="lyr" src="hero1-bg.jpg" alt="Blue sky with clouds">
-    <div class="l-text"><h1>Taste the<br>Bright Side</h1></div>
-    <img class="lyr" src="hero1-pack.png" alt="Hand holding a Mushi Peach Bliss pack" aria-hidden="true">
-    <img class="lyr l-cloud" src="hero1-cloud.png" alt="" aria-hidden="true">
-    <div class="l-front">
-      <p class="l-sub">Delicious experiences crafted to support joy,<br>presence, and connection.</p>
-      <div class="l-ctas">
-        <a class="hbtn hbtn-orange" href="#shop">Shop Gummies</a>
-        <a class="hbtn hbtn-ghost" href="#shop">Shop Chocolates</a>
-      </div>
-    </div>
-  </div>
-  <div class="slide">
-    <img class="lyr" src="hero3-bg.jpg" alt="The Mushi gummies collection">
-    <div class="l2-text">
-      <h1>Savor Every<br>Moment</h1>
-      <a class="hbtn hbtn-red" href="#shop">Shop All</a>
-    </div>
-  </div>
-  <div class="hero-dots">
-    <button class="on" onclick="goSlide(0)" aria-label="Slide 1"></button>
-    <button onclick="goSlide(1)" aria-label="Slide 2"></button>
+<!-- ============ RITUALS HERO (ingredients treatment) ============ -->
+<section class="rt-hero">
+  <div class="rh-inner">
+    <p class="eyebrow">Journal</p>
+    <h1>Feel-Good Rituals</h1>
+    <p class="rh-sub">Small practices worth keeping, sorted by the four feelings we build everything around.</p>
   </div>
 </section>
-
-<!-- ============ FEATURED — DIRECT ADD TO CART ============ -->
-<section class="featured" id="shop">
+<section class="rt-filters">
   <div class="wrap">
-    <p class="eyebrow center" style="display:block;margin-bottom:22px;color:var(--peach-dark);">Our Products</p>
-    <h2 class="h2 center" style="color:var(--cherry-dark);">Designed to Enhance Moments</h2>
-
-    <div class="seg-toggle">
-      <button id="segGummies" class="on" onclick="toggleProducts('gummies')">Gummies</button>
-      <button id="segChocolates" onclick="toggleProducts('chocolates')">Chocolates</button>
+    <div class="jn-filters" role="group" aria-label="Filter by ritual topic">
+      <button type="button" class="on">All rituals</button>
+      <button type="button" data-topic="Present">Present</button>
+      <button type="button" data-topic="Connected">Connected</button>
+      <button type="button" data-topic="Creative">Creative</button>
+      <button type="button" data-topic="Alive">Alive</button>
     </div>
-
-    <div class="buy-grid" id="gridGummies">
-      <div class="buy-card bc-peach">
-        <div class="flip">
-          <img class="back" loading="lazy" src="peach-2.jpg" alt="Peach Bliss — back of pack">
-          <img class="front" src="peach-1.jpg" alt="Peach Bliss — front of pack">
-        </div>
-        <p class="flavor">5000mg Infused Gummies</p>
-        <h4>Peach Bliss</h4>
-        <p class="story">Juicy peach. Golden calm. Let the moment unfold.</p>
-        <ul class="checks">
-          <li>Vegan</li>
-          <li>Gluten Free</li>
-          <li>MCT Oil</li>
-          <li>Lab Tested</li>
-        </ul>
-        <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
-        <a class="btn solid">Add to Cart</a>
-      </div>
-
-      <div class="buy-card bc-apple">
-        <div class="flip">
-          <img class="back" loading="lazy" src="green-apple-2.jpg" alt="Green Apple — back of pack">
-          <img class="front" src="green-apple-1.jpg" alt="Green Apple — front of pack">
-        </div>
-        <p class="flavor">5000mg Infused Gummies</p>
-        <h4>Green Apple</h4>
-        <p class="story">Crisp, tart, and quietly dreamy. Ease into something sweeter.</p>
-        <ul class="checks">
-          <li>Vegan</li>
-          <li>Gluten Free</li>
-          <li>MCT Oil</li>
-          <li>Lab Tested</li>
-        </ul>
-        <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
-        <a class="btn solid">Add to Cart</a>
-      </div>
-
-      <div class="buy-card bc-cherry">
-        <div class="flip">
-          <span class="promo-tag">Bestseller</span>
-          <img class="back" loading="lazy" src="cherry-2.jpg" alt="Cherry — back of pack">
-          <img class="front" src="cherry-1.jpg" alt="Cherry — front of pack">
-        </div>
-        <p class="flavor">5000mg Infused Gummies</p>
-        <h4>Cherry</h4>
-        <p class="story">Bold cherry with a tart spark. A little bite, and ideas bloom.</p>
-        <ul class="checks">
-          <li>Vegan</li>
-          <li>Gluten Free</li>
-          <li>MCT Oil</li>
-          <li>Lab Tested</li>
-        </ul>
-        <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
-        <a class="btn solid">Add to Cart</a>
-      </div>
-    </div>
-
-    <div class="buy-grid" id="gridChocolates" style="display:none;">
-      <div class="buy-card bc-milk">
-        <div class="flip">
-          <img class="back" loading="lazy" src="choco-milk-2.jpg" alt="Milk Chocolate — unboxed">
-          <img class="front" src="choco-milk-1.jpg" alt="Milk Chocolate — box">
-        </div>
-        <p class="flavor">5000mg Infused Chocolates</p>
-        <h4>Milk Chocolate</h4>
-        <p class="story">Smooth, creamy, and quietly transformative. Savor a little or let the moment unfold.</p>
-        <ul class="checks">
-          <li>100% Belgium</li>
-          <li>Gluten Free</li>
-          <li>No Palm Oil</li>
-          <li>Lab Tested</li>
-        </ul>
-        <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
-        <a class="btn solid">Add to Cart</a>
-      </div>
-      <div class="buy-card bc-dark">
-        <div class="flip">
-          <img class="back" loading="lazy" src="choco-dark-2.jpg" alt="Dark Chocolate — unboxed">
-          <img class="front" src="choco-dark-1.jpg" alt="Dark Chocolate — box">
-        </div>
-        <p class="flavor">5000mg Infused Chocolates</p>
-        <h4>Dark Chocolate</h4>
-        <p class="story">Deep Belgian chocolate with something unexpected beneath the surface. Made for any mood.</p>
-        <ul class="checks">
-          <li>100% Belgium</li>
-          <li>Gluten Free</li>
-          <li>No Palm Oil</li>
-          <li>Lab Tested</li>
-        </ul>
-        <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
-        <a class="btn solid">Add to Cart</a>
-      </div>
-      <div class="buy-card bc-berry">
-        <div class="flip">
-          <span class="promo-tag">New</span>
-          <img class="back" loading="lazy" src="choco-berry-2.jpg" alt="Berry Dark Chocolate — unboxed">
-          <img class="front" src="choco-berry-1.jpg" alt="Berry Dark Chocolate — box">
-        </div>
-        <p class="flavor">5000mg Infused Chocolates</p>
-        <h4>Berry Dark Chocolate</h4>
-        <p class="story">Sweet berry flavor gives way to a creamy surprise, gentle at first, deeper as it unfolds.</p>
-        <ul class="checks">
-          <li>100% Belgium</li>
-          <li>Berry Filling</li>
-          <li>Gluten Free</li>
-          <li>Lab Tested</li>
-        </ul>
-        <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
-        <a class="btn solid">Add to Cart</a>
-      </div>
-    </div>
-
   </div>
 </section>
-
-<!-- ============ FEEL-GOOD RITUALS ============ -->
-<section class="rituals" id="rituals">
+<section class="jn-list">
   <div class="wrap">
-    <h2 class="h2 center" style="max-width:620px;color:#A7C1B2;font-size:clamp(17px,2.1vw,32px);line-height:1.3;">Mushi transforms ordinary routines into meaningful rituals.</h2>
-  </div>
-  <div class="moment-carousel-wrap">
-    <button class="car-btn prev" onclick="scrollMoments(-1)" aria-label="Previous">←</button>
-    <div class="moment-carousel" id="momentCar">
-      <button class="moment-card"><img loading="lazy" src="ritual-present.jpg" alt="Morning coffee in soft window light"><div class="mc-overlay"><h4>Present</h4><span>→</span></div></button>
-      <button class="moment-card"><img loading="lazy" src="ritual-connected.jpg" alt="Friends sharing a picnic"><div class="mc-overlay"><h4>Connected</h4><span>→</span></div></button>
-      <button class="moment-card"><img loading="lazy" src="ritual-creative.jpg" alt="Hands covered in paint"><div class="mc-overlay"><h4>Creative</h4><span>→</span></div></button>
-      <button class="moment-card"><img loading="lazy" src="ritual-alive.jpg" alt="Festival crowd at sunset"><div class="mc-overlay"><h4>Alive</h4><span>→</span></div></button>
-    </div>
-    <button class="car-btn next" onclick="scrollMoments(1)" aria-label="Next">→</button>
+    <p class="jn-count" id="jnCount" aria-live="polite"></p>
+    <div id="jnRoot"></div>
+    <nav class="jn-pages" id="jnPages" aria-label="Pagination"></nav>
   </div>
 </section>
-
-<!-- ============ BENEFITS ============ -->
-<section class="benefits" id="benefits">
-  <div class="wrap">
-    <h2 class="h2 center" style="max-width:18ch;color:var(--apple-dark);">Everything you need. Nothing you don't.</h2>
-    <p class="body-copy center" style="margin-top:22px;text-align:center;color:#6b584a;">Premium, plant-based ingredients and a functional mushroom blend — crafted to support mind and body balance.</p>
-    <div class="ing-row">
-      <div class="ing"><div class="circle"><img src="icon-lab-tested.png" alt="Lab Tested"></div><p>Lab Tested</p></div>
-      <div class="ing"><div class="circle"><img src="icon-vegan.png" alt="Vegan"></div><p>Vegan</p></div>
-      <div class="ing"><div class="circle"><img src="icon-non-gmo.png" alt="Non GMO"></div><p>Non GMO</p></div>
-      <div class="ing"><div class="circle"><img src="icon-mct-oil.png" alt="MCT Oil"></div><p>MCT Oil</p></div>
-      <div class="ing"><div class="circle"><img src="icon-dosage.png" alt="5000mg"></div><p>5000mg</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ PARALLAX QUOTE ============ -->
-<section class="pq-outer" id="pqOuter">
-  <div class="pq-sticky">
-    <div class="pq-deco" style="top:12%;left:6%;color:var(--cherry-t1);" data-speed="-120"></div>
-    <div class="pq-deco" style="top:8%;right:10%;color:var(--apple-t1);" data-speed="90"></div>
-    <div class="pq-deco" style="top:44%;left:12%;color:var(--peach);" data-speed="60"></div>
-    <div class="pq-deco" style="top:52%;right:5%;color:var(--sage);" data-speed="-80"></div>
-    <div class="pq-deco" style="bottom:10%;left:8%;color:var(--peach-t1);" data-speed="110"></div>
-    <div class="pq-deco" style="bottom:14%;right:14%;color:var(--cherry);" data-speed="-60"></div>
-    <div class="pq-content" id="pqContent">
-      <p class="pq-quote">"These little gummies turned my Sunday reset into the best part of my week."</p>
-      <p class="pq-attr">Maya R. <span>· Verified Mushi lover</span></p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ CLIENT RAVES ============ -->
-<section>
-  <div class="wrap">
-    <h2 class="h2 center" style="color:var(--cherry-dark);">Client Raves</h2>
-    <div class="rave-grid">
-      <div class="rave-card rv-peach">
-        <div class="rave-body">
-          <span class="stars">★ ★ ★ ★ ★</span>
-          <h4>My golden hour, on demand</h4>
-          <p>Split a pack with friends at a rooftop dinner and the whole night just glowed. Juicy peach, zero heaviness.</p>
-          <p class="who">Jordan M.</p>
-        </div>
-        <a class="rave-prod" href="https://mushiworld.com/products/peach-bliss" target="_blank" rel="noopener">
-          <img loading="lazy" src="https://mushiworld.com/cdn/shop/files/1-4_0004.png?width=300" alt="Peach Bliss">
-          <div><h5>Peach Bliss</h5><p>Infused Gummies · $45.00</p></div>
-        </a>
-      </div>
-      <div class="rave-card rv-apple">
-        <div class="rave-body">
-          <span class="stars">★ ★ ★ ★ ★</span>
-          <h4>Bedtime finally feels easy</h4>
-          <p>One tart little apple gummy with my evening tea and my mind actually clocks out. Best sleep ritual I've found.</p>
-          <p class="who">Priya S.</p>
-        </div>
-        <a class="rave-prod" href="https://mushiworld.com/products/green-apple" target="_blank" rel="noopener">
-          <img loading="lazy" src="https://mushiworld.com/cdn/shop/files/1-4_0008.png?width=300" alt="Green Apple">
-          <div><h5>Green Apple</h5><p>Infused Gummies · $45.00</p></div>
-        </a>
-      </div>
-      <div class="rave-card rv-cherry">
-        <div class="rave-body">
-          <span class="stars">★ ★ ★ ★ ★</span>
-          <h4>My sketchbook is full again</h4>
-          <p>A cherry gummy before studio time is my new rule. Rich flavor, and the ideas just keep arriving.</p>
-          <p class="who">Alex T.</p>
-        </div>
-        <a class="rave-prod" href="https://mushiworld.com/products/cherry" target="_blank" rel="noopener">
-          <img loading="lazy" src="https://mushiworld.com/cdn/shop/files/1-4_0012.png?width=300" alt="Cherry">
-          <div><h5>Cherry</h5><p>Infused Gummies · $45.00</p></div>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ JOURNAL ============ -->
-<section id="learn" style="padding-top:0;">
-  <div class="wrap">
-    <p class="eyebrow center" style="display:block;margin-bottom:22px;color:var(--peach-dark);">Journal</p>
-    <h2 class="h2 center" style="color:var(--cherry-dark);">Feel-good reading</h2>
-    <div class="journal-grid">
-      <a class="article-card" href="journal-post.html?p=five-tiny-rituals-for-a-softer-morning">
-        <div class="jimg"><img loading="lazy" src="https://images.pexels.com/photos/37594900/pexels-photo-37594900/free-photo-of-cozy-reading-with-coffee-and-journal.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cozy reading with coffee and journal"></div>
-        <span class="eyebrow" style="color:var(--peach-dark);">Rituals</span>
-        <h4>Five tiny rituals for a softer morning</h4>
-        <p>Small, delicious ways to arrive in your day before the day arrives at you.</p>
-      </a>
-      <a class="article-card" href="journal-post.html?p=functional-mushrooms-minus-the-mystery">
-        <div class="jimg"><img loading="lazy" src="https://images.pexels.com/photos/34640260/pexels-photo-34640260/free-photo-of-cozy-vintage-setup-with-journal-and-candle.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Journal and candle"></div>
-        <span class="eyebrow" style="color:var(--apple);">The Science</span>
-        <h4>Functional mushrooms, minus the mystery</h4>
-        <p>What's actually in the blend, and why your mind and body will thank you.</p>
-      </a>
-      <a class="article-card" href="journal-post.html?p=the-art-of-savoring">
-        <div class="jimg"><img loading="lazy" src="https://images.pexels.com/photos/38450054/pexels-photo-38450054/free-photo-of-cozy-window-view-with-open-book-at-sunset.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Open book at sunset window"></div>
-        <span class="eyebrow" style="color:var(--cherry);">Moments</span>
-        <h4>The art of savoring (it's easier than you think)</h4>
-        <p>Presence isn't a practice you master — it's a moment you taste.</p>
-      </a>
-    </div>
-    <p style="text-align:center;margin-top:44px;"><a class="btn" href="journal.html">Read the Journal</a></p>
-  </div>
-</section>
-
-<!-- ============ INSTAGRAM ============ -->
-<section class="ig">
-  <div class="wrap">
-    <p class="eyebrow center" style="display:block;margin-bottom:22px;color:var(--peach-dark);">@taste.mushi</p>
-    <h2 class="h2 center" style="max-width:20ch;color:var(--cherry-dark);">Tag Us &amp; Show Us How You Mushi</h2>
-    <!-- FPO: six placeholder posts, repeated once, until the real Instagram feed is wired in -->
-    <div class="ig-car">
-      <button class="ig-arrow ig-prev" type="button" id="igPrev" aria-label="Previous posts"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4L7 12l8 8"/></svg></button>
-      <div class="ig-grid" id="igTrack" aria-label="Instagram posts">
-        <a class="ig-tile" href="https://www.instagram.com/taste.mushi" target="_blank" rel="noopener"><img loading="lazy" src="https://mushiworld.com/cdn/shop/files/1-4_pastelBG_0001.png?width=500" alt="Peach Bliss pack"></a>
-        <a class="ig-tile" href="https://www.instagram.com/taste.mushi" target="_blank" rel="noopener"><img loading="lazy" src="https://images.pexels.com/photos/10071290/pexels-photo-10071290.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Picnic moment"></a>
-        <a class="ig-tile" href="https://www.instagram.com/taste.mushi" target="_blank" rel="noopener"><img loading="lazy" src="https://images.pexels.com/photos/14267300/pexels-photo-14267300.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Festival lights"></a>
-        <a class="ig-tile" href="https://www.instagram.com/taste.mushi" target="_blank" rel="noopener"><img loading="lazy" src="https://mushiworld.com/cdn/shop/files/1-4_pastelBG_0005.png?width=500" alt="Green Apple pack"></a>
-        <a class="ig-tile" href="https://www.instagram.com/taste.mushi" target="_blank" rel="noopener"><img loading="lazy" src="https://images.pexels.com/photos/5033988/pexels-photo-5033988.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Painting hands"></a>
-        <a class="ig-tile" href="https://www.instagram.com/taste.mushi" target="_blank" rel="noopener"><img loading="lazy" src="https://mushiworld.com/cdn/shop/files/1-4_pastelBG_0009.png?width=500" alt="Cherry pack"></a>
-        <a class="ig-tile" href="https://www.instagram.com/taste.mushi" target="_blank" rel="noopener"><img loading="lazy" src="https://mushiworld.com/cdn/shop/files/1-4_pastelBG_0005.png?width=500" alt="Green Apple pack"></a>
-        <a class="ig-tile" href="https://www.instagram.com/taste.mushi" target="_blank" rel="noopener"><img loading="lazy" src="https://images.pexels.com/photos/5033988/pexels-photo-5033988.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Painting hands"></a>
-        <a class="ig-tile" href="https://www.instagram.com/taste.mushi" target="_blank" rel="noopener"><img loading="lazy" src="https://mushiworld.com/cdn/shop/files/1-4_pastelBG_0009.png?width=500" alt="Cherry pack"></a>
-        <a class="ig-tile" href="https://www.instagram.com/taste.mushi" target="_blank" rel="noopener"><img loading="lazy" src="https://mushiworld.com/cdn/shop/files/1-4_pastelBG_0001.png?width=500" alt="Peach Bliss pack"></a>
-        <a class="ig-tile" href="https://www.instagram.com/taste.mushi" target="_blank" rel="noopener"><img loading="lazy" src="https://images.pexels.com/photos/10071290/pexels-photo-10071290.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Picnic moment"></a>
-        <a class="ig-tile" href="https://www.instagram.com/taste.mushi" target="_blank" rel="noopener"><img loading="lazy" src="https://images.pexels.com/photos/14267300/pexels-photo-14267300.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Festival lights"></a>
-      </div>
-      <button class="ig-arrow ig-next" type="button" id="igNext" aria-label="Next posts"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4l8 8-8 8"/></svg></button>
-    </div>
-    <a class="ig-handle" href="https://www.instagram.com/taste.mushi" target="_blank" rel="noopener">Follow @taste.mushi →</a>
-  </div>
-</section>
-
-<!-- ============ NEWSLETTER ============ -->
-<section class="newsletter">
-  <div class="wrap">
-    <div class="newsletter-box">
-      <h3 class="h3" style="color:var(--cherry-dark);">Join the Feel-Good Club</h3>
-      <p class="body-copy" style="text-align:center;color:#6b584a;">First dibs on new flavors, rituals worth stealing, and 10% off your first order.</p>
-      <div class="signup"><input placeholder="Email address"><button>Sign Up</button></div>
-    </div>
-  </div>
-</section>
-
 </main>
 
 <!-- ============ FOOTER ============ -->
@@ -748,85 +633,166 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
 </footer>
 
 <script>
+  // ---------- product carousel ----------
+  var carPage = 0;
+  function carPerView(){ return window.innerWidth <= 900 ? 1 : 3; }
+  function carPages(){
+    var cards = document.querySelectorAll('#carTrack .buy-card').length;
+    return Math.max(1, Math.ceil(cards / carPerView()));
+  }
+  function carRender(){
+    var track = document.getElementById('carTrack');
+    var dots  = document.getElementById('carDots');
+    if(!track || !dots) return;
+    var pages = carPages();
+    if(carPage > pages - 1) carPage = pages - 1;
+    if(carPage < 0) carPage = 0;
+
+    // translate by the actual pixel offset of the first card on this page
+    var cards = track.querySelectorAll('.buy-card');
+    var firstIdx = carPage * carPerView();
+    var target = cards[Math.min(firstIdx, cards.length - 1)];
+    var shift = target ? (target.offsetLeft - cards[0].offsetLeft) : 0;
+    track.style.transform = 'translateX(' + (-shift) + 'px)';
+
+    dots.innerHTML = '';
+    for(var i = 0; i < pages; i++){
+      (function(i){
+        var b = document.createElement('button');
+        b.className = (i === carPage ? 'on' : '');
+        b.setAttribute('aria-label', 'Go to product page ' + (i + 1));
+        b.onclick = function(){ carPage = i; carRender(); };
+        dots.appendChild(b);
+      })(i);
+    }
+    var prev = document.querySelector('.ca-prev');
+    var next = document.querySelector('.ca-next');
+    if(prev) prev.disabled = (carPage === 0);
+    if(next) next.disabled = (carPage === pages - 1);
+  }
+  function carGo(dir){ carPage += dir; carRender(); }
+  window.addEventListener('resize', carRender);
+  window.addEventListener('load', carRender);
+  carRender();
+
   // announcement ticker
   (function(){
     var t=document.getElementById('tickerTrack');
     var item='<span>FREE SHIPPING OVER $100 <svg viewBox="0 0 100 100"><use href="#deco-flower"/></svg></span>';
     t.innerHTML=item.repeat(24);
   })();
-
-  // hero slider — 6s auto
-  var slides=document.querySelectorAll('.hero .slide');
-  var dots=document.querySelectorAll('.hero-dots button');
-  var cur=0, timer;
-  function goSlide(i){
-    cur=i;
-    slides.forEach(function(s,j){s.classList.toggle('on',j===i);});
-    dots.forEach(function(d,j){d.classList.toggle('on',j===i);});
-    restart();
-  }
-  function next(){goSlide((cur+1)%slides.length);}
-  function restart(){clearInterval(timer);timer=setInterval(next,10000);}
-  restart();
-
-  // products toggle
-  function toggleProducts(type){
-    document.getElementById('gridGummies').style.display = type==='gummies' ? 'grid' : 'none';
-    document.getElementById('gridChocolates').style.display = type==='chocolates' ? 'grid' : 'none';
-    document.getElementById('segGummies').classList.toggle('on', type==='gummies');
-    document.getElementById('segChocolates').classList.toggle('on', type==='chocolates');
-  }
-
-  // instagram carousel: one tile per click, arrows disable at the ends
-  (function(){
-    var track=document.getElementById('igTrack');
-    if(!track) return;
-    var prev=document.getElementById('igPrev'), next=document.getElementById('igNext');
-    function step(){ var t=track.querySelector('.ig-tile'); return t.offsetWidth+14; }
-    function sync(){
-      prev.disabled = track.scrollLeft<=2;
-      next.disabled = track.scrollLeft+track.clientWidth>=track.scrollWidth-2;
-    }
-    prev.addEventListener('click',function(){ track.scrollBy({left:-step(),behavior:'smooth'}); });
-    next.addEventListener('click',function(){ track.scrollBy({left: step(),behavior:'smooth'}); });
-    track.addEventListener('scroll',sync,{passive:true});
-    window.addEventListener('resize',sync);
-    sync();
-  })();
-
-  // rituals carousel
-  function scrollMoments(dir){
-    var car=document.getElementById('momentCar');
-    var card=car.querySelector('.moment-card');
-    car.scrollBy({left:dir*(card.offsetWidth+22),behavior:'smooth'});
-  }
-
-  // parallax quote
-  var pqOuter=document.getElementById('pqOuter');
-  (function(){
-    var shapes=['deco-flower','deco-leaf2','deco-leaf3'];
-    pqOuter.querySelectorAll('.pq-deco').forEach(function(d){
-      var s=shapes[Math.floor(Math.random()*shapes.length)];
-      var size=80+Math.round(Math.random()*90);
-      d.innerHTML='<svg viewBox="0 0 180 190"><use href="#'+s+'"/></svg>';
-      d.style.width=size+'px';
-      d.style.rotate=Math.round(Math.random()*360)+'deg';
-      d.style.marginLeft=(Math.round(Math.random()*60)-30)+'px';
-    });
-  })();
-  window.addEventListener('scroll',function(){
-    var rect=pqOuter.getBoundingClientRect();
-    var vh=window.innerHeight;
-    var p=Math.min(1,Math.max(0,-rect.top/(rect.height-vh)));
-    var t=Math.min(1,p/0.4);
-    var c=document.getElementById('pqContent');
-    c.style.opacity=t;
-    c.style.transform='scale('+(0.92+0.08*t)+') translateY('+(30*(1-t))+'px)';
-    pqOuter.querySelectorAll('.pq-deco').forEach(function(d){
-      d.style.transform='translateY('+((p-0.5)*parseFloat(d.dataset.speed))+'px)';
-    });
-  },{passive:true});
 </script>
 
+<script>
+  var JOURNAL = [{"slug":"five-tiny-rituals-for-a-softer-morning","cat":"rituals","catLabel":"Rituals","tone":"peach","topic":"Present","date":"2026-08-28","read":4,"title":"Five tiny rituals for a softer morning","excerpt":"Small, delicious ways to arrive in your day before the day arrives at you.","hero":"https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1600&q=72&auto=format&fit=crop","card":"https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=900&q=72&auto=format&fit=crop","thumb":"https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&q=72&auto=format&fit=crop","heroAlt":"Morning coffee and an open notebook","body":[["p","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."],["p","Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."],["img","https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1400&q=72&auto=format&fit=crop","A quiet desk in morning light"],["h2","Lorem ipsum dolor sit amet"],["p","Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."],["p","Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet."],["quote","Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus."],["h2","Consectetur adipiscing elit"],["p","At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident."],["p","Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio."],["h2","Sed do eiusmod tempor"],["p","Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus."],["p","Ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur."]]},{"slug":"functional-mushrooms-minus-the-mystery","cat":"science","catLabel":"Science","tone":"apple","topic":null,"date":"2026-08-24","read":6,"title":"Functional mushrooms, minus the mystery","excerpt":"What's actually in the blend, and why your mind and body will thank you.","hero":"https://images.unsplash.com/photo-1515023115689-589c33041d3c?w=1600&q=72&auto=format&fit=crop","card":"https://images.unsplash.com/photo-1515023115689-589c33041d3c?w=900&q=72&auto=format&fit=crop","thumb":"https://images.unsplash.com/photo-1515023115689-589c33041d3c?w=400&q=72&auto=format&fit=crop","heroAlt":"Mushrooms growing on a forest floor","body":[["p","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."],["p","Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."],["img","https://images.unsplash.com/photo-1576086213369-97a306d36557?w=1400&q=72&auto=format&fit=crop","Glassware in a lab"],["h2","Lorem ipsum dolor sit amet"],["p","Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."],["p","Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet."],["quote","Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus."],["h2","Consectetur adipiscing elit"],["p","At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident."],["p","Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio."],["h2","Sed do eiusmod tempor"],["p","Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus."],["p","Ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur."]]},{"slug":"the-art-of-savoring","cat":"moments","catLabel":"Moments","tone":"cherry","topic":null,"date":"2026-08-19","read":3,"title":"The art of savoring (it's easier than you think)","excerpt":"Presence isn't a practice you master — it's a moment you taste.","hero":"https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=1600&q=72&auto=format&fit=crop","card":"https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=900&q=72&auto=format&fit=crop","thumb":"https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=400&q=72&auto=format&fit=crop","heroAlt":"Hands wrapped around a warm mug","body":[["p","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."],["p","Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."],["img","https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1400&q=72&auto=format&fit=crop","Sunlight through a forest"],["h2","Lorem ipsum dolor sit amet"],["p","Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."],["p","Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet."],["quote","Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus."],["h2","Consectetur adipiscing elit"],["p","At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident."],["p","Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio."],["h2","Sed do eiusmod tempor"],["p","Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus."],["p","Ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur."]]},{"slug":"how-to-host-a-slow-dinner","cat":"rituals","catLabel":"Rituals","tone":"peach","topic":"Connected","date":"2026-08-14","read":5,"title":"How to host a slow dinner","excerpt":"Fewer courses, longer conversations. A loose template for a night that lingers.","hero":"https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=1600&q=72&auto=format&fit=crop","card":"https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=900&q=72&auto=format&fit=crop","thumb":"https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=400&q=72&auto=format&fit=crop","heroAlt":"Friends sharing a long table dinner","body":[["p","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."],["p","Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."],["img","https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=1400&q=72&auto=format&fit=crop","A picnic spread on a blanket"],["h2","Lorem ipsum dolor sit amet"],["p","Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."],["p","Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet."],["quote","Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus."],["h2","Consectetur adipiscing elit"],["p","At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident."],["p","Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio."],["h2","Sed do eiusmod tempor"],["p","Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus."],["p","Ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur."]]},{"slug":"peach-bliss-a-flavor-story","cat":"products","catLabel":"Products","tone":"peach-dark","topic":null,"date":"2026-08-09","read":3,"title":"Peach Bliss: a flavor story","excerpt":"How our first flavor came together, and why it still sets the tone.","hero":"https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?w=1600&q=72&auto=format&fit=crop","card":"https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?w=900&q=72&auto=format&fit=crop","thumb":"https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?w=400&q=72&auto=format&fit=crop","heroAlt":"Fresh peaches on a wooden board","body":[["p","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."],["p","Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."],["img","https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=1400&q=72&auto=format&fit=crop","Ripe peaches close up"],["h2","Lorem ipsum dolor sit amet"],["p","Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."],["p","Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet."],["quote","Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus."],["h2","Consectetur adipiscing elit"],["p","At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident."],["p","Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio."],["h2","Sed do eiusmod tempor"],["p","Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus."],["p","Ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur."]]},{"slug":"mushi-at-the-playa","cat":"events","catLabel":"Events","tone":"cherry-dark","topic":null,"date":"2026-08-04","read":4,"title":"Mushi at the playa: notes from the dust","excerpt":"What we learned bringing feel-good rituals to a city that only exists for a week.","hero":"https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1600&q=72&auto=format&fit=crop","card":"https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=900&q=72&auto=format&fit=crop","thumb":"https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=400&q=72&auto=format&fit=crop","heroAlt":"A crowd under festival lights at dusk","body":[["p","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."],["p","Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."],["img","https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=1400&q=72&auto=format&fit=crop","Hands raised at an outdoor show"],["h2","Lorem ipsum dolor sit amet"],["p","Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."],["p","Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet."],["quote","Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus."],["h2","Consectetur adipiscing elit"],["p","At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident."],["p","Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio."],["h2","Sed do eiusmod tempor"],["p","Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus."],["p","Ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur."]]},{"slug":"a-beginners-guide-to-creative-blocks","cat":"rituals","catLabel":"Rituals","tone":"peach","topic":"Creative","date":"2026-07-30","read":5,"title":"A beginner's guide to creative blocks","excerpt":"Ideas don't run out. Attention does. Three ways to get it back.","hero":"https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=1600&q=72&auto=format&fit=crop","card":"https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=900&q=72&auto=format&fit=crop","thumb":"https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=400&q=72&auto=format&fit=crop","heroAlt":"Paint-covered hands at work","body":[["p","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."],["p","Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."],["img","https://images.unsplash.com/photo-1513694203232-719a280e022f?w=1400&q=72&auto=format&fit=crop","A sketchbook and pencils"],["h2","Lorem ipsum dolor sit amet"],["p","Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."],["p","Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet."],["quote","Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus."],["h2","Consectetur adipiscing elit"],["p","At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident."],["p","Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio."],["h2","Sed do eiusmod tempor"],["p","Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus."],["p","Ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur."]]},{"slug":"why-your-body-loves-a-walk","cat":"rituals","catLabel":"Rituals","tone":"peach","topic":"Alive","date":"2026-07-25","read":4,"title":"Why your body loves a walk (and your brain does too)","excerpt":"The most underrated ritual there is, and how to make it stick.","hero":"https://images.unsplash.com/photo-1508672019048-805c876b67e2?w=1600&q=72&auto=format&fit=crop","card":"https://images.unsplash.com/photo-1508672019048-805c876b67e2?w=900&q=72&auto=format&fit=crop","thumb":"https://images.unsplash.com/photo-1508672019048-805c876b67e2?w=400&q=72&auto=format&fit=crop","heroAlt":"A hiker on a ridge trail","body":[["p","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."],["p","Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."],["img","https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1400&q=72&auto=format&fit=crop","A path through tall trees"],["h2","Lorem ipsum dolor sit amet"],["p","Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."],["p","Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet."],["quote","Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus."],["h2","Consectetur adipiscing elit"],["p","At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident."],["p","Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio."],["h2","Sed do eiusmod tempor"],["p","Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus."],["p","Ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur."]]},{"slug":"what-lab-tested-actually-means","cat":"science","catLabel":"Science","tone":"apple","topic":null,"date":"2026-07-20","read":6,"title":"What “lab tested” actually means","excerpt":"A plain-language walk through the certificate that ships with every batch.","hero":"https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=1600&q=72&auto=format&fit=crop","card":"https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=900&q=72&auto=format&fit=crop","thumb":"https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=400&q=72&auto=format&fit=crop","heroAlt":"Pipettes and sample tubes","body":[["p","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."],["p","Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."],["img","https://images.unsplash.com/photo-1518005020951-eccb494ad742?w=1400&q=72&auto=format&fit=crop","Beakers on a lab bench"],["h2","Lorem ipsum dolor sit amet"],["p","Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."],["p","Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet."],["quote","Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus."],["h2","Consectetur adipiscing elit"],["p","At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident."],["p","Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio."],["h2","Sed do eiusmod tempor"],["p","Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus."],["p","Ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur."]]},{"slug":"the-two-person-picnic","cat":"moments","catLabel":"Moments","tone":"cherry","topic":null,"date":"2026-07-15","read":3,"title":"The two-person picnic","excerpt":"No agenda, one blanket, and the whole afternoon. A moment worth protecting.","hero":"https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1600&q=72&auto=format&fit=crop","card":"https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=900&q=72&auto=format&fit=crop","thumb":"https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=400&q=72&auto=format&fit=crop","heroAlt":"Two friends laughing outdoors","body":[["p","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."],["p","Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."],["img","https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=1400&q=72&auto=format&fit=crop","Friends on a hillside at golden hour"],["h2","Lorem ipsum dolor sit amet"],["p","Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."],["p","Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet."],["quote","Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus."],["h2","Consectetur adipiscing elit"],["p","At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident."],["p","Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio."],["h2","Sed do eiusmod tempor"],["p","Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus."],["p","Ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur."]]},{"slug":"meet-the-chocolates","cat":"products","catLabel":"Products","tone":"peach-dark","topic":null,"date":"2026-07-10","read":4,"title":"Meet the chocolates","excerpt":"Milk, dark, and berry dark. Same idea, slower pace.","hero":"https://images.unsplash.com/photo-1511381939415-e44015466834?w=1600&q=72&auto=format&fit=crop","card":"https://images.unsplash.com/photo-1511381939415-e44015466834?w=900&q=72&auto=format&fit=crop","thumb":"https://images.unsplash.com/photo-1511381939415-e44015466834?w=400&q=72&auto=format&fit=crop","heroAlt":"Squares of dark chocolate","body":[["p","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."],["p","Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."],["img","https://images.unsplash.com/photo-1481391319762-47dff72954d9?w=1400&q=72&auto=format&fit=crop","A chocolate bar being broken"],["h2","Lorem ipsum dolor sit amet"],["p","Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."],["p","Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet."],["quote","Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus."],["h2","Consectetur adipiscing elit"],["p","At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident."],["p","Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio."],["h2","Sed do eiusmod tempor"],["p","Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus."],["p","Ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur."]]},{"slug":"a-ritual-for-sunday-evenings","cat":"rituals","catLabel":"Rituals","tone":"peach","topic":"Present","date":"2026-07-05","read":4,"title":"A ritual for Sunday evenings","excerpt":"Close the week on purpose. A ten-minute practice for the night before Monday.","hero":"https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1600&q=72&auto=format&fit=crop","card":"https://images.unsplash.com/photo-1519681393784-d120267933ba?w=900&q=72&auto=format&fit=crop","thumb":"https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400&q=72&auto=format&fit=crop","heroAlt":"Mountains under an evening sky","body":[["p","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."],["p","Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."],["img","https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1400&q=72&auto=format&fit=crop","A misty valley at dusk"],["h2","Lorem ipsum dolor sit amet"],["p","Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."],["p","Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet."],["quote","Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus."],["h2","Consectetur adipiscing elit"],["p","At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident."],["p","Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio."],["h2","Sed do eiusmod tempor"],["p","Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus."],["p","Ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur."]]},{"slug":"summer-pop-up-recap","cat":"events","catLabel":"Events","tone":"cherry-dark","topic":null,"date":"2026-06-30","read":3,"title":"Summer pop-up recap","excerpt":"Three cities, one very sticky table. Thank you for coming out.","hero":"https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=1600&q=72&auto=format&fit=crop","card":"https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=900&q=72&auto=format&fit=crop","thumb":"https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=400&q=72&auto=format&fit=crop","heroAlt":"A crowd at an evening event","body":[["p","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."],["p","Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."],["img","https://images.unsplash.com/photo-1513151233558-d860c5398176?w=1400&q=72&auto=format&fit=crop","Confetti in the air"],["h2","Lorem ipsum dolor sit amet"],["p","Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."],["p","Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet."],["quote","Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus."],["h2","Consectetur adipiscing elit"],["p","At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident."],["p","Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio."],["h2","Sed do eiusmod tempor"],["p","Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus."],["p","Ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur."]]},{"slug":"calling-a-friend-you-havent-called","cat":"rituals","catLabel":"Rituals","tone":"peach","topic":"Connected","date":"2026-06-25","read":3,"title":"Calling a friend you haven't called","excerpt":"It's never as awkward as you think. A tiny ritual for staying close.","hero":"https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=1600&q=72&auto=format&fit=crop","card":"https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=900&q=72&auto=format&fit=crop","thumb":"https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=400&q=72&auto=format&fit=crop","heroAlt":"Two friends laughing together","body":[["p","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."],["p","Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."],["img","https://images.unsplash.com/photo-1517841905240-472988babdf9?w=1400&q=72&auto=format&fit=crop","A woman smiling in warm light"],["h2","Lorem ipsum dolor sit amet"],["p","Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."],["p","Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet."],["quote","Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus."],["h2","Consectetur adipiscing elit"],["p","At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident."],["p","Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio."],["h2","Sed do eiusmod tempor"],["p","Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus."],["p","Ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur."]]},{"slug":"the-science-of-slowing-down","cat":"science","catLabel":"Science","tone":"apple","topic":null,"date":"2026-06-20","read":7,"title":"The science of slowing down","excerpt":"What research says about attention, rest and the value of doing one thing at a time.","hero":"https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=1600&q=72&auto=format&fit=crop","card":"https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=900&q=72&auto=format&fit=crop","thumb":"https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=400&q=72&auto=format&fit=crop","heroAlt":"A yoga pose at sunrise","body":[["p","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."],["p","Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."],["img","https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1400&q=72&auto=format&fit=crop","Stretching on a mat outdoors"],["h2","Lorem ipsum dolor sit amet"],["p","Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."],["p","Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet."],["quote","Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus."],["h2","Consectetur adipiscing elit"],["p","At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident."],["p","Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio."],["h2","Sed do eiusmod tempor"],["p","Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus."],["p","Ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur."]]},{"slug":"make-something-with-your-hands","cat":"rituals","catLabel":"Rituals","tone":"peach","topic":"Creative","date":"2026-06-15","read":4,"title":"Make something with your hands","excerpt":"Clay, bread, a bad painting. Why the outcome is the least important part.","hero":"https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=1600&q=72&auto=format&fit=crop","card":"https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=900&q=72&auto=format&fit=crop","thumb":"https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=400&q=72&auto=format&fit=crop","heroAlt":"Brushes and paint on a table","body":[["p","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."],["p","Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."],["img","https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1400&q=72&auto=format&fit=crop","Hands working at a desk"],["h2","Lorem ipsum dolor sit amet"],["p","Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."],["p","Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet."],["quote","Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus."],["h2","Consectetur adipiscing elit"],["p","At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident."],["p","Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio."],["h2","Sed do eiusmod tempor"],["p","Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus."],["p","Ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur."]]}];
+  var PAGE_SIZE = 9;
+  var CATS = [["rituals","Rituals"],["moments","Moments"],["science","Science"],["products","Products"],["events","Events"]];
+  var TOPICS = ["Present","Connected","Creative","Alive"];
+
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function fmtDate(iso){ var d = iso.split('-'); return MONTHS[+d[1]-1] + ' ' + (+d[2]) + ', ' + d[0]; }
+  function metaHTML(p){
+    var cat = '<span class="jn-cat jt-' + p.tone + '">' + esc(p.catLabel) + (p.topic ? ' <i>&middot; ' + esc(p.topic) + '</i>' : '') + '</span>';
+    return '<div class="jn-meta">' + cat + '<span class="sep"></span><time datetime="' + p.date + '">' + fmtDate(p.date) + '</time>' +
+           '<span class="sep"></span><span>' + p.read + ' min read</span></div>';
+  }
+  function postURL(p){ return 'journal-post.html?p=' + encodeURIComponent(p.slug); }
+
+  // Same card renderers as the journal index, but the set is pinned to Rituals
+  // and the only filter is the topic (Present / Connected / Creative / Alive).
+  var root = document.getElementById('jnRoot');
+  var pagesEl = document.getElementById('jnPages');
+  var countEl = document.getElementById('jnCount');
+  var POOL = JOURNAL.filter(function(p){ return p.cat === 'rituals'; });
+  var state = { topic: null, page: 1 };
+
+  (function(){
+    var q = new URLSearchParams(location.search);
+    var t = q.get('topic');
+    if (t) TOPICS.forEach(function(x){ if (x.toLowerCase() === t.toLowerCase()) state.topic = x; });
+    var pg = parseInt(q.get('page'), 10); if (pg > 1) state.page = pg;
+  })();
+
+  function filtered(){
+    return POOL.filter(function(p){ return !state.topic || p.topic === state.topic; });
+  }
+  function syncURL(){
+    var q = new URLSearchParams();
+    if (state.topic) q.set('topic', state.topic.toLowerCase());
+    if (state.page > 1) q.set('page', state.page);
+    var s = q.toString();
+    history.replaceState(null, '', location.pathname + (s ? '?' + s : ''));
+  }
+
+  function featHTML(p){
+    return '<a class="jn-feat" href="' + postURL(p) + '">' +
+      '<img src="' + p.card + '" alt="' + esc(p.heroAlt) + '">' +
+      '<div class="jn-body">' + metaHTML(p) + '<h2>' + esc(p.title) + '</h2><p>' + esc(p.excerpt) + '</p>' +
+      '<span class="jn-more">Read more</span></div></a>';
+  }
+  function rowHTML(p){
+    return '<a class="jn-row" href="' + postURL(p) + '">' +
+      '<div class="jn-img"><img loading="lazy" src="' + p.thumb + '" alt="' + esc(p.heroAlt) + '"></div>' +
+      '<div>' + metaHTML(p) + '<h3>' + esc(p.title) + '</h3><p>' + esc(p.excerpt) + '</p><span class="jn-more">Read more</span></div></a>';
+  }
+  function cardHTML(p){
+    return '<a class="jn-card" href="' + postURL(p) + '">' +
+      '<div class="jn-img"><img loading="lazy" src="' + p.card + '" alt="' + esc(p.heroAlt) + '"></div>' +
+      metaHTML(p) + '<h3>' + esc(p.title) + '</h3><p>' + esc(p.excerpt) + '</p><span class="jn-more">Read more</span></a>';
+  }
+
+  function render(){
+    var list = filtered();
+    var pages = Math.max(1, Math.ceil(list.length / PAGE_SIZE));
+    if (state.page > pages) state.page = pages;
+    var start = (state.page - 1) * PAGE_SIZE;
+    var slice = list.slice(start, start + PAGE_SIZE);
+
+    countEl.textContent = list.length + (list.length === 1 ? ' ritual' : ' rituals') + ' — ' + (state.topic || 'All topics');
+
+    if (!slice.length){
+      root.innerHTML = '<p class="jn-empty">Nothing here yet. Check back soon.</p>';
+    } else {
+      // editorial layout needs three posts to fill it; a thin topic falls back to the grid
+      var html = '';
+      if (state.page === 1 && slice.length >= 3){
+        var top = slice.slice(0, 3), rest = slice.slice(3);
+        html += '<div class="jn-top">' + featHTML(top[0]) +
+                '<div class="jn-side">' + top.slice(1).map(rowHTML).join('') + '</div></div>';
+        if (rest.length) html += '<div class="jn-grid">' + rest.map(cardHTML).join('') + '</div>';
+      } else {
+        html = '<div class="jn-grid">' + slice.map(cardHTML).join('') + '</div>';
+      }
+      root.innerHTML = html;
+    }
+
+    var ph = '';
+    if (pages > 1){
+      ph += '<button type="button" data-page="' + (state.page - 1) + '" aria-label="Previous page"' + (state.page === 1 ? ' disabled' : '') + '>&larr;</button>';
+      for (var i = 1; i <= pages; i++){
+        ph += '<button type="button" data-page="' + i + '"' + (i === state.page ? ' class="on" aria-current="page"' : '') + '>' + i + '</button>';
+      }
+      ph += '<button type="button" data-page="' + (state.page + 1) + '"' + (state.page === pages ? ' disabled' : '') + '>Next</button>';
+    }
+    pagesEl.innerHTML = ph;
+
+    document.querySelectorAll('.rt-filters button').forEach(function(b){
+      b.classList.toggle('on', (b.dataset.topic || null) === state.topic);
+    });
+    syncURL();
+  }
+
+  document.querySelector('.rt-filters .jn-filters').addEventListener('click', function(e){
+    var b = e.target.closest('button'); if (!b) return;
+    state.topic = b.dataset.topic || null; state.page = 1; render();
+  });
+  pagesEl.addEventListener('click', function(e){
+    var b = e.target.closest('button[data-page]'); if (!b || b.disabled) return;
+    state.page = +b.dataset.page; render();
+    window.scrollTo({ top: document.querySelector('.jn-list').offsetTop - 120, behavior: 'smooth' });
+  });
+  render();
+</script>
 </body>
 </html>
