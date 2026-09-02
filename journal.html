@@ -442,7 +442,9 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
 .rt-hero{
   position:relative;min-height:max(55vh,430px);display:flex;align-items:center;justify-content:center;
   padding:130px 0 50px;
-  background:url('rituals-hero.jpg') center/cover no-repeat fixed;
+  /* scroll, not fixed: with `fixed` the position is viewport-relative, so a short
+     hero band only ever shows the TOP of the photo and crops the figure off */
+  background:url('rituals-hero.jpg') center 78%/cover no-repeat scroll;
 }
 .rt-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(46,26,16,.18) 0%,rgba(46,26,16,.02) 40%,rgba(46,26,16,.55) 100%);}
 .rt-hero .rh-inner{position:relative;z-index:2;text-align:center;padding:0 24px;}
