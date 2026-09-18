@@ -14,7 +14,7 @@
   --peach-dark:#B23508; --peach:#F17847; --peach-t1:#F4B8A6; --peach-t2:#F1DDCC;
   --apple-dark:#384133; --apple:#397218; --apple-t1:#A1C669; --apple-t2:#DCE4D0;
   --sage:#A7C1B2; --cream:#FBF7F0; --ink:#2E1A10;
-  --btn:#E7BBA2; --btn-dark:#D79C7F; --prod-ink:#E3B296;
+  --btn:#E7BBA2; --btn-dark:#D79C7F; --prod-ink:#630B0B;
   --font-display:"Magnilo Display","PT Serif",Georgia,serif;
   --font-body:"PT Serif",Georgia,serif;
   --font-mono:"PT Mono",Menlo,monospace;
@@ -185,17 +185,21 @@ nav.floating .logo:hover .lv-green{animation:segC 1.2s steps(1,end) infinite;}
 .car-btn.prev{left:22px;}
 .car-btn.next{right:22px;}
 /* ---------- featured buy cards ---------- */
-.featured{background:var(--peach-t2);}
-.seg-toggle{
-  display:flex;width:max-content;margin:36px auto 0;background:#D9C0AC;border-radius:999px;padding:0;
-}
-.seg-toggle button{
-  padding:14px 34px;border:none;border-radius:999px;background:transparent;cursor:pointer;
-  font-family:var(--font-mono);font-weight:700;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#6b584a;
-  transition:.2s;
-}
-.seg-toggle button.on{background:#fff;color:var(--ink);box-shadow:0 2px 10px rgba(99,11,11,.15);}
+.featured{background:#FBF7F1;}
 .buy-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:56px;}
+.pcar{position:relative;margin-top:56px;}
+.pc-track{display:flex;gap:26px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:6px 2px 10px;scroll-behavior:smooth;}
+.pc-track::-webkit-scrollbar{display:none;}
+.pc-track .buy-card{flex:0 0 calc((100% - 52px)/3);scroll-snap-align:start;}
+.pc-arrow{position:absolute;top:34%;transform:translateY(-50%);z-index:6;width:48px;height:48px;border-radius:50%;border:none;background:#fff;color:var(--cherry-dark);cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(99,11,11,.16);transition:.2s;}
+.pc-arrow svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.pc-arrow:hover{background:var(--cherry-dark);color:#fff;}
+.pc-arrow:disabled{opacity:.3;cursor:default;}
+.pc-prev{left:-22px;}
+.pc-next{right:-22px;}
+@media(max-width:900px){.pc-track .buy-card{flex:0 0 calc((100% - 26px)/2);}.pc-prev{left:2px;}.pc-next{right:2px;}}
+@media(max-width:600px){.pc-track .buy-card{flex:0 0 86%;}}
+
 .buy-card{
   background:transparent;border-radius:24px;padding:22px;display:flex;flex-direction:column;gap:14px;
   box-shadow:none;transition:transform .25s;
@@ -218,6 +222,11 @@ nav.floating .logo:hover .lv-green{animation:segC 1.2s steps(1,end) infinite;}
 .checks li{display:flex;align-items:center;gap:10px;font-size:14.5px;font-weight:700;color:#4a3a30;line-height:1.3;}
 .checks li::before{content:"";width:19px;height:19px;flex:0 0 auto;background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23F17847" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.6 2.6L16 9.5"/></svg>') center/contain no-repeat;}
 .buy-card .price-qty{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:6px;}
+.np{display:flex;align-items:baseline;justify-content:center;gap:14px;flex-wrap:wrap;}
+.buy-card .np h4,.buy-card .np .price{color:var(--prod-ink);}
+.buy-row{display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:6px;}
+.buy-row .btn{flex:1 1 auto;}
+
 .buy-card .price{font-family:var(--font-display);font-weight:700;font-size:22px;color:var(--prod-ink);}
 .bc-cherry .promo-tag{background:#A7C1B2;}
 .qty{
@@ -243,9 +252,9 @@ nav.floating .logo:hover .lv-green{animation:segC 1.2s steps(1,end) infinite;}
 .ing .circle img{width:59px;height:59px;display:block;margin:auto;object-fit:contain;}
 .ing p{font-family:var(--font-display);font-weight:700;font-size:15px;letter-spacing:.04em;color:var(--apple-dark);}
 /* ---------- parallax quote ---------- */
-.pq-outer{height:190vh;position:relative;padding:0;}
+.pq-outer{height:76vh;position:relative;padding:0;}
 .pq-sticky{
-  position:sticky;top:0;height:100vh;overflow:hidden;
+  position:sticky;top:0;height:40vh;min-height:320px;overflow:hidden;
   display:flex;align-items:center;justify-content:center;
   background:linear-gradient(115deg,#F2A2AC 0%,#F8DCC2 48%,#CFE0A4 100%);
 }
@@ -257,13 +266,13 @@ nav.floating .logo:hover .lv-green{animation:segC 1.2s steps(1,end) infinite;}
 .pq-deco svg{display:block;width:100%;height:auto;fill:currentColor;}
 /* ---------- client raves ---------- */
 .rave-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:56px;}
-.rave-card{border-radius:24px;overflow:hidden;display:flex;flex-direction:column;}
-.rave-card.rv-cherry{background:var(--cherry-t2);} .rave-card.rv-peach{background:var(--peach-t2);} .rave-card.rv-apple{background:var(--apple-t2);}
+.rave-card{border-radius:24px;overflow:hidden;display:flex;flex-direction:column;background:#fff;}
+.rave-card .rave-card .rave-card
 .rave-body{padding:32px;flex:1;}
 .rave-body h4{font-family:var(--font-display);font-weight:400;font-size:22px;line-height:1.15;margin-bottom:16px;}
-.rv-cherry h4{color:var(--cherry);} .rv-peach h4{color:var(--peach-dark);} .rv-apple h4{color:var(--apple);}
+.rv-cherry h4{color:var(--prod-ink);} .rv-peach h4{color:var(--prod-ink);} .rv-apple h4{color:var(--prod-ink);}
 .rave-body .stars{font-size:12px;letter-spacing:.25em;margin-bottom:14px;display:block;}
-.rv-cherry .stars{color:var(--cherry);} .rv-peach .stars{color:var(--peach-dark);} .rv-apple .stars{color:var(--apple);}
+.rv-cherry .stars{color:var(--prod-ink);} .rv-peach .stars{color:var(--prod-ink);} .rv-apple .stars{color:var(--prod-ink);}
 .rave-body p{font-family:var(--font-mono);font-size:13px;color:#4a3a30;line-height:1.65;}
 .rave-body .who{margin-top:20px;font-size:22px;letter-spacing:0;text-transform:none;font-family:var(--font-display);font-weight:400;color:#8F0909;}
 .rave-prod{
@@ -432,24 +441,36 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
 </section>
 
 <!-- ============ FEATURED — DIRECT ADD TO CART ============ -->
+<!-- ============ BENEFITS ============ -->
+<section class="benefits" id="benefits">
+  <div class="wrap">
+    <h2 class="h2 center" style="max-width:18ch;color:var(--apple-dark);">Everything you need. Nothing you don't.</h2>
+    <p class="body-copy center" style="margin-top:22px;text-align:center;color:#6b584a;">Premium, plant-based ingredients and a functional mushroom blend — crafted to support mind and body balance.</p>
+    <div class="ing-row">
+      <div class="ing"><div class="circle"><img src="icon-lab-tested.png" alt="Lab Tested"></div><p>Lab Tested</p></div>
+      <div class="ing"><div class="circle"><img src="icon-vegan.png" alt="Vegan"></div><p>Vegan</p></div>
+      <div class="ing"><div class="circle"><img src="icon-non-gmo.png" alt="Non GMO"></div><p>Non GMO</p></div>
+      <div class="ing"><div class="circle"><img src="icon-mct-oil.png" alt="MCT Oil"></div><p>MCT Oil</p></div>
+      <div class="ing"><div class="circle"><img src="icon-dosage.png" alt="5000mg"></div><p>5000mg</p></div>
+    </div>
+  </div>
+</section>
+
 <section class="featured" id="shop">
   <div class="wrap">
     <p class="eyebrow center" style="display:block;margin-bottom:22px;color:var(--peach-dark);">Our Products</p>
     <h2 class="h2 center" style="color:var(--cherry-dark);">Designed to Enhance Moments</h2>
 
-    <div class="seg-toggle">
-      <button id="segGummies" class="on" onclick="toggleProducts('gummies')">Gummies</button>
-      <button id="segChocolates" onclick="toggleProducts('chocolates')">Chocolates</button>
-    </div>
-
-    <div class="buy-grid" id="gridGummies">
+    <div class="pcar">
+      <button class="pc-arrow pc-prev" type="button" id="pcPrev" aria-label="Previous products"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4L7 12l8 8"/></svg></button>
+      <div class="pc-track" id="pcTrack">
       <div class="buy-card bc-peach">
         <a class="flip" href="product.html?p=peach-bliss" style="display:block">
           <img class="back" loading="lazy" src="peach-2.jpg" alt="Peach Bliss — back of pack">
           <img class="front" src="peach-1.jpg" alt="Peach Bliss — front of pack">
         </a>
         <p class="flavor">5000mg Infused Gummies</p>
-        <h4><a href="product.html?p=peach-bliss" style="color:inherit;text-decoration:none">Peach Bliss</a></h4>
+        <div class="np"><h4><a href="product.html?p=peach-bliss" style="color:inherit;text-decoration:none">Peach Bliss</a></h4><span class="price">$45.00</span></div>
         <p class="story">Juicy peach. Golden calm. Let the moment unfold.</p>
         <ul class="checks">
           <li>Vegan</li>
@@ -457,8 +478,7 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
           <li>MCT Oil</li>
           <li>Lab Tested</li>
         </ul>
-        <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
-        <a class="btn solid">Add to Cart</a>
+        <div class="buy-row"><div class="qty"><span>−</span><span>1</span><span>+</span></div><a class="btn solid">Add to Cart</a></div>
       </div>
 
       <div class="buy-card bc-apple">
@@ -467,7 +487,7 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
           <img class="front" src="green-apple-1.jpg" alt="Green Apple — front of pack">
         </a>
         <p class="flavor">5000mg Infused Gummies</p>
-        <h4><a href="product.html?p=green-apple" style="color:inherit;text-decoration:none">Green Apple</a></h4>
+        <div class="np"><h4><a href="product.html?p=green-apple" style="color:inherit;text-decoration:none">Green Apple</a></h4><span class="price">$45.00</span></div>
         <p class="story">Crisp, tart, and quietly dreamy. Ease into something sweeter.</p>
         <ul class="checks">
           <li>Vegan</li>
@@ -475,8 +495,7 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
           <li>MCT Oil</li>
           <li>Lab Tested</li>
         </ul>
-        <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
-        <a class="btn solid">Add to Cart</a>
+        <div class="buy-row"><div class="qty"><span>−</span><span>1</span><span>+</span></div><a class="btn solid">Add to Cart</a></div>
       </div>
 
       <div class="buy-card bc-cherry">
@@ -486,7 +505,7 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
           <img class="front" src="cherry-1.jpg" alt="Cherry — front of pack">
         </a>
         <p class="flavor">5000mg Infused Gummies</p>
-        <h4><a href="product.html?p=cherry" style="color:inherit;text-decoration:none">Cherry</a></h4>
+        <div class="np"><h4><a href="product.html?p=cherry" style="color:inherit;text-decoration:none">Cherry</a></h4><span class="price">$45.00</span></div>
         <p class="story">Bold cherry with a tart spark. A little bite, and ideas bloom.</p>
         <ul class="checks">
           <li>Vegan</li>
@@ -494,19 +513,16 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
           <li>MCT Oil</li>
           <li>Lab Tested</li>
         </ul>
-        <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
-        <a class="btn solid">Add to Cart</a>
+        <div class="buy-row"><div class="qty"><span>−</span><span>1</span><span>+</span></div><a class="btn solid">Add to Cart</a></div>
       </div>
-    </div>
-
-    <div class="buy-grid" id="gridChocolates" style="display:none;">
+    
       <div class="buy-card bc-milk">
         <a class="flip" href="product.html?p=milk-chocolate" style="display:block">
           <img class="back" loading="lazy" src="choco-milk-2.jpg" alt="Milk Chocolate — unboxed">
           <img class="front" src="choco-milk-1.jpg" alt="Milk Chocolate — box">
         </a>
         <p class="flavor">5000mg Infused Chocolates</p>
-        <h4><a href="product.html?p=milk-chocolate" style="color:inherit;text-decoration:none">Milk Chocolate</a></h4>
+        <div class="np"><h4><a href="product.html?p=milk-chocolate" style="color:inherit;text-decoration:none">Milk Chocolate</a></h4><span class="price">$45.00</span></div>
         <p class="story">Smooth, creamy, and quietly transformative. Savor a little or let the moment unfold.</p>
         <ul class="checks">
           <li>100% Belgium</li>
@@ -514,8 +530,7 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
           <li>No Palm Oil</li>
           <li>Lab Tested</li>
         </ul>
-        <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
-        <a class="btn solid">Add to Cart</a>
+        <div class="buy-row"><div class="qty"><span>−</span><span>1</span><span>+</span></div><a class="btn solid">Add to Cart</a></div>
       </div>
       <div class="buy-card bc-dark">
         <a class="flip" href="product.html?p=dark-chocolate" style="display:block">
@@ -523,7 +538,7 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
           <img class="front" src="choco-dark-1.jpg" alt="Dark Chocolate — box">
         </a>
         <p class="flavor">5000mg Infused Chocolates</p>
-        <h4><a href="product.html?p=dark-chocolate" style="color:inherit;text-decoration:none">Dark Chocolate</a></h4>
+        <div class="np"><h4><a href="product.html?p=dark-chocolate" style="color:inherit;text-decoration:none">Dark Chocolate</a></h4><span class="price">$45.00</span></div>
         <p class="story">Deep Belgian chocolate with something unexpected beneath the surface. Made for any mood.</p>
         <ul class="checks">
           <li>100% Belgium</li>
@@ -531,8 +546,7 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
           <li>No Palm Oil</li>
           <li>Lab Tested</li>
         </ul>
-        <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
-        <a class="btn solid">Add to Cart</a>
+        <div class="buy-row"><div class="qty"><span>−</span><span>1</span><span>+</span></div><a class="btn solid">Add to Cart</a></div>
       </div>
       <div class="buy-card bc-berry">
         <a class="flip" href="product.html?p=berry-dark-chocolate" style="display:block">
@@ -541,7 +555,7 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
           <img class="front" src="choco-berry-1.jpg" alt="Berry Dark Chocolate — box">
         </a>
         <p class="flavor">5000mg Infused Chocolates</p>
-        <h4><a href="product.html?p=berry-dark-chocolate" style="color:inherit;text-decoration:none">Berry Dark Chocolate</a></h4>
+        <div class="np"><h4><a href="product.html?p=berry-dark-chocolate" style="color:inherit;text-decoration:none">Berry Dark Chocolate</a></h4><span class="price">$45.00</span></div>
         <p class="story">Sweet berry flavor gives way to a creamy surprise, gentle at first, deeper as it unfolds.</p>
         <ul class="checks">
           <li>100% Belgium</li>
@@ -549,10 +563,12 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
           <li>Gluten Free</li>
           <li>Lab Tested</li>
         </ul>
-        <div class="price-qty"><span class="price">$45.00</span><div class="qty"><span>−</span><span>1</span><span>+</span></div></div>
-        <a class="btn solid">Add to Cart</a>
+        <div class="buy-row"><div class="qty"><span>−</span><span>1</span><span>+</span></div><a class="btn solid">Add to Cart</a></div>
       </div>
     </div>
+      <button class="pc-arrow pc-next" type="button" id="pcNext" aria-label="Next products"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4l8 8-8 8"/></svg></button>
+    </div>
+
 
   </div>
 </section>
@@ -574,20 +590,7 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
   </div>
 </section>
 
-<!-- ============ BENEFITS ============ -->
-<section class="benefits" id="benefits">
-  <div class="wrap">
-    <h2 class="h2 center" style="max-width:18ch;color:var(--apple-dark);">Everything you need. Nothing you don't.</h2>
-    <p class="body-copy center" style="margin-top:22px;text-align:center;color:#6b584a;">Premium, plant-based ingredients and a functional mushroom blend — crafted to support mind and body balance.</p>
-    <div class="ing-row">
-      <div class="ing"><div class="circle"><img src="icon-lab-tested.png" alt="Lab Tested"></div><p>Lab Tested</p></div>
-      <div class="ing"><div class="circle"><img src="icon-vegan.png" alt="Vegan"></div><p>Vegan</p></div>
-      <div class="ing"><div class="circle"><img src="icon-non-gmo.png" alt="Non GMO"></div><p>Non GMO</p></div>
-      <div class="ing"><div class="circle"><img src="icon-mct-oil.png" alt="MCT Oil"></div><p>MCT Oil</p></div>
-      <div class="ing"><div class="circle"><img src="icon-dosage.png" alt="5000mg"></div><p>5000mg</p></div>
-    </div>
-  </div>
-</section>
+
 
 <!-- ============ PARALLAX QUOTE ============ -->
 <section class="pq-outer" id="pqOuter">
@@ -619,7 +622,7 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
         </div>
         <a class="rave-prod" href="product.html?p=peach-bliss">
           <img loading="lazy" src="https://mushiworld.com/cdn/shop/files/1-4_0004.png?width=300" alt="Peach Bliss">
-          <div><h5>Peach Bliss</h5><p>Infused Gummies · $45.00</p></div>
+          <div><h5>Peach Bliss</h5><p>Infused Gummies</p></div>
         </a>
       </div>
       <div class="rave-card rv-apple">
@@ -631,7 +634,7 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
         </div>
         <a class="rave-prod" href="product.html?p=green-apple">
           <img loading="lazy" src="https://mushiworld.com/cdn/shop/files/1-4_0008.png?width=300" alt="Green Apple">
-          <div><h5>Green Apple</h5><p>Infused Gummies · $45.00</p></div>
+          <div><h5>Green Apple</h5><p>Infused Gummies</p></div>
         </a>
       </div>
       <div class="rave-card rv-cherry">
@@ -643,7 +646,7 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
         </div>
         <a class="rave-prod" href="product.html?p=cherry">
           <img loading="lazy" src="https://mushiworld.com/cdn/shop/files/1-4_0012.png?width=300" alt="Cherry">
-          <div><h5>Cherry</h5><p>Infused Gummies · $45.00</p></div>
+          <div><h5>Cherry</h5><p>Infused Gummies</p></div>
         </a>
       </div>
     </div>
@@ -658,24 +661,24 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
     <div class="journal-grid">
       <a class="article-card" href="journal-post.html?p=five-tiny-rituals-for-a-softer-morning">
         <div class="jimg"><img loading="lazy" src="https://images.pexels.com/photos/37594900/pexels-photo-37594900/free-photo-of-cozy-reading-with-coffee-and-journal.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cozy reading with coffee and journal"></div>
-        <span class="eyebrow" style="color:var(--peach-dark);">Rituals</span>
+        <span class="eyebrow" style="color:#2B1B12;">Rituals</span>
         <h4>Five tiny rituals for a softer morning</h4>
         <p>Small, delicious ways to arrive in your day before the day arrives at you.</p>
       </a>
       <a class="article-card" href="journal-post.html?p=functional-mushrooms-minus-the-mystery">
         <div class="jimg"><img loading="lazy" src="https://images.pexels.com/photos/34640260/pexels-photo-34640260/free-photo-of-cozy-vintage-setup-with-journal-and-candle.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Journal and candle"></div>
-        <span class="eyebrow" style="color:var(--apple);">The Science</span>
+        <span class="eyebrow" style="color:#2B1B12;">The Science</span>
         <h4>Functional mushrooms, minus the mystery</h4>
         <p>What's actually in the blend, and why your mind and body will thank you.</p>
       </a>
       <a class="article-card" href="journal-post.html?p=the-art-of-savoring">
         <div class="jimg"><img loading="lazy" src="https://images.pexels.com/photos/38450054/pexels-photo-38450054/free-photo-of-cozy-window-view-with-open-book-at-sunset.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Open book at sunset window"></div>
-        <span class="eyebrow" style="color:var(--cherry);">Moments</span>
+        <span class="eyebrow" style="color:#2B1B12;">Moments</span>
         <h4>The art of savoring (it's easier than you think)</h4>
         <p>Presence isn't a practice you master — it's a moment you taste.</p>
       </a>
     </div>
-    <p style="text-align:center;margin-top:44px;"><a class="btn" href="journal.html">Read the Journal</a></p>
+    <p style="text-align:center;margin-top:44px;"><a class="btn" href="journal.html">Read More Journal articles</a></p>
   </div>
 </section>
 
@@ -770,13 +773,6 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
   function restart(){clearInterval(timer);timer=setInterval(next,10000);}
   restart();
 
-  // products toggle
-  function toggleProducts(type){
-    document.getElementById('gridGummies').style.display = type==='gummies' ? 'grid' : 'none';
-    document.getElementById('gridChocolates').style.display = type==='chocolates' ? 'grid' : 'none';
-    document.getElementById('segGummies').classList.toggle('on', type==='gummies');
-    document.getElementById('segChocolates').classList.toggle('on', type==='chocolates');
-  }
 
   // instagram carousel: one tile per click, arrows disable at the ends
   (function(){
@@ -834,5 +830,24 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
   },{passive:true});
 </script>
 
+<script>
+/* Our Products carousel — one track for gummies + chocolates */
+(function(){
+  var track = document.getElementById('pcTrack');
+  if (!track) return;
+  var prev = document.getElementById('pcPrev'), next = document.getElementById('pcNext');
+  function step(){
+    var c = track.querySelector('.buy-card');
+    return c ? c.offsetWidth + 26 : track.clientWidth;
+  }
+  function sync(){
+    prev.disabled = track.scrollLeft < 4;
+    next.disabled = track.scrollLeft > track.scrollWidth - track.clientWidth - 4;
+  }
+  prev.addEventListener('click', function(){ track.scrollBy({ left: -step(), behavior: 'smooth' }); });
+  next.addEventListener('click', function(){ track.scrollBy({ left:  step(), behavior: 'smooth' }); });
+  track.addEventListener('scroll', sync); window.addEventListener('resize', sync); sync();
+})();
+</script>
 </body>
 </html>

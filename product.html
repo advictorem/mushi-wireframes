@@ -15,7 +15,7 @@
   --peach-dark:#B23508; --peach:#F17847; --peach-t1:#F4B8A6; --peach-t2:#F1DDCC;
   --apple-dark:#384133; --apple:#397218; --apple-t1:#A1C669; --apple-t2:#DCE4D0;
   --sage:#A7C1B2; --cream:#FBF7F0; --ink:#2E1A10;
-  --btn:#E7BBA2; --btn-dark:#D79C7F; --prod-ink:#E3B296;
+  --btn:#E7BBA2; --btn-dark:#D79C7F; --prod-ink:#630B0B;
   --font-display:"Magnilo Display","PT Serif",Georgia,serif;
   --font-body:"PT Serif",Georgia,serif;
   --font-mono:"PT Mono",Menlo,monospace;
@@ -219,6 +219,11 @@ nav.floating .logo:hover .lv-green{animation:segC 1.2s steps(1,end) infinite;}
 .checks li{display:flex;align-items:center;gap:10px;font-size:14.5px;font-weight:700;color:#4a3a30;line-height:1.3;}
 .checks li::before{content:"";width:19px;height:19px;flex:0 0 auto;background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23F17847" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.6 2.6L16 9.5"/></svg>') center/contain no-repeat;}
 .buy-card .price-qty{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:6px;}
+.np{display:flex;align-items:baseline;justify-content:center;gap:14px;flex-wrap:wrap;}
+.buy-card .np h4,.buy-card .np .price{color:var(--prod-ink);}
+.buy-row{display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:6px;}
+.buy-row .btn{flex:1 1 auto;}
+
 .buy-card .price{font-family:var(--font-display);font-weight:700;font-size:22px;color:var(--prod-ink);}
 .bc-cherry .promo-tag{background:#A7C1B2;}
 .qty{
@@ -642,6 +647,8 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
 .pd-rcard img{width:100%;height:100%;object-fit:cover;display:block;}
 .pd-rcard .f{font-family:var(--font-mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#6b584a;text-align:center;}
 .pd-rcard h4{font-family:var(--font-display);font-weight:400;font-size:24px;text-align:center;margin:6px 0 8px;color:var(--prod-ink);}
+.pd-rcard .np{display:flex;align-items:baseline;justify-content:center;gap:12px;flex-wrap:wrap;}
+.pd-rcard .np h4{margin:6px 0 8px;}
 .pd-rcard .pr{font-family:var(--font-display);font-weight:700;font-size:20px;color:var(--prod-ink);text-align:center;}
 @media (max-width:1100px){ .pd-grid{gap:44px;} .pd-badges{grid-template-columns:repeat(3,1fr);} }
 @media (max-width:900px){
@@ -1071,7 +1078,7 @@ footer{background:var(--apple-dark);color:var(--sage);padding:90px 0 40px;}
   rel = rel.filter(function(x){ return x.kind === p.kind; }).concat(rel.filter(function(x){ return x.kind !== p.kind; })).slice(0, 3);
   document.getElementById('pdRel').innerHTML = rel.map(function(x){
     return '<a class="pd-rcard" href="product.html?p=' + x.slug + '"><div class="img"><img loading="lazy" src="' + x.images[0].src + '" alt="' + esc(x.images[0].alt) + '"></div>' +
-      '<p class="f">' + esc(x.flavor) + '</p><h4 style="color:' + x.color + '">' + esc(x.name) + '</h4><p class="pr">' + money(x.price) + '</p></a>';
+      '<p class="f">' + esc(x.flavor) + '</p><div class="np"><h4>' + esc(x.name) + '</h4><p class="pr">' + money(x.price) + '</p></div></a>';
   }).join('');
 
   // structured data
