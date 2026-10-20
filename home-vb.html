@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MUSHI — Savor Every Moment | Homepage Version B</title>
+<meta name="description" content="MUSHI infused gummies and chocolates. Feel good, deliciously.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=PT+Mono&family=Permanent+Marker&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="vb/hero-trio.webp" imagesrcset="vb/hero-trio-m.webp 1000w, vb/hero-trio.webp 2000w" imagesizes="(max-width:767px) 100vw, 70vw">
+<style>
+/* =========================================================
+   MUSHI — Homepage Version B
+   Design system
+   ========================================================= */
+:root{
+  --ink:#111111; --black:#1B1B1B; --white:#FFFFFF;
+  --mint:#C1E5CB; --mint-pale:#E3F1E4; --mint-deep:#B5DBC1;
+  --cream:#F0E6DC; --cream-2:#F1E7DE; --sand:#E8DED4; --blush:#F0DACD;
+  --peach:#FFC09F; --peach-deep:#F17847; --coral:#F8AC9F; --sage:#A7C0AB;
+  --choc:#55372F; --choc-deep:#3F2721; --choc-card:rgba(255,255,255,.08);
+  --charcoal:#1C2932; --slate:#697076;
+  --cherry:#C8102E; --apple:#7AB317; --orange:#E8632B;
+  --check:#AFDB0A; --cross:#D35910;
+  --card-cherry:#E5D2C4; --card-apple:#D8E4CC; --card-peach:#EACBAE;
+  --card-dark:#E8AA9D; --card-milk:#A8C3B2; --card-berry:#D1657D;
+  --font-display:"Oswald",Impact,"Arial Narrow",sans-serif;
+  --font-mono:"PT Mono","Courier New",monospace;
+  --font-marker:"Permanent Marker",cursive;
+  --ease:cubic-bezier(.22,.61,.36,1); --ease-out:cubic-bezier(.16,1,.3,1);
+  --ann-h:28px; --hdr-h:68px;
+  --wrap:1180px; --gutter:clamp(20px,5vw,72px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--font-mono);color:var(--ink);background:var(--cream);line-height:1.6;overflow-x:hidden}
+img,svg,picture{display:block;max-width:100%}
+img{height:auto}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+ul{list-style:none}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{width:min(var(--wrap),100% - var(--gutter)*2);margin-inline:auto}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:4px}
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;text-transform:uppercase;line-height:.95;letter-spacing:-.005em}
+.marker{font-family:var(--font-marker);font-weight:400;text-transform:none;letter-spacing:0}
+.eyebrow{font-family:var(--font-display);font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;text-align:center}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#fff;font-family:var(--font-display);font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:11px 22px;border-radius:999px;transition:transform .25s var(--ease),background .25s var(--ease),box-shadow .25s var(--ease);white-space:nowrap}
+.btn:hover{background:#000;transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.18)}
+.btn:active{transform:translateY(0)}
+.btn .arr{transition:transform .25s var(--ease)}
+.btn:hover .arr{transform:translateX(4px)}
+.btn.light{background:#fff;color:var(--ink)}
+.btn.light:hover{background:#f3f3f3}
+
+/* Scroll reveals (CSS driven, IntersectionObserver adds .in) */
+[data-reveal]{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease-out),transform .9s var(--ease-out)}
+[data-reveal].in{opacity:1;transform:none}
+[data-reveal="fade"]{transform:none}
+[data-stagger]>*{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease-out),transform .8s var(--ease-out)}
+[data-stagger].in>*{opacity:1;transform:none}
+[data-stagger].in>*:nth-child(2){transition-delay:.12s}
+[data-stagger].in>*:nth-child(3){transition-delay:.24s}
+[data-stagger].in>*:nth-child(4){transition-delay:.36s}
+[data-stagger].in>*:nth-child(5){transition-delay:.48s}
+[data-stagger].in>*:nth-child(6){transition-delay:.6s}
+[data-stagger].in>*:nth-child(7){transition-delay:.72s}
+[data-stagger].in>*:nth-child(8){transition-delay:.84s}
+[data-stagger].in>*:nth-child(9){transition-delay:.96s}
+.mask{display:block;overflow:hidden}
+.mask>span{display:block;transform:translateY(110%);transition:transform 1s var(--ease-out)}
+.in .mask>span,.is-active .mask>span{transform:none}
+.in .mask:nth-child(2)>span,.is-active .mask:nth-child(2)>span{transition-delay:.09s}
+.in .mask:nth-child(3)>span,.is-active .mask:nth-child(3)>span{transition-delay:.18s}
+
+/* Marquees (shared) */
+.mq{overflow:hidden;white-space:nowrap;position:relative}
+.mq-track{display:inline-flex;align-items:center;will-change:transform;animation:mq var(--mq-dur,30s) linear infinite}
+.mq:hover .mq-track,.mq:focus-within .mq-track{animation-play-state:paused}
+@keyframes mq{to{transform:translate3d(-50%,0,0)}}
+
+/* =========================================================
+   Announcement bar
+   ========================================================= */
+.ann{background:var(--black);color:#fff;height:var(--ann-h);display:flex;align-items:center;font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;--mq-dur:38s;position:relative;z-index:60}
+.ann .mq-track>span{display:inline-flex;align-items:center;gap:0 22px;padding-right:22px}
+.ann svg{width:18px;height:9px;flex:0 0 18px;color:#fff;opacity:.9}
+
+/* =========================================================
+   Header
+   ========================================================= */
+.hdr{position:absolute;top:var(--ann-h);left:0;right:0;height:var(--hdr-h);z-index:50;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 var(--gutter);color:var(--ink)}
+.hdr.on-dark{color:#fff}
+.nav{display:flex;gap:28px;align-items:center}
+.nav>li{position:relative}
+.nav>li>a,.nav>li>button{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-display);font-weight:600;font-size:14px;letter-spacing:.06em;text-transform:uppercase;position:relative;padding:6px 0}
+.nav>li>a::after,.nav>li>button::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
+.nav>li:hover>a::after,.nav>li:hover>button::after,.nav>li>button[aria-expanded="true"]::after{transform:scaleX(1)}
+.nav .chev{width:10px;height:10px}
+.dd{position:absolute;top:100%;left:-16px;min-width:200px;background:#fff;color:var(--ink);border-radius:14px;padding:12px 0;box-shadow:0 18px 40px rgba(0,0,0,.14);opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .25s var(--ease),transform .3s var(--ease),visibility 0s .3s;margin-top:10px}
+.dd::before{content:"";position:absolute;top:-10px;left:0;right:0;height:10px}
+.nav>li:hover .dd,.nav>li:focus-within .dd,.nav>li>button[aria-expanded="true"]+.dd{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+.dd a{display:block;padding:9px 20px;font-size:12px;letter-spacing:.03em;text-transform:uppercase;transition:background .2s,padding-left .2s}
+.dd a:hover{background:var(--mint-pale);padding-left:26px}
+.logo{justify-self:center;display:block;width:120px;color:currentColor}
+.logo svg{width:100%;height:auto}
+.util{justify-self:end;display:flex;align-items:center;gap:20px}
+.util a,.util button{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-display);font-weight:600;font-size:12px;letter-spacing:.08em;text-transform:uppercase;transition:transform .25s var(--ease)}
+.util a:hover,.util button:hover{transform:translateY(-1px)}
+.util svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.cart-n{min-width:16px;height:16px;border-radius:8px;background:var(--peach-deep);color:#fff;font-size:9px;font-family:var(--font-mono);display:inline-flex;align-items:center;justify-content:center;padding:0 4px;transform:scale(0);transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
+.cart-n.show{transform:scale(1)}
+.burger{display:none;width:40px;height:40px;align-items:center;justify-content:center}
+.burger span{display:block;width:22px;height:2px;background:currentColor;position:relative;transition:background .2s}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:22px;height:2px;background:currentColor;transition:transform .3s var(--ease),top .3s var(--ease)}
+.burger span::before{top:-7px}.burger span::after{top:7px}
+.menu-open .burger span{background:transparent}
+.menu-open .burger span::before{top:0;transform:rotate(45deg)}
+.menu-open .burger span::after{top:0;transform:rotate(-45deg)}
+.mnav{display:none}
+
+/* =========================================================
+   Hero carousel
+   ========================================================= */
+.hero{position:relative;height:clamp(540px,54vw,820px);overflow:hidden;background:var(--mint);isolation:isolate}
+.slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity 1.1s var(--ease),visibility 0s 1.1s;will-change:opacity}
+.slide.is-active{opacity:1;visibility:visible;transition-delay:0s;z-index:2}
+.slide.is-leaving{z-index:1}
+.hero-h{position:absolute;color:var(--ink);font-size:clamp(64px,12.4vw,182px);line-height:.88;letter-spacing:-.01em;z-index:3;pointer-events:none}
+.badge{position:absolute;right:4.2%;bottom:6%;width:clamp(100px,13.5vw,190px);aspect-ratio:1;z-index:6;filter:drop-shadow(0 8px 20px rgba(0,0,0,.12));opacity:0;transform:scale(.6);transition:opacity .8s var(--ease) .9s,transform .9s var(--ease-out) .9s}
+.is-active .badge{opacity:1;transform:none}
+.badge .disc{position:absolute;inset:0;border-radius:50%;background:#fff}
+.badge .ring{position:absolute;inset:0;color:var(--ink);animation:spin 16s linear infinite}
+.badge .core{position:absolute;inset:0;color:var(--ink)}
+.badge svg{width:100%;height:100%}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Slide 1 — mint */
+.slide-mint{background:var(--mint)}
+.slide-mint .glow{position:absolute;left:38%;top:18%;width:78%;height:95%;background:radial-gradient(ellipse at center,rgba(255,255,255,.55) 0%,rgba(255,255,255,.22) 32%,rgba(193,229,203,0) 68%);filter:blur(10px);opacity:0;transition:opacity 1.4s var(--ease) .2s;pointer-events:none}
+.slide-mint .glow-b{position:absolute;left:34%;bottom:-18%;width:72%;height:40%;background:radial-gradient(ellipse at center,rgba(70,110,85,.18) 0%,rgba(70,110,85,.06) 45%,rgba(193,229,203,0) 70%);filter:blur(14px);opacity:0;transition:opacity 1.4s var(--ease) .4s;pointer-events:none}
+.is-active .glow,.is-active .glow-b{opacity:1}
+.slide-mint .hero-h{left:var(--gutter);top:19%}
+.trio{position:absolute;right:-19%;top:1%;width:88%;z-index:4;opacity:0;transform:translateY(30px) scale(.97);transition:opacity 1s var(--ease-out) .55s,transform 1.2s var(--ease-out) .55s}
+.is-active .trio{opacity:1;transform:none}
+.trio img{width:100%;animation:floaty 6.5s ease-in-out infinite;transform:translate3d(var(--px,0),var(--py,0),0)}
+.trio .ground{position:absolute;left:18%;right:22%;bottom:-2%;height:9%;background:radial-gradient(ellipse at center,rgba(40,70,52,.22),rgba(40,70,52,0) 70%);filter:blur(8px);animation:groundy 6.5s ease-in-out infinite;z-index:-1}
+@keyframes floaty{0%,100%{translate:0 0}50%{translate:0 -7px}}
+@keyframes groundy{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(.94);opacity:.7}}
+
+/* Slide 2 — sky */
+.slide-sky{background:#8ED3F5}
+.slide-sky .sky{position:absolute;inset:-5% -4%;width:108%;max-width:none;height:110%;object-fit:cover;object-position:center 40%;transform:translate3d(calc(var(--px,0) * -.3),calc(var(--py,0) * -.3),0) scale(1.02);transition:transform .2s linear}
+.slide-sky .hero-h{left:0;right:0;text-align:center;top:20%;font-size:clamp(56px,11.6vw,170px);letter-spacing:-.015em}
+.hand-pouch{position:absolute;left:-6%;bottom:-3%;height:62%;width:auto;z-index:4;opacity:0;transform:translateY(40px);transition:opacity 1s var(--ease-out) .5s,transform 1.2s var(--ease-out) .5s}
+.hand-gummy{position:absolute;right:-30%;top:19%;width:62%;z-index:5;opacity:0;transform:translateX(50px);transition:opacity 1s var(--ease-out) .7s,transform 1.2s var(--ease-out) .7s}
+.is-active .hand-pouch,.is-active .hand-gummy{opacity:1;transform:none}
+.hand-pouch img{height:100%;width:auto;max-width:none;animation:floaty 7s ease-in-out infinite;transform:translate3d(calc(var(--px,0) * .9),calc(var(--py,0) * .9),0)}
+.hand-gummy img{width:100%;animation:floaty 8s ease-in-out infinite 1s;transform:translate3d(var(--px,0),var(--py,0),0)}
+
+/* Slide 3 — family */
+.slide-family{background:#B7B0A9}
+.slide-family img.bg,.slide-indulgence img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 55%;transform:scale(1.04);transition:transform 2.4s var(--ease)}
+.is-active img.bg{transform:scale(1)}
+
+/* Slide 4 — indulgence */
+.slide-indulgence{background:#C98D7A}
+.slide-indulgence img.bg{object-position:center 45%}
+.slide-indulgence .hero-h{left:0;right:0;text-align:center;top:34%;color:transparent;-webkit-text-stroke:2px #fff;font-size:clamp(52px,16.8vw,250px);letter-spacing:-.015em;line-height:1}
+.slide-indulgence .hero-h .mask>span{transition:transform 1.3s var(--ease-out) .25s,opacity 1.1s var(--ease) .25s;opacity:0}
+.slide-indulgence.is-active .hero-h .mask>span{opacity:1}
+
+/* Hero UI */
+.hero-ui{position:absolute;left:var(--gutter);bottom:22px;z-index:8;display:flex;align-items:center;gap:14px}
+.hero-ui button{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.55);backdrop-filter:blur(6px);display:inline-flex;align-items:center;justify-content:center;transition:background .25s,transform .25s}
+.hero-ui button:hover{background:#fff;transform:scale(1.06)}
+.hero-ui svg{width:12px;height:12px;stroke:var(--ink);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.dots{display:flex;gap:8px}
+.dots button{width:auto;height:auto;background:none;backdrop-filter:none;padding:6px 0}
+.dots i{display:block;width:26px;height:3px;border-radius:2px;background:rgba(17,17,17,.3);overflow:hidden;position:relative}
+.dots i::after{content:"";position:absolute;inset:0;background:var(--ink);transform:scaleX(0);transform-origin:left}
+.dots button[aria-current="true"] i::after{animation:prog var(--hero-dur,6s) linear forwards}
+.hero.is-paused .dots button[aria-current="true"] i::after{animation-play-state:paused}
+@keyframes prog{to{transform:scaleX(1)}}
+.on-dark .hero-ui .dots i{background:rgba(255,255,255,.4)}
+.on-dark .hero-ui .dots i::after{background:#fff}
+
+/* =========================================================
+   Brand-messaging marquee
+   ========================================================= */
+.msg{background:var(--black);color:#fff;height:clamp(54px,6.3vw,88px);display:flex;align-items:center;--mq-dur:30s;position:relative;z-index:3}
+.msg .mq-track>span{display:inline-flex;gap:0 clamp(36px,5vw,70px);padding-right:clamp(36px,5vw,70px);font-family:var(--font-display);font-weight:600;font-size:clamp(22px,3.1vw,42px);text-transform:uppercase;letter-spacing:.005em;line-height:1}
+.msg .o{color:transparent;-webkit-text-stroke:1.5px #fff}
+
+/* =========================================================
+   Gradient canvas: each section blends from the previous
+   ========================================================= */
+.sec{position:relative;background:linear-gradient(to bottom,var(--prev,var(--bg)) 0,var(--bg) var(--blend,240px))}
+
+/* Ingredients */
+.ing{--prev:var(--mint);--bg:var(--mint-pale);--blend:300px;padding:clamp(52px,6vw,84px) 0 0}
+.ing h2{text-align:center;font-size:clamp(24px,3.3vw,40px);font-weight:600;letter-spacing:.005em}
+.ing h2 .marker{font-size:1.08em;position:relative;top:.02em;padding:0 .06em}
+.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.6vw,22px);margin-top:clamp(28px,3.5vw,48px)}
+.icard{border-radius:4px;padding:clamp(28px,3.2vw,46px) clamp(18px,2.4vw,34px) clamp(26px,3vw,40px);text-align:center;color:var(--ink);transition:transform .35s var(--ease),box-shadow .35s var(--ease),filter .35s}
+.icard:hover{transform:translateY(-5px);box-shadow:0 18px 36px rgba(0,0,0,.1);filter:saturate(1.08)}
+.icard .ico{height:clamp(54px,6vw,76px);display:flex;align-items:center;justify-content:center;margin-bottom:clamp(18px,2.4vw,30px);transition:transform .4s var(--ease)}
+.icard:hover .ico{transform:scale(1.08)}
+.icard .ico img{height:100%;width:auto}
+.icard h3{font-size:clamp(15px,1.4vw,19px);font-weight:700;line-height:1.1;margin-bottom:12px}
+.icard p{font-size:clamp(10.5px,.82vw,12px);line-height:1.6;color:rgba(0,0,0,.72)}
+.icard.peach{background:var(--peach)}.icard.coral{background:var(--coral)}.icard.sage{background:var(--sage)}
+
+/* Category carousel */
+.cat{--prev:var(--mint-pale);--bg:var(--cream);--blend:420px;padding:clamp(40px,4vw,56px) 0 0;overflow:hidden}
+.cat-stage{position:relative;height:clamp(300px,46vw,600px);display:flex;align-items:flex-end;justify-content:center}
+.cat-word{position:absolute;left:0;right:0;top:-4%;text-align:center;font-family:var(--font-display);font-weight:600;font-size:clamp(84px,17.5vw,250px);line-height:.95;letter-spacing:-.01em;color:var(--peach);text-transform:uppercase;pointer-events:none;will-change:transform}
+.cat-word span{display:block;transition:opacity .5s var(--ease),transform .6s var(--ease-out)}
+.cat-word.swap span{opacity:0;transform:translateY(12px)}
+.cat-panels{position:relative;width:100%;height:100%}
+.cat-panel{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;opacity:0;visibility:hidden;transform:translateX(28px) scale(.98);transition:opacity .65s var(--ease),transform .8s var(--ease-out),visibility 0s .8s}
+.cat-panel.is-active{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+.cat-panel.is-leaving{opacity:0;visibility:hidden;transform:translateX(-28px) scale(.98)}
+.cat-panel a{display:block;height:100%;width:auto;position:relative;transition:transform .4s var(--ease)}
+.cat-panel a:hover{transform:scale(1.025)}
+.cat-panel img{height:100%;width:auto;max-width:92vw;object-fit:contain;filter:drop-shadow(0 20px 30px rgba(60,40,20,.16))}
+.cat-panel.merch img{height:88%;margin-bottom:4%}
+.cat-panel .lbl{position:absolute;left:50%;bottom:-6px;transform:translate(-50%,8px);opacity:0;transition:all .3s var(--ease);font-family:var(--font-display);font-size:12px;letter-spacing:.1em;text-transform:uppercase;background:var(--ink);color:#fff;padding:7px 16px;border-radius:999px;white-space:nowrap}
+.cat-panel a:hover .lbl,.cat-panel a:focus-visible .lbl{opacity:1;transform:translate(-50%,0)}
+.cat-arrow{position:absolute;top:46%;z-index:5;width:56px;height:70px;display:flex;align-items:center;justify-content:center;color:rgba(0,0,0,.28);transition:color .25s,transform .25s}
+.cat-arrow:hover{color:var(--ink);transform:scale(1.1)}
+.cat-arrow.prev{left:clamp(6px,8%,120px)}.cat-arrow.next{right:clamp(6px,8%,120px)}
+.cat-arrow svg{width:30px;height:48px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* Benefit icon strip */
+.bstrip{--prev:var(--cream);--bg:var(--sand);--blend:160px;padding:clamp(28px,3.6vw,52px) 0 clamp(36px,4vw,56px)}
+.bstrip ul{display:flex;justify-content:space-between;gap:12px;overflow-x:auto;scrollbar-width:none;padding:4px var(--gutter)}
+.bstrip ul::-webkit-scrollbar{display:none}
+.bstrip li{flex:0 0 auto;width:clamp(86px,9.8vw,124px);text-align:center;transition:transform .3s var(--ease)}
+.bstrip li:hover{transform:translateY(-3px) scale(1.04)}
+.bstrip img{width:clamp(66px,7.5vw,96px);margin:0 auto 10px;color:var(--ink)}
+.bstrip span{display:block;font-family:var(--font-display);font-weight:600;font-size:clamp(11px,1vw,13.5px);letter-spacing:.03em;text-transform:uppercase;line-height:1.2}
+
+/* Shop sections */
+.shop{padding:clamp(28px,3.6vw,52px) 0 clamp(26px,3vw,40px)}
+.gum{--prev:var(--sand);--bg:var(--cream);--blend:140px}
+.cho{--prev:var(--cream);--bg:var(--choc);--blend:300px;color:#fff;padding-top:clamp(70px,7vw,100px)}
+.cho .eyebrow{color:#fff}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.6vw,22px);margin-top:clamp(22px,2.4vw,32px)}
+.pcard{background:rgba(255,255,255,.32);border-radius:10px;padding:8px 8px 14px;position:relative;transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.pcard:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,.1)}
+.cho .pcard{background:rgba(255,255,255,.1)}
+.cho .pcard:hover{box-shadow:0 18px 40px rgba(0,0,0,.3)}
+.pimg{position:relative;aspect-ratio:1;border-radius:6px;overflow:hidden;background:var(--c,#eee);display:block}
+.pimg img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease),opacity .45s var(--ease)}
+.pimg .alt{position:absolute;inset:0;opacity:0}
+.pcard:hover .pimg img{transform:scale(1.035)}
+.pcard:hover .pimg .alt{opacity:1}
+.flag{position:absolute;top:10px;right:10px;font-family:var(--font-display);font-weight:600;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:3px;background:#C9CAA2;color:var(--ink)}
+.flag.pop{background:#FFEFD0}.flag.new{background:var(--coral)}
+.pbody{padding:14px 8px 0}
+.pbody h3{font-size:clamp(14px,1.2vw,16.5px);font-weight:600;letter-spacing:.01em}
+.pbody .mg{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;opacity:.65;margin-top:2px}
+.price{font-family:var(--font-display);font-weight:700;font-size:15px;margin-top:8px;display:flex;gap:8px;align-items:baseline}
+.price s{opacity:.4;font-weight:500}
+.pact{display:flex;justify-content:space-between;align-items:center;margin-top:10px;gap:10px}
+.pact .btn{padding:9px 16px;font-size:12px;gap:14px}
+.pact .btn svg{width:13px;height:13px;fill:none;stroke:#fff;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.qty{display:inline-flex;align-items:center;border:1.5px solid currentColor;border-radius:999px;height:32px;padding:0 4px}
+.qty button{width:24px;height:28px;font-family:var(--font-display);font-size:16px;display:inline-flex;align-items:center;justify-content:center;transition:transform .2s}
+.qty button:hover{transform:scale(1.2)}
+.qty output{font-family:var(--font-display);font-weight:600;font-size:13px;min-width:16px;text-align:center}
+.pdots{display:flex;justify-content:center;gap:7px;margin-top:22px}
+.pdots i{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.3}
+.pdots i:first-child{opacity:1}
+
+/* Lifestyle gallery */
+.life{display:flex;height:clamp(380px,49vw,720px);overflow:hidden;background:var(--choc-deep)}
+.life a{position:relative;flex:1 1 0;min-width:0;overflow:hidden;transition:flex .7s var(--ease-out);display:block}
+.life a:hover,.life a:focus-visible{flex:1.45 1 0}
+.life img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform 1.1s var(--ease-out)}
+.life a:hover img{transform:scale(1.06)}
+.life .lt{position:absolute;right:8%;bottom:4%;writing-mode:vertical-rl;transform:rotate(180deg);color:transparent;-webkit-text-stroke:1.5px #fff;font-family:var(--font-display);font-weight:700;font-size:clamp(34px,6.6vw,96px);text-transform:uppercase;line-height:1;letter-spacing:-.01em;transition:color .5s var(--ease);white-space:nowrap}
+.life a:hover .lt{color:rgba(255,255,255,.95)}
+.life a::after{content:"";position:absolute;inset:auto 0 0;height:45%;background:linear-gradient(to top,rgba(0,0,0,.28),transparent);opacity:.6;transition:opacity .5s}
+.life a:hover::after{opacity:1}
+
+/* Story */
+.story{--prev:var(--blush);--bg:var(--cream-2);--blend:100%;background:linear-gradient(to bottom,var(--blush) 0,var(--cream-2) 100%);padding:clamp(56px,8vw,112px) 0 clamp(40px,5vw,70px)}
+.story .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(24px,3vw,48px);align-items:center}
+.story .ph{border-radius:4px;overflow:hidden;aspect-ratio:400/370;position:relative;clip-path:inset(0 0 0 0);box-shadow:0 20px 50px rgba(120,60,30,.14)}
+.story .ph img{width:100%;height:110%;object-fit:cover;transform:translateY(-4%) scale(1.02)}
+.story .ph.rv{animation:unmask 1.3s var(--ease-out) both}
+@keyframes unmask{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0)}}
+.story h2{font-size:clamp(32px,4.3vw,60px);line-height:.98;letter-spacing:.005em}
+.story p{font-size:clamp(11px,.9vw,12.5px);line-height:1.8;margin-top:18px;max-width:46ch}
+.story p+p{margin-top:12px}
+.story .btn{margin-top:28px}
+
+/* Bundle */
+.bundle{--prev:var(--cream-2);--bg:var(--cream-2);padding:clamp(20px,3vw,44px) 0 clamp(44px,5vw,70px);text-align:center;overflow:hidden}
+.bundle .stage{position:relative;height:clamp(230px,42vw,560px)}
+.bundle .word{position:absolute;left:0;right:0;top:0;font-family:var(--font-display);font-weight:600;font-size:clamp(96px,22vw,300px);line-height:.9;color:var(--peach);text-transform:uppercase;letter-spacing:-.01em;pointer-events:none}
+.bundle .fam{position:absolute;left:50%;bottom:0;width:min(86%,1180px);transform:translateX(-50%);filter:drop-shadow(0 24px 30px rgba(80,50,20,.18))}
+.bundle .fam img{width:100%}
+.bundle h2{font-size:clamp(22px,3vw,40px);font-weight:600;text-transform:none;letter-spacing:0;margin-top:clamp(18px,2.6vw,36px)}
+.bundle .btn{margin-top:22px}
+
+/* Bulk */
+.bulk{--prev:var(--cream-2);--bg:var(--mint);--blend:100%;padding:clamp(40px,5vw,70px) 0 clamp(60px,7vw,100px)}
+.bulk .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(24px,4vw,70px);align-items:center}
+.bulk .ph img{width:100%;filter:drop-shadow(0 26px 34px rgba(60,40,20,.2))}
+.bulk h2{font-size:clamp(30px,3.6vw,50px);line-height:1}
+.bulk p{font-size:clamp(11px,.9vw,12.5px);line-height:1.8;margin-top:16px;max-width:40ch}
+.bulk .btn{margin-top:24px}
+
+/* FAQ */
+.faq{--prev:var(--mint);--bg:var(--mint);padding:clamp(40px,4vw,56px) 0 clamp(56px,6vw,90px)}
+.faq .kicker{font-size:clamp(18px,2.4vw,32px);font-weight:600;opacity:.9}
+.faq h2{font-size:clamp(44px,7.5vw,104px);line-height:1;margin-top:-4px}
+.acc{margin-top:clamp(18px,2.6vw,34px);border-top:1px solid rgba(0,0,0,.14)}
+.acc-item{border-bottom:1px solid rgba(0,0,0,.14)}
+.acc-btn{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:clamp(14px,1.6vw,20px) 14px;font-family:var(--font-display);font-weight:500;font-size:clamp(20px,2.6vw,34px);text-align:left;line-height:1.1;transition:padding-left .3s var(--ease)}
+.acc-btn:hover{padding-left:20px}
+.acc-btn .pm{position:relative;width:22px;height:22px;flex:0 0 22px}
+.acc-btn .pm::before,.acc-btn .pm::after{content:"";position:absolute;background:var(--ink);top:50%;left:50%;transform:translate(-50%,-50%);transition:transform .35s var(--ease)}
+.acc-btn .pm::before{width:22px;height:2px}
+.acc-btn .pm::after{width:2px;height:22px}
+.acc-btn[aria-expanded="true"] .pm::after{transform:translate(-50%,-50%) rotate(90deg)}
+.acc-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .36s var(--ease)}
+.acc-panel>div{overflow:hidden}
+.acc-panel p{padding:0 14px 20px;font-size:clamp(12px,.95vw,13.5px);line-height:1.75;max-width:72ch;opacity:.85}
+.acc-panel p+p{margin-top:-8px}
+.acc-item.open .acc-panel{grid-template-rows:1fr}
+
+/* Comparison */
+.cmp{--prev:var(--mint);--bg:#fff;--blend:100%;padding:clamp(40px,4vw,56px) 0 clamp(40px,5vw,70px)}
+.cmp h2{text-align:center;font-size:clamp(24px,3.2vw,40px);font-weight:600}
+.cmp-wrap{width:min(880px,100% - var(--gutter)*2);margin:clamp(34px,4vw,56px) auto 0;overflow-x:auto}
+.cmp table{width:100%;border-collapse:collapse;min-width:620px}
+.cmp th{padding:0 10px 16px;vertical-align:bottom;text-align:left}
+.cmp th img{height:clamp(84px,10vw,120px);width:auto;margin:0 auto}
+.cmp th.m img{height:clamp(100px,11.5vw,132px)}
+.cmp td{padding:9px 10px;border-top:1px solid rgba(0,0,0,.1);font-size:clamp(10px,.8vw,11.5px);line-height:1.4;vertical-align:middle;transition:background .25s}
+.cmp tr:hover td{background:rgba(193,229,203,.3)}
+.cmp td.f{font-family:var(--font-display);font-weight:600;font-size:clamp(10px,.85vw,12px);letter-spacing:.03em;text-transform:uppercase;white-space:nowrap;width:34%}
+.cmp td.f span{display:inline-flex;align-items:center;gap:12px}
+.cmp td.f svg{width:20px;height:20px;fill:none;stroke:var(--ink);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex:0 0 20px}
+.cmp td.y,.cmp td.n{width:33%}
+.cmp td.y span,.cmp td.n span{display:flex;align-items:center;gap:9px}
+.mark{width:15px;height:15px;border-radius:50%;flex:0 0 15px;display:inline-flex;align-items:center;justify-content:center}
+.mark svg{width:9px;height:9px;stroke:#fff;fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.y .mark{background:var(--check)}.n .mark{background:var(--cross)}
+
+/* Testimonials */
+.talk{--prev:#fff;--bg:#fff;padding:clamp(36px,4vw,56px) 0 clamp(30px,3vw,44px);overflow:hidden}
+.talk h2{text-align:center;font-size:clamp(24px,3.2vw,40px);font-weight:600}
+.rail{display:flex;gap:clamp(12px,1.4vw,18px);overflow-x:auto;scroll-snap-type:x mandatory;padding:clamp(28px,3.4vw,48px) var(--gutter) 30px;scrollbar-width:none;cursor:grab}
+.rail::-webkit-scrollbar{display:none}
+.rail.dragging{cursor:grabbing;scroll-snap-type:none}
+.tcard{flex:0 0 clamp(250px,24vw,300px);scroll-snap-align:start;border-radius:6px;padding:22px 20px 18px;background:var(--tbg);color:var(--ink);position:relative;transition:transform .35s var(--ease),box-shadow .35s var(--ease);display:flex;flex-direction:column}
+.tcard:nth-child(even){margin-top:28px}
+.tcard:hover{transform:translateY(-4px) scale(1.015);box-shadow:0 18px 40px rgba(0,0,0,.08)}
+.tcard .q{font-family:var(--font-display);font-weight:700;font-size:54px;line-height:.6;color:var(--tc);margin-bottom:12px}
+.tcard .stars{position:absolute;top:22px;right:20px;color:var(--ts);letter-spacing:1px;font-size:13px}
+.tcard p{font-size:clamp(10.5px,.85vw,12px);line-height:1.65;flex:1}
+.tcard .who{font-size:10px;margin-top:10px;opacity:.7}
+.tcard .prod{display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(0,0,0,.12)}
+.tcard .prod img{width:34px;height:34px;object-fit:cover;border-radius:3px}
+.tcard .prod b{display:block;font-family:var(--font-display);font-weight:600;font-size:14px;text-transform:uppercase;color:var(--tc);line-height:1.1}
+.tcard .prod small{font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;opacity:.6}
+.tcard.peach{--tbg:#E4C6AC;--tc:#E05A1E;--ts:#F7D9AE}
+.tcard.cherry{--tbg:#E6D2C7;--tc:#C8102E;--ts:#F3DEDD}
+.tcard.apple{--tbg:#DEE7D4;--tc:#7AB317;--ts:#EEF4C8}
+.tcard.choc{--tbg:#E9DCD2;--tc:#55372F;--ts:#D9C9BD}
+
+/* Instagram */
+.ugc{--prev:#fff;--bg:#fff;padding:clamp(20px,2vw,30px) 0 clamp(50px,6vw,90px);text-align:center;overflow:hidden}
+.ugc h2{font-size:clamp(24px,3.2vw,40px);font-weight:600}
+.ugc .rail{padding-top:clamp(30px,4vw,56px);align-items:flex-start}
+.pol{flex:0 0 clamp(170px,19vw,230px);scroll-snap-align:center;background:#fff;padding:9px 9px 14px;box-shadow:0 10px 30px rgba(0,0,0,.14);transform:rotate(var(--r,0deg)) translateY(var(--ty,0));transition:transform .5s var(--ease),box-shadow .5s var(--ease);text-align:left;display:block}
+.pol:hover{transform:rotate(calc(var(--r,0deg) * .25)) translateY(calc(var(--ty,0) - 6px));box-shadow:0 22px 44px rgba(0,0,0,.2)}
+.pol .im{aspect-ratio:3/4;overflow:hidden;background:#ddd}
+.pol .im img{width:100%;height:100%;object-fit:cover}
+.pol .h{display:flex;align-items:center;gap:6px;font-size:9.5px;margin-top:10px}
+.pol .h svg{width:12px;height:12px;fill:none;stroke:var(--ink);stroke-width:1.6}
+.pol .cap{font-family:var(--font-marker);font-size:8.5px;line-height:1.4;margin-top:6px;text-transform:uppercase;color:#222}
+.pol:nth-child(1){--r:-4deg;--ty:14px}.pol:nth-child(2){--r:2deg;--ty:-6px}.pol:nth-child(3){--r:-2deg;--ty:4px}.pol:nth-child(4){--r:3deg;--ty:-10px}.pol:nth-child(5){--r:-3deg;--ty:0}.pol:nth-child(6){--r:4deg;--ty:12px}.pol:nth-child(7){--r:-1deg;--ty:-4px}
+.ugc .btn{margin-top:14px}
+.demo-note{font-size:9.5px;opacity:.5;margin-top:14px;letter-spacing:.04em;text-transform:uppercase}
+
+/* Newsletter */
+.news{position:relative;min-height:clamp(360px,40vw,560px);display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;overflow:hidden;isolation:isolate}
+.news .bg{position:absolute;inset:-6% 0;width:100%;height:112%;object-fit:cover;z-index:-2;will-change:transform}
+.news::before{content:"";position:absolute;inset:0;background:rgba(40,20,20,.18);z-index:-1}
+.news h2{font-size:clamp(40px,7.5vw,104px);line-height:.95;text-shadow:0 4px 30px rgba(0,0,0,.25);display:flex;justify-content:center;align-items:center;gap:.18em;flex-wrap:wrap}
+.news h2 .marker{font-size:.58em;line-height:.9;transform:rotate(-7deg);display:inline-block;letter-spacing:.02em;text-align:center}
+.news .sub{font-family:var(--font-display);font-weight:600;font-size:clamp(14px,1.9vw,24px);text-transform:uppercase;line-height:1.15;margin-top:16px;max-width:30ch;text-shadow:0 2px 16px rgba(0,0,0,.3)}
+.nform{display:flex;margin:26px auto 0;width:min(400px,90%);background:#fff;border-radius:999px;padding:4px;position:relative;transition:box-shadow .3s}
+.nform:focus-within{box-shadow:0 0 0 4px rgba(255,255,255,.35)}
+.nform input{flex:1;min-width:0;border:0;background:none;padding:8px 16px;font:inherit;font-size:11px;color:var(--ink);outline:0}
+.nform .btn{padding:9px 18px;font-size:12px}
+.nform.loading .btn{opacity:.6;pointer-events:none}
+.nmsg{font-size:11px;margin-top:12px;min-height:1.2em;text-shadow:0 2px 10px rgba(0,0,0,.4)}
+.nmsg.err{color:#FFD5C2}
+.consent{font-size:9px;opacity:.75;margin-top:10px;max-width:44ch;margin-inline:auto}
+
+/* Footer */
+.foot{background:var(--charcoal);color:#fff;padding:clamp(48px,6vw,84px) 0 0;overflow:hidden;position:relative}
+.foot .top{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:40px}
+.foot .flogo{width:150px;color:#fff}
+.foot .flogo svg{width:100%;height:auto}
+.foot .tag{font-size:11px;letter-spacing:.3em;text-transform:uppercase;margin-top:10px;opacity:.9}
+.foot h4{font-size:12px;letter-spacing:.08em;margin-bottom:12px;font-weight:600}
+.foot .col+.col{margin-top:40px}
+.foot .col a{display:block;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;opacity:.75;padding:3px 0;position:relative;width:max-content;transition:opacity .2s}
+.foot .col a::after{content:"";position:absolute;left:0;bottom:1px;height:1px;width:100%;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
+.foot .col a:hover{opacity:1}.foot .col a:hover::after{transform:scaleX(1)}
+.soc{display:flex;gap:10px}
+.soc a{width:40px;height:32px;border-radius:999px;background:#fff;color:var(--charcoal);display:inline-flex;align-items:center;justify-content:center;transition:transform .25s var(--ease)}
+.soc a:hover{transform:translateY(-3px)}
+.soc svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.fform{display:flex;gap:10px;margin-top:12px;max-width:420px}
+.fform input{flex:1;min-width:0;background:transparent;border:1px solid rgba(255,255,255,.4);border-radius:999px;padding:9px 14px;color:#fff;font:inherit;font-size:11px;outline:0;transition:border-color .2s}
+.fform input:focus{border-color:#fff}
+.fform .btn.light{padding:9px 18px;font-size:11px}
+.foot .legal{display:flex;flex-wrap:wrap;gap:16px 28px;justify-content:space-between;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;opacity:.55;margin-top:48px}
+.foot .legal a:hover{opacity:1;text-decoration:underline}
+.wordmark{margin-top:clamp(20px,3vw,40px);height:clamp(60px,13vw,190px);overflow:hidden;position:relative}
+.wordmark svg{position:absolute;left:50%;top:0;width:min(96%,1180px);transform:translateX(-50%);color:var(--slate);height:auto;will-change:transform}
+
+/* Cart toast + drawer */
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:var(--ink);color:#fff;font-family:var(--font-display);font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:12px 20px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .3s,transform .4s var(--ease-out);z-index:100;display:flex;gap:12px;align-items:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(380px,92vw);background:#fff;color:var(--ink);z-index:120;transform:translateX(100%);transition:transform .45s var(--ease-out);display:flex;flex-direction:column;box-shadow:-10px 0 50px rgba(0,0,0,.2)}
+.drawer.open{transform:none}
+.drawer header{display:flex;justify-content:space-between;align-items:center;padding:22px 24px;border-bottom:1px solid #eee;font-family:var(--font-display);font-weight:600;font-size:18px;text-transform:uppercase}
+.drawer header button{font-size:12px;letter-spacing:.06em;opacity:.7}
+.drawer ul{flex:1;overflow:auto;padding:12px 24px}
+.drawer li{display:flex;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid #f1f1f1;font-size:11px}
+.drawer li img{width:56px;height:56px;object-fit:cover;border-radius:4px}
+.drawer li b{display:block;font-family:var(--font-display);font-weight:600;font-size:13px;text-transform:uppercase}
+.drawer li .rm{margin-left:auto;opacity:.5;font-size:16px}
+.drawer footer{padding:20px 24px 28px;border-top:1px solid #eee;font-size:12px}
+.drawer footer .btn{width:100%;justify-content:center;margin-top:12px}
+.drawer .empty{padding:40px 0;text-align:center;opacity:.6}
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:opacity .4s;z-index:110}
+.scrim.show{opacity:1;pointer-events:auto}
+
+/* Search overlay */
+.search{position:fixed;inset:0;z-index:130;background:rgba(17,17,17,.92);color:#fff;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .35s}
+.search.open{opacity:1;pointer-events:auto}
+.search form{width:min(640px,90vw);display:flex;gap:12px;border-bottom:2px solid #fff;padding-bottom:10px}
+.search input{flex:1;background:none;border:0;color:#fff;font-family:var(--font-display);font-size:clamp(26px,4vw,48px);text-transform:uppercase;outline:0}
+.search input::placeholder{color:rgba(255,255,255,.4)}
+.search .x{position:absolute;top:28px;right:32px;font-family:var(--font-display);font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+@media (max-width:1100px){
+  .hdr{grid-template-columns:1fr auto 1fr}
+}
+@media (max-width:900px){
+  .cards3{grid-template-columns:1fr 1fr}
+  .cards3 .icard:last-child{grid-column:1/-1}
+  .pgrid{grid-template-columns:1fr 1fr}
+  .story .wrap,.bulk .wrap{grid-template-columns:1fr}
+  .story .ph{max-width:520px}
+  .foot .top{grid-template-columns:1fr 1fr}
+  .foot .top>:first-child{grid-column:1/-1}
+}
+@media (max-width:767px){
+  :root{--hdr-h:60px}
+  .nav,.util .lbl,.util .acct{display:none}
+  .burger{display:inline-flex;justify-self:start}
+  .logo{width:100px}
+  .mnav{display:block;position:fixed;inset:calc(var(--ann-h) + var(--hdr-h)) 0 0;background:var(--cream);color:var(--ink);z-index:45;padding:24px var(--gutter);transform:translateY(-8px);opacity:0;pointer-events:none;transition:opacity .3s,transform .4s var(--ease-out);overflow:auto}
+  .menu-open .mnav{opacity:1;transform:none;pointer-events:auto}
+  .mnav h4{font-size:12px;letter-spacing:.1em;opacity:.5;margin:18px 0 6px}
+  .mnav a{display:block;font-family:var(--font-display);font-weight:600;font-size:28px;text-transform:uppercase;padding:6px 0;border-bottom:1px solid rgba(0,0,0,.08)}
+  .hero{height:clamp(520px,135vw,760px)}
+  .hero-h{font-size:clamp(58px,17vw,96px)}
+  .slide-mint .hero-h{top:13%}
+  .trio{right:-8%;top:auto;bottom:6%;width:118%}
+  .slide-mint .glow{left:0;top:40%;width:120%;height:60%}
+  .slide-sky .hero-h{top:16%;font-size:clamp(50px,15.5vw,96px)}
+  .hand-pouch{height:44%;left:-8%;bottom:-2%}
+  .hand-gummy{width:62%;right:-12%;top:38%}
+  .slide-indulgence .hero-h{font-size:clamp(44px,16vw,96px);top:40%}
+  .badge{width:92px;right:5%;bottom:5%}
+  .hero-ui{bottom:16px}
+  .cards3{grid-template-columns:1fr}
+  .cards3 .icard:last-child{grid-column:auto}
+  .cat-stage{height:clamp(240px,72vw,420px)}
+  .cat-word{font-size:clamp(70px,24vw,120px)}
+  .cat-arrow{top:40%;width:44px}
+  .bstrip ul{justify-content:flex-start;gap:6px}
+  .pgrid{grid-template-columns:1fr;gap:14px}
+  .pact{flex-wrap:wrap}
+  .life{height:auto;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+  .life::-webkit-scrollbar{display:none}
+  .life a{flex:0 0 72vw;height:100vw;scroll-snap-align:center}
+  .life a:hover{flex:0 0 72vw}
+  .bundle .stage{height:clamp(170px,58vw,300px)}
+  .bundle .fam{width:120%}
+  .cmp table{min-width:560px}
+  .tcard:nth-child(even){margin-top:14px}
+  .news h2{gap:.12em}
+  .foot .top{grid-template-columns:1fr}
+  .foot .col+.col{margin-top:26px}
+  .wordmark svg{width:140%}
+}
+@media (max-width:380px){
+  .hero-h{font-size:17vw}
+  .slide-sky .hero-h{font-size:15vw}
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .mq-track,.badge .ring,.trio img,.trio .ground,.hand-pouch img,.hand-gummy img{animation:none!important}
+  .dots button[aria-current="true"] i::after{animation:none;transform:scaleX(1)}
+  [data-reveal],[data-stagger]>*,.mask>span{opacity:1!important;transform:none!important;transition:none!important}
+  .slide,.trio,.hand-pouch,.hand-gummy,.badge,.glow,.glow-b,.cat-panel,.story .ph{transition-duration:.01ms!important;animation:none!important}
+  .mq-track{transform:none}
+  .mq{overflow-x:auto}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+<symbol id="s-logo" viewBox="0 0 160 57.852"><g fill="currentColor" transform="translate(-603 -55)"><g transform="translate(604.002 54.996)"><path d="M11.355,2.407c-.025.109.019.151.067.232.2.341.513.706.733,1.056,1.942,3.079,3.149,6.582,4.977,9.7a10.993,10.993,0,0,0,1.59,2.22.226.226,0,0,0,.209.09c1.558,1.921,3.368-.438,4.2-1.747,2.262-3.572,3.5-7.931,6.048-11.339,2.665-3.561,5.335-3.306,8.254-.214-.025.109.019.151.067.232a17.216,17.216,0,0,1,1.483,2.876c2.009,5.4,1.984,13.807,1.106,19.473-.513,3.308-2.08,10.03-6.741,8.9-.321-.078-.6-.249-.918-.3a5.766,5.766,0,0,1-1.554-2c-.7-1.538-.853-3.469-1.7-4.877A1.525,1.525,0,0,0,27.45,25.8c-1,.121-1.869,1.659-2.3,2.47-1.075,2.019-2.451,6.33-5.44,5.666-.32-.071-.563-.235-.873-.3a9.91,9.91,0,0,1-2.227-2.979c-.375-.714-1.59-3.54-2.133-3.854.017-.105-.034-.14-.09-.209a1.708,1.708,0,0,0-2.994.132c-1.173,1.975-.987,5.338-3.136,6.728a3.738,3.738,0,0,1-3.329.3c-.212-.08-.406-.262-.643-.251-.214-.2-.519-.438-.712-.643C.729,29.853.2,23.642.064,19.671L.016,19.56c.042-1.6-.055-3.215,0-4.816C.159,10.613,1.147,2.985,5.126.7c2.751-1.577,4.4-.253,6.228,1.7Z" transform="translate(0 0)"/><path d="M278.423,46.015a7.773,7.773,0,0,1-1.194,0c-1.188-.128-2.453-1.3-3.649-1.7-3.4-1.131-5.729.74-8.915,1.186s-5.757-.086-8.1-2.285c.253,0,.461.233.675.358a10.236,10.236,0,0,0,7.453.9c2.667-.572,4.483-1.823,7.391-1.194,2.367.513,3.905,2.91,6.565,1.469,3.4-1.841,4.319-8.629,4.5-12.106.264-5.044-.094-12.538-1.986-17.236a19.311,19.311,0,0,0-1.121-2.137.3.3,0,0,1-.061-.235c3.2,3.373,3.725,9.636,3.949,14.1.237,4.766.277,10.771-1.737,15.189-.66,1.447-2.044,3.477-3.773,3.683h0Z" transform="translate(-207.479 -10.541)"/><path d="M235.12,33.985a12.569,12.569,0,0,1-2.839-3.607c-2.577-5.08-2.707-13.709-1.508-19.2.821-3.758,3.505-11.031,8.628-9.29a4.861,4.861,0,0,1,2.1,1.594,7.843,7.843,0,0,0,.467.932c1.64,3.6,1.089,9.427,1.276,13.4.088,1.862.337,5.5,1.86,6.764.069.055.1.107.209.09.31.476,1.462.672,2,.641,2.95-.168,3.446-4.856,3.651-7.085.35-3.838.113-7.776.6-11.6C251.9,4,252.671.577,256.169,1.926a6.664,6.664,0,0,1,2.363,1.881.309.309,0,0,0,.061.235,19.311,19.311,0,0,1,1.121,2.137c1.892,4.7,2.25,12.192,1.986,17.236-.182,3.477-1.1,10.267-4.5,12.106-2.662,1.441-4.2-.957-6.565-1.469-2.906-.63-4.724.62-7.391,1.194a10.031,10.031,0,0,1-7.453-.9c-.212-.124-.421-.356-.675-.358h0Z" transform="translate(-186.027 -1.308)"/><path d="M580.835,3.523a3.344,3.344,0,0,0,.436.871c1.043,2.082,1.437,4.563,2.055,6.8a11.548,11.548,0,0,0,1.418,3.536c.159.216.4.563.681.582a1.628,1.628,0,0,0,1.776.283c1.425-.54,2.2-3.04,2.642-4.376,1.1-3.345,2.332-10.036,7.2-9.194a4.748,4.748,0,0,1,2.792,1.867l.88,1.667c1.487,3.607,1.8,7.6,1.917,11.475.143,4.709.109,12.529-2.5,16.574-1.11,1.716-3.084,2.956-5.147,2.03-.2-.092-.379-.291-.61-.283-1.9-1.825-2.587-3.494-3.848-5.717a9.274,9.274,0,0,0-1.844-2.629c-.034-.291-.482-.61-.719-.771-2.084-1.414-3.555.27-4.384,2.07-1.138,2.472-2.074,8.247-5.834,7.587-.44-.077-.765-.316-1.182-.4-2.438-2.325-3.115-5.168-3.618-8.423A60.381,60.381,0,0,1,572.85,10.8c.385-2.851,1.527-9.186,5.474-8.828a3.782,3.782,0,0,1,2.508,1.554h0Z" transform="translate(-462.835 -1.574)"/><path d="M435.227,4.823l.436,1.1a2.433,2.433,0,0,1-.762,2.5c-1.839,1.376-6.976-.387-9.387-.2-2.019.151-2.024,2.015-.689,3.123.069.055.1.107.209.09a5.042,5.042,0,0,0,1.4,1.1c3.26,2.116,5.725,3.251,8.471,6.19-.025.109.019.151.067.232.943,1.607,1.653,2.621,1.772,4.606.708,11.762-14.215,13.176-22.283,9.374a26.734,26.734,0,0,1-2.552-1.533c-.08-.05-.124-.09-.232-.067-1.659-1.508-3.756-3.565-3.534-6.031s3.276-2.216,5.026-2.042c2.12.212,6.109,1.24,7.981.312a1.829,1.829,0,0,0,.4-3.157c.015-.151-.132-.251-.23-.344-1.209-1.16-3.36-2.156-4.818-3.077-.651-.411-1.3-.947-1.931-1.328-.08-.05-.124-.09-.232-.067-2.3-2.133-3.683-3.723-3.49-7.087.465-8.117,10.878-8.507,16.9-7.38A12.778,12.778,0,0,1,435.227,4.823Z" transform="translate(-330.036 -0.535)"/><path d="M759.894,3.165a3.318,3.318,0,0,0,.467.886c1.646,3.079,1.946,7.2,2.1,10.648a66.551,66.551,0,0,1-.138,9.035c-.436,4.808-2.114,14.079-9.083,10.589a.319.319,0,0,0-.235-.063c-2.313-2.2-3.075-4.307-3.658-7.42a53.977,53.977,0,0,1-.427-14.387c.434-4.271,2-12.456,7.988-11.283a5.464,5.464,0,0,1,2.983,2h0Z" transform="translate(-605.397 -0.85)"/><path d="M771.454,43.175a.3.3,0,0,1,.235.063c6.969,3.49,8.647-5.78,9.083-10.589a66.561,66.561,0,0,0,.138-9.035c-.157-3.444-.457-7.567-2.1-10.648a3.316,3.316,0,0,1-.467-.886c2.948,3.1,3.306,8.719,3.44,12.82.165,4.992.182,12.795-2.332,17.2-1.894,3.324-5.268,3.664-8,1.07h0Z" transform="translate(-623.842 -9.765)"/><path d="M687.49,43.542c.232-.008.408.193.61.283,2.061.926,4.037-.314,5.147-2.03,2.614-4.045,2.646-11.865,2.5-16.574-.119-3.875-.432-7.868-1.917-11.475l-.88-1.667c2.183,2.283,2.834,5.384,3.253,8.469a62.346,62.346,0,0,1,.281,13.019c-.306,3.62-1.422,11.853-6.54,11.4a4.028,4.028,0,0,1-2.457-1.422Z" transform="translate(-555.947 -9.765)"/><path d="M169.472,43.746c.321.05.6.22.918.3,4.661,1.125,6.228-5.6,6.741-8.9.878-5.666.9-14.071-1.106-19.473a17.216,17.216,0,0,0-1.483-2.876c-.046-.08-.092-.122-.067-.232,3.26,3.45,3.846,9.177,3.991,13.738A53.035,53.035,0,0,1,178,35.919c-.505,3.329-2.057,10.066-6.733,8.989a3.287,3.287,0,0,1-1.8-1.161h0Z" transform="translate(-137.045 -10.153)"/><path d="M426.69,107.631c.107-.023.151.017.232.067a26.741,26.741,0,0,0,2.552,1.533c8.069,3.8,22.991,2.386,22.283-9.374-.119-1.984-.829-3-1.772-4.606-.048-.08-.092-.122-.067-.232a9.047,9.047,0,0,1,2.61,8c-1.313,9.745-14.58,10.386-21.738,7.284a14.208,14.208,0,0,1-4.1-2.667h0Z" transform="translate(-345.049 -76.835)"/><path d="M606.519,127.4c-2.007-1.28-3.452.442-4.232,2.124-1.035,2.231-1.959,7.378-4.927,7.644a3.306,3.306,0,0,1-2.96-1.284c.417.086.742.323,1.182.4,3.76.66,4.7-5.115,5.834-7.587.828-1.8,2.3-3.484,4.384-2.07.237.161.687.48.719.771h0Z" transform="translate(-480.669 -101.973)"/><path d="M293.731,32.557c-.1.017-.14-.034-.209-.09-1.521-1.261-1.772-4.9-1.86-6.764-.187-3.976.364-9.8-1.276-13.4a7.994,7.994,0,0,1-.467-.932c.029.029.126.055.184.113,2.616,2.648,2.254,8.53,2.338,12.018.057,2.35.008,7.093,1.288,9.056Z" transform="translate(-234.448 -9.191)"/><path d="M108.8,135.656c-1.418-.442-2.294.894-2.9,1.942-1.205,2.084-2.74,7.25-6.037,6.046a3.709,3.709,0,0,1-1.391-1.064c.31.063.551.228.873.3,2.989.664,4.364-3.647,5.44-5.666.432-.811,1.3-2.35,2.3-2.47a1.523,1.523,0,0,1,1.716.913h0Z" transform="translate(-79.63 -108.941)"/><path d="M32.6,135.723a1.661,1.661,0,0,0-2.273.871c-1.3,2.3-.978,6.6-4.418,7.143a3.638,3.638,0,0,1-3.5-1.318c.239-.011.431.17.643.251a3.732,3.732,0,0,0,3.329-.3c2.149-1.391,1.963-4.753,3.136-6.728a1.709,1.709,0,0,1,2.994-.132c.055.069.107.1.09.209h0Z" transform="translate(-18.124 -108.916)"/><path d="M491.711,29c-.1.017-.14-.034-.209-.09-1.336-1.106-1.33-2.972.689-3.123,2.411-.182,7.548,1.58,9.387.2a2.437,2.437,0,0,0,.762-2.5l-.436-1.1c.878.918,1.617,1.783,1.318,3.174-.49,2.288-3.454,1.858-5.191,1.634-1.448-.188-4.69-.989-5.92-.306a1.45,1.45,0,0,0-.4,2.1h0Z" transform="translate(-396.71 -18.102)"/><path d="M621.3,21.957c-.283-.017-.522-.365-.681-.582a11.549,11.549,0,0,1-1.418-3.536c-.618-2.235-1.012-4.718-2.055-6.8a3.286,3.286,0,0,1-.436-.871c2.692,2.8,2.639,7.254,4.064,10.73a5.672,5.672,0,0,0,.528,1.056Z" transform="translate(-498.71 -8.221)"/><path d="M66.895,25.852a.226.226,0,0,1-.209-.09,11.09,11.09,0,0,1-1.59-2.22c-1.827-3.123-3.035-6.626-4.977-9.7-.222-.35-.534-.716-.733-1.056-.048-.08-.092-.122-.067-.232,2.313,2.474,3.574,5.771,5.057,8.777a26.241,26.241,0,0,0,2.518,4.523h0Z" transform="translate(-47.965 -10.145)"/><path d="M447.808,83.516c-.392-.3-.949-.622-1.381-.89A35.715,35.715,0,0,1,440.6,78.7c.107-.023.151.017.232.067.629.381,1.278.918,1.931,1.328a32.476,32.476,0,0,1,4.818,3.077c.1.094.245.193.23.344h0Z" transform="translate(-356.297 -63.634)"/></g><text transform="translate(683 109.852)" font-size="12" font-family="PT Mono, monospace" letter-spacing="0.3em"><tspan x="-79.2" y="0">INFUSED GUMMIES</tspan></text></g></symbol>
+<symbol id="s-wordmark" viewBox="0 0 160 36.2"><g fill="currentColor" transform="translate(1.002 -0.004)"><path d="M11.355,2.407c-.025.109.019.151.067.232.2.341.513.706.733,1.056,1.942,3.079,3.149,6.582,4.977,9.7a10.993,10.993,0,0,0,1.59,2.22.226.226,0,0,0,.209.09c1.558,1.921,3.368-.438,4.2-1.747,2.262-3.572,3.5-7.931,6.048-11.339,2.665-3.561,5.335-3.306,8.254-.214-.025.109.019.151.067.232a17.216,17.216,0,0,1,1.483,2.876c2.009,5.4,1.984,13.807,1.106,19.473-.513,3.308-2.08,10.03-6.741,8.9-.321-.078-.6-.249-.918-.3a5.766,5.766,0,0,1-1.554-2c-.7-1.538-.853-3.469-1.7-4.877A1.525,1.525,0,0,0,27.45,25.8c-1,.121-1.869,1.659-2.3,2.47-1.075,2.019-2.451,6.33-5.44,5.666-.32-.071-.563-.235-.873-.3a9.91,9.91,0,0,1-2.227-2.979c-.375-.714-1.59-3.54-2.133-3.854.017-.105-.034-.14-.09-.209a1.708,1.708,0,0,0-2.994.132c-1.173,1.975-.987,5.338-3.136,6.728a3.738,3.738,0,0,1-3.329.3c-.212-.08-.406-.262-.643-.251-.214-.2-.519-.438-.712-.643C.729,29.853.2,23.642.064,19.671L.016,19.56c.042-1.6-.055-3.215,0-4.816C.159,10.613,1.147,2.985,5.126.7c2.751-1.577,4.4-.253,6.228,1.7Z" transform="translate(0 0)"/><path d="M278.423,46.015a7.773,7.773,0,0,1-1.194,0c-1.188-.128-2.453-1.3-3.649-1.7-3.4-1.131-5.729.74-8.915,1.186s-5.757-.086-8.1-2.285c.253,0,.461.233.675.358a10.236,10.236,0,0,0,7.453.9c2.667-.572,4.483-1.823,7.391-1.194,2.367.513,3.905,2.91,6.565,1.469,3.4-1.841,4.319-8.629,4.5-12.106.264-5.044-.094-12.538-1.986-17.236a19.311,19.311,0,0,0-1.121-2.137.3.3,0,0,1-.061-.235c3.2,3.373,3.725,9.636,3.949,14.1.237,4.766.277,10.771-1.737,15.189-.66,1.447-2.044,3.477-3.773,3.683h0Z" transform="translate(-207.479 -10.541)"/><path d="M235.12,33.985a12.569,12.569,0,0,1-2.839-3.607c-2.577-5.08-2.707-13.709-1.508-19.2.821-3.758,3.505-11.031,8.628-9.29a4.861,4.861,0,0,1,2.1,1.594,7.843,7.843,0,0,0,.467.932c1.64,3.6,1.089,9.427,1.276,13.4.088,1.862.337,5.5,1.86,6.764.069.055.1.107.209.09.31.476,1.462.672,2,.641,2.95-.168,3.446-4.856,3.651-7.085.35-3.838.113-7.776.6-11.6C251.9,4,252.671.577,256.169,1.926a6.664,6.664,0,0,1,2.363,1.881.309.309,0,0,0,.061.235,19.311,19.311,0,0,1,1.121,2.137c1.892,4.7,2.25,12.192,1.986,17.236-.182,3.477-1.1,10.267-4.5,12.106-2.662,1.441-4.2-.957-6.565-1.469-2.906-.63-4.724.62-7.391,1.194a10.031,10.031,0,0,1-7.453-.9c-.212-.124-.421-.356-.675-.358h0Z" transform="translate(-186.027 -1.308)"/><path d="M580.835,3.523a3.344,3.344,0,0,0,.436.871c1.043,2.082,1.437,4.563,2.055,6.8a11.548,11.548,0,0,0,1.418,3.536c.159.216.4.563.681.582a1.628,1.628,0,0,0,1.776.283c1.425-.54,2.2-3.04,2.642-4.376,1.1-3.345,2.332-10.036,7.2-9.194a4.748,4.748,0,0,1,2.792,1.867l.88,1.667c1.487,3.607,1.8,7.6,1.917,11.475.143,4.709.109,12.529-2.5,16.574-1.11,1.716-3.084,2.956-5.147,2.03-.2-.092-.379-.291-.61-.283-1.9-1.825-2.587-3.494-3.848-5.717a9.274,9.274,0,0,0-1.844-2.629c-.034-.291-.482-.61-.719-.771-2.084-1.414-3.555.27-4.384,2.07-1.138,2.472-2.074,8.247-5.834,7.587-.44-.077-.765-.316-1.182-.4-2.438-2.325-3.115-5.168-3.618-8.423A60.381,60.381,0,0,1,572.85,10.8c.385-2.851,1.527-9.186,5.474-8.828a3.782,3.782,0,0,1,2.508,1.554h0Z" transform="translate(-462.835 -1.574)"/><path d="M435.227,4.823l.436,1.1a2.433,2.433,0,0,1-.762,2.5c-1.839,1.376-6.976-.387-9.387-.2-2.019.151-2.024,2.015-.689,3.123.069.055.1.107.209.09a5.042,5.042,0,0,0,1.4,1.1c3.26,2.116,5.725,3.251,8.471,6.19-.025.109.019.151.067.232.943,1.607,1.653,2.621,1.772,4.606.708,11.762-14.215,13.176-22.283,9.374a26.734,26.734,0,0,1-2.552-1.533c-.08-.05-.124-.09-.232-.067-1.659-1.508-3.756-3.565-3.534-6.031s3.276-2.216,5.026-2.042c2.12.212,6.109,1.24,7.981.312a1.829,1.829,0,0,0,.4-3.157c.015-.151-.132-.251-.23-.344-1.209-1.16-3.36-2.156-4.818-3.077-.651-.411-1.3-.947-1.931-1.328-.08-.05-.124-.09-.232-.067-2.3-2.133-3.683-3.723-3.49-7.087.465-8.117,10.878-8.507,16.9-7.38A12.778,12.778,0,0,1,435.227,4.823Z" transform="translate(-330.036 -0.535)"/><path d="M759.894,3.165a3.318,3.318,0,0,0,.467.886c1.646,3.079,1.946,7.2,2.1,10.648a66.551,66.551,0,0,1-.138,9.035c-.436,4.808-2.114,14.079-9.083,10.589a.319.319,0,0,0-.235-.063c-2.313-2.2-3.075-4.307-3.658-7.42a53.977,53.977,0,0,1-.427-14.387c.434-4.271,2-12.456,7.988-11.283a5.464,5.464,0,0,1,2.983,2h0Z" transform="translate(-605.397 -0.85)"/><path d="M771.454,43.175a.3.3,0,0,1,.235.063c6.969,3.49,8.647-5.78,9.083-10.589a66.561,66.561,0,0,0,.138-9.035c-.157-3.444-.457-7.567-2.1-10.648a3.316,3.316,0,0,1-.467-.886c2.948,3.1,3.306,8.719,3.44,12.82.165,4.992.182,12.795-2.332,17.2-1.894,3.324-5.268,3.664-8,1.07h0Z" transform="translate(-623.842 -9.765)"/><path d="M687.49,43.542c.232-.008.408.193.61.283,2.061.926,4.037-.314,5.147-2.03,2.614-4.045,2.646-11.865,2.5-16.574-.119-3.875-.432-7.868-1.917-11.475l-.88-1.667c2.183,2.283,2.834,5.384,3.253,8.469a62.346,62.346,0,0,1,.281,13.019c-.306,3.62-1.422,11.853-6.54,11.4a4.028,4.028,0,0,1-2.457-1.422Z" transform="translate(-555.947 -9.765)"/><path d="M169.472,43.746c.321.05.6.22.918.3,4.661,1.125,6.228-5.6,6.741-8.9.878-5.666.9-14.071-1.106-19.473a17.216,17.216,0,0,0-1.483-2.876c-.046-.08-.092-.122-.067-.232,3.26,3.45,3.846,9.177,3.991,13.738A53.035,53.035,0,0,1,178,35.919c-.505,3.329-2.057,10.066-6.733,8.989a3.287,3.287,0,0,1-1.8-1.161h0Z" transform="translate(-137.045 -10.153)"/><path d="M426.69,107.631c.107-.023.151.017.232.067a26.741,26.741,0,0,0,2.552,1.533c8.069,3.8,22.991,2.386,22.283-9.374-.119-1.984-.829-3-1.772-4.606-.048-.08-.092-.122-.067-.232a9.047,9.047,0,0,1,2.61,8c-1.313,9.745-14.58,10.386-21.738,7.284a14.208,14.208,0,0,1-4.1-2.667h0Z" transform="translate(-345.049 -76.835)"/><path d="M606.519,127.4c-2.007-1.28-3.452.442-4.232,2.124-1.035,2.231-1.959,7.378-4.927,7.644a3.306,3.306,0,0,1-2.96-1.284c.417.086.742.323,1.182.4,3.76.66,4.7-5.115,5.834-7.587.828-1.8,2.3-3.484,4.384-2.07.237.161.687.48.719.771h0Z" transform="translate(-480.669 -101.973)"/><path d="M293.731,32.557c-.1.017-.14-.034-.209-.09-1.521-1.261-1.772-4.9-1.86-6.764-.187-3.976.364-9.8-1.276-13.4a7.994,7.994,0,0,1-.467-.932c.029.029.126.055.184.113,2.616,2.648,2.254,8.53,2.338,12.018.057,2.35.008,7.093,1.288,9.056Z" transform="translate(-234.448 -9.191)"/><path d="M108.8,135.656c-1.418-.442-2.294.894-2.9,1.942-1.205,2.084-2.74,7.25-6.037,6.046a3.709,3.709,0,0,1-1.391-1.064c.31.063.551.228.873.3,2.989.664,4.364-3.647,5.44-5.666.432-.811,1.3-2.35,2.3-2.47a1.523,1.523,0,0,1,1.716.913h0Z" transform="translate(-79.63 -108.941)"/><path d="M32.6,135.723a1.661,1.661,0,0,0-2.273.871c-1.3,2.3-.978,6.6-4.418,7.143a3.638,3.638,0,0,1-3.5-1.318c.239-.011.431.17.643.251a3.732,3.732,0,0,0,3.329-.3c2.149-1.391,1.963-4.753,3.136-6.728a1.709,1.709,0,0,1,2.994-.132c.055.069.107.1.09.209h0Z" transform="translate(-18.124 -108.916)"/><path d="M491.711,29c-.1.017-.14-.034-.209-.09-1.336-1.106-1.33-2.972.689-3.123,2.411-.182,7.548,1.58,9.387.2a2.437,2.437,0,0,0,.762-2.5l-.436-1.1c.878.918,1.617,1.783,1.318,3.174-.49,2.288-3.454,1.858-5.191,1.634-1.448-.188-4.69-.989-5.92-.306a1.45,1.45,0,0,0-.4,2.1h0Z" transform="translate(-396.71 -18.102)"/><path d="M621.3,21.957c-.283-.017-.522-.365-.681-.582a11.549,11.549,0,0,1-1.418-3.536c-.618-2.235-1.012-4.718-2.055-6.8a3.286,3.286,0,0,1-.436-.871c2.692,2.8,2.639,7.254,4.064,10.73a5.672,5.672,0,0,0,.528,1.056Z" transform="translate(-498.71 -8.221)"/><path d="M66.895,25.852a.226.226,0,0,1-.209-.09,11.09,11.09,0,0,1-1.59-2.22c-1.827-3.123-3.035-6.626-4.977-9.7-.222-.35-.534-.716-.733-1.056-.048-.08-.092-.122-.067-.232,2.313,2.474,3.574,5.771,5.057,8.777a26.241,26.241,0,0,0,2.518,4.523h0Z" transform="translate(-47.965 -10.145)"/><path d="M447.808,83.516c-.392-.3-.949-.622-1.381-.89A35.715,35.715,0,0,1,440.6,78.7c.107-.023.151.017.232.067.629.381,1.278.918,1.931,1.328a32.476,32.476,0,0,1,4.818,3.077c.1.094.245.193.23.344h0Z" transform="translate(-356.297 -63.634)"/></g></symbol>
+<symbol id="s-badge-ring" viewBox="0 0 148.306 148.242"><g fill="currentColor"><path d="M9.426,112.41l5.443.083-.076,4.722L0,116.979l.14-8.948c.057-3.677,1.886-5.57,4.334-5.532a3.559,3.559,0,0,1,3.505,2.607c.357-.8,1.083-2.141,3.594-2.1l.8.013a11.149,11.149,0,0,0,2.645-.159l-.076,4.786a9.039,9.039,0,0,1-3.065.255h-.5c-1.377-.032-1.886.4-1.918,2.262L9.426,112.4Zm-3.072-.051.045-2.944c.019-1.306-.446-2.052-1.517-2.065-.981-.013-1.549.65-1.574,2.02l-.045,2.944,3.091.051Z" transform="translate(0 -37.177)" fill="currentColor"/><path d="M15.223,73.481l-2.447,7.514,2.345.765,2.74-8.4,3.078,1.587L16.905,87.329,2.84,82.741,6.887,70.32l3.257,1.064L7.562,79.3l1.963.637,2.447-7.514,3.257,1.064Z" transform="translate(-1.03 -25.505)" fill="currentColor"/><path d="M28.98,56.72l1.689,2.371L27.845,63,19.14,49.8l3.671-5.079,15.474,3.837-3.027,4.187-2.823-.8L28.98,56.714Zm.025-5.876c-2.721-.778-4.41-1.313-5.634-1.733l-.045.057c.8.975,2.122,2.74,3.492,4.7Z" transform="translate(-6.942 -16.22)" fill="currentColor"/><path d="M38.59,28.082l3.824-2.932,6.915,9.024,6.3-4.831L57.269,32.4l-9.681,7.418-9-11.739Z" transform="translate(-13.997 -9.122)" fill="currentColor"/><path d="M83.514,14.547c.542.873,1.466,1.4,3.333.918,1.657-.427,2.039-1.052,1.861-1.765-.2-.758-.771-1.09-3.575-.867-5.525.427-6.755-1.179-7.24-3.065C77.166,6.932,79.41,4.6,83.329,3.6c4.761-1.217,7.24.491,7.966,2.562L86.77,7.32c-.325-.6-.918-1.224-2.7-.771-1.262.325-1.753.886-1.581,1.555s.848.816,3.174.65c5.666-.414,7.144,1.013,7.7,3.167.7,2.734-1.09,5.309-5.952,6.558-4.805,1.23-7.463-.261-8.559-2.734l4.659-1.192Z" transform="translate(-28.203 -1.158)" fill="currentColor"/><path d="M110.495,0,115.3.274,115,5.608l5.321.3.3-5.334,4.805.274-.835,14.773-4.805-.274.338-6.029-5.321-.3-.338,6.029-4.805-.274Z" transform="translate(-39.774)" fill="currentColor"/><path d="M146.416,15.026l-1.995,5.06-4.391-1.727L145.453,4.6l8.323,3.276c3.422,1.345,4.55,3.722,3.652,6a3.545,3.545,0,0,1-3.671,2.358c.618.612,1.625,1.772.707,4.1l-.293.746a11.252,11.252,0,0,0-.777,2.53l-4.448-1.753a9.08,9.08,0,0,1,.841-2.957l.185-.465c.5-1.281.28-1.912-1.453-2.594l-2.09-.822Zm1.122-2.861,2.734,1.077c1.217.478,2.071.306,2.466-.688.363-.918-.057-1.682-1.332-2.18L148.672,9.3l-1.134,2.874Z" transform="translate(-50.789 -1.668)" fill="currentColor"/><path d="M184.571,36.908c-2.67,3.212-7.087,4.213-11.561.5-4.1-3.41-4.193-7.915-1.421-11.255,2.6-3.136,7.131-4.111,11.478-.5,4.1,3.41,4.187,8.036,1.5,11.261Zm-9.037-7.577c-1.644,1.976-2.078,4.1-.21,5.646,1.918,1.593,3.913.414,5.328-1.287,1.644-1.976,2.148-4.009.229-5.6-1.829-1.517-3.8-.618-5.341,1.243Z" transform="translate(-61.547 -8.466)" fill="currentColor"/><path d="M205.146,64.839c-3.575,2.16-8.075,1.657-11.083-3.32-2.759-4.569-1.37-8.852,2.345-11.1,3.486-2.109,8.087-1.549,11.006,3.282,2.76,4.569,1.319,8.967-2.269,11.134Zm-6.054-10.12c-2.205,1.332-3.308,3.193-2.052,5.27,1.287,2.135,3.562,1.676,5.455.529,2.2-1.326,3.346-3.078,2.052-5.219-1.23-2.033-3.39-1.829-5.455-.58Z" transform="translate(-69.861 -17.864)" fill="currentColor"/><path d="M211.986,96.124c2.307-.433,5.111-.918,6.832-1.134v-.045c-2.951-.172-6.883-.4-12.293-.879l-.733-3.881c4.563-2.046,8.406-3.741,11.21-5.009v-.038c-1.682.408-4.461,1.1-6.953,1.574l-4.741.892-.8-4.219,14.537-2.734,1.275,6.762c-3.1,1.555-6.5,3.148-8.871,4.021v.025c2.683.07,6.252.363,9.763.714l1.268,6.743-14.537,2.734-.867-4.608,4.9-.924Z" transform="translate(-74.176 -29.252)" fill="currentColor"/><path d="M212.314,124.364c-1.013.159-1.855.8-2.154,2.7-.261,1.689.166,2.288.892,2.4.778.121,1.3-.28,2.205-2.944,1.784-5.251,3.747-5.742,5.672-5.443,2.893.452,4.155,3.435,3.531,7.425-.758,4.856-3.308,6.462-5.5,6.316l.72-4.614c.676-.064,1.485-.363,1.772-2.173.2-1.287-.121-1.963-.809-2.065s-1.083.452-1.848,2.658c-1.848,5.372-3.747,6.169-5.946,5.825-2.791-.433-4.455-3.091-3.677-8.055.765-4.9,3.18-6.762,5.889-6.787l-.739,4.754Z" transform="translate(-75.072 -43.383)" fill="currentColor"/><path d="M205.265,148.3l.2.083a2.343,2.343,0,0,1,1.313,3.04h0a2.338,2.338,0,0,1-3.04,1.313l-.2-.083a2.338,2.338,0,0,1-1.313-3.04h0A2.338,2.338,0,0,1,205.265,148.3Z" transform="translate(-73.287 -53.727)" fill="currentColor"/><path d="M188.325,176.738l-4.085-3.594,3.116-3.543,11.108,9.77-5.908,6.717c-2.428,2.76-5.047,3.014-6.889,1.4a3.56,3.56,0,0,1-.975-4.257c-.784.376-2.218.924-4.1-.733l-.6-.529a11.16,11.16,0,0,0-2.116-1.593l3.161-3.594a9.066,9.066,0,0,1,2.5,1.8l.376.331c1.032.9,1.7.911,2.932-.484l1.485-1.682Zm2.3,2.033-1.944,2.211c-.867.981-.988,1.848-.185,2.556.739.65,1.6.516,2.5-.516l1.944-2.211Z" transform="translate(-64.517 -61.514)" fill="currentColor"/><path d="M158.893,201.934l6.736-4.136-1.294-2.1-7.533,4.627-1.313-3.2,11.1-6.813,7.743,12.606L163.2,209.748l-1.791-2.919,7.093-4.353-1.077-1.759-6.736,4.136-1.791-2.919Z" transform="translate(-56.397 -69.026)" fill="currentColor"/><path d="M136.816,207.17l.255-2.9,4.684-1.141-1.944,15.69-6.086,1.479L124.44,207.33l5.022-1.217,1.625,2.441,5.729-1.389Zm-3.837,4.455c1.568,2.358,2.5,3.862,3.161,4.977l.07-.019c.025-1.268.166-3.461.4-5.844l-3.626.879Z" transform="translate(-45.135 -73.676)" fill="currentColor"/><path d="M111.927,223.833l-4.812-.249.593-11.35-7.928-.414.739-3.39,12.179.637-.771,14.773Z" transform="translate(-36.19 -75.598)" fill="currentColor"/><path d="M67.751,216.157,56.12,210.581l1.472-3.072,7.323,3.512,1.154-2.4-6.845-3.282,1.479-3.085,6.845,3.282,2.288-4.773,4.308,2.065-6.4,13.339Z" transform="translate(-20.355 -72.816)" fill="currentColor"/><path d="M36.323,195.57l5.8-6.3c1.593-1.727,1.287-3.065.127-4.142-1.224-1.128-2.447-1.083-3.983.586l-5.8,6.3-3.537-3.257,5.812-6.316c2.912-3.161,6.188-3.193,9.923.249,3.6,3.314,4.009,6.583,1.013,9.834l-5.812,6.309-3.537-3.263Z" transform="translate(-10.493 -65.319)" fill="currentColor"/><path d="M28.879,163.684l-12.988,7.08-2.683-4.92c3.085-5.411,4.244-7.3,5.455-9.056l-.038-.07c-1.16.784-3.512,2.058-5.659,3.231L10.671,161.2,8.6,157.4l12.988-7.08,2.53,4.646c-1.249,1.995-5.041,8.2-6.2,9.84l.032.064c1.415-.93,3.136-1.88,5.685-3.269l3.161-1.721,2.078,3.8Z" transform="translate(-3.119 -54.521)" fill="currentColor"/><path d="M22.254,142.635l-.217.057a2.343,2.343,0,0,1-2.874-1.644h0a2.334,2.334,0,0,1,1.644-2.868l.217-.057a2.334,2.334,0,0,1,2.868,1.644h0a2.334,2.334,0,0,1-1.644,2.868Z" transform="translate(-6.921 -50.068)" fill="currentColor"/></g></symbol>
+<symbol id="s-badge-core" viewBox="0 0 148.306 148.242"><g fill="currentColor" transform="translate(41.794 30.983)"><path d="M127.588,84.658a23.386,23.386,0,0,1-2.683-1.9,37.441,37.441,0,0,1-4.162-4.123,6.788,6.788,0,0,0-6.921-1.784c-2.7.835-4.5,3.237-4.926,6.6a22.934,22.934,0,0,1-2.358,7.463c-.918,1.8-1.147,3.218-.7,4.34a3.975,3.975,0,0,0,2.581,2.16,13.322,13.322,0,0,0,4.4.6,30.238,30.238,0,0,0,4.544-.363c-.338,3.747-4.538,6.723-9.375,10.152-1.007.714-2.078,1.472-3.155,2.282-2.282-5.264-5.3-12.4-5.9-21.107a71.861,71.861,0,0,1,1.154-13.95c12.064-.217,16.557-3.588,17.934-5.035a3.91,3.91,0,0,0,1.249-2.466h0c.421-2.81-1.039-6.551-4-10.254-3.919-4.9-9.3-8.285-13.708-8.61-5.36-.4-8.648,1.714-11.943,5.009a35.6,35.6,0,0,0-2.5,3.008c-1.141,1.459-2.7,3.461-4.7,5.685-.325.357-.637.695-.943,1.02l-.057.064a12.631,12.631,0,0,0-2.32,2.938l-.325.153h.261a2.109,2.109,0,0,0-.019,1.612l.025.032a3.869,3.869,0,0,0,1.179,1.753c3.524,3.218,9.349,5.143,15.588,5.143.178,0,.363,0,.542-.006a52.6,52.6,0,0,0-1.606,20.094c.593,6.456,2.81,13.351,4.786,19.457a22.037,22.037,0,0,0-2.944,3.626c-2.4,3.792-3.6,7.2-3.639,10.382-2.371-2.524-5.328-5.806-6.494-9.126-1.428-4.06-2.116-10.445-2.282-14.817,6.43-.446,9.368-1.357,9.5-2.944l.013-.159c.669-9.489-5.991-15.308-10.847-15.709-3.218-.274-6.762,1.377-9.738,4.512-3.078,3.244-4.684,7.131-4.4,10.662a2.573,2.573,0,0,0,1.185,1.778c1.95,1.313,8,1.925,10.165,1.88-.561,12.453,2.02,22.235,7.877,29.883a.62.62,0,0,0,.854.115.613.613,0,0,0,.108-.848c-6.271-8.183-8.68-18.979-7.367-32.993a2.027,2.027,0,0,1,.535-.2c.268,0,.4.1.739.4l.127.108c-.153,3.741.389,13.116,2.364,18.743,1.345,3.83,4.8,7.488,7.316,10.159l.427.452a14.984,14.984,0,0,0,.478,2.224c.357,1.23.937,1.982,1.625,2.1a1.055,1.055,0,0,0,.21.025,1,1,0,0,0,.809-.414,2.082,2.082,0,0,0-.083-2.154,12.509,12.509,0,0,0-1.88-2.32c-.331-3.333.784-6.959,3.39-11.083A28.007,28.007,0,0,1,104.3,112l.217.5v-.663c1.351-1.039,2.753-2.033,4.142-3.014,5.207-3.69,9.719-6.883,9.9-11.344.421-.076.809-.159,1.16-.236.134,1.459-.223,5.29-6.156,10.178a68.586,68.586,0,0,0-7.73,7.246,32.291,32.291,0,0,0-4.264,5.85,18.068,18.068,0,0,0-2.415,7.852c-.1,1.918.414,3.435,1.37,4.06a1.676,1.676,0,0,0,1.714.089c1.045-.535,1.708-2.039,1.81-4.136a24.1,24.1,0,0,0-1.3-7.5A30.028,30.028,0,0,1,106.1,116.2c2.613,6.4,3.938,11.675,2.626,17.889a.623.623,0,0,0,.083.452.6.6,0,0,0,.389.261l.121.013a.612.612,0,0,0,.593-.478c1.408-6.666-.064-12.293-2.919-19.164a69.879,69.879,0,0,1,7.342-6.838c6.558-5.411,6.768-9.827,6.571-11.42.242-.07.465-.14.656-.21,4-1.434,8.266-5.251,8.756-7.8l.025-.147c.3-2.16-1.052-3.021-2.772-4.1Zm-.484.752-.172.268.083.051c1.606,1.013,2.333,1.491,2.141,2.868-.261,1.886-4.181,5.608-7.992,6.972-2.536.911-9.152,1.88-12.351.72a2.872,2.872,0,0,1-1.867-1.472c-.312-.777-.1-1.874.656-3.352a24.318,24.318,0,0,0,2.479-7.858c.5-3.932,2.772-5.2,4.079-5.6a5.624,5.624,0,0,1,1.663-.249,5.4,5.4,0,0,1,4,1.682,38.539,38.539,0,0,0,4.289,4.244,23.861,23.861,0,0,0,2.81,1.988l.172-.268h0ZM81.027,69.044c-.637-.58-.975-1.243-.848-1.644.089-.28.465-.484,1.026-.554a50.53,50.53,0,0,0,10.388-2.9c3.766-1.338,7.667-2.728,11.229-2.912.172-.006.344-.013.516-.013,3.231,0,6.379,1.549,8.712,2.7l.816.4c.51.249,1.032.472,1.542.688l.121.051c1.867.8,3.48,1.485,3.524,2.607a2.853,2.853,0,0,1-.924,1.7c-1.262,1.326-5.411,4.41-16.844,4.659.338-1.9.695-3.531.981-4.525.089.051.178.1.274.159a8.649,8.649,0,0,0,4.544,1.459h.083a.574.574,0,0,0,.427-.185.582.582,0,0,0,.172-.427.591.591,0,0,0-.554-.6h-.121a7.4,7.4,0,0,1-3.8-1.217c2.352-.2,5.009-.714,6.207-1.963a.6.6,0,0,0,.172-.433.61.61,0,0,0-.185-.427.623.623,0,0,0-.433-.172.584.584,0,0,0-.421.185c-1.23,1.281-5.213,1.727-8.24,1.7a6.032,6.032,0,0,1-4.4-1.9.607.607,0,0,0-.943.765,6.663,6.663,0,0,0,3.186,2,8.271,8.271,0,0,1-6.277.325.6.6,0,0,0-.459.038.614.614,0,0,0-.3.357.578.578,0,0,0,.038.459.618.618,0,0,0,.363.306,11.26,11.26,0,0,0,3.25.516,9.409,9.409,0,0,0,4.487-1.192c-.644,1.74-1.185,3.32-1.631,4.8-6.214.2-12.2-1.638-15.665-4.805Zm19.3-19.215c.37,0,.752.013,1.141.045,4.091.306,9.139,3.512,12.854,8.157a17.131,17.131,0,0,1,3.664,7.252,14.079,14.079,0,0,0-2.963-1.536l-.274-.115c-.446-.191-.9-.389-1.345-.605l-.809-.4c-2.568-1.262-6.105-2.989-9.827-2.8s-7.711,1.606-11.573,2.983A50.4,50.4,0,0,1,81.065,65.66h-.013c.37-.446.816-.918,1.243-1.377l.1-.1c.293-.319.605-.65.918-.994,1.988-2.2,3.518-4.162,4.754-5.748a33.258,33.258,0,0,1,2.4-2.893c2.817-2.817,5.621-4.7,9.859-4.7ZM99.77,68.655a2.447,2.447,0,0,1,.4.108c-.981,3.276-2.855,14.4-2.447,20.311.612,9,3.76,16.359,6.105,21.776-1.287.994-2.383,1.918-3.339,2.81-1.8-5.57-3.977-12.389-4.55-18.609-1-11,.574-17.8,3.83-26.4ZM76.859,100.373a.607.607,0,1,0-.191,1.2,7.714,7.714,0,0,0,3.594-.191c-.064.714-.115,1.421-.153,2.109-2.02.076-7.922-.586-9.547-1.676a1.181,1.181,0,0,1-.644-1.071c.1-.4.765-.707,1.727-.8,1.568-.147,3.059-.433,4.544-.714l.064-.013a33.241,33.241,0,0,1,6.322-.771,19.068,19.068,0,0,1,6.3,1.523,20.341,20.341,0,0,0,2.014.669c.822.2,1.587.778,1.568,1,0,.013-.21,1.268-8.336,1.842q-.019-.851,0-1.606a6.837,6.837,0,0,0,2.881.236.631.631,0,0,0,.414-.217.586.586,0,0,0,.134-.44.627.627,0,0,0-.223-.421.582.582,0,0,0-.433-.127c-2.192.2-2.791-.312-3.32-.778a2.171,2.171,0,0,0-1.51-.676,2.778,2.778,0,0,0-1.141.357,6.177,6.177,0,0,1-4.066.574Zm5.876-13.307c4.079.338,9.61,5,9.732,12.931a5.1,5.1,0,0,0-1.287-.548c-.484-.115-1.166-.37-1.886-.631a20.617,20.617,0,0,0-6.717-1.593,34.534,34.534,0,0,0-6.615.809c-1.421.274-2.893.554-4.436.7a4.852,4.852,0,0,0-1.593.4,14.385,14.385,0,0,1,4.047-7.928c2.709-2.861,5.9-4.365,8.756-4.136Zm17.64,41.354a16.188,16.188,0,0,1,1.568-5.965,19.787,19.787,0,0,1,.9,5.857c-.1,1.918-.682,2.881-1.154,3.123a.476.476,0,0,1-.51-.025c-.433-.28-.9-1.224-.816-2.983Z" transform="translate(-66.7 -48.616)" fill="currentColor"/><path d="M162.035,86.731A1.835,1.835,0,1,0,160.2,84.9,1.836,1.836,0,0,0,162.035,86.731Z" transform="translate(-99.899 -61.109)" fill="currentColor"/><path d="M154.982,150.115h-.191a3.243,3.243,0,0,1-3.237-3.244v-2.556a.605.605,0,1,0-1.211,0v2.556a3.279,3.279,0,0,1-3.276,3.276h-.191a.605.605,0,0,0,0,1.211h.191a3.248,3.248,0,0,1,3.276,3.206v2.556a.605.605,0,1,0,1.211,0v-2.556a3.242,3.242,0,0,1,3.237-3.237h.191a.605.605,0,0,0,0-1.211Z" transform="translate(-94.846 -83.107)" fill="currentColor"/><path d="M139.942,96.94c-1.064,0-3.6.427-4.1,4.4a24.621,24.621,0,0,1-.669,3.314.611.611,0,0,0,.421.739.751.751,0,0,0,.159.025.6.6,0,0,0,.58-.446,25.89,25.89,0,0,0,.7-3.48c.37-2.912,1.982-3.346,2.906-3.346a.605.605,0,0,0,0-1.211Z" transform="translate(-90.813 -66.143)" fill="currentColor"/><path d="M68.792,87.515v2.02a.605.605,0,0,0,1.211,0v-2.02a2.434,2.434,0,0,1,2.434-2.434h.147a.605.605,0,0,0,0-1.211h-.147A2.434,2.434,0,0,1,70,81.436v-2.02a.605.605,0,0,0-1.211,0v2.02a2.461,2.461,0,0,1-2.46,2.46h-.147a.605.605,0,0,0-.172,1.185l.319.025a2.433,2.433,0,0,1,2.46,2.4Z" transform="translate(-65.58 -59.567)" fill="currentColor"/><path d="M79.365,166.15a1.835,1.835,0,1,0,1.835,1.835A1.836,1.836,0,0,0,79.365,166.15Z" transform="translate(-69.914 -91.246)" fill="currentColor"/></g></symbol>
+</svg>
+
+<!-- ===================== ANNOUNCEMENT BAR ===================== -->
+<div class="ann mq" role="region" aria-label="Announcements">
+  <div class="mq-track" id="annTrack"><span>Free shipping over $100<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 339.6 159.9"><g><g><g><path fill="currentColor" d="M315.7,30.5c-1.4-2-3.7-3.2-6.1-3.2h-46.5V7.5c0-4.1-3.4-7.5-7.5-7.5H87.1c-4.1,0-7.5,3.4-7.5,7.5v121.2c0,4.1,3.4,7.5,7.5,7.5h21.2c3.9,13.6,16.5,23.7,31.3,23.7s27.4-10,31.3-23.7h83.1c3.9,13.6,16.5,23.7,31.3,23.7s27.4-10,31.3-23.7h15.5c4.1,0,7.5-3.4,7.5-7.5v-61.7c0-1.6-.5-3.1-1.4-4.3l-22.5-32.2ZM324.7,69.2h-33.6v-26.8h14.7l18.9,26.8ZM94.6,15.1h153.5v106.2h-76.5c-2.9-15.1-16.1-26.5-32-26.5s-29.2,11.4-32,26.5h-13V15.1h0ZM139.6,144.9c-9.7,0-17.6-7.9-17.6-17.6s7.9-17.6,17.6-17.6,17.6,7.9,17.6,17.6-7.9,17.6-17.6,17.6ZM285.4,144.9c-9.7,0-17.6-7.9-17.6-17.6s7.9-17.6,17.6-17.6,17.6,7.9,17.6,17.6-7.9,17.6-17.6,17.6ZM317.4,121.3c-2.9-15.1-16.1-26.5-32-26.5-8.6,0-16.5,3.4-22.3,8.9v-61.3h12.9v34.3c0,4.1,3.4,7.5,7.5,7.5h41.3v37.1h-7.4Z"/><path fill="currentColor" d="M7.5,15.1h53.5c4.1,0,7.5-3.4,7.5-7.5S65.1.1,61,.1H7.5C3.4.1,0,3.5,0,7.6s3.4,7.5,7.5,7.5Z"/><path fill="currentColor" d="M61,27.4H19.8c-4.1,0-7.5,3.4-7.5,7.5s3.4,7.5,7.5,7.5h41.2c4.1,0,7.5-3.4,7.5-7.5s-3.3-7.5-7.5-7.5Z"/><path fill="currentColor" d="M61,54.7h-26c-4.1,0-7.5,3.4-7.5,7.5s3.4,7.5,7.5,7.5h26c4.1,0,7.5-3.4,7.5-7.5s-3.3-7.5-7.5-7.5Z"/><path fill="currentColor" d="M61,82h-9c-4.1,0-7.5,3.4-7.5,7.5s3.4,7.5,7.5,7.5h9c4.1,0,7.5-3.4,7.5-7.5s-3.3-7.5-7.5-7.5Z"/></g></g></g></svg></span><span>Discreet shipping<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 339.6 159.9"><g><g><g><path fill="currentColor" d="M315.7,30.5c-1.4-2-3.7-3.2-6.1-3.2h-46.5V7.5c0-4.1-3.4-7.5-7.5-7.5H87.1c-4.1,0-7.5,3.4-7.5,7.5v121.2c0,4.1,3.4,7.5,7.5,7.5h21.2c3.9,13.6,16.5,23.7,31.3,23.7s27.4-10,31.3-23.7h83.1c3.9,13.6,16.5,23.7,31.3,23.7s27.4-10,31.3-23.7h15.5c4.1,0,7.5-3.4,7.5-7.5v-61.7c0-1.6-.5-3.1-1.4-4.3l-22.5-32.2ZM324.7,69.2h-33.6v-26.8h14.7l18.9,26.8ZM94.6,15.1h153.5v106.2h-76.5c-2.9-15.1-16.1-26.5-32-26.5s-29.2,11.4-32,26.5h-13V15.1h0ZM139.6,144.9c-9.7,0-17.6-7.9-17.6-17.6s7.9-17.6,17.6-17.6,17.6,7.9,17.6,17.6-7.9,17.6-17.6,17.6ZM285.4,144.9c-9.7,0-17.6-7.9-17.6-17.6s7.9-17.6,17.6-17.6,17.6,7.9,17.6,17.6-7.9,17.6-17.6,17.6ZM317.4,121.3c-2.9-15.1-16.1-26.5-32-26.5-8.6,0-16.5,3.4-22.3,8.9v-61.3h12.9v34.3c0,4.1,3.4,7.5,7.5,7.5h41.3v37.1h-7.4Z"/><path fill="currentColor" d="M7.5,15.1h53.5c4.1,0,7.5-3.4,7.5-7.5S65.1.1,61,.1H7.5C3.4.1,0,3.5,0,7.6s3.4,7.5,7.5,7.5Z"/><path fill="currentColor" d="M61,27.4H19.8c-4.1,0-7.5,3.4-7.5,7.5s3.4,7.5,7.5,7.5h41.2c4.1,0,7.5-3.4,7.5-7.5s-3.3-7.5-7.5-7.5Z"/><path fill="currentColor" d="M61,54.7h-26c-4.1,0-7.5,3.4-7.5,7.5s3.4,7.5,7.5,7.5h26c4.1,0,7.5-3.4,7.5-7.5s-3.3-7.5-7.5-7.5Z"/><path fill="currentColor" d="M61,82h-9c-4.1,0-7.5,3.4-7.5,7.5s3.4,7.5,7.5,7.5h9c4.1,0,7.5-3.4,7.5-7.5s-3.3-7.5-7.5-7.5Z"/></g></g></g></svg></span><span>Savor every moment<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 339.6 159.9"><g><g><g><path fill="currentColor" d="M315.7,30.5c-1.4-2-3.7-3.2-6.1-3.2h-46.5V7.5c0-4.1-3.4-7.5-7.5-7.5H87.1c-4.1,0-7.5,3.4-7.5,7.5v121.2c0,4.1,3.4,7.5,7.5,7.5h21.2c3.9,13.6,16.5,23.7,31.3,23.7s27.4-10,31.3-23.7h83.1c3.9,13.6,16.5,23.7,31.3,23.7s27.4-10,31.3-23.7h15.5c4.1,0,7.5-3.4,7.5-7.5v-61.7c0-1.6-.5-3.1-1.4-4.3l-22.5-32.2ZM324.7,69.2h-33.6v-26.8h14.7l18.9,26.8ZM94.6,15.1h153.5v106.2h-76.5c-2.9-15.1-16.1-26.5-32-26.5s-29.2,11.4-32,26.5h-13V15.1h0ZM139.6,144.9c-9.7,0-17.6-7.9-17.6-17.6s7.9-17.6,17.6-17.6,17.6,7.9,17.6,17.6-7.9,17.6-17.6,17.6ZM285.4,144.9c-9.7,0-17.6-7.9-17.6-17.6s7.9-17.6,17.6-17.6,17.6,7.9,17.6,17.6-7.9,17.6-17.6,17.6ZM317.4,121.3c-2.9-15.1-16.1-26.5-32-26.5-8.6,0-16.5,3.4-22.3,8.9v-61.3h12.9v34.3c0,4.1,3.4,7.5,7.5,7.5h41.3v37.1h-7.4Z"/><path fill="currentColor" d="M7.5,15.1h53.5c4.1,0,7.5-3.4,7.5-7.5S65.1.1,61,.1H7.5C3.4.1,0,3.5,0,7.6s3.4,7.5,7.5,7.5Z"/><path fill="currentColor" d="M61,27.4H19.8c-4.1,0-7.5,3.4-7.5,7.5s3.4,7.5,7.5,7.5h41.2c4.1,0,7.5-3.4,7.5-7.5s-3.3-7.5-7.5-7.5Z"/><path fill="currentColor" d="M61,54.7h-26c-4.1,0-7.5,3.4-7.5,7.5s3.4,7.5,7.5,7.5h26c4.1,0,7.5-3.4,7.5-7.5s-3.3-7.5-7.5-7.5Z"/><path fill="currentColor" d="M61,82h-9c-4.1,0-7.5,3.4-7.5,7.5s3.4,7.5,7.5,7.5h9c4.1,0,7.5-3.4,7.5-7.5s-3.3-7.5-7.5-7.5Z"/></g></g></g></svg></span><span>Feel good deliciously<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 339.6 159.9"><g><g><g><path fill="currentColor" d="M315.7,30.5c-1.4-2-3.7-3.2-6.1-3.2h-46.5V7.5c0-4.1-3.4-7.5-7.5-7.5H87.1c-4.1,0-7.5,3.4-7.5,7.5v121.2c0,4.1,3.4,7.5,7.5,7.5h21.2c3.9,13.6,16.5,23.7,31.3,23.7s27.4-10,31.3-23.7h83.1c3.9,13.6,16.5,23.7,31.3,23.7s27.4-10,31.3-23.7h15.5c4.1,0,7.5-3.4,7.5-7.5v-61.7c0-1.6-.5-3.1-1.4-4.3l-22.5-32.2ZM324.7,69.2h-33.6v-26.8h14.7l18.9,26.8ZM94.6,15.1h153.5v106.2h-76.5c-2.9-15.1-16.1-26.5-32-26.5s-29.2,11.4-32,26.5h-13V15.1h0ZM139.6,144.9c-9.7,0-17.6-7.9-17.6-17.6s7.9-17.6,17.6-17.6,17.6,7.9,17.6,17.6-7.9,17.6-17.6,17.6ZM285.4,144.9c-9.7,0-17.6-7.9-17.6-17.6s7.9-17.6,17.6-17.6,17.6,7.9,17.6,17.6-7.9,17.6-17.6,17.6ZM317.4,121.3c-2.9-15.1-16.1-26.5-32-26.5-8.6,0-16.5,3.4-22.3,8.9v-61.3h12.9v34.3c0,4.1,3.4,7.5,7.5,7.5h41.3v37.1h-7.4Z"/><path fill="currentColor" d="M7.5,15.1h53.5c4.1,0,7.5-3.4,7.5-7.5S65.1.1,61,.1H7.5C3.4.1,0,3.5,0,7.6s3.4,7.5,7.5,7.5Z"/><path fill="currentColor" d="M61,27.4H19.8c-4.1,0-7.5,3.4-7.5,7.5s3.4,7.5,7.5,7.5h41.2c4.1,0,7.5-3.4,7.5-7.5s-3.3-7.5-7.5-7.5Z"/><path fill="currentColor" d="M61,54.7h-26c-4.1,0-7.5,3.4-7.5,7.5s3.4,7.5,7.5,7.5h26c4.1,0,7.5-3.4,7.5-7.5s-3.3-7.5-7.5-7.5Z"/><path fill="currentColor" d="M61,82h-9c-4.1,0-7.5,3.4-7.5,7.5s3.4,7.5,7.5,7.5h9c4.1,0,7.5-3.4,7.5-7.5s-3.3-7.5-7.5-7.5Z"/></g></g></g></svg></span><span>Join the Mushi club<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 339.6 159.9"><g><g><g><path fill="currentColor" d="M315.7,30.5c-1.4-2-3.7-3.2-6.1-3.2h-46.5V7.5c0-4.1-3.4-7.5-7.5-7.5H87.1c-4.1,0-7.5,3.4-7.5,7.5v121.2c0,4.1,3.4,7.5,7.5,7.5h21.2c3.9,13.6,16.5,23.7,31.3,23.7s27.4-10,31.3-23.7h83.1c3.9,13.6,16.5,23.7,31.3,23.7s27.4-10,31.3-23.7h15.5c4.1,0,7.5-3.4,7.5-7.5v-61.7c0-1.6-.5-3.1-1.4-4.3l-22.5-32.2ZM324.7,69.2h-33.6v-26.8h14.7l18.9,26.8ZM94.6,15.1h153.5v106.2h-76.5c-2.9-15.1-16.1-26.5-32-26.5s-29.2,11.4-32,26.5h-13V15.1h0ZM139.6,144.9c-9.7,0-17.6-7.9-17.6-17.6s7.9-17.6,17.6-17.6,17.6,7.9,17.6,17.6-7.9,17.6-17.6,17.6ZM285.4,144.9c-9.7,0-17.6-7.9-17.6-17.6s7.9-17.6,17.6-17.6,17.6,7.9,17.6,17.6-7.9,17.6-17.6,17.6ZM317.4,121.3c-2.9-15.1-16.1-26.5-32-26.5-8.6,0-16.5,3.4-22.3,8.9v-61.3h12.9v34.3c0,4.1,3.4,7.5,7.5,7.5h41.3v37.1h-7.4Z"/><path fill="currentColor" d="M7.5,15.1h53.5c4.1,0,7.5-3.4,7.5-7.5S65.1.1,61,.1H7.5C3.4.1,0,3.5,0,7.6s3.4,7.5,7.5,7.5Z"/><path fill="currentColor" d="M61,27.4H19.8c-4.1,0-7.5,3.4-7.5,7.5s3.4,7.5,7.5,7.5h41.2c4.1,0,7.5-3.4,7.5-7.5s-3.3-7.5-7.5-7.5Z"/><path fill="currentColor" d="M61,54.7h-26c-4.1,0-7.5,3.4-7.5,7.5s3.4,7.5,7.5,7.5h26c4.1,0,7.5-3.4,7.5-7.5s-3.3-7.5-7.5-7.5Z"/><path fill="currentColor" d="M61,82h-9c-4.1,0-7.5,3.4-7.5,7.5s3.4,7.5,7.5,7.5h9c4.1,0,7.5-3.4,7.5-7.5s-3.3-7.5-7.5-7.5Z"/></g></g></g></svg></span><span>Free shipping over $100<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 339.6 159.9"><g><g><g><path fill="currentColor" d="M315.7,30.5c-1.4-2-3.7-3.2-6.1-3.2h-46.5V7.5c0-4.1-3.4-7.5-7.5-7.5H87.1c-4.1,0-7.5,3.4-7.5,7.5v121.2c0,4.1,3.4,7.5,7.5,7.5h21.2c3.9,13.6,16.5,23.7,31.3,23.7s27.4-10,31.3-23.7h83.1c3.9,13.6,16.5,23.7,31.3,23.7s27.4-10,31.3-23.7h15.5c4.1,0,7.5-3.4,7.5-7.5v-61.7c0-1.6-.5-3.1-1.4-4.3l-22.5-32.2ZM324.7,69.2h-33.6v-26.8h14.7l18.9,26.8ZM94.6,15.1h153.5v106.2h-76.5c-2.9-15.1-16.1-26.5-32-26.5s-29.2,11.4-32,26.5h-13V15.1h0ZM139.6,144.9c-9.7,0-17.6-7.9-17.6-17.6s7.9-17.6,17.6-17.6,17.6,7.9,17.6,17.6-7.9,17.6-17.6,17.6ZM285.4,144.9c-9.7,0-17.6-7.9-17.6-17.6s7.9-17.6,17.6-17.6,17.6,7.9,17.6,17.6-7.9,17.6-17.6,17.6ZM317.4,121.3c-2.9-15.1-16.1-26.5-32-26.5-8.6,0-16.5,3.4-22.3,8.9v-61.3h12.9v34.3c0,4.1,3.4,7.5,7.5,7.5h41.3v37.1h-7.4Z"/><path fill="currentColor" d="M7.5,15.1h53.5c4.1,0,7.5-3.4,7.5-7.5S65.1.1,61,.1H7.5C3.4.1,0,3.5,0,7.6s3.4,7.5,7.5,7.5Z"/><path fill="currentColor" d="M61,27.4H19.8c-4.1,0-7.5,3.4-7.5,7.5s3.4,7.5,7.5,7.5h41.2c4.1,0,7.5-3.4,7.5-7.5s-3.3-7.5-7.5-7.5Z"/><path fill="currentColor" d="M61,54.7h-26c-4.1,0-7.5,3.4-7.5,7.5s3.4,7.5,7.5,7.5h26c4.1,0,7.5-3.4,7.5-7.5s-3.3-7.5-7.5-7.5Z"/><path fill="currentColor" d="M61,82h-9c-4.1,0-7.5,3.4-7.5,7.5s3.4,7.5,7.5,7.5h9c4.1,0,7.5-3.4,7.5-7.5s-3.3-7.5-7.5-7.5Z"/></g></g></g></svg></span><span>Discreet shipping<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 339.6 159.9"><g><g><g><path fill="currentColor" d="M315.7,30.5c-1.4-2-3.7-3.2-6.1-3.2h-46.5V7.5c0-4.1-3.4-7.5-7.5-7.5H87.1c-4.1,0-7.5,3.4-7.5,7.5v121.2c0,4.1,3.4,7.5,7.5,7.5h21.2c3.9,13.6,16.5,23.7,31.3,23.7s27.4-10,31.3-23.7h83.1c3.9,13.6,16.5,23.7,31.3,23.7s27.4-10,31.3-23.7h15.5c4.1,0,7.5-3.4,7.5-7.5v-61.7c0-1.6-.5-3.1-1.4-4.3l-22.5-32.2ZM324.7,69.2h-33.6v-26.8h14.7l18.9,26.8ZM94.6,15.1h153.5v106.2h-76.5c-2.9-15.1-16.1-26.5-32-26.5s-29.2,11.4-32,26.5h-13V15.1h0ZM139.6,144.9c-9.7,0-17.6-7.9-17.6-17.6s7.9-17.6,17.6-17.6,17.6,7.9,17.6,17.6-7.9,17.6-17.6,17.6ZM285.4,144.9c-9.7,0-17.6-7.9-17.6-17.6s7.9-17.6,17.6-17.6,17.6,7.9,17.6,17.6-7.9,17.6-17.6,17.6ZM317.4,121.3c-2.9-15.1-16.1-26.5-32-26.5-8.6,0-16.5,3.4-22.3,8.9v-61.3h12.9v34.3c0,4.1,3.4,7.5,7.5,7.5h41.3v37.1h-7.4Z"/><path fill="currentColor" d="M7.5,15.1h53.5c4.1,0,7.5-3.4,7.5-7.5S65.1.1,61,.1H7.5C3.4.1,0,3.5,0,7.6s3.4,7.5,7.5,7.5Z"/><path fill="currentColor" d="M61,27.4H19.8c-4.1,0-7.5,3.4-7.5,7.5s3.4,7.5,7.5,7.5h41.2c4.1,0,7.5-3.4,7.5-7.5s-3.3-7.5-7.5-7.5Z"/><path fill="currentColor" d="M61,54.7h-26c-4.1,0-7.5,3.4-7.5,7.5s3.4,7.5,7.5,7.5h26c4.1,0,7.5-3.4,7.5-7.5s-3.3-7.5-7.5-7.5Z"/><path fill="currentColor" d="M61,82h-9c-4.1,0-7.5,3.4-7.5,7.5s3.4,7.5,7.5,7.5h9c4.1,0,7.5-3.4,7.5-7.5s-3.3-7.5-7.5-7.5Z"/></g></g></g></svg></span><span>Savor every moment<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 339.6 159.9"><g><g><g><path fill="currentColor" d="M315.7,30.5c-1.4-2-3.7-3.2-6.1-3.2h-46.5V7.5c0-4.1-3.4-7.5-7.5-7.5H87.1c-4.1,0-7.5,3.4-7.5,7.5v121.2c0,4.1,3.4,7.5,7.5,7.5h21.2c3.9,13.6,16.5,23.7,31.3,23.7s27.4-10,31.3-23.7h83.1c3.9,13.6,16.5,23.7,31.3,23.7s27.4-10,31.3-23.7h15.5c4.1,0,7.5-3.4,7.5-7.5v-61.7c0-1.6-.5-3.1-1.4-4.3l-22.5-32.2ZM324.7,69.2h-33.6v-26.8h14.7l18.9,26.8ZM94.6,15.1h153.5v106.2h-76.5c-2.9-15.1-16.1-26.5-32-26.5s-29.2,11.4-32,26.5h-13V15.1h0ZM139.6,144.9c-9.7,0-17.6-7.9-17.6-17.6s7.9-17.6,17.6-17.6,17.6,7.9,17.6,17.6-7.9,17.6-17.6,17.6ZM285.4,144.9c-9.7,0-17.6-7.9-17.6-17.6s7.9-17.6,17.6-17.6,17.6,7.9,17.6,17.6-7.9,17.6-17.6,17.6ZM317.4,121.3c-2.9-15.1-16.1-26.5-32-26.5-8.6,0-16.5,3.4-22.3,8.9v-61.3h12.9v34.3c0,4.1,3.4,7.5,7.5,7.5h41.3v37.1h-7.4Z"/><path fill="currentColor" d="M7.5,15.1h53.5c4.1,0,7.5-3.4,7.5-7.5S65.1.1,61,.1H7.5C3.4.1,0,3.5,0,7.6s3.4,7.5,7.5,7.5Z"/><path fill="currentColor" d="M61,27.4H19.8c-4.1,0-7.5,3.4-7.5,7.5s3.4,7.5,7.5,7.5h41.2c4.1,0,7.5-3.4,7.5-7.5s-3.3-7.5-7.5-7.5Z"/><path fill="currentColor" d="M61,54.7h-26c-4.1,0-7.5,3.4-7.5,7.5s3.4,7.5,7.5,7.5h26c4.1,0,7.5-3.4,7.5-7.5s-3.3-7.5-7.5-7.5Z"/><path fill="currentColor" d="M61,82h-9c-4.1,0-7.5,3.4-7.5,7.5s3.4,7.5,7.5,7.5h9c4.1,0,7.5-3.4,7.5-7.5s-3.3-7.5-7.5-7.5Z"/></g></g></g></svg></span><span>Feel good deliciously<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 339.6 159.9"><g><g><g><path fill="currentColor" d="M315.7,30.5c-1.4-2-3.7-3.2-6.1-3.2h-46.5V7.5c0-4.1-3.4-7.5-7.5-7.5H87.1c-4.1,0-7.5,3.4-7.5,7.5v121.2c0,4.1,3.4,7.5,7.5,7.5h21.2c3.9,13.6,16.5,23.7,31.3,23.7s27.4-10,31.3-23.7h83.1c3.9,13.6,16.5,23.7,31.3,23.7s27.4-10,31.3-23.7h15.5c4.1,0,7.5-3.4,7.5-7.5v-61.7c0-1.6-.5-3.1-1.4-4.3l-22.5-32.2ZM324.7,69.2h-33.6v-26.8h14.7l18.9,26.8ZM94.6,15.1h153.5v106.2h-76.5c-2.9-15.1-16.1-26.5-32-26.5s-29.2,11.4-32,26.5h-13V15.1h0ZM139.6,144.9c-9.7,0-17.6-7.9-17.6-17.6s7.9-17.6,17.6-17.6,17.6,7.9,17.6,17.6-7.9,17.6-17.6,17.6ZM285.4,144.9c-9.7,0-17.6-7.9-17.6-17.6s7.9-17.6,17.6-17.6,17.6,7.9,17.6,17.6-7.9,17.6-17.6,17.6ZM317.4,121.3c-2.9-15.1-16.1-26.5-32-26.5-8.6,0-16.5,3.4-22.3,8.9v-61.3h12.9v34.3c0,4.1,3.4,7.5,7.5,7.5h41.3v37.1h-7.4Z"/><path fill="currentColor" d="M7.5,15.1h53.5c4.1,0,7.5-3.4,7.5-7.5S65.1.1,61,.1H7.5C3.4.1,0,3.5,0,7.6s3.4,7.5,7.5,7.5Z"/><path fill="currentColor" d="M61,27.4H19.8c-4.1,0-7.5,3.4-7.5,7.5s3.4,7.5,7.5,7.5h41.2c4.1,0,7.5-3.4,7.5-7.5s-3.3-7.5-7.5-7.5Z"/><path fill="currentColor" d="M61,54.7h-26c-4.1,0-7.5,3.4-7.5,7.5s3.4,7.5,7.5,7.5h26c4.1,0,7.5-3.4,7.5-7.5s-3.3-7.5-7.5-7.5Z"/><path fill="currentColor" d="M61,82h-9c-4.1,0-7.5,3.4-7.5,7.5s3.4,7.5,7.5,7.5h9c4.1,0,7.5-3.4,7.5-7.5s-3.3-7.5-7.5-7.5Z"/></g></g></g></svg></span><span>Join the Mushi club<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 339.6 159.9"><g><g><g><path fill="currentColor" d="M315.7,30.5c-1.4-2-3.7-3.2-6.1-3.2h-46.5V7.5c0-4.1-3.4-7.5-7.5-7.5H87.1c-4.1,0-7.5,3.4-7.5,7.5v121.2c0,4.1,3.4,7.5,7.5,7.5h21.2c3.9,13.6,16.5,23.7,31.3,23.7s27.4-10,31.3-23.7h83.1c3.9,13.6,16.5,23.7,31.3,23.7s27.4-10,31.3-23.7h15.5c4.1,0,7.5-3.4,7.5-7.5v-61.7c0-1.6-.5-3.1-1.4-4.3l-22.5-32.2ZM324.7,69.2h-33.6v-26.8h14.7l18.9,26.8ZM94.6,15.1h153.5v106.2h-76.5c-2.9-15.1-16.1-26.5-32-26.5s-29.2,11.4-32,26.5h-13V15.1h0ZM139.6,144.9c-9.7,0-17.6-7.9-17.6-17.6s7.9-17.6,17.6-17.6,17.6,7.9,17.6,17.6-7.9,17.6-17.6,17.6ZM285.4,144.9c-9.7,0-17.6-7.9-17.6-17.6s7.9-17.6,17.6-17.6,17.6,7.9,17.6,17.6-7.9,17.6-17.6,17.6ZM317.4,121.3c-2.9-15.1-16.1-26.5-32-26.5-8.6,0-16.5,3.4-22.3,8.9v-61.3h12.9v34.3c0,4.1,3.4,7.5,7.5,7.5h41.3v37.1h-7.4Z"/><path fill="currentColor" d="M7.5,15.1h53.5c4.1,0,7.5-3.4,7.5-7.5S65.1.1,61,.1H7.5C3.4.1,0,3.5,0,7.6s3.4,7.5,7.5,7.5Z"/><path fill="currentColor" d="M61,27.4H19.8c-4.1,0-7.5,3.4-7.5,7.5s3.4,7.5,7.5,7.5h41.2c4.1,0,7.5-3.4,7.5-7.5s-3.3-7.5-7.5-7.5Z"/><path fill="currentColor" d="M61,54.7h-26c-4.1,0-7.5,3.4-7.5,7.5s3.4,7.5,7.5,7.5h26c4.1,0,7.5-3.4,7.5-7.5s-3.3-7.5-7.5-7.5Z"/><path fill="currentColor" d="M61,82h-9c-4.1,0-7.5,3.4-7.5,7.5s3.4,7.5,7.5,7.5h9c4.1,0,7.5-3.4,7.5-7.5s-3.3-7.5-7.5-7.5Z"/></g></g></g></svg></span></div>
+</div>
+
+<!-- ===================== HEADER ===================== -->
+<header class="hdr" id="hdr">
+  <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><span></span></button>
+  <nav aria-label="Primary">
+    <ul class="nav">
+      <li>
+        <button type="button" aria-expanded="false" aria-haspopup="true" class="ddb">Shop <svg class="chev" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 3.5l3 3 3-3"/></svg></button>
+        <div class="dd"><a href="gummies.html">Gummies</a><a href="chocolates.html">Chocolates</a><a href="merch.html">Merch</a><a href="gummies.html#bundles">Bundles</a></div>
+      </li>
+      <li>
+        <button type="button" aria-expanded="false" aria-haspopup="true" class="ddb">Learn <svg class="chev" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 3.5l3 3 3-3"/></svg></button>
+        <div class="dd"><a href="ingredients.html">Ingredients</a><a href="rituals.html">Rituals</a><a href="journal.html">Journal</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a></div>
+      </li>
+    </ul>
+  </nav>
+  <a class="logo" href="home-vb.html" aria-label="MUSHI — Infused Gummies. Home"><svg><use href="#s-logo"/></svg></a>
+  <div class="util">
+    <button type="button" id="searchBtn" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button>
+    <a class="acct" href="#" aria-label="Account"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></a>
+    <button type="button" id="cartBtn" aria-label="Open cart"><svg viewBox="0 0 24 24"><path d="M6 8h12l1 13H5L6 8z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg><span class="lbl">Cart</span><span class="cart-n" id="cartN" aria-live="polite">0</span></button>
+  </div>
+</header>
+<nav class="mnav" id="mnav" aria-label="Mobile">
+  <h4>Shop</h4><a href="gummies.html">Gummies</a><a href="chocolates.html">Chocolates</a><a href="merch.html">Merch</a><a href="gummies.html#bundles">Bundles</a>
+  <h4>Learn</h4><a href="ingredients.html">Ingredients</a><a href="rituals.html">Rituals</a><a href="journal.html">Journal</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a>
+</nav>
+
+<main>
+<!-- ===================== HERO CAROUSEL ===================== -->
+<section class="hero" id="hero" aria-roledescription="carousel" aria-label="Featured">
+
+  <!-- Slide 1 — Savor Every Moment (layered: CSS mint → CSS gradient → live type → transparent trio → badge) -->
+  <article class="slide slide-mint is-active" data-dark="0" aria-roledescription="slide" aria-label="1 of 4 — Savor Every Moment">
+    <div class="glow" aria-hidden="true"></div>
+    <div class="glow-b" aria-hidden="true"></div>
+    <h1 class="hero-h"><span class="mask"><span>Savor</span></span><span class="mask"><span>Every</span></span><span class="mask"><span>Moment</span></span></h1>
+    <div class="trio" data-depth="1">
+      <img src="vb/hero-trio.webp" srcset="vb/hero-trio-m.webp 1000w, vb/hero-trio.webp 2000w" sizes="(max-width:767px) 118vw, 70vw" width="2000" height="1094" alt="Three MUSHI gummy pouches — Cherry, Peach Bliss and Green Apple — floating" fetchpriority="high" decoding="async">
+      <i class="ground" aria-hidden="true"></i>
+    </div>
+    <a class="badge" href="ingredients.html" aria-label="Real shrooms. Real fun. Learn about our ingredients"><span class="disc"></span><svg class="ring"><use href="#s-badge-ring"/></svg><svg class="core"><use href="#s-badge-core"/></svg></a>
+  </article>
+
+  <!-- Slide 2 — Taste the Bright Side (sky → live type → left pouch → right hand → badge) -->
+  <article class="slide slide-sky" data-dark="0" aria-roledescription="slide" aria-label="2 of 4 — Taste the Bright Side">
+    <img class="sky" data-src="vb/hero-sky.webp" data-srcset="vb/hero-sky-m.webp 1100w, vb/hero-sky.webp 2200w" sizes="100vw" width="2200" height="1237" alt="" decoding="async">
+    <h1 class="hero-h"><span class="mask"><span>Taste the</span></span><span class="mask"><span>Bright Side</span></span></h1>
+    <div class="hand-pouch" data-depth="1.6"><img data-src="vb/hero-hand-pouch.webp" data-srcset="vb/hero-hand-pouch-m.webp 700w, vb/hero-hand-pouch.webp 1200w" sizes="(max-width:767px) 50vw, 32vw" width="1200" height="1352" alt="A hand holding a MUSHI Peach Bliss pouch" decoding="async"></div>
+    <div class="hand-gummy" data-depth="1.3"><img data-src="vb/hero-hand-gummy.webp" data-srcset="vb/hero-hand-gummy-m.webp 1000w, vb/hero-hand-gummy.webp 2000w" sizes="(max-width:767px) 62vw, 38vw" width="2000" height="877" alt="A hand holding a sugared peach gummy" decoding="async"></div>
+    <a class="badge" href="ingredients.html" aria-label="Real shrooms. Real fun. Learn about our ingredients"><span class="disc"></span><svg class="ring"><use href="#s-badge-ring"/></svg><svg class="core"><use href="#s-badge-core"/></svg></a>
+  </article>
+
+  <!-- Slide 3 — Complete product family -->
+  <article class="slide slide-family" data-dark="0" aria-roledescription="slide" aria-label="3 of 4 — The complete MUSHI family">
+    <img class="bg" data-src="vb/hero-family.webp" data-srcset="vb/hero-family-m.webp 1100w, vb/hero-family.webp 2200w" sizes="100vw" width="2200" height="1237" alt="The full MUSHI family: Green Apple, Midnight Berry Dark Chocolate, Cherry, Dark Chocolate, Milk Chocolate and Peach Bliss" decoding="async">
+    <span class="sr">The complete MUSHI family</span>
+    <a class="badge" href="ingredients.html" aria-label="Real shrooms. Real fun. Learn about our ingredients"><span class="disc"></span><svg class="ring"><use href="#s-badge-ring"/></svg><svg class="core"><use href="#s-badge-core"/></svg></a>
+  </article>
+
+  <!-- Slide 4 — Indulgence -->
+  <article class="slide slide-indulgence" data-dark="1" aria-roledescription="slide" aria-label="4 of 4 — Indulgence">
+    <img class="bg" data-src="vb/hero-indulgence.webp" data-srcset="vb/hero-indulgence-m.webp 1100w, vb/hero-indulgence.webp 2200w" sizes="100vw" width="2200" height="1237" alt="Close-up of a woman holding a sugared chocolate truffle between her lips" decoding="async">
+    <h1 class="hero-h"><span class="mask"><span>Indulgence</span></span></h1>
+    <a class="badge" href="ingredients.html" aria-label="Real shrooms. Real fun. Learn about our ingredients"><span class="disc"></span><svg class="ring"><use href="#s-badge-ring"/></svg><svg class="core"><use href="#s-badge-core"/></svg></a>
+  </article>
+
+  <div class="hero-ui">
+    <button type="button" id="heroPrev" aria-label="Previous slide"><svg viewBox="0 0 12 12"><path d="M8 1L3 6l5 5"/></svg></button>
+    <div class="dots" id="heroDots" role="tablist" aria-label="Choose slide"></div>
+    <button type="button" id="heroNext" aria-label="Next slide"><svg viewBox="0 0 12 12"><path d="M4 1l5 5-5 5"/></svg></button>
+  </div>
+</section>
+
+<!-- ===================== BRAND MESSAGING MARQUEE ===================== -->
+<div class="msg mq" role="region" aria-label="Brand messages">
+  <div class="mq-track" id="msgTrack"><span class="o">Embrace the moment</span><span>Deepen connection</span><span class="o">Elevate your mood</span><span>Unlock energy</span><span class="o">Enhance every moment</span><span>Savor every moment</span><span class="o">Embrace the moment</span><span>Deepen connection</span><span class="o">Elevate your mood</span><span>Unlock energy</span><span class="o">Enhance every moment</span><span>Savor every moment</span></div>
+</div>
+
+<!-- ===================== INGREDIENT BENEFITS ===================== -->
+<section class="sec ing" id="ingredients">
+  <div class="wrap">
+    <h2 data-reveal>No fake stuff. Just <span class="marker">Feel-Good</span> stuff.</h2>
+    <div class="cards3" data-stagger>
+      <article class="icard peach">
+        <div class="ico"><img src="vb/ing-cane.svg" width="113" height="111" alt="" loading="lazy"></div>
+        <h3>Organic Cane Sugar<br>&amp; Tapioca Syrup</h3>
+        <p>A premium sweetener base that delivers just the right touch of flavor without overdoing it.</p>
+      </article>
+      <article class="icard coral">
+        <div class="ico"><img src="vb/ing-berry.svg" width="112" height="117" alt="" loading="lazy"></div>
+        <h3>Real Elderberry Juice<br>for Color, Not Artificial</h3>
+        <p>Color from fruit, not artificial dyes — because better ingredients make a better experience.</p>
+      </article>
+      <article class="icard sage">
+        <div class="ico"><img src="vb/ing-plant.svg" width="76" height="89" alt="" loading="lazy"></div>
+        <h3>Plant-Based,<br>Clean &amp; Premium</h3>
+        <p>Made with pectin, natural flavor, and thoughtfully chosen ingredients. Nothing fake, nothing synthetic.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CATEGORY CAROUSEL ===================== -->
+<section class="sec cat" id="shop" aria-roledescription="carousel" aria-label="Shop by category">
+  <div class="cat-stage" id="catStage">
+    <div class="cat-word" id="catWord" aria-hidden="true"><span>Gummies</span></div>
+    <div class="cat-panels">
+      <div class="cat-panel is-active" data-name="Gummies" aria-roledescription="slide" aria-label="Gummies">
+        <a href="gummies.html"><img src="vb/cat-gummies.webp" width="1400" height="1344" alt="MUSHI Green Apple, Cherry and Peach Bliss gummy pouches with fresh fruit" loading="lazy" decoding="async"><span class="lbl">Shop collection</span></a>
+      </div>
+      <div class="cat-panel" data-name="Chocolates" aria-roledescription="slide" aria-label="Chocolates">
+        <a href="chocolates.html"><img data-src="vb/cat-chocolates.webp" width="1400" height="971" alt="MUSHI Midnight Berry, Dark and Milk chocolate boxes with chocolate pieces" decoding="async"><span class="lbl">Shop collection</span></a>
+      </div>
+      <div class="cat-panel merch" data-name="Merch" aria-roledescription="slide" aria-label="Merch">
+        <a href="merch.html"><img data-src="vb/cat-merch.webp" width="1200" height="1122" alt="MUSHI black hoodie with Find Your Peace artwork" decoding="async"><span class="lbl">Shop collection</span></a>
+      </div>
+    </div>
+    <button type="button" class="cat-arrow prev" id="catPrev" aria-label="Previous category"><svg viewBox="0 0 30 48"><path d="M24 4L6 24l18 20"/></svg></button>
+    <button type="button" class="cat-arrow next" id="catNext" aria-label="Next category"><svg viewBox="0 0 30 48"><path d="M6 4l18 20L6 44"/></svg></button>
+  </div>
+</section>
+
+<!-- ===================== BENEFIT ICON STRIP ===================== -->
+<section class="sec bstrip" aria-label="Product benefits">
+  <ul data-stagger>
+    <li><img src="vb/icon-5000mg.svg" alt="" loading="lazy" width="96" height="96"><span>5000 mg</span></li>
+    <li><img src="vb/icon-belgium.svg" alt="" loading="lazy" width="96" height="96"><span>Belgium<br>Chocolate</span></li>
+    <li><img src="vb/icon-gluten-free.svg" alt="" loading="lazy" width="96" height="96"><span>Gluten-Free</span></li>
+    <li><img src="vb/icon-lab-tested.svg" alt="" loading="lazy" width="96" height="96"><span>Lab Tested</span></li>
+    <li><img src="vb/icon-mct.svg" alt="" loading="lazy" width="96" height="96"><span>MCT Oil</span></li>
+    <li><img src="vb/icon-non-gmo.svg" alt="" loading="lazy" width="96" height="96"><span>Non-GMO</span></li>
+    <li><img src="vb/icon-no-palm.svg" alt="" loading="lazy" width="96" height="96"><span>No Palm Oils</span></li>
+    <li><img src="vb/icon-no-synthetics.svg" alt="" loading="lazy" width="96" height="96"><span>No Synthetics</span></li>
+    <li><img src="vb/icon-vegan.svg" alt="" loading="lazy" width="96" height="96"><span>Vegan</span></li>
+  </ul>
+</section>
+
+<!-- ===================== SHOP GUMMIES ===================== -->
+<section class="sec shop gum" id="gummies">
+  <div class="wrap">
+    <p class="eyebrow" data-reveal="fade"><a href="gummies.html">Shop all gummies</a></p>
+    <div class="pgrid" data-stagger>
+      <article class="pcard" data-slug="cherry" data-name="Cherry Infused Gummies" data-price="45" data-img="cherry-1.jpg">
+        <a class="pimg" style="--c:var(--card-cherry)" href="product.html?p=cherry"><img src="cherry-1.jpg" width="800" height="800" alt="MUSHI Cherry infused gummies pouch" loading="lazy" decoding="async"><img class="alt" src="cherry-2.jpg" width="800" height="800" alt="" loading="lazy" decoding="async"><span class="flag">Bestseller</span></a>
+        <div class="pbody">
+          <h3><a href="product.html?p=cherry">Cherry Infused Gummies</a></h3>
+          <div class="mg">5000 mg</div>
+          <div class="price">$45.00</div>
+          <div class="pact">
+            <button type="button" class="btn add">Add to cart <svg viewBox="0 0 24 24"><path d="M6 8h12l1 13H5L6 8z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg></button>
+            <div class="qty"><button type="button" class="dec" aria-label="Decrease quantity">−</button><output>1</output><button type="button" class="inc" aria-label="Increase quantity">+</button></div>
+          </div>
+        </div>
+      </article>
+      <article class="pcard" data-slug="green-apple" data-name="Green Apple Infused Gummies" data-price="45" data-img="green-apple-1.jpg">
+        <a class="pimg" style="--c:var(--card-apple)" href="product.html?p=green-apple"><img src="green-apple-1.jpg" width="800" height="800" alt="MUSHI Green Apple infused gummies pouch" loading="lazy" decoding="async"><img class="alt" src="green-apple-2.jpg" width="800" height="800" alt="" loading="lazy" decoding="async"><span class="flag pop">Popular</span></a>
+        <div class="pbody">
+          <h3><a href="product.html?p=green-apple">Green Apple Infused Gummies</a></h3>
+          <div class="mg">5000 mg</div>
+          <div class="price">$45.00</div>
+          <div class="pact">
+            <button type="button" class="btn add">Add to cart <svg viewBox="0 0 24 24"><path d="M6 8h12l1 13H5L6 8z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg></button>
+            <div class="qty"><button type="button" class="dec" aria-label="Decrease quantity">−</button><output>1</output><button type="button" class="inc" aria-label="Increase quantity">+</button></div>
+          </div>
+        </div>
+      </article>
+      <article class="pcard" data-slug="peach-bliss" data-name="Peach Infused Gummies" data-price="45" data-img="peach-1.jpg">
+        <a class="pimg" style="--c:var(--card-peach)" href="product.html?p=peach-bliss"><img src="peach-1.jpg" width="800" height="800" alt="MUSHI Peach Bliss infused gummies pouch" loading="lazy" decoding="async"><img class="alt" src="peach-2.jpg" width="800" height="800" alt="" loading="lazy" decoding="async"></a>
+        <div class="pbody">
+          <h3><a href="product.html?p=peach-bliss">Peach Infused Gummies</a></h3>
+          <div class="mg">5000 mg</div>
+          <div class="price">$45.00</div>
+          <div class="pact">
+            <button type="button" class="btn add">Add to cart <svg viewBox="0 0 24 24"><path d="M6 8h12l1 13H5L6 8z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg></button>
+            <div class="qty"><button type="button" class="dec" aria-label="Decrease quantity">−</button><output>1</output><button type="button" class="inc" aria-label="Increase quantity">+</button></div>
+          </div>
+        </div>
+      </article>
+    </div>
+    <div class="pdots" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  </div>
+</section>
+
+<!-- ===================== SHOP CHOCOLATES ===================== -->
+<section class="sec shop cho" id="chocolates">
+  <div class="wrap">
+    <p class="eyebrow" data-reveal="fade"><a href="chocolates.html">Shop all chocolates</a></p>
+    <div class="pgrid" data-stagger>
+      <article class="pcard" data-slug="dark-chocolate" data-name="Dark Infused Chocolates" data-price="45" data-img="choco-dark-1.jpg">
+        <a class="pimg" style="--c:var(--card-dark)" href="product.html?p=dark-chocolate"><img src="choco-dark-1.jpg" width="800" height="800" alt="MUSHI Dark infused chocolate box" loading="lazy" decoding="async"><img class="alt" src="choco-dark-2.jpg" width="800" height="800" alt="" loading="lazy" decoding="async"></a>
+        <div class="pbody">
+          <h3><a href="product.html?p=dark-chocolate">Dark Infused Chocolates</a></h3>
+          <div class="mg">5000 mg</div>
+          <div class="price">$45.00</div>
+          <div class="pact">
+            <button type="button" class="btn add">Add to cart <svg viewBox="0 0 24 24"><path d="M6 8h12l1 13H5L6 8z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg></button>
+            <div class="qty"><button type="button" class="dec" aria-label="Decrease quantity">−</button><output>1</output><button type="button" class="inc" aria-label="Increase quantity">+</button></div>
+          </div>
+        </div>
+      </article>
+      <article class="pcard" data-slug="milk-chocolate" data-name="Milk Infused Chocolates" data-price="45" data-img="choco-milk-1.jpg">
+        <a class="pimg" style="--c:var(--card-milk)" href="product.html?p=milk-chocolate"><img src="choco-milk-1.jpg" width="800" height="800" alt="MUSHI Milk infused chocolate box" loading="lazy" decoding="async"><img class="alt" src="choco-milk-2.jpg" width="800" height="800" alt="" loading="lazy" decoding="async"></a>
+        <div class="pbody">
+          <h3><a href="product.html?p=milk-chocolate">Milk Infused Chocolates</a></h3>
+          <div class="mg">5000 mg</div>
+          <div class="price">$45.00</div>
+          <div class="pact">
+            <button type="button" class="btn add">Add to cart <svg viewBox="0 0 24 24"><path d="M6 8h12l1 13H5L6 8z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg></button>
+            <div class="qty"><button type="button" class="dec" aria-label="Decrease quantity">−</button><output>1</output><button type="button" class="inc" aria-label="Increase quantity">+</button></div>
+          </div>
+        </div>
+      </article>
+      <article class="pcard" data-slug="berry-dark-chocolate" data-name="Berry Infused Chocolates" data-price="45" data-img="choco-berry-1.jpg">
+        <a class="pimg" style="--c:var(--card-berry)" href="product.html?p=berry-dark-chocolate"><img src="choco-berry-1.jpg" width="800" height="800" alt="MUSHI Midnight Berry dark infused chocolate box" loading="lazy" decoding="async"><img class="alt" src="choco-berry-2.jpg" width="800" height="800" alt="" loading="lazy" decoding="async"><span class="flag new">New</span></a>
+        <div class="pbody">
+          <h3><a href="product.html?p=berry-dark-chocolate">Berry Infused Chocolates</a></h3>
+          <div class="mg">5000 mg</div>
+          <div class="price">$45.00</div>
+          <div class="pact">
+            <button type="button" class="btn add">Add to cart <svg viewBox="0 0 24 24"><path d="M6 8h12l1 13H5L6 8z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg></button>
+            <div class="qty"><button type="button" class="dec" aria-label="Decrease quantity">−</button><output>1</output><button type="button" class="inc" aria-label="Increase quantity">+</button></div>
+          </div>
+        </div>
+      </article>
+    </div>
+    <div class="pdots" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  </div>
+</section>
+
+<!-- ===================== LIFESTYLE GALLERY ===================== -->
+<section class="life" id="learn" aria-label="How MUSHI feels">
+  <a href="rituals.html#alive"><img src="vb/life-alive.webp" width="800" height="1993" alt="A woman in sunglasses at a festival, braids catching the sun" loading="lazy" decoding="async"><span class="lt">Alive</span></a>
+  <a href="rituals.html#focus"><img src="vb/life-focus.webp" width="800" height="1993" alt="A person seen from behind, lit by warm neon in an arcade" loading="lazy" decoding="async"><span class="lt">Focus</span></a>
+  <a href="rituals.html#present"><img src="vb/life-present.webp" width="800" height="1993" alt="A woman with eyes closed, face tilted toward the sun" loading="lazy" decoding="async"><span class="lt">Present</span></a>
+  <a href="rituals.html#creative"><img src="vb/life-creative.webp" width="800" height="1993" alt="A laughing painter sitting cross-legged on a studio floor" loading="lazy" decoding="async"><span class="lt">Creative</span></a>
+  <a href="rituals.html#connected"><img src="vb/life-connected.webp" width="800" height="1985" alt="A smiling couple pressed cheek to cheek in warm light" loading="lazy" decoding="async"><span class="lt">Connected</span></a>
+</section>
+
+<!-- ===================== BRAND STORY ===================== -->
+<section class="sec story" id="about">
+  <div class="wrap">
+    <div class="ph" data-reveal="fade" data-mask><img src="vb/story.webp" width="536" height="495" alt="A silhouetted figure with arms raised in orange desert haze" loading="lazy" decoding="async" data-parallax="0.08"></div>
+    <div data-reveal>
+      <h2><span class="mask"><span>Made with</span></span><span class="mask"><span>intention</span></span><span class="mask"><span>in every bite</span></span></h2>
+      <p>At MUSHI, we believe feeling good should taste just as good. That’s why we combine thoughtfully selected ingredients, irresistible flavors, and feel-good experiences into every bite. No complicated routines. No wellness chores. Just delicious indulgences made to elevate everyday moments and give you something worth looking forward to.</p>
+      <p>Because life’s better when you savor the moment.</p>
+      <a class="btn" href="ingredients.html">About us</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BUNDLE ===================== -->
+<section class="sec bundle" id="bundles">
+  <div class="stage">
+    <div class="word" aria-hidden="true" data-reveal="fade" data-drift="-30">Bundle</div>
+    <div class="fam" data-reveal data-drift="18"><img src="vb/bundle.webp" width="1800" height="908" alt="The MUSHI product family: Green Apple, Midnight Berry, Cherry, Dark Chocolate, Milk Chocolate and Peach Bliss" loading="lazy" decoding="async"></div>
+  </div>
+  <div class="wrap">
+    <h2 data-reveal>Can’t get enough? Save on Mushi bundles.</h2>
+    <p data-reveal><a class="btn" href="gummies.html#bundles">Build your bundle</a></p>
+  </div>
+</section>
+
+<!-- ===================== BULK ORDERS ===================== -->
+<section class="sec bulk" id="bulk">
+  <div class="wrap">
+    <div class="ph" data-reveal><img src="vb/bulk-box.webp" width="1200" height="1156" alt="An open MUSHI retail display box filled with Peach Bliss pouches" loading="lazy" decoding="async" data-parallax="0.06"></div>
+    <div data-reveal>
+      <h2><span class="mask"><span>Good vibes.</span></span><span class="mask"><span>Bigger boxes.</span></span></h2>
+      <p>Stock your shelves with Mushi. Our bulk boxes include 10 pouches of feel-good deliciousness, perfect for dispensaries, retail stores, and specialty shops looking to bring something different to their customers.</p>
+      <a class="btn" href="contact.html">Inquire about ordering</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section class="sec faq" id="faq">
+  <div class="wrap">
+    <p class="kicker" data-reveal>Still curious?</p>
+    <h2 data-reveal>Got questions?</h2>
+    <div class="acc" id="faqAcc" data-stagger>
+      <div class="acc-item">
+        <h3><button type="button" class="acc-btn" aria-expanded="false" aria-controls="fq1" id="fqb1">What is Mushi? <span class="pm" aria-hidden="true"></span></button></h3>
+        <div class="acc-panel" id="fq1" role="region" aria-labelledby="fqb1"><div><p>Mushi is a feel-good confectionery brand that brings together delicious flavors, thoughtfully selected ingredients, and experiences worth savoring. From gummies to chocolate, our products are made for moments when you want to slow down, connect, and enjoy something a little more special.</p></div></div>
+      </div>
+      <div class="acc-item">
+        <h3><button type="button" class="acc-btn" aria-expanded="false" aria-controls="fq2" id="fqb2">How much should I have? <span class="pm" aria-hidden="true"></span></button></h3>
+        <div class="acc-panel" id="fq2" role="region" aria-labelledby="fqb2"><div><p>You’re in control of the pace. Always follow the dosage guidance printed on the specific Mushi package. If you’re new to Mushi, begin with a lower amount and give yourself plenty of time to understand how it feels before considering more.</p><p>Everyone responds differently, so more isn’t automatically better.</p></div></div>
+      </div>
+      <div class="acc-item">
+        <h3><button type="button" class="acc-btn" aria-expanded="false" aria-controls="fq3" id="fqb3">When should I enjoy it? <span class="pm" aria-hidden="true"></span></button></h3>
+        <div class="acc-panel" id="fq3" role="region" aria-labelledby="fqb3"><div><p>Whenever you want to make a moment a little more special — a slow Sunday, a dinner with friends, an evening in. Give it time: the experience can build gradually, and factors like your body, metabolism, what you’ve eaten and the amount you take can all affect timing. We recommend waiting at least one hour before deciding whether you want more, and never exceeding the guidance printed on the package.</p></div></div>
+      </div>
+      <div class="acc-item">
+        <h3><button type="button" class="acc-btn" aria-expanded="false" aria-controls="fq4" id="fqb4">What’s inside? <span class="pm" aria-hidden="true"></span></button></h3>
+        <div class="acc-panel" id="fq4" role="region" aria-labelledby="fqb4"><div><p>Real ingredients you can pronounce: organic cane sugar, organic tapioca syrup, pectin, natural fruit flavor, MCT oil, and elderberry juice for color. Our chocolates are made with 100% Belgian chocolate. Everything is vegan, non-GMO, gluten-free and lab tested. See the full breakdown on our <a href="ingredients.html" style="text-decoration:underline">Ingredients</a> page.</p></div></div>
+      </div>
+      <div class="acc-item">
+        <h3><button type="button" class="acc-btn" aria-expanded="false" aria-controls="fq5" id="fqb5">Where do you ship? <span class="pm" aria-hidden="true"></span></button></h3>
+        <div class="acc-panel" id="fq5" role="region" aria-labelledby="fqb5"><div><p>We ship across the United States in discreet, unmarked packaging. Orders over $100 ship free. Keep Mushi in a cool, dry place away from direct sunlight once it arrives — chocolate is especially sensitive to warm temperatures.</p></div></div>
+      </div>
+      <div class="acc-item">
+        <h3><button type="button" class="acc-btn" aria-expanded="false" aria-controls="fq6" id="fqb6">Can I subscribe? <span class="pm" aria-hidden="true"></span></button></h3>
+        <div class="acc-panel" id="fq6" role="region" aria-labelledby="fqb6"><div><p>Yes — Subscribe &amp; Save 10%. Choose your favorite flavor and we’ll automatically send it on the schedule that works best for you: every week, every 2 weeks, or once per month. Want to switch flavors? Simply cancel your current subscription and start a new one with the flavor you’d like instead.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MUSHI VS. ALTERNATIVES ===================== -->
+<section class="sec cmp" id="compare">
+  <h2 data-reveal>Mushi vs. Alternatives</h2>
+  <div class="cmp-wrap" data-reveal>
+    <table>
+      <thead>
+        <tr>
+          <th scope="col"><span class="sr">Feature</span></th>
+          <th scope="col" class="m"><img src="vb/compare-mushi.webp" width="197" height="197" alt="MUSHI Peach Bliss pouch, front and back" loading="lazy"><span class="sr">Mushi</span></th>
+          <th scope="col"><img src="vb/compare-alt.webp" width="203" height="163" alt="Generic unbranded jar, pouch and dropper" loading="lazy"><span class="sr">Alternatives</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="f"><span><svg viewBox="0 0 24 24"><path d="M4 20c0-8 6-14 16-16-1 10-6 15-14 16"/><path d="M4 20c4-6 8-9 12-11"/></svg>Natural formula</span></td><td class="y"><span><i class="mark"><svg viewBox="0 0 12 12"><path d="M2 6.5l2.8 2.8L10 3.5"/></svg></i>Natural ingredients only</span></td><td class="n"><span><i class="mark"><svg viewBox="0 0 12 12"><path d="M3 3l6 6M9 3l-6 6"/></svg></i>Often synthetic blends + processed additives</span></td></tr>
+        <tr><td class="f"><span><svg viewBox="0 0 24 24"><path d="M9 4a4 4 0 00-4 4v1a3 3 0 000 6v1a4 4 0 004 4h1V4H9zM15 4a4 4 0 014 4v1a3 3 0 010 6v1a4 4 0 01-4 4h-1V4h1z"/></svg>Non-addictive</span></td><td class="y"><span><i class="mark"><svg viewBox="0 0 12 12"><path d="M2 6.5l2.8 2.8L10 3.5"/></svg></i>Natural, non-addictive experience</span></td><td class="n"><span><i class="mark"><svg viewBox="0 0 12 12"><path d="M3 3l6 6M9 3l-6 6"/></svg></i>Can feel habit-forming or overly intense</span></td></tr>
+        <tr><td class="f"><span><svg viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-5 9a2 2 0 002 3h10a2 2 0 002-3l-5-9V3"/></svg>Synthetic chemicals</span></td><td class="y"><span><i class="mark"><svg viewBox="0 0 12 12"><path d="M2 6.5l2.8 2.8L10 3.5"/></svg></i>No synthetic chemicals</span></td><td class="n"><span><i class="mark"><svg viewBox="0 0 12 12"><path d="M3 3l6 6M9 3l-6 6"/></svg></i>Often made with synthetic actives</span></td></tr>
+        <tr><td class="f"><span><svg viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg>Sugar</span></td><td class="y"><span><i class="mark"><svg viewBox="0 0 12 12"><path d="M2 6.5l2.8 2.8L10 3.5"/></svg></i>4g added sugar per gummy</span></td><td class="n"><span><i class="mark"><svg viewBox="0 0 12 12"><path d="M3 3l6 6M9 3l-6 6"/></svg></i>Often higher sugar or syrup-heavy formulas</span></td></tr>
+        <tr><td class="f"><span><svg viewBox="0 0 24 24"><path d="M12 21v-9M12 12c0-4 3-7 7-7 0 4-3 7-7 7zM12 15c0-3-2.5-5-6-5 0 3 2.5 5 6 5z"/><path d="M6 21h12"/></svg>Ingredient source</span></td><td class="y"><span><i class="mark"><svg viewBox="0 0 12 12"><path d="M2 6.5l2.8 2.8L10 3.5"/></svg></i>Organic tapioca syrup, organic cane sugar, pectin, elderberry juice</span></td><td class="n"><span><i class="mark"><svg viewBox="0 0 12 12"><path d="M3 3l6 6M9 3l-6 6"/></svg></i>Artificial flavors, fillers, and lab-made systems</span></td></tr>
+        <tr><td class="f"><span><svg viewBox="0 0 24 24"><path d="M3 17h18M5 20h14"/><path d="M6 13a6 6 0 0112 0"/><path d="M12 3v2M5 6l1.5 1.5M19 6l-1.5 1.5M2 13h2M20 13h2"/></svg>After effects</span></td><td class="y"><span><i class="mark"><svg viewBox="0 0 12 12"><path d="M2 6.5l2.8 2.8L10 3.5"/></svg></i>No crash or hangover after</span></td><td class="n"><span><i class="mark"><svg viewBox="0 0 12 12"><path d="M3 3l6 6M9 3l-6 6"/></svg></i>Crash, fog, or hangover-like aftereffects</span></td></tr>
+        <tr><td class="f"><span><svg viewBox="0 0 24 24"><path d="M8 7a4 4 0 118 0v1l2 2v3h-2l-1 8H9l-1-8H6v-3l2-2V7z"/><circle cx="10" cy="7" r=".6"/><circle cx="14" cy="7" r=".6"/></svg>Dosing</span></td><td class="y"><span><i class="mark"><svg viewBox="0 0 12 12"><path d="M2 6.5l2.8 2.8L10 3.5"/></svg></i>1 gummy serving • 5 per package</span></td><td class="n"><span><i class="mark"><svg viewBox="0 0 12 12"><path d="M3 3l6 6M9 3l-6 6"/></svg></i>Inconsistent dosing or messy formats</span></td></tr>
+        <tr><td class="f"><span><svg viewBox="0 0 24 24"><path d="M13 2L5 14h6l-1 8 9-13h-6l1-7z"/></svg>Readiness</span></td><td class="y"><span><i class="mark"><svg viewBox="0 0 12 12"><path d="M2 6.5l2.8 2.8L10 3.5"/></svg></i>Ready anytime, no prep</span></td><td class="n"><span><i class="mark"><svg viewBox="0 0 12 12"><path d="M3 3l6 6M9 3l-6 6"/></svg></i>Often require mixing, measuring, or extra steps</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===================== TESTIMONIALS ===================== -->
+<section class="sec talk" id="reviews">
+  <h2 data-reveal>What people are saying…</h2>
+  <!-- PLACEHOLDER REVIEWS — replace with verified customer reviews before launch -->
+  <div class="rail" id="talkRail" data-drag>
+    <a class="tcard peach" href="product.html?p=peach-bliss">
+      <span class="q" aria-hidden="true">“</span><span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+      <p>“Split a pack with friends at a rooftop dinner and the whole night just glowed. Juicy peach, zero heaviness.”</p>
+      <span class="who">— Jordan M., verified buyer</span>
+      <span class="prod"><img src="peach-1.jpg" alt="" loading="lazy"><span><b>Peach Infused Gummies</b><small>5000 mg</small></span></span>
+    </a>
+    <a class="tcard cherry" href="product.html?p=cherry">
+      <span class="q" aria-hidden="true">“</span><span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+      <p>“A cherry gummy before studio time is my new rule. Rich flavor, and the ideas just keep arriving.”</p>
+      <span class="who">— Alex T., verified buyer</span>
+      <span class="prod"><img src="cherry-1.jpg" alt="" loading="lazy"><span><b>Cherry Infused Gummies</b><small>5000 mg</small></span></span>
+    </a>
+    <a class="tcard apple" href="product.html?p=green-apple">
+      <span class="q" aria-hidden="true">“</span><span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+      <p>“One tart little apple gummy with my evening tea and my mind actually clocks out. Best wind-down ritual I’ve found.”</p>
+      <span class="who">— Priya S., verified buyer</span>
+      <span class="prod"><img src="green-apple-1.jpg" alt="" loading="lazy"><span><b>Green Apple Gummies</b><small>5000 mg</small></span></span>
+    </a>
+    <a class="tcard choc" href="product.html?p=dark-chocolate">
+      <span class="q" aria-hidden="true">“</span><span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+      <p>“Proper Belgian chocolate first, everything else second. One square after dinner and the evening slows right down.”</p>
+      <span class="who">— Marcus D., verified buyer</span>
+      <span class="prod"><img src="choco-dark-1.jpg" alt="" loading="lazy"><span><b>Dark Infused Chocolates</b><small>5000 mg</small></span></span>
+    </a>
+    <a class="tcard cherry" href="product.html?p=cherry">
+      <span class="q" aria-hidden="true">“</span><span class="stars" aria-label="4 out of 5 stars">★★★★☆</span>
+      <p>“These little gummies turned my Sunday reset into the best part of my week. Wish the pack had one more.”</p>
+      <span class="who">— Maya R., verified buyer</span>
+      <span class="prod"><img src="cherry-1.jpg" alt="" loading="lazy"><span><b>Cherry Infused Gummies</b><small>5000 mg</small></span></span>
+    </a>
+    <a class="tcard choc" href="product.html?p=milk-chocolate">
+      <span class="q" aria-hidden="true">“</span><span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+      <p>“Creamy, not cloying. Brought a box to a cabin weekend and it disappeared by Saturday night.”</p>
+      <span class="who">— Elena K., verified buyer</span>
+      <span class="prod"><img src="choco-milk-1.jpg" alt="" loading="lazy"><span><b>Milk Infused Chocolates</b><small>5000 mg</small></span></span>
+    </a>
+    <a class="tcard peach" href="product.html?p=berry-dark-chocolate">
+      <span class="q" aria-hidden="true">“</span><span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+      <p>“Midnight Berry is the one. Tart berry, deep dark chocolate, and a slow, warm settle. My new night-in essential.”</p>
+      <span class="who">— Sam K., verified buyer</span>
+      <span class="prod"><img src="choco-berry-1.jpg" alt="" loading="lazy"><span><b>Berry Infused Chocolates</b><small>5000 mg</small></span></span>
+    </a>
+  </div>
+</section>
+
+<!-- ===================== INSTAGRAM ===================== -->
+<section class="sec ugc" id="social">
+  <h2 data-reveal>Show us how you Mushi!</h2>
+  <!-- DEMO CONTENT — swap for an authorized Instagram feed (@taste.mushi / #savorthemoment) -->
+  <div class="rail" id="ugcRail" data-drag data-stagger>
+    <a class="pol" href="https://www.instagram.com/taste.mushi" target="_blank" rel="noopener"><span class="im"><img src="ritual-connected.jpg" alt="Two friends laughing together at golden hour" loading="lazy"></span><span class="h"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>@taste.mushi</span><span class="cap">I’m feelin so-so good! Thank you @taste.mushi for the gummies. I love me some peach!</span></a>
+    <a class="pol" href="https://www.instagram.com/taste.mushi" target="_blank" rel="noopener"><span class="im"><img src="ritual-alive.jpg" alt="A festival-goer smiling in front of a ferris wheel" loading="lazy"></span><span class="h"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>@taste.mushi</span><span class="cap">Cherry gummies + a sunset set = the whole mood. #savorthemoment</span></a>
+    <a class="pol" href="https://www.instagram.com/taste.mushi" target="_blank" rel="noopener"><span class="im"><img src="ritual-creative.jpg" alt="A person with an iced coffee pausing outside" loading="lazy"></span><span class="h"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>@taste.mushi</span><span class="cap">Studio day fuel. Green apple on the desk, paint everywhere else.</span></a>
+    <a class="pol" href="https://www.instagram.com/taste.mushi" target="_blank" rel="noopener"><span class="im"><img src="ritual-present.jpg" alt="A pool day with a peace sign to the camera" loading="lazy"></span><span class="h"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>@taste.mushi</span><span class="cap">Pool day. Peach Bliss. Zero notifications. ✌️</span></a>
+    <a class="pol" href="https://www.instagram.com/taste.mushi" target="_blank" rel="noopener"><span class="im"><img src="rituals-hero.jpg" alt="Two friends taking a selfie in the sun" loading="lazy"></span><span class="h"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>@taste.mushi</span><span class="cap">Besties who Mushi together, stay together. Thank you for the cherry drop!</span></a>
+    <a class="pol" href="https://www.instagram.com/taste.mushi" target="_blank" rel="noopener"><span class="im"><img src="blog-page-hero-100.jpg" alt="A group of friends on a rooftop at dusk" loading="lazy"></span><span class="h"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>@taste.mushi</span><span class="cap">Rooftop dinner, dark chocolate for dessert. Night made.</span></a>
+  </div>
+  <a class="btn" href="https://www.instagram.com/taste.mushi" target="_blank" rel="noopener">Follow us @taste.mushi</a>
+  <p class="demo-note">Demo content — live feed pending Instagram authorization</p>
+</section>
+
+<!-- ===================== NEWSLETTER ===================== -->
+<section class="news" id="club">
+  <img class="bg" src="vb/newsletter-bg.webp" width="1366" height="530" alt="" loading="lazy" decoding="async" data-parallax="0.12">
+  <div class="wrap" data-reveal>
+    <h2><span>Join the</span> <span class="marker">Feel-<br>Good</span> <span>Club</span></h2>
+    <p class="sub">First dibs on new flavors, rituals worth stealing, and 10% off your first order.</p>
+    <form class="nform" id="nform" novalidate data-action="">
+      <label class="sr" for="nemail">Email address</label>
+      <input type="email" id="nemail" name="email" placeholder="Enter Your Email Address" autocomplete="email" required>
+      <button class="btn" type="submit">Submit</button>
+    </form>
+    <p class="nmsg" id="nmsg" aria-live="polite"></p>
+    <p class="consent">By subscribing you agree to receive marketing emails from MUSHI. Unsubscribe anytime. 21+ only.</p>
+  </div>
+</section>
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="foot" id="footer">
+  <div class="wrap">
+    <div class="top" data-stagger>
+      <div>
+        <a class="flogo" href="home-vb.html" aria-label="MUSHI home"><svg viewBox="0 0 160 36.2"><use href="#s-wordmark"/></svg></a>
+        <p class="tag">Infused Gummies</p>
+      </div>
+      <div>
+        <div class="col"><h4>Support</h4><a href="contact.html">Contact us</a><a href="faq.html">FAQs</a><a href="#">Manage subscriptions</a><a href="#">Shipping &amp; returns</a></div>
+        <div class="col"><h4>Follow us</h4><div class="soc"><a href="https://www.instagram.com/taste.mushi" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></a><a href="https://www.tiktok.com/@mushigummies" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M14 3v11a3.5 3.5 0 11-3-3.5"/><path d="M14 3c.5 3 2.5 5 5.5 5"/></svg></a></div></div>
+      </div>
+      <div>
+        <div class="col"><h4>Partners</h4><a href="contact.html">Wholesale &amp; bulk</a><a href="contact.html">Ambassador program</a></div>
+        <div class="col"><h4>Need help?</h4><a href="mailto:hello@tastemushi.com">hello@tastemushi.com</a></div>
+        <div class="col"><h4>Get a 15% sign-up discount</h4>
+          <form class="fform" id="fform" novalidate><label class="sr" for="femail">Email address</label><input type="email" id="femail" placeholder="Email address" autocomplete="email" required><button class="btn light" type="submit">Subscribe</button></form>
+          <p class="nmsg" id="fmsg" aria-live="polite" style="font-size:10px;opacity:.8"></p>
+        </div>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© <span id="yr">2026</span> MUSHI. All rights reserved. 21+ only. Please enjoy responsibly.</span>
+      <span><a href="#">Privacy Policy</a> &nbsp;·&nbsp; <a href="#">Terms &amp; Conditions</a> &nbsp;·&nbsp; <a href="#">Accessibility</a></span>
+    </div>
+  </div>
+  <div class="wordmark" aria-hidden="true"><svg viewBox="0 0 160 36.2" data-drift="-14"><use href="#s-wordmark"/></svg></div>
+</footer>
+
+<!-- Cart drawer (placeholder — wire to the store's cart/checkout) -->
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Your cart" aria-hidden="true">
+  <header><span>Your cart</span><button type="button" id="drawerClose">Close ✕</button></header>
+  <ul id="cartList"></ul>
+  <footer><div style="display:flex;justify-content:space-between;font-family:var(--font-display);font-size:15px"><span>Subtotal</span><b id="cartTotal">$0.00</b></div><a class="btn" href="#" id="checkout">Checkout <span class="arr">→</span></a></footer>
+</aside>
+<div class="toast" id="toast" role="status"></div>
+
+<!-- Search overlay -->
+<div class="search" id="search" aria-hidden="true">
+  <button type="button" class="x" id="searchClose">Close ✕</button>
+  <form action="gummies.html" method="get" role="search"><label class="sr" for="q">Search</label><input id="q" name="q" placeholder="Search Mushi…" autocomplete="off"><button type="submit" class="btn light">Go</button></form>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script>
+(function(){
+'use strict';
+var $=function(s,c){return (c||document).querySelector(s)};
+var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+var RM=window.matchMedia('(prefers-reduced-motion: reduce)');
+var reduced=function(){return RM.matches};
+var mobile=function(){return window.matchMedia('(max-width: 767px)').matches};
+document.getElementById('yr').textContent=new Date().getFullYear();
+
+/* ---------- lazy image swap (data-src → src) ---------- */
+function loadImg(img){
+  if(!img||img.dataset.loaded) return;
+  if(img.dataset.srcset){img.srcset=img.dataset.srcset}
+  if(img.dataset.src){img.src=img.dataset.src}
+  img.dataset.loaded='1';
+}
+
+/* ---------- scroll reveals ---------- */
+var io=new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    if(!e.isIntersecting) return;
+    e.target.classList.add('in');
+    if(e.target.hasAttribute('data-mask')) e.target.classList.add('rv');
+    io.unobserve(e.target);
+  });
+},{rootMargin:'0px 0px -8% 0px',threshold:.12});
+$$('[data-reveal],[data-stagger],[data-mask]').forEach(function(el){io.observe(el)});
+
+/* ---------- header ---------- */
+var hdr=$('#hdr'), body=document.body;
+$$('.ddb').forEach(function(b){
+  b.addEventListener('click',function(){
+    var open=b.getAttribute('aria-expanded')==='true';
+    $$('.ddb').forEach(function(x){x.setAttribute('aria-expanded','false')});
+    b.setAttribute('aria-expanded',open?'false':'true');
+  });
+});
+document.addEventListener('click',function(e){ if(!e.target.closest('.nav')) $$('.ddb').forEach(function(x){x.setAttribute('aria-expanded','false')}) });
+document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ $$('.ddb').forEach(function(x){x.setAttribute('aria-expanded','false')}); closeDrawer(); closeSearch(); if(body.classList.contains('menu-open')) toggleMenu(); } });
+var burger=$('#burger');
+function toggleMenu(){ var o=body.classList.toggle('menu-open'); burger.setAttribute('aria-expanded',o?'true':'false'); burger.setAttribute('aria-label',o?'Close menu':'Open menu'); }
+burger.addEventListener('click',toggleMenu);
+var search=$('#search');
+function openSearch(){search.classList.add('open');search.setAttribute('aria-hidden','false');setTimeout(function(){$('#q').focus()},50)}
+function closeSearch(){search.classList.remove('open');search.setAttribute('aria-hidden','true')}
+$('#searchBtn').addEventListener('click',openSearch);
+$('#searchClose').addEventListener('click',closeSearch);
+
+/* ---------- hero carousel ---------- */
+var hero=$('#hero'), slides=$$('.slide',hero), dotsWrap=$('#heroDots'), HERO_DUR=6000, cur=0, timer=null, paused=false, hovering=false, focused=false;
+hero.style.setProperty('--hero-dur',HERO_DUR+'ms');
+slides.forEach(function(s,i){
+  var b=document.createElement('button'); b.type='button'; b.setAttribute('role','tab'); b.setAttribute('aria-label','Go to slide '+(i+1)); b.innerHTML='<i></i>';
+  b.addEventListener('click',function(){go(i,true)}); dotsWrap.appendChild(b);
+});
+var dots=$$('button',dotsWrap);
+function prep(i){ $$('img[data-src]',slides[(i+slides.length)%slides.length]).forEach(loadImg) }
+function go(n,manual){
+  var next=(n+slides.length)%slides.length; if(next===cur&&slides[cur].classList.contains('is-active')) {restart();return}
+  var prev=slides[cur];
+  prep(next);
+  prev.classList.remove('is-active'); prev.classList.add('is-leaving');
+  var s=slides[next]; s.classList.add('is-active');
+  setTimeout(function(){prev.classList.remove('is-leaving')},1200);
+  dots.forEach(function(d,i){ d.setAttribute('aria-current',i===next?'true':'false'); if(i===next){var ii=d.firstChild;ii.style.animation='none';void ii.offsetWidth;ii.style.animation='';} });
+  hdr.classList.toggle('on-dark',s.dataset.dark==='1'); hero.classList.toggle('on-dark',s.dataset.dark==='1');
+  cur=next; prep(next+1);
+  restart();
+}
+function restart(){ clearTimeout(timer); if(reduced()) return; if(!paused&&!hovering&&!focused&&!document.hidden){ timer=setTimeout(function(){go(cur+1)},HERO_DUR) } }
+function setPause(){ var p=hovering||focused||document.hidden; hero.classList.toggle('is-paused',p); if(p) clearTimeout(timer); else restart(); }
+hero.addEventListener('mouseenter',function(){hovering=true;setPause()});
+hero.addEventListener('mouseleave',function(){hovering=false;setPause()});
+hero.addEventListener('focusin',function(){focused=true;setPause()});
+hero.addEventListener('focusout',function(e){ if(!hero.contains(e.relatedTarget)){focused=false;setPause()} });
+document.addEventListener('visibilitychange',setPause);
+$('#heroPrev').addEventListener('click',function(){go(cur-1,true)});
+$('#heroNext').addEventListener('click',function(){go(cur+1,true)});
+hero.addEventListener('keydown',function(e){ if(e.key==='ArrowRight'){go(cur+1,true)} if(e.key==='ArrowLeft'){go(cur-1,true)} });
+dots[0].setAttribute('aria-current','true'); prep(1); restart();
+/* swipe */
+(function(){ var x0=null,y0=null; hero.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY},{passive:true});
+hero.addEventListener('touchend',function(e){ if(x0===null) return; var dx=e.changedTouches[0].clientX-x0, dy=e.changedTouches[0].clientY-y0; if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)) go(cur+(dx<0?1:-1),true); x0=y0=null; },{passive:true}); })();
+/* pointer parallax on hero layers */
+(function(){
+  if(reduced()||!window.matchMedia('(pointer:fine)').matches) return;
+  var tx=0,ty=0,cx=0,cy=0,raf=null, layers=$$('[data-depth],.sky',hero);
+  function tick(){ cx+=(tx-cx)*.08; cy+=(ty-cy)*.08; layers.forEach(function(l){ var d=parseFloat(l.dataset.depth||1); l.style.setProperty('--px',(cx*8*d).toFixed(1)+'px'); l.style.setProperty('--py',(cy*6*d).toFixed(1)+'px'); }); if(Math.abs(tx-cx)>.001||Math.abs(ty-cy)>.001) raf=requestAnimationFrame(tick); else raf=null; }
+  hero.addEventListener('mousemove',function(e){ var r=hero.getBoundingClientRect(); tx=(e.clientX-r.left)/r.width-.5; ty=(e.clientY-r.top)/r.height-.5; if(!raf) raf=requestAnimationFrame(tick); });
+  hero.addEventListener('mouseleave',function(){tx=ty=0;if(!raf) raf=requestAnimationFrame(tick)});
+})();
+
+/* ---------- category carousel ---------- */
+(function(){
+  var stage=$('#catStage'), panels=$$('.cat-panel',stage), word=$('#catWord'), i=0, t=null, DUR=3000, hov=false, foc=false, vis=true;
+  panels.forEach(function(p){ $$('img[data-src]',p).forEach(loadImg) });
+  function show(n){
+    var next=(n+panels.length)%panels.length; if(next===i) return;
+    var p=panels[i]; p.classList.remove('is-active'); p.classList.add('is-leaving'); setTimeout(function(){p.classList.remove('is-leaving')},800);
+    panels[next].classList.add('is-active');
+    word.classList.add('swap'); setTimeout(function(){ word.firstElementChild.textContent=panels[next].dataset.name; word.classList.remove('swap'); },300);
+    i=next; restart();
+  }
+  function restart(){ clearTimeout(t); if(reduced()||hov||foc||!vis||document.hidden) return; t=setTimeout(function(){show(i+1)},DUR); }
+  stage.addEventListener('mouseenter',function(){hov=true;clearTimeout(t)}); stage.addEventListener('mouseleave',function(){hov=false;restart()});
+  stage.addEventListener('focusin',function(){foc=true;clearTimeout(t)}); stage.addEventListener('focusout',function(e){ if(!stage.contains(e.relatedTarget)){foc=false;restart()} });
+  new IntersectionObserver(function(es){ vis=es[0].isIntersecting; if(vis) restart(); else clearTimeout(t); },{threshold:.2}).observe(stage);
+  document.addEventListener('visibilitychange',restart);
+  $('#catPrev').addEventListener('click',function(){show(i-1)}); $('#catNext').addEventListener('click',function(){show(i+1)});
+  var x0=null; stage.addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});
+  stage.addEventListener('touchend',function(e){ if(x0===null) return; var dx=e.changedTouches[0].clientX-x0; if(Math.abs(dx)>45) show(i+(dx<0?1:-1)); x0=null; },{passive:true});
+  restart();
+})();
+
+/* ---------- FAQ accordion ---------- */
+$$('.acc-item').forEach(function(item){
+  var b=$('.acc-btn',item);
+  b.addEventListener('click',function(){ var open=item.classList.toggle('open'); b.setAttribute('aria-expanded',open?'true':'false'); });
+});
+$$('.acc-btn').forEach(function(b,i,all){ b.addEventListener('keydown',function(e){ if(e.key==='ArrowDown'){e.preventDefault();(all[i+1]||all[0]).focus()} if(e.key==='ArrowUp'){e.preventDefault();(all[i-1]||all[all.length-1]).focus()} }) });
+
+/* ---------- drag-to-scroll rails ---------- */
+$$('[data-drag]').forEach(function(rail){
+  var down=false,sx=0,sl=0,moved=false;
+  rail.addEventListener('pointerdown',function(e){ if(e.pointerType==='touch') return; down=true;moved=false;sx=e.clientX;sl=rail.scrollLeft;rail.setPointerCapture(e.pointerId); });
+  rail.addEventListener('pointermove',function(e){ if(!down) return; var dx=e.clientX-sx; if(Math.abs(dx)>4){moved=true;rail.classList.add('dragging')} rail.scrollLeft=sl-dx; });
+  function up(e){ if(!down) return; down=false; rail.classList.remove('dragging'); }
+  rail.addEventListener('pointerup',up); rail.addEventListener('pointercancel',up);
+  rail.addEventListener('click',function(e){ if(moved){e.preventDefault();e.stopPropagation();moved=false} },true);
+});
+
+/* ---------- cart (placeholder — replace with store cart API) ---------- */
+var KEY='mushi-cart-vb', cart=[]; try{cart=JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){}
+var cartN=$('#cartN'), drawer=$('#drawer'), scrim=$('#scrim'), list=$('#cartList'), total=$('#cartTotal'), toast=$('#toast'), toastT=null;
+function save(){ try{localStorage.setItem(KEY,JSON.stringify(cart))}catch(e){} render(); }
+function render(){
+  var n=cart.reduce(function(a,c){return a+c.qty},0), sum=cart.reduce(function(a,c){return a+c.qty*c.price},0);
+  cartN.textContent=n; cartN.classList.toggle('show',n>0); total.textContent='$'+sum.toFixed(2);
+  list.innerHTML=cart.length?cart.map(function(c,i){return '<li><img src="'+c.img+'" alt=""><span><b>'+c.name+'</b>'+c.qty+' × $'+c.price.toFixed(2)+'</span><button type="button" class="rm" data-i="'+i+'" aria-label="Remove '+c.name+'">✕</button></li>'}).join(''):'<li class="empty">Your cart is empty.</li>';
+}
+list.addEventListener('click',function(e){ var b=e.target.closest('.rm'); if(b){cart.splice(+b.dataset.i,1);save()} });
+function openDrawer(){drawer.classList.add('open');drawer.setAttribute('aria-hidden','false');scrim.classList.add('show');$('#drawerClose').focus()}
+function closeDrawer(){drawer.classList.remove('open');drawer.setAttribute('aria-hidden','true');scrim.classList.remove('show')}
+$('#cartBtn').addEventListener('click',openDrawer); $('#drawerClose').addEventListener('click',closeDrawer); scrim.addEventListener('click',closeDrawer);
+$('#checkout').addEventListener('click',function(e){ e.preventDefault(); showToast('Checkout is not connected yet'); });
+function showToast(msg){ toast.textContent=msg; toast.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(function(){toast.classList.remove('show')},2400); }
+$$('.pcard').forEach(function(card){
+  var out=$('output',card), q=1;
+  $('.inc',card).addEventListener('click',function(){q=Math.min(10,q+1);out.value=q});
+  $('.dec',card).addEventListener('click',function(){q=Math.max(1,q-1);out.value=q});
+  $('.add',card).addEventListener('click',function(){
+    var slug=card.dataset.slug, ex=cart.filter(function(c){return c.slug===slug})[0];
+    if(ex) ex.qty+=q; else cart.push({slug:slug,name:card.dataset.name,price:+card.dataset.price,img:card.dataset.img,qty:q});
+    save(); showToast('Added to cart — '+card.dataset.name); q=1; out.value=1;
+  });
+});
+render();
+
+/* ---------- newsletter forms ---------- */
+function wireForm(form,msgEl){
+  form.addEventListener('submit',function(e){
+    e.preventDefault(); var input=$('input[type=email]',form), v=input.value.trim();
+    msgEl.className='nmsg';
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){ msgEl.textContent='Please enter a valid email address.'; msgEl.classList.add('err'); input.focus(); return; }
+    form.classList.add('loading'); msgEl.textContent='Signing you up…';
+    var action=form.dataset.action||'';
+    var done=function(ok){ form.classList.remove('loading'); if(ok){ msgEl.textContent='You’re in. Welcome to the club.'; form.reset(); } else { msgEl.textContent='Something went wrong — please try again.'; msgEl.classList.add('err'); } };
+    if(action){ fetch(action,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:v,source:'home-vb'})}).then(function(r){done(r.ok)}).catch(function(){done(false)}); }
+    else { setTimeout(function(){done(true); msgEl.textContent+=' (demo — no list connected yet)'},700); }
+  });
+}
+wireForm($('#nform'),$('#nmsg')); wireForm($('#fform'),$('#fmsg'));
+
+/* ---------- scroll choreography (GSAP + ScrollTrigger when available) ---------- */
+function initScroll(){
+  if(reduced()||!window.gsap||!window.ScrollTrigger) return;
+  gsap.registerPlugin(ScrollTrigger);
+  var strength=mobile()?.4:1;
+  /* hero layers drift at different rates as the hero scrolls away */
+  gsap.to('.trio',{yPercent:12*strength,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.to('.slide-mint .hero-h, .slide-sky .hero-h',{yPercent:22*strength,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.to('.hand-pouch',{yPercent:18*strength,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.to('.hand-gummy',{yPercent:26*strength,xPercent:4,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.to('.slide-sky .sky',{yPercent:6,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+  /* background words move relative to the product photography */
+  gsap.to('#catWord',{yPercent:-16*strength,ease:'none',scrollTrigger:{trigger:'#catStage',start:'top bottom',end:'bottom top',scrub:true}});
+  gsap.to('.cat-panels',{yPercent:5*strength,ease:'none',scrollTrigger:{trigger:'#catStage',start:'top bottom',end:'bottom top',scrub:true}});
+  $$('[data-drift]').forEach(function(el){ gsap.fromTo(el,{yPercent:-parseFloat(el.dataset.drift)*strength},{yPercent:parseFloat(el.dataset.drift)*strength,ease:'none',scrollTrigger:{trigger:el.closest('section,footer')||el,start:'top bottom',end:'bottom top',scrub:true}}); });
+  /* editorial photos shift inside their crops */
+  $$('[data-parallax]').forEach(function(img){ var a=parseFloat(img.dataset.parallax)*100*strength; gsap.fromTo(img,{yPercent:-a},{yPercent:a,ease:'none',scrollTrigger:{trigger:img.parentElement,start:'top bottom',end:'bottom top',scrub:true}}); });
+  /* gallery panels slide up in sequence */
+  gsap.from('.life a',{yPercent:8,opacity:0,stagger:.08,duration:1,ease:'power3.out',scrollTrigger:{trigger:'.life',start:'top 80%'}});
+  /* chocolate section: deepen the brown as it enters */
+  gsap.fromTo('.cho',{'--blend':'420px'},{'--blend':'180px',ease:'none',scrollTrigger:{trigger:'.cho',start:'top bottom',end:'top 30%',scrub:true}});
+}
+if(window.gsap) initScroll(); else window.addEventListener('load',initScroll);
+})();
+</script>
+</body>
+</html>
